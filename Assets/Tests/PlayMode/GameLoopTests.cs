@@ -49,11 +49,15 @@ namespace FootballRunner.Tests
         }
 
         [UnityTest]
-        public IEnumerator RunStartsInGreenHillsWithNoMusic()
+        public IEnumerator RunStartsInItsWorldWithNoMusic()
         {
             yield return null;
 
-            Assert.AreEqual("GREEN HILLS", EnvironmentDirector.Instance.CurrentDisplayName);
+            // The run opens in the chosen world and is named after it.
+            string world = FootballRunner.Learning.LearningProgress.SelectedPack;
+            string title = FootballRunner.Learning.WordPack.Load(world)
+                .Title(FootballRunner.Learning.LearningProgress.Language).ToUpperInvariant();
+            Assert.AreEqual(title, EnvironmentDirector.Instance.CurrentDisplayName);
 
             AudioSource[] sources = Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
             for (int i = 0; i < sources.Length; i++)
@@ -144,9 +148,10 @@ namespace FootballRunner.Tests
                     "Kenney DistantHills is still visible.");
             }
 
-            Assert.IsNotNull(GameObject.Find("SunnyLand_Back"), "SunnyLand back layer is missing.");
-            Assert.IsNotNull(GameObject.Find("SunnyLand_Middle"), "SunnyLand middle layer is missing.");
-            Assert.IsNotNull(GameObject.Find("SunnyLand_Props"), "SunnyLand props layer is missing.");
+            // Each word world draws its own backdrop in place of the old jungle layers.
+            Assert.IsNotNull(GameObject.Find("WorldFar"), "The world's far backdrop is missing.");
+            Assert.IsNotNull(GameObject.Find("WorldMid"), "The world's middle layer is missing.");
+            Assert.IsNull(GameObject.Find("SunnyLand_Back"), "The old jungle backdrop is still showing.");
         }
 
         [UnityTest]

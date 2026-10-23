@@ -14,7 +14,8 @@ namespace FootballRunner.EditorTools
         private static readonly string[] Folders =
         {
             "Assets/Resources/Menu/",
-            "Assets/Resources/Words/"
+            "Assets/Resources/Words/",
+            "Assets/Resources/Worlds/"
         };
 
         private void OnPreprocessTexture()
@@ -30,7 +31,8 @@ namespace FootballRunner.EditorTools
 
             settings.textureType = TextureImporterType.Sprite;
             settings.spriteMode = (int)SpriteImportMode.Single;
-            settings.spritePixelsPerUnit = 100f;
+            // Ground tiles replace Kenney tiles at 64 px per unit, so they must match it.
+            settings.spritePixelsPerUnit = assetPath.Contains("/Worlds/Ground/") ? 64f : 100f;
             settings.spriteMeshType = SpriteMeshType.FullRect;
             settings.alphaIsTransparency = true;
             settings.mipmapEnabled = false;

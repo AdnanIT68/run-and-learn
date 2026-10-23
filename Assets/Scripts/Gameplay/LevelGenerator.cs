@@ -281,6 +281,7 @@ namespace FootballRunner.Gameplay
             chunk.ApplyTint(EnvironmentDirector.Instance != null
                 ? EnvironmentDirector.Instance.CurrentGroundTint
                 : Color.white);
+            WorldScenery.Instance?.SkinChunk(chunk);
 
             bool isGap = IsGapChunk(prefab);
             bool themeSafe = EnvironmentDirector.Instance != null &&
@@ -605,6 +606,8 @@ namespace FootballRunner.Gameplay
             {
                 return false;
             }
+
+            WorldScenery.Instance?.SkinObstacle(instance, prefab.name);
 
             chunk.RegisterContent(instance);
             _lastObstacleX = slot.position.x;

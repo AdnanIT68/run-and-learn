@@ -76,6 +76,7 @@ namespace FootballRunner.Core
             IsLoadingScene = false;
             Time.timeScale = 1f;
             EnvironmentDirector.EnsureOn(gameObject);
+            WorldScenery.EnsureOn(gameObject);
             Learning.WordChallengeDirector.EnsureOn(gameObject);
             Learning.PepiCompanion.EnsureOn();
             Effects.GameFeel.EnsureOn(gameObject);

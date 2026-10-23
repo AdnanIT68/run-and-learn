@@ -51,6 +51,25 @@ namespace FootballRunner.Gameplay
 
         public int SafeChunksRemaining => _safeChunksRemaining;
 
+        /// <summary>
+        /// Set by WorldScenery for word worlds: one fixed area named after the world,
+        /// instead of the timed green / sunset / night cycle.
+        /// </summary>
+        public static AreaTheme WorldOverride { get; set; }
+
+        /// <summary>Replaces the area cycle with a single theme, applied at once.</summary>
+        public void UseSingleTheme(AreaTheme theme)
+        {
+            if (theme == null)
+            {
+                return;
+            }
+
+            themes = new[] { theme };
+            _themeIndex = -1;
+            ApplyTheme(0, instant: true);
+        }
+
         public static EnvironmentDirector EnsureOn(GameObject host)
         {
             if (Instance != null)
@@ -105,6 +124,11 @@ namespace FootballRunner.Gameplay
             if (themes == null || themes.Length == 0 || themes[0] == null || themes[0].IsUnconfigured())
             {
                 themes = CreateBuiltInThemes();
+            }
+
+            if (WorldOverride != null)
+            {
+                themes = new[] { WorldOverride };
             }
 
             ResolveCamera();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Linq;
 using FootballRunner.Adventure;
 using FootballRunner.Effects;
+using FootballRunner.Gameplay;
 using FootballRunner.Learning;
 using FootballRunner.Player;
 using FootballRunner.SaveSystem;
@@ -299,6 +300,70 @@ namespace FootballRunner.Tests
             WordBubble wrong = director.Bubbles.First(b => b.Word != target);
             Assert.AreEqual(target.group, wrong.Word.group, "The wrong picture must come from the same group.");
             Assert.AreNotEqual(right.Word.PictureId, wrong.Word.PictureId, "The two pictures must differ.");
+        }
+
+        [Test]
+        public void EveryWorldHasItsOwnSceneryArt()
+        {
+            foreach (string world in WordPack.PackOrder)
+            {
+                Assert.IsNotNull(Resources.Load<Sprite>($"Worlds/{world}/far"), $"{world} has no far backdrop.");
+                Assert.IsNotNull(Resources.Load<Sprite>($"Worlds/{world}/mid"), $"{world} has no middle layer.");
+
+                foreach (string kind in new[] { "spike", "crate", "saw" })
+                {
+                    Assert.IsNotNull(Resources.Load<Sprite>($"Worlds/Obstacles/{world}_{kind}"),
+                        $"{world} has no {kind} obstacle picture.");
+                }
+            }
+
+            foreach (string ground in new[] { "dirt", "stone", "sand", "snow" })
+            {
+                Assert.AreEqual(5, Resources.LoadAll<Sprite>($"Worlds/Ground/{ground}").Length,
+                    $"Ground set {ground} is incomplete.");
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator MountainRunHasSnowSkyTitleWeatherAndDressedObstacles()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            WordPack river = WordPack.Load("World5");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(river.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.SelectPack("World6"));
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+            yield return null;
+
+            WorldScenery scenery = WorldScenery.Instance;
+            Assert.IsNotNull(scenery);
+            Assert.AreEqual("World6", scenery.WorldName);
+            Assert.AreEqual(0, Object.FindObjectsByType<ParallaxLayer>(FindObjectsSortMode.None).Length,
+                "The old jungle backdrop is still showing.");
+            Assert.Greater(scenery.ParticleCount, 0, "No snow is falling.");
+            Assert.AreEqual(WordPack.Load("World6").Title(LearningProgress.Language).ToUpperInvariant(),
+                EnvironmentDirector.Instance.CurrentDisplayName);
+
+            bool snowyGround = Object.FindObjectsByType<Chunk>(FindObjectsSortMode.None)
+                .SelectMany(c => c.GetComponentsInChildren<SpriteRenderer>())
+                .Any(r => r.sprite != null && r.sprite.name.StartsWith("terrain_snow_"));
+            Assert.IsTrue(snowyGround, "The ground is not snow.");
+
+            Obstacles.Obstacle obstacle = Object.FindObjectsByType<Obstacles.Obstacle>(
+                FindObjectsInactive.Include, FindObjectsSortMode.None).First();
+            Collider2D hitBox = obstacle.GetComponent<Collider2D>();
+            bool hitBoxWasOn = hitBox.enabled;
+            scenery.SkinObstacle(obstacle.gameObject, obstacle.name);
+
+            Transform skin = obstacle.transform.Find("WorldSkin");
+            Assert.IsNotNull(skin, "The obstacle was not dressed for the mountain.");
+            Assert.IsNotNull(skin.GetComponent<SpriteRenderer>().sprite);
+            Assert.AreEqual(hitBoxWasOn, hitBox.enabled, "Dressing an obstacle must not touch its collider.");
         }
 
         [Test]
