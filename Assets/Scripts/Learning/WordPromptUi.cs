@@ -155,6 +155,11 @@ namespace FootballRunner.Learning
             _card.color = CardColour;
             Fit(word.IsSentence ? 880f : 560f);
             _word.text = word.Text(LearningProgress.Language);
+
+            // A faded speaker says "read this yourself"; tapping still plays it as help.
+            bool reading = WordChallengeDirector.Instance != null &&
+                           WordChallengeDirector.Instance.CurrentKind == WordChallengeDirector.Kind.Reading;
+            _speaker.GetComponent<Image>().color = new Color(1f, 1f, 1f, reading ? 0.3f : 1f);
             _result.gameObject.SetActive(false);
             SetVisible(true);
         }

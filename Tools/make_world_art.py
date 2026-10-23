@@ -401,6 +401,64 @@ def mountain():
     return far, mid
 
 
+def school():
+    far = canvas(False)
+    sky(far, (130, 195, 250), (225, 240, 255))
+    f = Painter(far)
+    f.ellipse(1700, 140, 65, 65, (255, 220, 95, 255))
+    for cx, cy, s in ((300, 150, 0.9), (1100, 120, 0.8)):
+        f.cloud(cx, cy, s)
+    f.hills(GROUND - 60, 150, (150, 205, 125, 255), 4, 13, (380, 620))
+    rng = random.Random(14)
+    for i in range(14):
+        x = rng.uniform(0, W)
+        f.house(x, GROUND - 50 - rng.uniform(0, 70), 40, 30, (245, 240, 230, 255), (180, 90, 60, 255),
+                chimney=False, window=(160, 195, 225, 255))
+    f.hills(GROUND, 60, (115, 190, 100, 255), 6, 15)
+
+    mid = canvas(True)
+    m = Painter(mid)
+
+    def building(x):
+        wall, trim = (250, 205, 95, 255), (240, 240, 235, 255)
+        m.rect(x - 330, GROUND - 330, x + 330, GROUND + 10, wall)
+        m.poly([(x - 360, GROUND - 330), (x, GROUND - 430), (x + 360, GROUND - 330)], (175, 75, 55, 255))
+        m.rect(x - 345, GROUND - 335, x + 345, GROUND - 318, trim)
+        for row in range(2):
+            for col in range(6):
+                if col in (2, 3) and row == 1:
+                    continue
+                wx = x - 280 + col * 110
+                wy = GROUND - 290 + row * 130
+                m.rect(wx, wy, wx + 70, wy + 80, (140, 195, 235, 255), 6)
+                m.line([(wx + 35, wy), (wx + 35, wy + 80)], trim, 4)
+        m.rect(x - 70, GROUND - 130, x + 70, GROUND + 10, (150, 95, 60, 255), 8)
+        m.ellipse(x, GROUND - 370, 38, 38, trim)
+        m.line([(x, GROUND - 370), (x, GROUND - 395)], (60, 60, 70, 255), 5)
+        m.line([(x, GROUND - 370), (x + 18, GROUND - 365)], (60, 60, 70, 255), 5)
+    wrap(building, 620)
+
+    def swing(x):
+        frame = (220, 70, 60, 255)
+        m.line([(x - 90, GROUND + 10), (x - 60, GROUND - 200)], frame, 10)
+        m.line([(x + 90, GROUND + 10), (x + 60, GROUND - 200)], frame, 10)
+        m.line([(x - 70, GROUND - 200), (x + 70, GROUND - 200)], frame, 10)
+        m.line([(x - 20, GROUND - 200), (x - 20, GROUND - 60)], (90, 90, 95, 255), 3)
+        m.line([(x + 20, GROUND - 200), (x + 20, GROUND - 60)], (90, 90, 95, 255), 3)
+        m.rect(x - 32, GROUND - 62, x + 32, GROUND - 50, (60, 120, 200, 255), 3)
+    wrap(swing, 1240)
+
+    def slide(x):
+        m.rect(x - 10, GROUND - 210, x + 10, GROUND + 10, (60, 120, 200, 255))
+        m.rect(x - 60, GROUND - 215, x + 10, GROUND - 200, (60, 120, 200, 255))
+        m.poly([(x + 10, GROUND - 210), (x + 200, GROUND + 5), (x + 175, GROUND + 10), (x + 5, GROUND - 185)],
+               (250, 190, 60, 255))
+    wrap(slide, 1480)
+    for x in (1050, 1800):
+        m.tree(x, GROUND + 10, 250, (100, 175, 85, 255))
+    return far, mid
+
+
 WORLDS = {
     "World1": garden,
     "World2": farm,
@@ -408,6 +466,7 @@ WORLDS = {
     "World4": bazaar,
     "World5": river,
     "World6": mountain,
+    "World7": school,
 }
 
 # Obstacle skins. None of these pictures are words the child is learning.
@@ -418,6 +477,7 @@ OBSTACLES = {
     "World4": {"spike": "1f3fa", "crate": "1f9fa", "saw": "1f6d2"},   # amphora, basket, cart
     "World5": {"spike": "1faa8", "crate": "1fab5", "saw": "1f980"},   # rock, log, crab
     "World6": {"spike": "1f332", "crate": "1faa8", "saw": "1fab5"},   # spruce, rock, log
+    "World7": {"spike": "1f9e9", "crate": "1fa91", "saw": "1fa80"},   # puzzle piece, chair, yo-yo
 }
 
 GROUND_SETS = ("dirt", "stone", "sand", "snow")
@@ -457,6 +517,12 @@ def ambient():
     rain = Image.new("RGBA", (24, 64), (150, 200, 240, 0))
     ImageDraw.Draw(rain).line([(14, 4), (8, 60)], fill=(150, 200, 240, 230), width=4)
     shapes["rain"] = rain
+
+    plane = Image.new("RGBA", (96, 64), (255, 255, 255, 0))
+    pd = ImageDraw.Draw(plane)
+    pd.polygon([(6, 34), (90, 10), (40, 40)], fill=(255, 255, 255, 255))
+    pd.polygon([(40, 40), (90, 10), (52, 56)], fill=(215, 225, 240, 255))
+    shapes["plane"] = plane
 
     flake = Image.new("RGBA", (48, 48), (255, 255, 255, 0))
     ImageDraw.Draw(flake).ellipse((10, 10, 38, 38), fill=(255, 255, 255, 255))

@@ -35,6 +35,8 @@ What's inside:
 • Our Home: family words like mom, dad, grandma and grandpa.
 • The Old Bazaar: listen to a command and do it. Jump! Stay down! Jump twice!
 • River and Old Bridge: nature and weather words, and big or small: a big fish or a small one?
+• Winter Mountain: short sentences such as It is snowing.
+• School: letters, numbers from one to ten, and first reading.
 • Pepi the parrot flies along, cheers and shows the way on the very first word.
 • A sticker album where every learned word is saved; tap a sticker to hear it again.
 • Stars for every word your child really knows.
@@ -76,6 +78,8 @@ Dva smjera, jedna igra:
 • Naša kuća: porodica, mama, tata, nena i dedo.
 • Čaršija: slušaj komandu i uradi je. Skoči! Ostani dolje! Skoči dva puta!
 • Rijeka i Stari most: priroda i vrijeme, te veliko i malo: velika riba ili mala?
+• Planina zimi: kratke rečenice poput Pada snijeg.
+• Škola: slova, brojevi od jedan do deset i prvo čitanje.
 • Papagaj Pepi leti uz Rukajju, raduje se i pokazuje put na prvoj riječi.
 • Album sličica u kojem ostaje svaka naučena riječ; dodirom je ponovo čuješ.
 • Zvjezdice za riječi koje dijete stvarno zna.
@@ -117,6 +121,8 @@ Das steckt drin:
 • Unser Zuhause: Familienwörter wie Mama, Papa, Oma und Opa.
 • Der alte Basar: einen Befehl hören und ausführen. Spring! Bleib unten! Spring zweimal!
 • Fluss und Alte Brücke: Natur- und Wetterwörter, und groß oder klein: ein großer Fisch oder ein kleiner?
+• Winterberg: kurze Sätze wie Es schneit.
+• Schule: Buchstaben, Zahlen von eins bis zehn und erstes Lesen.
 • Papagei Pepi fliegt mit, jubelt und zeigt beim ersten Wort den Weg.
 • Ein Stickeralbum, in dem jedes gelernte Wort bleibt; antippen und erneut hören.
 • Sterne für jedes Wort, das dein Kind wirklich kann.

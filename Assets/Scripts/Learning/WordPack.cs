@@ -27,6 +27,12 @@ namespace FootballRunner.Learning
         [Tooltip("Sentences only: entries of one group are each other's wrong answers.")]
         public string group;
 
+        [Tooltip("Letters only: the letter shown, for example Š or Lj.")]
+        public string letter;
+
+        [Tooltip("Letters only: the language whose alphabet and voice this letter belongs to.")]
+        public string lang;
+
         /// <summary>The picture file to show: the word itself, or the counted word.</summary>
         public string PictureId => string.IsNullOrEmpty(picture) ? id : picture;
 
@@ -39,6 +45,32 @@ namespace FootballRunner.Learning
         public bool IsSize => !string.IsNullOrEmpty(size);
 
         public bool IsSentence => !string.IsNullOrEmpty(group);
+
+        public bool IsLetter => !string.IsNullOrEmpty(letter);
+
+        /// <summary>
+        /// First letter as children learn it. Bosnian digraphs (dž, lj, nj) count as
+        /// one letter; matches Tools/generate_words.py.
+        /// </summary>
+        public static string Initial(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+            {
+                return string.Empty;
+            }
+
+            string lower = word.ToLowerInvariant();
+
+            foreach (string digraph in new[] { "dž", "lj", "nj" })
+            {
+                if (lower.StartsWith(digraph))
+                {
+                    return char.ToUpperInvariant(digraph[0]) + digraph.Substring(1);
+                }
+            }
+
+            return char.ToUpperInvariant(lower[0]).ToString();
+        }
 
         public string Text(string language)
         {
@@ -56,7 +88,8 @@ namespace FootballRunner.Learning
         private const string Root = "Words";
 
         /// <summary>Worlds in play order. Each one unlocks from progress in the one before.</summary>
-        public static readonly string[] PackOrder = { "World1", "World2", "World3", "World4", "World5", "World6" };
+        public static readonly string[] PackOrder =
+            { "World1", "World2", "World3", "World4", "World5", "World6", "World7" };
 
         /// <summary>One picture standing for each world on the world chooser.</summary>
         public static string CoverWordId(string pack)
@@ -68,6 +101,7 @@ namespace FootballRunner.Learning
                 case "World4": return "mosque";
                 case "World5": return "bridge";
                 case "World6": return "snowman";
+                case "World7": return "school";
                 default: return "apple";
             }
         }
@@ -84,6 +118,9 @@ namespace FootballRunner.Learning
             public WordEntry[] commands;
             public WordEntry[] sizes;
             public WordEntry[] sentences;
+            public WordEntry[] numbers;
+            public WordEntry[] letters;
+            public bool reading;
         }
 
         private static readonly Dictionary<string, WordPack> Cache = new Dictionary<string, WordPack>();
@@ -108,6 +145,15 @@ namespace FootballRunner.Learning
 
         /// <summary>Short sentences ("Pada snijeg.") matched to a picture. Empty until a world uses them.</summary>
         public IReadOnlyList<WordEntry> Sentences => _manifest.sentences ?? Array.Empty<WordEntry>();
+
+        /// <summary>Number words ("sedam") caught as big numerals.</summary>
+        public IReadOnlyList<WordEntry> Numbers => _manifest.numbers ?? Array.Empty<WordEntry>();
+
+        /// <summary>First letters of the words, per language ("Slovo O.").</summary>
+        public IReadOnlyList<WordEntry> Letters => _manifest.letters ?? Array.Empty<WordEntry>();
+
+        /// <summary>True for worlds that also ask silent, read-only words.</summary>
+        public bool HasReading => _manifest.reading;
 
         private WordPack(string name, Manifest manifest)
         {

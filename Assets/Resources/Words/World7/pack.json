@@ -1,0 +1,277 @@
+{
+  "pack": "World7",
+  "title_bs": "Škola",
+  "title_en": "School",
+  "words": [
+    {
+      "id": "pencil",
+      "bs": "olovka",
+      "en": "pencil"
+    },
+    {
+      "id": "notebook",
+      "bs": "sveska",
+      "en": "notebook"
+    },
+    {
+      "id": "backpack",
+      "bs": "ranac",
+      "en": "backpack"
+    },
+    {
+      "id": "scissors",
+      "bs": "makaze",
+      "en": "scissors"
+    },
+    {
+      "id": "ruler",
+      "bs": "lenjir",
+      "en": "ruler"
+    },
+    {
+      "id": "crayon",
+      "bs": "bojica",
+      "en": "crayon"
+    },
+    {
+      "id": "globe",
+      "bs": "globus",
+      "en": "globe"
+    },
+    {
+      "id": "abacus",
+      "bs": "računaljka",
+      "en": "abacus"
+    },
+    {
+      "id": "bell",
+      "bs": "zvono",
+      "en": "bell"
+    },
+    {
+      "id": "school",
+      "bs": "škola",
+      "en": "school"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!"
+    }
+  ],
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [
+    {
+      "id": "num_1",
+      "picture": "digit_1",
+      "bs": "jedan",
+      "en": "one"
+    },
+    {
+      "id": "num_2",
+      "picture": "digit_2",
+      "bs": "dva",
+      "en": "two"
+    },
+    {
+      "id": "num_3",
+      "picture": "digit_3",
+      "bs": "tri",
+      "en": "three"
+    },
+    {
+      "id": "num_4",
+      "picture": "digit_4",
+      "bs": "četiri",
+      "en": "four"
+    },
+    {
+      "id": "num_5",
+      "picture": "digit_5",
+      "bs": "pet",
+      "en": "five"
+    },
+    {
+      "id": "num_6",
+      "picture": "digit_6",
+      "bs": "šest",
+      "en": "six"
+    },
+    {
+      "id": "num_7",
+      "picture": "digit_7",
+      "bs": "sedam",
+      "en": "seven"
+    },
+    {
+      "id": "num_8",
+      "picture": "digit_8",
+      "bs": "osam",
+      "en": "eight"
+    },
+    {
+      "id": "num_9",
+      "picture": "digit_9",
+      "bs": "devet",
+      "en": "nine"
+    },
+    {
+      "id": "num_10",
+      "picture": "digit_10",
+      "bs": "deset",
+      "en": "ten"
+    }
+  ],
+  "letters": [
+    {
+      "id": "letter_bs_B",
+      "letter": "B",
+      "lang": "bs",
+      "bs": "B b",
+      "en": "B b"
+    },
+    {
+      "id": "letter_bs_G",
+      "letter": "G",
+      "lang": "bs",
+      "bs": "G g",
+      "en": "G g"
+    },
+    {
+      "id": "letter_bs_L",
+      "letter": "L",
+      "lang": "bs",
+      "bs": "L l",
+      "en": "L l"
+    },
+    {
+      "id": "letter_bs_M",
+      "letter": "M",
+      "lang": "bs",
+      "bs": "M m",
+      "en": "M m"
+    },
+    {
+      "id": "letter_bs_O",
+      "letter": "O",
+      "lang": "bs",
+      "bs": "O o",
+      "en": "O o"
+    },
+    {
+      "id": "letter_bs_R",
+      "letter": "R",
+      "lang": "bs",
+      "bs": "R r",
+      "en": "R r"
+    },
+    {
+      "id": "letter_bs_S",
+      "letter": "S",
+      "lang": "bs",
+      "bs": "S s",
+      "en": "S s"
+    },
+    {
+      "id": "letter_bs_Z",
+      "letter": "Z",
+      "lang": "bs",
+      "bs": "Z z",
+      "en": "Z z"
+    },
+    {
+      "id": "letter_bs_SH",
+      "letter": "Š",
+      "lang": "bs",
+      "bs": "Š š",
+      "en": "Š š"
+    },
+    {
+      "id": "letter_en_A",
+      "letter": "A",
+      "lang": "en",
+      "bs": "A a",
+      "en": "A a"
+    },
+    {
+      "id": "letter_en_B",
+      "letter": "B",
+      "lang": "en",
+      "bs": "B b",
+      "en": "B b"
+    },
+    {
+      "id": "letter_en_C",
+      "letter": "C",
+      "lang": "en",
+      "bs": "C c",
+      "en": "C c"
+    },
+    {
+      "id": "letter_en_G",
+      "letter": "G",
+      "lang": "en",
+      "bs": "G g",
+      "en": "G g"
+    },
+    {
+      "id": "letter_en_N",
+      "letter": "N",
+      "lang": "en",
+      "bs": "N n",
+      "en": "N n"
+    },
+    {
+      "id": "letter_en_P",
+      "letter": "P",
+      "lang": "en",
+      "bs": "P p",
+      "en": "P p"
+    },
+    {
+      "id": "letter_en_R",
+      "letter": "R",
+      "lang": "en",
+      "bs": "R r",
+      "en": "R r"
+    },
+    {
+      "id": "letter_en_S",
+      "letter": "S",
+      "lang": "en",
+      "bs": "S s",
+      "en": "S s"
+    }
+  ],
+  "reading": true
+}

@@ -1,0 +1,39 @@
+{
+  "pack": "World7",
+  "title_bs": "Škola",
+  "title_en": "School",
+  "reading": true,
+  "letters": true,
+  "words": [
+    { "id": "pencil",   "bs": "olovka",     "en": "pencil",   "emoji": "270f" },
+    { "id": "notebook", "bs": "sveska",     "en": "notebook", "emoji": "1f4d3" },
+    { "id": "backpack", "bs": "ranac",      "en": "backpack", "emoji": "1f392" },
+    { "id": "scissors", "bs": "makaze",     "en": "scissors", "emoji": "2702" },
+    { "id": "ruler",    "bs": "lenjir",     "en": "ruler",    "emoji": "1f4cf" },
+    { "id": "crayon",   "bs": "bojica",     "en": "crayon",   "emoji": "1f58d" },
+    { "id": "globe",    "bs": "globus",     "en": "globe",    "emoji": "1f30d" },
+    { "id": "abacus",   "bs": "računaljka", "en": "abacus",   "emoji": "1f9ee" },
+    { "id": "bell",     "bs": "zvono",      "en": "bell",     "emoji": "1f514" },
+    { "id": "school",   "bs": "škola",      "en": "school",   "emoji": "1f3eb" }
+  ],
+  "phrases": [
+    { "id": "praise_1", "bs": "Bravo!",  "en": "Great job!" },
+    { "id": "praise_2", "bs": "Tačno!",  "en": "That's right!" },
+    { "id": "praise_3", "bs": "Super!",  "en": "Awesome!" },
+    { "id": "intro",    "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!" },
+    { "id": "jump",     "bs": "Skoči!",  "en": "Jump!" },
+    { "id": "goal",     "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!" }
+  ],
+  "numbers": [
+    { "n": 1,  "bs": "jedan",  "en": "one" },
+    { "n": 2,  "bs": "dva",    "en": "two" },
+    { "n": 3,  "bs": "tri",    "en": "three" },
+    { "n": 4,  "bs": "četiri", "en": "four" },
+    { "n": 5,  "bs": "pet",    "en": "five" },
+    { "n": 6,  "bs": "šest",   "en": "six" },
+    { "n": 7,  "bs": "sedam",  "en": "seven" },
+    { "n": 8,  "bs": "osam",   "en": "eight" },
+    { "n": 9,  "bs": "devet",  "en": "nine" },
+    { "n": 10, "bs": "deset",  "en": "ten" }
+  ]
+}

@@ -23,8 +23,13 @@ from pathlib import Path
 
 import edge_tts
 import resvg_py
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
+DISPLAY_FONT = ROOT / "Assets" / "Resources" / "Fonts" / "TitanOne-Regular.ttf"
+DIGIT_COLOURS = [(235, 80, 70), (245, 160, 40), (60, 170, 90), (60, 130, 220), (150, 90, 200)]
+# File-safe names for Bosnian letters (Resources paths stay ASCII).
+SAFE_LETTERS = {"Š": "SH", "Č": "CH", "Ć": "CJ", "Ž": "ZH", "Đ": "DJ", "Dž": "DZH", "Lj": "LJ", "Nj": "NJ"}
 TWEMOJI_SVG = "https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/{code}.svg"
 PICTURE_SIZE = 256
 # Shared UI icons, written to Resources/Words/Icons.
@@ -53,6 +58,29 @@ def render_picture(code: str, target: Path) -> None:
 
     png = resvg_py.svg_to_bytes(svg_string=svg, width=PICTURE_SIZE, height=PICTURE_SIZE)
     target.write_bytes(bytes(png))
+
+
+def render_digit(n: int, target: Path) -> None:
+    """A big, friendly numeral in the game's display font, for number bubbles."""
+    if target.exists():
+        return
+
+    image = Image.new("RGBA", (PICTURE_SIZE, PICTURE_SIZE), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(image)
+    font = ImageFont.truetype(str(DISPLAY_FONT), 190 if n < 10 else 150)
+    colour = DIGIT_COLOURS[(n - 1) % len(DIGIT_COLOURS)]
+    draw.text((PICTURE_SIZE / 2, PICTURE_SIZE / 2 + 6), str(n), font=font, fill=colour + (255,), anchor="mm",
+              stroke_width=10, stroke_fill=(255, 255, 255, 255))
+    image.save(target)
+
+
+def initial(word: str) -> str:
+    """First letter as children learn it: Bosnian digraphs count as one letter."""
+    lower = word.lower()
+    for digraph in ("dž", "lj", "nj"):
+        if lower.startswith(digraph):
+            return digraph.capitalize()
+    return lower[0].upper()
 
 
 async def speak(text: str, voice: str, target: Path) -> None:
@@ -128,7 +156,25 @@ async def main(pack_file: Path) -> None:
             render_picture(z["emoji"], pictures / f"{z['picture']}.png")
         sentences.append({"id": z["id"], "group": z["group"], "picture": z["picture"], "bs": z["bs"], "en": z["en"]})
 
-    for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes + sentences:
+    # Numbers ("sedam") are caught as big numerals drawn in the display font.
+    numbers = []
+    for z in pack.get("numbers", []):
+        render_digit(z["n"], pictures / f"digit_{z['n']}.png")
+        numbers.append({"id": f"num_{z['n']}", "picture": f"digit_{z['n']}", "bs": z["bs"], "en": z["en"]})
+
+    # Letters: one per first letter of the words, per language, voiced only in that language.
+    letters = []
+    if pack.get("letters"):
+        for lang in VOICES:
+            for letter in sorted({initial(w[lang]) for w in pack["words"]}):
+                safe = SAFE_LETTERS.get(letter, letter)
+                entry_id = f"letter_{lang}_{safe}"
+                spoken = f"Slovo {letter}." if lang == "bs" else f"Letter {letter}."
+                await speak(spoken, VOICES[lang], out / "Audio" / lang / f"{entry_id}.ogg")
+                letters.append({"id": entry_id, "letter": letter, "lang": lang,
+                                "bs": f"{letter} {letter.lower()}", "en": f"{letter} {letter.lower()}"})
+
+    for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes + sentences + numbers:
         for lang, voice in VOICES.items():
             await speak(entry[lang], voice, out / "Audio" / lang / f"{entry['id']}.ogg")
 
@@ -142,6 +188,9 @@ async def main(pack_file: Path) -> None:
         "commands": commands,
         "sizes": sizes,
         "sentences": sentences,
+        "numbers": numbers,
+        "letters": letters,
+        "reading": bool(pack.get("reading", False)),
     }
     (out / "pack.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"{pack['pack']}: {len(pack['words'])} words, {len(manifest['phrases'])} phrases, "

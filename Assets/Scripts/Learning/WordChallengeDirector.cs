@@ -52,6 +52,12 @@ namespace FootballRunner.Learning
         [Range(0f, 1f)]
         [SerializeField] private float sizeChance = 0.4f;
 
+        [Header("School")]
+        [Range(0f, 1f)] [SerializeField] private float letterChance = 0.3f;
+        [Range(0f, 1f)] [SerializeField] private float numberChance = 0.3f;
+        [Tooltip("Share of plain words shown silently, to be read.")]
+        [Range(0f, 1f)] [SerializeField] private float readingChance = 0.4f;
+
         [Header("Sentences")]
         [Tooltip("Share of challenges that are whole sentences, in worlds that have them.")]
         [Range(0f, 1f)]
@@ -106,6 +112,7 @@ namespace FootballRunner.Learning
         private bool _slowedByGuide;
         private int _goalCaught;
         private int _runMisses;
+        private WordEntry _spokenWord;
         private readonly List<WordEntry> _rowWords = new List<WordEntry>(8);
         private Coroutine _voiceRoutine;
 
@@ -220,7 +227,7 @@ namespace FootballRunner.Learning
 
             _timer -= Time.deltaTime;
 
-            if (_timer <= 0f && !TryStartChallenge(player))
+            if (_timer <= 0f && !TryStartChallenge(player, null))
             {
                 // Somewhere unsuitable right now (pit, hazards). Try again shortly.
                 _timer = 0.5f;
@@ -240,6 +247,17 @@ namespace FootballRunner.Learning
         public bool ForceChallenge(bool counting = false, bool command = false, bool size = false,
             bool sentence = false)
         {
+            Kind? kind = counting ? Kind.Counting
+                : command ? Kind.Command
+                : size ? Kind.Size
+                : sentence ? Kind.Sentence
+                : (Kind?)null;
+            return ForceChallenge(kind);
+        }
+
+        /// <summary>Starts a challenge of the given kind (the usual pick for null) right now.</summary>
+        public bool ForceChallenge(Kind? kind)
+        {
             PlayerController player = PlayerController.Instance;
 
             if (_active || player == null)
@@ -248,7 +266,7 @@ namespace FootballRunner.Learning
             }
 
             CacheStandingHeight(player);
-            return TryStartChallenge(player, counting, command, size, sentence);
+            return TryStartChallenge(player, kind);
         }
 
         public void OnBubbleTouched(WordBubble bubble)
@@ -322,7 +340,8 @@ namespace FootballRunner.Learning
             GoalProgress?.Invoke(word, _goalCaught, goalSize);
             bool goalReached = _goalCaught >= goalSize;
 
-            PlayPraiseThenWord(word, goalReached);
+            // A letter challenge praises, then names the picture the child caught.
+            PlayPraiseThenWord(_spokenWord ?? word, goalReached);
             EndChallenge(true);
 
             if (goalReached)
@@ -453,8 +472,49 @@ namespace FootballRunner.Learning
             ChallengeEnded?.Invoke(word, caught);
         }
 
-        private bool TryStartChallenge(PlayerController player, bool forceCounting = false,
-            bool forceCommand = false, bool forceSize = false, bool forceSentence = false)
+        /// <summary>What a challenge asks for. Words are the default; the others depend on the world.</summary>
+        public enum Kind
+        {
+            Word,
+            Counting,
+            Command,
+            Size,
+            Sentence,
+            Letter,
+            Number,
+            Reading
+        }
+
+        /// <summary>The kind of the challenge on screen.</summary>
+        public Kind CurrentKind { get; private set; }
+
+        /// <summary>
+        /// Picks what to ask. The guided first word is always a plain word; after that
+        /// each kind this world offers gets its chance in turn.
+        /// </summary>
+        private Kind PickKind(bool guided, Kind? forced)
+        {
+            if (forced.HasValue)
+            {
+                return forced.Value;
+            }
+
+            if (guided)
+            {
+                return Kind.Word;
+            }
+
+            if (_pack.Counts.Count > 0 && Random.value < countingChance) return Kind.Counting;
+            if (_pack.Commands.Count > 0 && Random.value < commandChance) return Kind.Command;
+            if (_pack.Sizes.Count > 0 && Random.value < sizeChance) return Kind.Size;
+            if (_pack.Sentences.Count > 0 && Random.value < sentenceChance) return Kind.Sentence;
+            if (_pack.Letters.Count > 0 && Random.value < letterChance) return Kind.Letter;
+            if (_pack.Numbers.Count > 0 && Random.value < numberChance) return Kind.Number;
+            if (_pack.HasReading && Random.value < readingChance) return Kind.Reading;
+            return Kind.Word;
+        }
+
+        private bool TryStartChallenge(PlayerController player, Kind? forced)
         {
             if (float.IsNaN(_standingTop))
             {
@@ -462,36 +522,37 @@ namespace FootballRunner.Learning
             }
 
             bool guided = !SaveManager.Data.wordTutorialDone;
-            // Counting and commands only once the child knows how the game works,
-            // and only in worlds that have them.
-            bool counting = !guided && !forceCommand && !forceSize && !forceSentence && _pack.Counts.Count > 0 &&
-                            (forceCounting || Random.value < countingChance);
-            bool command = !guided && !counting && !forceSize && !forceSentence && _pack.Commands.Count > 0 &&
-                           (forceCommand || Random.value < commandChance);
-            bool sizing = !guided && !counting && !command && !forceSentence && _pack.Sizes.Count > 0 &&
-                          (forceSize || Random.value < sizeChance);
-            bool sentence = !guided && !counting && !command && !sizing && _pack.Sentences.Count > 0 &&
-                            (forceSentence || Random.value < sentenceChance);
+            Kind kind = PickKind(guided, forced);
+            _spokenWord = null;
 
-            if (counting)
+            switch (kind)
             {
-                ChooseCounting();
-            }
-            else if (command)
-            {
-                ChooseCommand();
-            }
-            else if (sizing)
-            {
-                ChooseSize();
-            }
-            else if (sentence)
-            {
-                ChooseSentence();
-            }
-            else
-            {
-                ChooseWords();
+                case Kind.Counting:
+                    ChooseCounting();
+                    break;
+                case Kind.Command:
+                    ChooseCommand();
+                    break;
+                case Kind.Size:
+                    ChooseSize();
+                    break;
+                case Kind.Sentence:
+                    ChooseSentence();
+                    break;
+                case Kind.Letter:
+                    if (!ChooseLetter())
+                    {
+                        kind = Kind.Word;
+                        ChooseWords();
+                    }
+
+                    break;
+                case Kind.Number:
+                    ChooseFrom(_pack.Numbers);
+                    break;
+                default:
+                    ChooseWords();
+                    break;
             }
 
             CacheObstacles();
@@ -505,7 +566,7 @@ namespace FootballRunner.Learning
             float searchFrom = player.transform.position.x + speed * lead;
             var positions = new List<Vector3>(_options.Count);
 
-            if (command)
+            if (kind == Kind.Command)
             {
                 // Commands stack their targets in one spot: the child must act, not pick.
                 if (!FindSlot(searchFrom, out float x))
@@ -554,13 +615,15 @@ namespace FootballRunner.Learning
             }
 
             _previousTarget = _target;
+            CurrentKind = kind;
 
             if (_guided)
             {
                 PlayInSequence(intro, _pack.Voice(LearningProgress.Language, _target.id));
             }
-            else
+            else if (kind != Kind.Reading)
             {
+                // Reading challenges stay silent: the child reads the card, the voice comes after.
                 ReplayWord();
             }
 
@@ -572,6 +635,109 @@ namespace FootballRunner.Learning
         // star as the right one, so only following the command finds the answer.
         private static readonly WordEntry LowSpot = new WordEntry { id = "spot_low", picture = "star", action = "stay" };
         private static readonly WordEntry HighSpot = new WordEntry { id = "spot_high", picture = "star", action = "jump" };
+
+        /// <summary>
+        /// "Slovo O": a letter on the card and pictures whose words start with other
+        /// letters; the right one starts with it. False if the world has no letters
+        /// for the language being learned.
+        /// </summary>
+        private bool ChooseLetter()
+        {
+            string language = LearningProgress.Language;
+            IReadOnlyList<WordEntry> words = _pack.Words;
+            var candidates = new List<(WordEntry word, WordEntry letter)>(words.Count);
+
+            for (int i = 0; i < words.Count; i++)
+            {
+                string first = WordEntry.Initial(words[i].Text(language));
+
+                foreach (WordEntry letter in _pack.Letters)
+                {
+                    if (letter.lang == language && letter.letter == first)
+                    {
+                        candidates.Add((words[i], letter));
+                        break;
+                    }
+                }
+            }
+
+            if (candidates.Count == 0)
+            {
+                return false;
+            }
+
+            (WordEntry word, WordEntry letterEntry) = candidates[Random.Range(0, candidates.Count)];
+
+            // The right bubble shows the word's picture but answers the letter.
+            _target = new WordEntry
+            {
+                id = letterEntry.id,
+                bs = letterEntry.bs,
+                en = letterEntry.en,
+                picture = word.PictureId,
+                letter = letterEntry.letter,
+                lang = letterEntry.lang
+            };
+            _spokenWord = word;
+            _options.Clear();
+            _options.Add(_target);
+
+            var others = new List<WordEntry>(words.Count);
+            for (int i = 0; i < words.Count; i++)
+            {
+                if (WordEntry.Initial(words[i].Text(language)) != letterEntry.letter)
+                {
+                    others.Add(words[i]);
+                }
+            }
+
+            while (_options.Count < optionCount && others.Count > 0)
+            {
+                int pick = Random.Range(0, others.Count);
+                _options.Add(others[pick]);
+                others.RemoveAt(pick);
+            }
+
+            Shuffle();
+            return true;
+        }
+
+        /// <summary>A target from a list (numbers) and random distinct others from the same list.</summary>
+        private void ChooseFrom(IReadOnlyList<WordEntry> list)
+        {
+            int index = Random.Range(0, list.Count);
+
+            if (list[index] == _previousTarget && list.Count > 1)
+            {
+                index = (index + 1) % list.Count;
+            }
+
+            _target = list[index];
+            _options.Clear();
+            _options.Add(_target);
+            int guard = 0;
+
+            while (_options.Count < optionCount && guard++ < 100)
+            {
+                WordEntry candidate = list[Random.Range(0, list.Count)];
+
+                if (!_options.Contains(candidate))
+                {
+                    _options.Add(candidate);
+                }
+            }
+
+            Shuffle();
+        }
+
+        private void Shuffle()
+        {
+            for (int i = _options.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (_options[i], _options[j]) = (_options[j], _options[i]);
+            }
+        }
 
         /// <summary>
         /// "Pada snijeg.": a whole sentence and two pictures from the same group,

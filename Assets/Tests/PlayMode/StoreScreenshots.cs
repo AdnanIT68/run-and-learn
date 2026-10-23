@@ -90,6 +90,15 @@ namespace FootballRunner.Tests
             yield return StartChallengeAndWait("World5", counting: false, size: true);
             yield return Capture("09_big_small_river");
 
+            // 5b. Letters at school.
+            SetProgress(gardenWords: 7, farmWords: 6, english: false, homeWords: 6, bazaarWords: 6);
+            LearningProgress.RecordLevelComplete("World6", 2);
+            LearningProgress.RecordLevelComplete("World5", 2);
+            LearningProgress.SelectPack("World7");
+            yield return LoadScene("Game");
+            yield return StartChallengeAndWait("World7", counting: false, kind: WordChallengeDirector.Kind.Letter);
+            yield return Capture("11_letters_school");
+
             // 6. English learners see the same game in English.
             SetProgress(gardenWords: 7, farmWords: 4, english: true);
             LearningProgress.SelectPack("World1");
@@ -152,7 +161,7 @@ namespace FootballRunner.Tests
         }
 
         private static IEnumerator StartChallengeAndWait(string pack, bool counting, bool command = false,
-            bool size = false)
+            bool size = false, WordChallengeDirector.Kind? kind = null)
         {
             WordChallengeDirector director = WordChallengeDirector.Instance;
             Assert.AreEqual(pack, director.Pack.Name);
@@ -160,7 +169,14 @@ namespace FootballRunner.Tests
 
             while (director.CurrentWord == null && waited < 5f)
             {
-                director.ForceChallenge(counting, command, size);
+                if (kind.HasValue)
+                {
+                    director.ForceChallenge(kind);
+                }
+                else
+                {
+                    director.ForceChallenge(counting, command, size);
+                }
                 waited += Time.unscaledDeltaTime;
                 yield return null;
             }
@@ -236,6 +252,13 @@ namespace FootballRunner.Tests
                      Object.FindObjectsByType<Gameplay.ParallaxLayer>(FindObjectsSortMode.None))
             {
                 layer.SendMessage("Configure", SendMessageOptions.DontRequireReceiver);
+            }
+
+            // The worlds' own backdrop layers were sized for that 4:3 start as well.
+            foreach (SpriteRenderer layer in Object.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None)
+                         .Where(r => r.name == "WorldFar" || r.name == "WorldMid"))
+            {
+                layer.size = new Vector2(layer.size.x * 2f, layer.size.y);
             }
 
             foreach (Canvas canvas in overlays)

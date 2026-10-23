@@ -41,6 +41,10 @@ SHOTS = [
         "en": "Five words, one big BRAVO!",
         "hr": "Pet riječi, jedno veliko BRAVO!",
         "de": "Fünf Wörter, ein großes BRAVO!"}),
+    ("11_letters_school", {
+        "en": "Letters, numbers and reading at school",
+        "hr": "Slova, brojevi i čitanje u školi",
+        "de": "Buchstaben, Zahlen und Lesen in der Schule"}),
     ("10_level_complete", {
         "en": "Finish the level, collect your stars!",
         "hr": "Završi nivo i skupi zvjezdice!",
