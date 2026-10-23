@@ -44,6 +44,13 @@ Prva verzija za objavu: samo svijet 1.
 - Slike i glasovi su privremeni (Twemoji, sintetički glas). Zamjena: isti nazivi fajlova
   u `Assets/Resources/Words/<Pack>/`. Izvori: `Assets/Resources/Words/SOURCES.md`.
 
+## Likovi (igrači)
+
+- 10 likova, mala fudbalska ekipa (ideja vlasnika): Rukajja, Emir, Amina otvoreni odmah; Harun 40, Lejla 60, Tarik (golman) 90, Selma 120, Kenan 160, Hana 200, Adam 250 novčića. Fiksna cijena, bez nasumičnih nagrada.
+- Spisak i cijene: `Assets/Scripts/Player/CharacterRoster.cs`; izbor u meniju: `Assets/Scripts/UI/CharacterChooserUi.cs` (dugme IGRAČI ili dodir na velikog lika).
+- Crtanje: `Tools/.venv/Scripts/python.exe Tools/make_characters.py` → `Assets/Resources/Characters/<id>/` (9 sličica kao kod Rukajje + portrait). Pravila: šorc do koljena i štucne preko koljena, djevojčice duge rukave, neke sportski hidžab.
+- U igri `CharacterSkin` mijenja Rukajjine sličice istoimenim sličicama izabranog lika; kretanje i sudari ostaju isti. Prave ilustracije se mogu ubaciti kasnije pod istim imenima fajlova.
+
 ## Build za telefon
 
 ```

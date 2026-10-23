@@ -80,6 +80,7 @@ namespace FootballRunner.Core
             Learning.WordChallengeDirector.EnsureOn(gameObject);
             Learning.PepiCompanion.EnsureOn();
             Effects.GameFeel.EnsureOn(gameObject);
+            FootballRunner.Player.CharacterSkin.EnsureOn(gameObject);
             if (Adventure.AdventureSession.IsActive)
             {
                 Adventure.AdventureCourse.EnsureOn(gameObject);

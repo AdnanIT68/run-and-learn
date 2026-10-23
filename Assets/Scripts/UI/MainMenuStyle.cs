@@ -61,8 +61,9 @@ namespace FootballRunner.UI
 
             StyleBigButton(play, homeIsBosnian ? "IGRAJ" : "PLAY", new Vector2(420f, 70f), new Vector2(600f, 170f),
                 new Color(0.27f, 0.74f, 0.32f), Load("play"));
-            StyleCard(layer.Find("WorldsButton"), new Vector2(270f, -120f), new Color(0.24f, 0.55f, 0.92f));
-            StyleCard(layer.Find("AlbumButton"), new Vector2(570f, -120f), new Color(0.97f, 0.55f, 0.18f));
+            StyleCard(layer.Find("WorldsButton"), new Vector2(120f, -120f), new Color(0.24f, 0.55f, 0.92f));
+            StyleCard(layer.Find("CharactersButton"), new Vector2(420f, -120f), new Color(0.2f, 0.62f, 0.42f));
+            StyleCard(layer.Find("AlbumButton"), new Vector2(720f, -120f), new Color(0.97f, 0.55f, 0.18f));
             StylePill(layer.Find("LanguageButton"), new Vector2(420f, -265f), new Vector2(600f, 90f),
                 new Color(0.18f, 0.32f, 0.62f), Load("icon_language"));
 

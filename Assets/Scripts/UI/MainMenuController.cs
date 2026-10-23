@@ -44,6 +44,17 @@ namespace FootballRunner.UI
 
         private void LateUpdate()
         {
+            // Buying a player in the chooser spends coins; keep the chip honest.
+            if (totalCoinsText != null)
+            {
+                string coins = SaveManager.Data.totalCoins.ToString();
+
+                if (totalCoinsText.text != coins)
+                {
+                    totalCoinsText.text = coins;
+                }
+            }
+
             // The world chooser can switch worlds; the word count on the language button follows it.
             if (_languageButton != null && _languageLabelPack != LearningProgress.SelectedPack)
             {
@@ -75,6 +86,7 @@ namespace FootballRunner.UI
             EnsureVibrationToggle();
             WordAlbumUi.EnsureOnCanvas(transform, ResolveFont());
             WordWorldsUi.EnsureOnCanvas(transform, ResolveFont());
+            CharacterChooserUi.EnsureOnCanvas(transform, ResolveFont());
             MainMenuStyle.Apply(transform, playButton, settingsButton, quitButton, howToPlayButton,
                 highScoreText, totalCoinsText);
 
