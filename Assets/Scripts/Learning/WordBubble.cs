@@ -1,5 +1,6 @@
 using System.Collections;
 using FootballRunner.Player;
+using FootballRunner.Utilities;
 using UnityEngine;
 
 namespace FootballRunner.Learning
@@ -10,10 +11,8 @@ namespace FootballRunner.Learning
     /// </summary>
     public class WordBubble : MonoBehaviour
     {
-        private const int CircleResolution = 128;
         private const int SortingOrder = 30;
 
-        private static Sprite _circleSprite;
 
         private WordChallengeDirector _owner;
         private SpriteRenderer _back;
@@ -43,7 +42,7 @@ namespace FootballRunner.Learning
             bubble._phase = Random.Range(0f, Mathf.PI * 2f);
 
             bubble._back = go.AddComponent<SpriteRenderer>();
-            bubble._back.sprite = CircleSprite();
+            bubble._back.sprite = RuntimeSprites.Circle();
             bubble._back.color = new Color(1f, 1f, 1f, 0.9f);
             bubble._back.sortingOrder = SortingOrder;
             go.transform.localScale = Vector3.one * radius * 2f;
@@ -170,44 +169,6 @@ namespace FootballRunner.Learning
             }
 
             Destroy(gameObject);
-        }
-
-        /// <summary>A soft-edged white disc, generated once and shared by bubbles and HUD slots.</summary>
-        public static Sprite CircleSprite()
-        {
-            if (_circleSprite != null)
-            {
-                return _circleSprite;
-            }
-
-            var texture = new Texture2D(CircleResolution, CircleResolution, TextureFormat.RGBA32, false)
-            {
-                wrapMode = TextureWrapMode.Clamp,
-                filterMode = FilterMode.Bilinear
-            };
-
-            float centre = (CircleResolution - 1) * 0.5f;
-            float radius = CircleResolution * 0.5f - 1f;
-            var pixels = new Color32[CircleResolution * CircleResolution];
-
-            for (int y = 0; y < CircleResolution; y++)
-            {
-                for (int x = 0; x < CircleResolution; x++)
-                {
-                    float distance = Vector2.Distance(new Vector2(x, y), new Vector2(centre, centre));
-                    float edge = Mathf.Clamp01(radius - distance);
-                    // A slightly darker rim so the bubble reads against a bright sky.
-                    float rim = distance > radius - 6f ? 0.82f : 1f;
-                    byte shade = (byte)(255 * rim);
-                    pixels[y * CircleResolution + x] = new Color32(shade, shade, shade, (byte)(255 * edge));
-                }
-            }
-
-            texture.SetPixels32(pixels);
-            texture.Apply();
-            _circleSprite = Sprite.Create(texture, new Rect(0f, 0f, CircleResolution, CircleResolution),
-                new Vector2(0.5f, 0.5f), CircleResolution);
-            return _circleSprite;
         }
     }
 }

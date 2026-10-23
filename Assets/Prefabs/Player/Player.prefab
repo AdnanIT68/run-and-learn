@@ -246,7 +246,7 @@ MonoBehaviour:
     m_Bits: 64
   fallbackSpeed: 7
   jumpVelocity: 14
-  maxJumps: 1
+  maxJumps: 2
   coyoteTime: 0.12
   jumpBufferTime: 0.12
   fallGravityMultiplier: 1.9

@@ -3,6 +3,7 @@ using FootballRunner.Audio;
 using FootballRunner.Core;
 using FootballRunner.Learning;
 using FootballRunner.SaveSystem;
+using FootballRunner.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,6 +39,7 @@ namespace FootballRunner.UI
         [SerializeField] private GameObject howToPlayPanel;
 
         private Button _languageButton;
+        private Toggle _vibrationToggle;
 
         private void Awake()
         {
@@ -49,6 +51,7 @@ namespace FootballRunner.UI
         {
             EnsureHowToPlayUi();
             EnsureLanguageButton();
+            EnsureVibrationToggle();
             WordAlbumUi.EnsureOnCanvas(transform, ResolveFont());
             AdventureMenuFlow.Attach(this);
 
@@ -213,6 +216,40 @@ namespace FootballRunner.UI
                     label.text = LanguageLabel();
                 }
             });
+        }
+
+        /// <summary>
+        /// Copies the sound toggle so vibration gets the same look, placed just below it.
+        /// Must run before the sound toggle's own listener is added.
+        /// </summary>
+        private void EnsureVibrationToggle()
+        {
+            if (soundToggle == null || _vibrationToggle != null)
+            {
+                return;
+            }
+
+            GameObject copy = Instantiate(soundToggle.gameObject, soundToggle.transform.parent);
+            copy.name = "VibrationToggle";
+            var rect = copy.GetComponent<RectTransform>();
+            rect.anchoredPosition = soundToggle.GetComponent<RectTransform>().anchoredPosition + new Vector2(0f, -90f);
+
+            _vibrationToggle = copy.GetComponent<Toggle>();
+            _vibrationToggle.onValueChanged = new Toggle.ToggleEvent();
+            _vibrationToggle.isOn = Haptics.Enabled;
+            _vibrationToggle.onValueChanged.AddListener(enabled =>
+            {
+                Haptics.Enabled = enabled;
+                AudioManager.Instance?.PlayButton();
+                Haptics.Light();
+            });
+
+            var label = copy.GetComponentInChildren<TMP_Text>();
+
+            if (label != null)
+            {
+                label.text = "VIBRATION";
+            }
         }
 
         private static string LanguageLabel()

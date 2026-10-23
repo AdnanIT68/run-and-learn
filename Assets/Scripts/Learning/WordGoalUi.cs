@@ -76,7 +76,7 @@ namespace FootballRunner.Learning
 
             _slots = new Image[_goal];
             _pictures = new Image[_goal];
-            Sprite circle = WordBubble.CircleSprite();
+            Sprite circle = Utilities.RuntimeSprites.Circle();
 
             for (int i = 0; i < _goal; i++)
             {

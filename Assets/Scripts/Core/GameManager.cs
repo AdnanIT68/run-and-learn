@@ -77,6 +77,8 @@ namespace FootballRunner.Core
             Time.timeScale = 1f;
             EnvironmentDirector.EnsureOn(gameObject);
             Learning.WordChallengeDirector.EnsureOn(gameObject);
+            Learning.PepiCompanion.EnsureOn();
+            Effects.GameFeel.EnsureOn(gameObject);
             if (Adventure.AdventureSession.IsActive)
             {
                 Adventure.AdventureCourse.EnsureOn(gameObject);

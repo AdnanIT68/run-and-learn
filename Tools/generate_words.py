@@ -34,6 +34,7 @@ ICONS = {
     "album": "1f4d6",
     "star": "2b50",
     "lock": "1f512",
+    "parrot": "1f99c",
 }
 VOICES = {
     "bs": "bs-BA-VesnaNeural",

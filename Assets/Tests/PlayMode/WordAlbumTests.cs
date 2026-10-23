@@ -5,6 +5,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 
 namespace FootballRunner.Tests
 {
@@ -59,6 +60,16 @@ namespace FootballRunner.Tests
 
             album.Close();
             Assert.IsFalse(album.IsOpen);
+        }
+
+        [UnityTest]
+        public IEnumerator SettingsHaveAVibrationToggle()
+        {
+            yield return null;
+
+            Toggle[] toggles = Resources.FindObjectsOfTypeAll<Toggle>();
+            Assert.IsTrue(System.Array.Exists(toggles, t => t.name == "VibrationToggle" && t.gameObject.scene.IsValid()),
+                "The settings panel has no vibration toggle.");
         }
 
         [UnityTest]

@@ -14,6 +14,7 @@ namespace FootballRunner.SaveSystem
         public int totalCoins;
         public bool musicEnabled = true;
         public bool soundEnabled = true;
+        public bool vibrationEnabled = true;
         public string selectedCharacterId = "rukajja";
         public int greenHillsUnlockedLevel = 1;
         public int greenHillsLevel1Stars;

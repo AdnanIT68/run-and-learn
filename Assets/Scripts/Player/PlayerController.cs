@@ -15,6 +15,15 @@ namespace FootballRunner.Player
     {
         public static PlayerController Instance { get; private set; }
 
+        /// <summary>Raised on every jump: (feet position, true when it was an air jump).</summary>
+        public static event System.Action<Vector3, bool> Jumped;
+
+        /// <summary>Raised on touchdown after a real airtime, not on tiny seam bounces.</summary>
+        public static event System.Action<Vector3> Landed;
+
+        [Tooltip("Airtime needed before touchdown counts as a landing for effects.")]
+        [SerializeField] private float minAirtimeForLanding = 0.15f;
+
         [Header("References")]
         [SerializeField] private Rigidbody2D body;
         [SerializeField] private Transform groundCheck;
@@ -49,11 +58,14 @@ namespace FootballRunner.Player
         private float _coyoteTimer;
         private float _jumpBufferTimer;
         private int _airJumpsRemaining;
+        private float _airtime;
         private bool _isGrounded;
         private bool _jumpThisStep;
         private PlayerHealth _health;
 
         public bool IsGrounded => _isGrounded;
+
+        public int MaxJumps => maxJumps;
 
         public float CurrentSpeed =>
             DifficultyManager.Instance != null ? DifficultyManager.Instance.CurrentSpeed : fallbackSpeed;
@@ -176,11 +188,19 @@ namespace FootballRunner.Player
                 if (!wasGrounded && !_jumpThisStep)
                 {
                     _airJumpsRemaining = Mathf.Max(0, maxJumps - 1);
+
+                    if (_airtime >= minAirtimeForLanding)
+                    {
+                        Landed?.Invoke(FeetPosition());
+                    }
                 }
+
+                _airtime = 0f;
             }
             else
             {
                 _coyoteTimer -= Time.fixedDeltaTime;
+                _airtime += Time.fixedDeltaTime;
             }
         }
 
@@ -247,6 +267,12 @@ namespace FootballRunner.Player
             body.linearVelocity = velocity;
 
             AudioManager.Instance?.PlayJump();
+            Jumped?.Invoke(FeetPosition(), canAirJump);
+        }
+
+        private Vector3 FeetPosition()
+        {
+            return groundCheck != null ? groundCheck.position : transform.position;
         }
 
         /// <summary>
