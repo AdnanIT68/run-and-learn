@@ -76,6 +76,7 @@ namespace FootballRunner.Core
             IsLoadingScene = false;
             Time.timeScale = 1f;
             EnvironmentDirector.EnsureOn(gameObject);
+            Learning.WordChallengeDirector.EnsureOn(gameObject);
             if (Adventure.AdventureSession.IsActive)
             {
                 Adventure.AdventureCourse.EnsureOn(gameObject);
@@ -143,10 +144,13 @@ namespace FootballRunner.Core
             int coins = score != null ? score.CoinsCollected : 0;
             int previousBest = SaveManager.Data.highScore;
 
-            LastRunWasNewBest = runScore > previousBest;
-            LastRunBestScore = Mathf.Max(runScore, previousBest);
+            // The high score belongs to endless mode. An adventure course is a
+            // different length and would distort it, so only its coins are kept.
+            int scoreForBest = Adventure.AdventureSession.IsActive ? 0 : runScore;
+            LastRunWasNewBest = scoreForBest > previousBest;
+            LastRunBestScore = Mathf.Max(scoreForBest, previousBest);
 
-            SaveManager.SubmitRunResult(runScore, coins);
+            SaveManager.SubmitRunResult(scoreForBest, coins);
 
             if (deathTransitionSeconds > 0f)
             {

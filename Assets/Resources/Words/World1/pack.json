@@ -1,0 +1,74 @@
+{
+  "pack": "World1",
+  "title_bs": "Nenina bašta",
+  "title_en": "Grandma's Garden",
+  "words": [
+    {
+      "id": "apple",
+      "bs": "jabuka",
+      "en": "apple"
+    },
+    {
+      "id": "pear",
+      "bs": "kruška",
+      "en": "pear"
+    },
+    {
+      "id": "banana",
+      "bs": "banana",
+      "en": "banana"
+    },
+    {
+      "id": "strawberry",
+      "bs": "jagoda",
+      "en": "strawberry"
+    },
+    {
+      "id": "grapes",
+      "bs": "grožđe",
+      "en": "grapes"
+    },
+    {
+      "id": "watermelon",
+      "bs": "lubenica",
+      "en": "watermelon"
+    },
+    {
+      "id": "lemon",
+      "bs": "limun",
+      "en": "lemon"
+    },
+    {
+      "id": "carrot",
+      "bs": "mrkva",
+      "en": "carrot"
+    },
+    {
+      "id": "tomato",
+      "bs": "paradajz",
+      "en": "tomato"
+    },
+    {
+      "id": "cucumber",
+      "bs": "krastavac",
+      "en": "cucumber"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    }
+  ]
+}

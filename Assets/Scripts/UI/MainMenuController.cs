@@ -1,6 +1,7 @@
 using FootballRunner.Adventure;
 using FootballRunner.Audio;
 using FootballRunner.Core;
+using FootballRunner.Learning;
 using FootballRunner.SaveSystem;
 using TMPro;
 using UnityEngine;
@@ -36,6 +37,8 @@ namespace FootballRunner.UI
         [Header("How To Play")]
         [SerializeField] private GameObject howToPlayPanel;
 
+        private Button _languageButton;
+
         private void Awake()
         {
             SafeAreaFitter.EnsureOnCanvas(transform, "SettingsPanel", "Scrim", "HowToPlayPanel");
@@ -45,6 +48,7 @@ namespace FootballRunner.UI
         private void Start()
         {
             EnsureHowToPlayUi();
+            EnsureLanguageButton();
             AdventureMenuFlow.Attach(this);
 
             playButton?.onClick.AddListener(OnPlay);
@@ -182,6 +186,43 @@ namespace FootballRunner.UI
             {
                 howToPlayPanel = CreateHowToPlayPanel(canvas, font, sprite);
             }
+        }
+
+        /// <summary>
+        /// Switches between learning Bosnian and learning English. The label is
+        /// written in the language the child already speaks.
+        /// </summary>
+        private void EnsureLanguageButton()
+        {
+            Transform safe = transform.Find("SafeArea");
+            Transform parent = safe != null ? safe : transform;
+            Sprite sprite = playButton != null ? playButton.GetComponent<Image>()?.sprite : null;
+
+            _languageButton = CreateMenuButton(parent, "LanguageButton", LanguageLabel(),
+                new Vector2(0f, -468f), new Vector2(520f, 76f), new Color(0.2f, 0.36f, 0.62f, 1f), 30f,
+                ResolveFont(), sprite);
+            _languageButton.onClick.AddListener(() =>
+            {
+                AudioManager.Instance?.PlayButton();
+                LearningProgress.ToggleLanguage();
+                var label = _languageButton.GetComponentInChildren<TMP_Text>();
+
+                if (label != null)
+                {
+                    label.text = LanguageLabel();
+                }
+            });
+        }
+
+        private static string LanguageLabel()
+        {
+            WordPack pack = WordPack.Load(WordPack.DefaultPack);
+            int learned = LearningProgress.LearnedCount(pack);
+            int total = pack != null ? pack.Words.Count : 0;
+
+            return LearningProgress.Language == LearningProgress.English
+                ? $"UČIM ENGLESKI  ·  {learned}/{total} RIJEČI"
+                : $"LEARNING BOSNIAN  ·  {learned}/{total} WORDS";
         }
 
         private static TMP_FontAsset ResolveFont()

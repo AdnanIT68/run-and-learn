@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -51,6 +52,16 @@ namespace FootballRunner.SaveSystem
                 if (string.IsNullOrEmpty(_data.selectedCharacterId))
                 {
                     _data.selectedCharacterId = "rukajja";
+                }
+
+                if (string.IsNullOrEmpty(_data.learningLanguage))
+                {
+                    _data.learningLanguage = "bs";
+                }
+
+                if (_data.wordProgress == null)
+                {
+                    _data.wordProgress = new List<WordProgress>();
                 }
             }
             catch (Exception e)

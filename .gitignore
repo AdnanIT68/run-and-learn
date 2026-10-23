@@ -38,3 +38,11 @@ crashlytics-build.properties
 /_preview/
 /Assets/_Recovery/
 /Assets/_Recovery.meta
+/Tools/.venv/
+
+# Test runner leftovers
+/Assets/InitTestScene*.unity*
+/Assets/Resources/PerformanceTestRun*.json*
+
+# Android native build scratch
+/.utmp/

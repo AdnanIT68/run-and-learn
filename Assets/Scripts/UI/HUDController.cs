@@ -67,6 +67,7 @@ namespace FootballRunner.UI
             SafeAreaFitter.EnsureOnCanvas(transform, "PausePanel", "GameOverPanel");
             UiPointerRepair.DisableDecorativeRaycasts(transform);
             AdventureUi.EnsureOnCanvas(transform);
+            Learning.WordPromptUi.EnsureOnCanvas(transform);
         }
 
         private void Start()

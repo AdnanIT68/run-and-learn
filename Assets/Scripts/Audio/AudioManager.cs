@@ -89,6 +89,9 @@ namespace FootballRunner.Audio
 
         public void PlayGameOver() => PlaySfx(gameOverClip);
 
+        /// <summary>Spoken words and praise. Uses the effects channel and its mute setting.</summary>
+        public void PlayVoice(AudioClip clip) => PlaySfx(clip);
+
         private void StopMusic()
         {
             if (musicSource == null)

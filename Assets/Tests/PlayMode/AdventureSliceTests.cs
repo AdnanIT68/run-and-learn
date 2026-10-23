@@ -10,11 +10,13 @@ using UnityEngine.TestTools;
 
 namespace FootballRunner.Tests
 {
+    [Timeout(60000)]
     public class AdventureSliceTests
     {
         [UnitySetUp]
         public IEnumerator LoadAdventureLevel()
         {
+            Debug.Log("[TEST] " + TestContext.CurrentContext.Test.Name);
             Time.timeScale = 1f;
             AdventureSession.BeginLevel(1);
             yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);

@@ -18,7 +18,22 @@ namespace FootballRunner.SaveSystem
         public int greenHillsUnlockedLevel = 1;
         public int greenHillsLevel1Stars;
 
+        /// <summary>"bs" when the child is learning Bosnian, "en" when learning English.</summary>
+        public string learningLanguage = "bs";
+
+        public List<WordProgress> wordProgress = new List<WordProgress>();
+
         /// <summary>Reserved for future skins and cosmetics.</summary>
         public List<string> unlockedItems = new List<string>();
+    }
+
+    /// <summary>How often one word was caught or missed, per learned language.</summary>
+    [Serializable]
+    public class WordProgress
+    {
+        public string id;
+        public string language;
+        public int correct;
+        public int missed;
     }
 }

@@ -1,0 +1,22 @@
+{
+  "pack": "World1",
+  "title_bs": "Nenina bašta",
+  "title_en": "Grandma's Garden",
+  "words": [
+    { "id": "apple",      "bs": "jabuka",    "en": "apple",      "emoji": "1f34e" },
+    { "id": "pear",       "bs": "kruška",    "en": "pear",       "emoji": "1f350" },
+    { "id": "banana",     "bs": "banana",    "en": "banana",     "emoji": "1f34c" },
+    { "id": "strawberry", "bs": "jagoda",    "en": "strawberry", "emoji": "1f353" },
+    { "id": "grapes",     "bs": "grožđe",    "en": "grapes",     "emoji": "1f347" },
+    { "id": "watermelon", "bs": "lubenica",  "en": "watermelon", "emoji": "1f349" },
+    { "id": "lemon",      "bs": "limun",     "en": "lemon",      "emoji": "1f34b" },
+    { "id": "carrot",     "bs": "mrkva",     "en": "carrot",     "emoji": "1f955" },
+    { "id": "tomato",     "bs": "paradajz",  "en": "tomato",     "emoji": "1f345" },
+    { "id": "cucumber",   "bs": "krastavac", "en": "cucumber",   "emoji": "1f952" }
+  ],
+  "phrases": [
+    { "id": "praise_1", "bs": "Bravo!",  "en": "Great job!" },
+    { "id": "praise_2", "bs": "Tačno!",  "en": "That's right!" },
+    { "id": "praise_3", "bs": "Super!",  "en": "Awesome!" }
+  ]
+}

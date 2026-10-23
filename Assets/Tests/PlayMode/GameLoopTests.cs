@@ -17,11 +17,13 @@ namespace FootballRunner.Tests
     /// These exist because a runner that compiles is not the same as a runner
     /// that runs.
     /// </summary>
+    [Timeout(60000)]
     public class GameLoopTests
     {
         [UnitySetUp]
         public IEnumerator LoadGameScene()
         {
+            Debug.Log("[TEST] " + TestContext.CurrentContext.Test.Name);
             Time.timeScale = 1f;
             AdventureSession.Clear();
             yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
@@ -243,7 +245,8 @@ namespace FootballRunner.Tests
             Assert.AreEqual(GameState.Dying, GameManager.Instance.State, "Death should play a short transition before Game Over.");
             Assert.AreEqual(1f, Time.timeScale, "Time should keep running during the death transition.");
 
-            yield return new WaitForSeconds(1.2f);
+            // Realtime: Game Over sets timeScale to 0, so a scaled wait would never finish.
+            yield return new WaitForSecondsRealtime(1.2f);
 
             Assert.AreEqual(GameState.GameOver, GameManager.Instance.State);
             Assert.AreEqual(0f, Time.timeScale, "Gameplay did not stop on game over.");

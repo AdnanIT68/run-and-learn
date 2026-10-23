@@ -42,11 +42,33 @@ Used in this project:
 - `Assets/Art/Rukajja/Frames/` — standalone idle, five run frames, jump, fall, hit
 - `Assets/Art/Rukajja/Animation/` — `RukajjaCharacterAnimator` and motion clips
 
+**Ansimuz — Sunny Land**
+
+| | |
+|---|---|
+| Author | Ansimuz — <https://ansimuz.itch.io> |
+| Source | <https://opengameart.org/content/sunny-land-2d-pixel-art-pack> |
+| Licence | CC0 1.0 Universal (art only) |
+| Checked | 23 October 2026 |
+
+Used in this project:
+
+- `Assets/ThirdParty/Ansimuz/SunnyLand/` — parallax backgrounds, props and characters
+
+The Sunny Land download also offers music by Pascal Belisle under a separate
+attribution licence. That music is **not** included in this project.
+
+## Word pictures and voices
+
+Placeholder art and voices for the word-learning prototype are listed in
+`Assets/Resources/Words/SOURCES.md`. They must be replaced or confirmed before release.
+
 ## Music
 
-The game ships with **no background music** by deliberate design; only sound effects
-are used. `AudioManager` still exposes music clip slots, so a track can be added later
-without any code change.
+The game ships with **no musical instruments of any kind** by deliberate design, in
+line with the product's Islamic values. Only sound effects and spoken words are used.
+If vocal audio is ever added it must be voice-only (nasheed or kasida without
+instruments), quiet, optional, and recorded here with its licence.
 
 ## Engine and packages
 
