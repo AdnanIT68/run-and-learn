@@ -82,3 +82,14 @@ If you add any further assets, record them here with author, source URL, licence
 download date. Assets that are free for personal use are **not** necessarily free for
 commercial use — check that the licence explicitly permits commercial distribution
 before shipping anything to the Play Store.
+
+## Font
+
+**Titan One** by Rodrigo Fuenzalida, SIL Open Font License 1.1
+(`Assets/Resources/Fonts/TitanOne-Regular.ttf`, licence text beside it). Used for the
+menu logo, buttons and chips.
+
+## Menu art
+
+Sky, hills, clouds and the play arrow are drawn by `Tools/make_menu_art.py`. Menu icons
+(settings, help, language, exit, trophy, coin) are Twemoji, CC BY 4.0, like the word pictures.

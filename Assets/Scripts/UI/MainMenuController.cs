@@ -75,6 +75,8 @@ namespace FootballRunner.UI
             EnsureVibrationToggle();
             WordAlbumUi.EnsureOnCanvas(transform, ResolveFont());
             WordWorldsUi.EnsureOnCanvas(transform, ResolveFont());
+            MainMenuStyle.Apply(transform, playButton, settingsButton, quitButton, howToPlayButton,
+                highScoreText, totalCoinsText);
             AdventureMenuFlow.Attach(this);
 
             playButton?.onClick.AddListener(OnPlay);

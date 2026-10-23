@@ -44,6 +44,48 @@ namespace FootballRunner.Utilities
             return _softDot;
         }
 
+        private static Sprite _roundedRect;
+
+        /// <summary>
+        /// White rounded rectangle with nine-slice borders, for modern buttons and
+        /// cards. Use Image.Type.Sliced; pixelsPerUnitMultiplier sets corner size.
+        /// </summary>
+        public static Sprite RoundedRect()
+        {
+            if (_roundedRect != null)
+            {
+                return _roundedRect;
+            }
+
+            const int size = 128;
+            const float radius = 48f;
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false)
+            {
+                wrapMode = TextureWrapMode.Clamp,
+                filterMode = FilterMode.Bilinear
+            };
+            var pixels = new Color32[size * size];
+
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    // Distance outside the inner rectangle whose corners are rounded off.
+                    float dx = Mathf.Max(0f, Mathf.Max(radius - x - 0.5f, x + 0.5f - (size - radius)));
+                    float dy = Mathf.Max(0f, Mathf.Max(radius - y - 0.5f, y + 0.5f - (size - radius)));
+                    float alpha = Mathf.Clamp01(radius - Mathf.Sqrt(dx * dx + dy * dy) + 0.5f);
+                    pixels[y * size + x] = new Color32(255, 255, 255, (byte)(alpha * 255));
+                }
+            }
+
+            texture.SetPixels32(pixels);
+            texture.Apply();
+            var border = new Vector4(radius + 2f, radius + 2f, radius + 2f, radius + 2f);
+            _roundedRect = Sprite.Create(texture, new Rect(0f, 0f, size, size), new Vector2(0.5f, 0.5f), 100f, 0,
+                SpriteMeshType.FullRect, border);
+            return _roundedRect;
+        }
+
         private static Sprite Build(System.Func<float, float, Color> shade)
         {
             var texture = new Texture2D(Resolution, Resolution, TextureFormat.RGBA32, false)
