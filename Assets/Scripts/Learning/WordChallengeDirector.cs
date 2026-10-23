@@ -47,6 +47,11 @@ namespace FootballRunner.Learning
         [Range(0f, 1f)]
         [SerializeField] private float countingChance = 0.4f;
 
+        [Header("Sizes")]
+        [Tooltip("Share of challenges that ask for big or small, in worlds that have size phrases.")]
+        [Range(0f, 1f)]
+        [SerializeField] private float sizeChance = 0.4f;
+
         [Header("Commands")]
         [Tooltip("Share of challenges that are spoken commands, in worlds that have them.")]
         [Range(0f, 1f)]
@@ -206,7 +211,7 @@ namespace FootballRunner.Learning
         }
 
         /// <summary>Starts a challenge immediately. Used by tests and the first-run tutorial.</summary>
-        public bool ForceChallenge(bool counting = false, bool command = false)
+        public bool ForceChallenge(bool counting = false, bool command = false, bool size = false)
         {
             PlayerController player = PlayerController.Instance;
 
@@ -216,7 +221,7 @@ namespace FootballRunner.Learning
             }
 
             CacheStandingHeight(player);
-            return TryStartChallenge(player, counting, command);
+            return TryStartChallenge(player, counting, command, size);
         }
 
         public void OnBubbleTouched(WordBubble bubble)
@@ -397,7 +402,7 @@ namespace FootballRunner.Learning
         }
 
         private bool TryStartChallenge(PlayerController player, bool forceCounting = false,
-            bool forceCommand = false)
+            bool forceCommand = false, bool forceSize = false)
         {
             if (float.IsNaN(_standingTop))
             {
@@ -407,10 +412,12 @@ namespace FootballRunner.Learning
             bool guided = !SaveManager.Data.wordTutorialDone;
             // Counting and commands only once the child knows how the game works,
             // and only in worlds that have them.
-            bool counting = !guided && !forceCommand && _pack.Counts.Count > 0 &&
+            bool counting = !guided && !forceCommand && !forceSize && _pack.Counts.Count > 0 &&
                             (forceCounting || Random.value < countingChance);
-            bool command = !guided && !counting && _pack.Commands.Count > 0 &&
+            bool command = !guided && !counting && !forceSize && _pack.Commands.Count > 0 &&
                            (forceCommand || Random.value < commandChance);
+            bool sizing = !guided && !counting && !command && _pack.Sizes.Count > 0 &&
+                          (forceSize || Random.value < sizeChance);
 
             if (counting)
             {
@@ -419,6 +426,10 @@ namespace FootballRunner.Learning
             else if (command)
             {
                 ChooseCommand();
+            }
+            else if (sizing)
+            {
+                ChooseSize();
             }
             else
             {
@@ -503,6 +514,36 @@ namespace FootballRunner.Learning
         // star as the right one, so only following the command finds the answer.
         private static readonly WordEntry LowSpot = new WordEntry { id = "spot_low", picture = "star", action = "stay" };
         private static readonly WordEntry HighSpot = new WordEntry { id = "spot_high", picture = "star", action = "jump" };
+
+        /// <summary>"Velika riba": the same picture big and small; only the adjective tells them apart.</summary>
+        private void ChooseSize()
+        {
+            IReadOnlyList<WordEntry> sizes = _pack.Sizes;
+            int index = Random.Range(0, sizes.Count);
+
+            if (sizes[index] == _previousTarget && sizes.Count > 1)
+            {
+                index = (index + 1) % sizes.Count;
+            }
+
+            _target = sizes[index];
+            _options.Clear();
+            _options.Add(_target);
+
+            for (int i = 0; i < sizes.Count; i++)
+            {
+                if (sizes[i].PictureId == _target.PictureId && sizes[i].size != _target.size)
+                {
+                    _options.Add(sizes[i]);
+                    break;
+                }
+            }
+
+            if (Random.value < 0.5f)
+            {
+                _options.Reverse();
+            }
+        }
 
         /// <summary>The spoken command plus one wrong height in the same spot.</summary>
         private void ChooseCommand()

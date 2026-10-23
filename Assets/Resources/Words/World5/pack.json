@@ -1,0 +1,163 @@
+{
+  "pack": "World5",
+  "title_bs": "Rijeka i Stari most",
+  "title_en": "River and Old Bridge",
+  "words": [
+    {
+      "id": "sun",
+      "bs": "sunce",
+      "en": "sun"
+    },
+    {
+      "id": "rain",
+      "bs": "kiša",
+      "en": "rain"
+    },
+    {
+      "id": "rainbow",
+      "bs": "duga",
+      "en": "rainbow"
+    },
+    {
+      "id": "bridge",
+      "bs": "most",
+      "en": "bridge"
+    },
+    {
+      "id": "fish",
+      "bs": "riba",
+      "en": "fish"
+    },
+    {
+      "id": "frog",
+      "bs": "žaba",
+      "en": "frog"
+    },
+    {
+      "id": "butterfly",
+      "bs": "leptir",
+      "en": "butterfly"
+    },
+    {
+      "id": "flower",
+      "bs": "cvijet",
+      "en": "flower"
+    },
+    {
+      "id": "tree",
+      "bs": "drvo",
+      "en": "tree"
+    },
+    {
+      "id": "boat",
+      "bs": "čamac",
+      "en": "boat"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!"
+    }
+  ],
+  "counts": [],
+  "commands": [],
+  "sizes": [
+    {
+      "id": "fish_big",
+      "picture": "fish",
+      "size": "big",
+      "bs": "velika riba",
+      "en": "big fish"
+    },
+    {
+      "id": "fish_small",
+      "picture": "fish",
+      "size": "small",
+      "bs": "mala riba",
+      "en": "small fish"
+    },
+    {
+      "id": "frog_big",
+      "picture": "frog",
+      "size": "big",
+      "bs": "velika žaba",
+      "en": "big frog"
+    },
+    {
+      "id": "frog_small",
+      "picture": "frog",
+      "size": "small",
+      "bs": "mala žaba",
+      "en": "small frog"
+    },
+    {
+      "id": "boat_big",
+      "picture": "boat",
+      "size": "big",
+      "bs": "veliki čamac",
+      "en": "big boat"
+    },
+    {
+      "id": "boat_small",
+      "picture": "boat",
+      "size": "small",
+      "bs": "mali čamac",
+      "en": "small boat"
+    },
+    {
+      "id": "flower_big",
+      "picture": "flower",
+      "size": "big",
+      "bs": "veliki cvijet",
+      "en": "big flower"
+    },
+    {
+      "id": "flower_small",
+      "picture": "flower",
+      "size": "small",
+      "bs": "mali cvijet",
+      "en": "small flower"
+    },
+    {
+      "id": "tree_big",
+      "picture": "tree",
+      "size": "big",
+      "bs": "veliko drvo",
+      "en": "big tree"
+    },
+    {
+      "id": "tree_small",
+      "picture": "tree",
+      "size": "small",
+      "bs": "malo drvo",
+      "en": "small tree"
+    }
+  ]
+}

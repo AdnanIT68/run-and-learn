@@ -21,6 +21,9 @@ namespace FootballRunner.Learning
         /// <summary>How many pictures this bubble shows; more than one for counting phrases.</summary>
         public int PictureCount => _pictures != null ? _pictures.Length : 0;
 
+        /// <summary>Share of the bubble's width each picture fills.</summary>
+        public float PictureSize { get; private set; }
+
         /// <summary>Positions inside a unit-diameter bubble for one to five pictures.</summary>
         private static Vector2[] PipLayout(int count)
         {
@@ -73,6 +76,18 @@ namespace FootballRunner.Learning
             // Counting phrases show the same picture several times, laid out like dice pips.
             Vector2[] layout = PipLayout(word.Count);
             float pictureSize = word.Count == 1 ? 0.72f : word.Count == 2 ? 0.42f : 0.36f;
+
+            // Size phrases: the same picture drawn big or small inside equal bubbles.
+            if (word.size == "big")
+            {
+                pictureSize = 0.82f;
+            }
+            else if (word.size == "small")
+            {
+                pictureSize = 0.32f;
+            }
+
+            bubble.PictureSize = pictureSize;
             bubble._pictures = new SpriteRenderer[layout.Length];
 
             for (int i = 0; i < layout.Length; i++)

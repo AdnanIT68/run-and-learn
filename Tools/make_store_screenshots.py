@@ -33,6 +33,10 @@ SHOTS = [
         "en": "Listen and do it: Jump! Stay down!",
         "hr": "Slušaj i uradi: Skoči! Ostani dolje!",
         "de": "Hören und tun: Spring! Bleib unten!"}),
+    ("09_big_small_river", {
+        "en": "Big or small? Listen closely!",
+        "hr": "Veliko ili malo? Slušaj pažljivo!",
+        "de": "Groß oder klein? Gut zuhören!"}),
     ("04_bravo", {
         "en": "Five words, one big BRAVO!",
         "hr": "Pet riječi, jedno veliko BRAVO!",

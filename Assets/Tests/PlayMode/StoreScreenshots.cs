@@ -72,7 +72,14 @@ namespace FootballRunner.Tests
             yield return StartChallengeAndWait("World4", counting: false, command: true);
             yield return Capture("08_command_bazaar");
 
-            // 5. English learners see the same game in English.
+            // 5. Big or small by the river.
+            SetProgress(gardenWords: 7, farmWords: 6, english: false, homeWords: 6, bazaarWords: 6);
+            LearningProgress.SelectPack("World5");
+            yield return LoadScene("Game");
+            yield return StartChallengeAndWait("World5", counting: false, size: true);
+            yield return Capture("09_big_small_river");
+
+            // 6. English learners see the same game in English.
             SetProgress(gardenWords: 7, farmWords: 4, english: true);
             LearningProgress.SelectPack("World1");
             yield return LoadScene("Game");
@@ -96,7 +103,8 @@ namespace FootballRunner.Tests
             yield return Capture("07_worlds");
         }
 
-        private static void SetProgress(int gardenWords, int farmWords, bool english, int homeWords = 0)
+        private static void SetProgress(int gardenWords, int farmWords, bool english, int homeWords = 0,
+            int bazaarWords = 0)
         {
             SaveData data = SaveManager.Data;
             data.wordProgress.Clear();
@@ -106,6 +114,7 @@ namespace FootballRunner.Tests
             Learn(WordPack.Load("World1"), gardenWords);
             Learn(WordPack.Load("World2"), farmWords);
             Learn(WordPack.Load("World3"), homeWords);
+            Learn(WordPack.Load("World4"), bazaarWords);
             data.selectedPack = "World1";
         }
 
@@ -128,7 +137,8 @@ namespace FootballRunner.Tests
             yield return new WaitForSecondsRealtime(1.5f);
         }
 
-        private static IEnumerator StartChallengeAndWait(string pack, bool counting, bool command = false)
+        private static IEnumerator StartChallengeAndWait(string pack, bool counting, bool command = false,
+            bool size = false)
         {
             WordChallengeDirector director = WordChallengeDirector.Instance;
             Assert.AreEqual(pack, director.Pack.Name);
@@ -136,7 +146,7 @@ namespace FootballRunner.Tests
 
             while (director.CurrentWord == null && waited < 5f)
             {
-                director.ForceChallenge(counting, command);
+                director.ForceChallenge(counting, command, size);
                 waited += Time.unscaledDeltaTime;
                 yield return null;
             }

@@ -149,6 +149,41 @@ namespace FootballRunner.Tests
             Assert.IsTrue(LearningProgress.IsPackUnlocked("World4"), "Six home words should open the bazaar.");
         }
 
+        [Test]
+        public void RiverHasWordsAndAgreeingAdjectivesAndOpensAfterTheBazaar()
+        {
+            WordPack river = WordPack.Load("World5");
+
+            Assert.IsNotNull(river, "World5 pack.json did not load.");
+            Assert.AreEqual(10, river.Words.Count);
+            Assert.AreEqual(10, river.Sizes.Count, "Five things, each big and small.");
+
+            foreach (WordEntry entry in river.Words.Concat(river.Sizes))
+            {
+                Assert.IsNotNull(river.Picture(entry.PictureId), $"{entry.id} has no picture.");
+                Assert.IsNotNull(river.Voice(LearningProgress.Bosnian, entry.id), $"{entry.id} has no Bosnian voice.");
+                Assert.IsNotNull(river.Voice(LearningProgress.English, entry.id), $"{entry.id} has no English voice.");
+            }
+
+            // The adjective follows the noun's gender: the point of this world.
+            string[] forms = { "velika riba", "veliki čamac", "veliko drvo", "mala žaba", "mali cvijet", "malo drvo" };
+            foreach (string form in forms)
+            {
+                Assert.IsTrue(river.Sizes.Any(z => z.bs == form), $"Missing or misspelled: {form}");
+            }
+
+            SaveManager.Data.wordProgress.Clear();
+            WordPack bazaar = WordPack.Load("World4");
+            Assert.IsFalse(LearningProgress.IsPackUnlocked("World5"));
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(bazaar.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World5"), "Six bazaar words should open the river.");
+        }
+
         private static bool FindCount(WordPack pack, string bosnian)
         {
             foreach (WordEntry phrase in pack.Counts)

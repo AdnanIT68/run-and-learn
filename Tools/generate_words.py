@@ -61,7 +61,17 @@ async def speak(text: str, voice: str, target: Path) -> None:
 
     with tempfile.TemporaryDirectory() as tmp:
         raw = Path(tmp) / "raw.mp3"
-        await edge_tts.Communicate(text, voice, rate=SPEECH_RATE).save(str(raw))
+
+        # The speech service drops connections now and then; retry before giving up.
+        for attempt in range(4):
+            try:
+                await edge_tts.Communicate(text, voice, rate=SPEECH_RATE).save(str(raw))
+                break
+            except Exception:
+                if attempt == 3:
+                    raise
+                await asyncio.sleep(3 * (attempt + 1))
+
         # Trim leading/trailing silence so the word lands the moment it is triggered.
         subprocess.run(
             [
@@ -104,7 +114,13 @@ async def main(pack_file: Path) -> None:
         for c in pack.get("commands", [])
     ]
 
-    for entry in pack["words"] + pack.get("phrases", []) + counts + commands:
+    # Size phrases ("velika riba") show the word's picture drawn big or small.
+    sizes = [
+        {"id": f"{z['word']}_{z['size']}", "picture": z["word"], "size": z["size"], "bs": z["bs"], "en": z["en"]}
+        for z in pack.get("sizes", [])
+    ]
+
+    for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes:
         for lang, voice in VOICES.items():
             await speak(entry[lang], voice, out / "Audio" / lang / f"{entry['id']}.ogg")
 
@@ -116,6 +132,7 @@ async def main(pack_file: Path) -> None:
         "phrases": [{"id": p["id"], "bs": p["bs"], "en": p["en"]} for p in pack.get("phrases", [])],
         "counts": counts,
         "commands": commands,
+        "sizes": sizes,
     }
     (out / "pack.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"{pack['pack']}: {len(pack['words'])} words, {len(manifest['phrases'])} phrases, "

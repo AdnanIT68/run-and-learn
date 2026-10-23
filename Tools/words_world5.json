@@ -1,0 +1,37 @@
+{
+  "pack": "World5",
+  "title_bs": "Rijeka i Stari most",
+  "title_en": "River and Old Bridge",
+  "words": [
+    { "id": "sun",       "bs": "sunce",   "en": "sun",       "emoji": "2600" },
+    { "id": "rain",      "bs": "kiša",    "en": "rain",      "emoji": "1f327" },
+    { "id": "rainbow",   "bs": "duga",    "en": "rainbow",   "emoji": "1f308" },
+    { "id": "bridge",    "bs": "most",    "en": "bridge",    "emoji": "1f309" },
+    { "id": "fish",      "bs": "riba",    "en": "fish",      "emoji": "1f41f" },
+    { "id": "frog",      "bs": "žaba",    "en": "frog",      "emoji": "1f438" },
+    { "id": "butterfly", "bs": "leptir",  "en": "butterfly", "emoji": "1f98b" },
+    { "id": "flower",    "bs": "cvijet",  "en": "flower",    "emoji": "1f33c" },
+    { "id": "tree",      "bs": "drvo",    "en": "tree",      "emoji": "1f333" },
+    { "id": "boat",      "bs": "čamac",   "en": "boat",      "emoji": "1f6f6" }
+  ],
+  "phrases": [
+    { "id": "praise_1", "bs": "Bravo!",  "en": "Great job!" },
+    { "id": "praise_2", "bs": "Tačno!",  "en": "That's right!" },
+    { "id": "praise_3", "bs": "Super!",  "en": "Awesome!" },
+    { "id": "intro",    "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!" },
+    { "id": "jump",     "bs": "Skoči!",  "en": "Jump!" },
+    { "id": "goal",     "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!" }
+  ],
+  "sizes": [
+    { "word": "fish",   "size": "big",   "bs": "velika riba",   "en": "big fish" },
+    { "word": "fish",   "size": "small", "bs": "mala riba",     "en": "small fish" },
+    { "word": "frog",   "size": "big",   "bs": "velika žaba",   "en": "big frog" },
+    { "word": "frog",   "size": "small", "bs": "mala žaba",     "en": "small frog" },
+    { "word": "boat",   "size": "big",   "bs": "veliki čamac",  "en": "big boat" },
+    { "word": "boat",   "size": "small", "bs": "mali čamac",    "en": "small boat" },
+    { "word": "flower", "size": "big",   "bs": "veliki cvijet", "en": "big flower" },
+    { "word": "flower", "size": "small", "bs": "mali cvijet",   "en": "small flower" },
+    { "word": "tree",   "size": "big",   "bs": "veliko drvo",   "en": "big tree" },
+    { "word": "tree",   "size": "small", "bs": "malo drvo",     "en": "small tree" }
+  ]
+}

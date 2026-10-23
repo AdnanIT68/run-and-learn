@@ -223,6 +223,47 @@ namespace FootballRunner.Tests
                 "Not every command showed up.");
         }
 
+        [UnityTest]
+        public IEnumerator RiverAsksBigOrSmallWithTheSamePicture()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.wordTutorialDone = true;
+            WordPack bazaar = WordPack.Load("World4");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(bazaar.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.SelectPack("World5"));
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            float waited = 0f;
+
+            while (director.CurrentWord == null && waited < 5f)
+            {
+                director.ForceChallenge(size: true);
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            WordEntry target = director.CurrentWord;
+            Assert.IsNotNull(target, "No size challenge started.");
+            Assert.IsTrue(target.IsSize, "The river did not ask for big or small.");
+            Assert.AreEqual(2, director.Bubbles.Count);
+
+            WordBubble right = director.Bubbles.First(b => b.Word == target);
+            WordBubble wrong = director.Bubbles.First(b => b.Word != target);
+            Assert.AreEqual(right.Word.PictureId, wrong.Word.PictureId, "Both bubbles must show the same thing.");
+            Assert.AreNotEqual(right.Word.size, wrong.Word.size);
+
+            WordBubble big = right.Word.size == "big" ? right : wrong;
+            WordBubble small = big == right ? wrong : right;
+            Assert.Greater(big.PictureSize, small.PictureSize * 2f, "Big and small must be easy to tell apart.");
+        }
+
         [Test]
         public void VibrationSettingIsSaved()
         {
