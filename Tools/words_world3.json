@@ -1,0 +1,25 @@
+{
+  "pack": "World3",
+  "title_bs": "Naša kuća",
+  "title_en": "Our Home",
+  "words": [
+    { "id": "mom",       "bs": "mama",    "en": "mom",      "emoji": "1f469" },
+    { "id": "dad",       "bs": "tata",    "en": "dad",      "emoji": "1f468" },
+    { "id": "grandma",   "bs": "nena",    "en": "grandma",  "emoji": "1f475" },
+    { "id": "grandpa",   "bs": "dedo",    "en": "grandpa",  "emoji": "1f474" },
+    { "id": "sister",    "bs": "sestra",  "en": "sister",   "emoji": "1f467" },
+    { "id": "brother",   "bs": "brat",    "en": "brother",  "emoji": "1f466" },
+    { "id": "baby",      "bs": "beba",    "en": "baby",     "emoji": "1f476" },
+    { "id": "house",     "bs": "kuća",    "en": "house",    "emoji": "1f3e0" },
+    { "id": "bread",     "bs": "hljeb",   "en": "bread",    "emoji": "1f35e" },
+    { "id": "milk",      "bs": "mlijeko", "en": "milk",     "emoji": "1f95b" }
+  ],
+  "phrases": [
+    { "id": "praise_1", "bs": "Bravo!",  "en": "Great job!" },
+    { "id": "praise_2", "bs": "Tačno!",  "en": "That's right!" },
+    { "id": "praise_3", "bs": "Super!",  "en": "Awesome!" },
+    { "id": "intro",    "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!" },
+    { "id": "jump",     "bs": "Skoči!",  "en": "Jump!" },
+    { "id": "goal",     "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!" }
+  ]
+}

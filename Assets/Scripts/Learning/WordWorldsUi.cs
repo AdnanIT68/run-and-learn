@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FootballRunner.Audio;
+using FootballRunner.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -190,6 +191,7 @@ namespace FootballRunner.Learning
             backRect.anchoredPosition = new Vector2(60f, -50f);
             backRect.sizeDelta = new Vector2(220f, 90f);
             back.GetComponent<Image>().color = new Color(0.1f, 0.2f, 0.32f, 0.95f);
+            Round(back.GetComponent<Image>(), 1.6f);
             back.GetComponent<Button>().onClick.AddListener(() =>
             {
                 AudioManager.Instance?.PlayButton();
@@ -230,6 +232,7 @@ namespace FootballRunner.Learning
 
             card.Cover.raycastTarget = false;
             card.Lock.raycastTarget = false;
+            Round(card.Background);
             return card;
         }
 
@@ -287,6 +290,14 @@ namespace FootballRunner.Learning
             _buttonCover.enabled = _buttonCover.sprite != null;
         }
 
+        /// <summary>Rounded corners to match the main menu.</summary>
+        private static void Round(Image image, float cornerScale = 1.2f)
+        {
+            image.sprite = RuntimeSprites.RoundedRect();
+            image.type = Image.Type.Sliced;
+            image.pixelsPerUnitMultiplier = cornerScale;
+        }
+
         private static Image CreateImage(Transform parent, string name, Sprite sprite, Vector2 position, Vector2 size)
         {
             var go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
@@ -324,7 +335,11 @@ namespace FootballRunner.Learning
             text.fontSizeMin = fontSize * 0.5f;
             text.fontSizeMax = fontSize;
 
-            if (_font != null)
+            if (GameFonts.Display != null)
+            {
+                GameFonts.UseDisplay(text);
+            }
+            else if (_font != null)
             {
                 text.font = _font;
             }

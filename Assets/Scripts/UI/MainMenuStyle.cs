@@ -18,8 +18,6 @@ namespace FootballRunner.UI
     {
         private const string MenuArt = "Menu/";
 
-        private static TMP_FontAsset _titleFont;
-
         private readonly List<RectTransform> _clouds = new List<RectTransform>();
         private readonly List<float> _cloudSpeeds = new List<float>();
         private readonly List<(TMP_Text source, TMP_Text shown)> _chips = new List<(TMP_Text, TMP_Text)>();
@@ -30,24 +28,7 @@ namespace FootballRunner.UI
         private Vector2 _pepiBase;
 
         /// <summary>The rounded display font for titles and buttons; null if it failed to load.</summary>
-        public static TMP_FontAsset TitleFont
-        {
-            get
-            {
-                if (_titleFont == null)
-                {
-                    var font = Resources.Load<Font>("Fonts/TitanOne-Regular");
-
-                    if (font != null)
-                    {
-                        _titleFont = TMP_FontAsset.CreateFontAsset(font);
-                        _titleFont.name = "TitanOne (runtime)";
-                    }
-                }
-
-                return _titleFont;
-            }
-        }
+        public static TMP_FontAsset TitleFont => GameFonts.Display;
 
         public static MainMenuStyle Apply(Transform canvas, Button play, Button settings, Button quit,
             Button howToPlay, TMP_Text best, TMP_Text coins)
@@ -417,19 +398,9 @@ namespace FootballRunner.UI
             text.outlineColor = new Color32(0, 0, 0, 70);
         }
 
-        /// <summary>
-        /// Swaps in the display font together with its material. Scene texts keep
-        /// their old material otherwise, which draws the new glyphs from the old atlas.
-        /// </summary>
         private static void UseTitleFont(TMP_Text text)
         {
-            if (TitleFont == null)
-            {
-                return;
-            }
-
-            text.font = TitleFont;
-            text.fontSharedMaterial = TitleFont.material;
+            GameFonts.UseDisplay(text);
         }
 
         private static Image CreateImage(Transform parent, string name, Sprite sprite)

@@ -93,6 +93,33 @@ namespace FootballRunner.Tests
                 form => FindCount(farm, form)), "A Bosnian counting form is missing or misspelled.");
         }
 
+        [Test]
+        public void HomeWorldIsCompleteAndOpensAfterTheFarm()
+        {
+            WordPack home = WordPack.Load("World3");
+
+            Assert.IsNotNull(home, "World3 pack.json did not load.");
+            Assert.AreEqual(10, home.Words.Count);
+
+            foreach (WordEntry word in home.Words)
+            {
+                Assert.IsNotNull(home.Picture(word.id), $"{word.id} has no picture.");
+                Assert.IsNotNull(home.Voice(LearningProgress.Bosnian, word.id), $"{word.id} has no Bosnian voice.");
+                Assert.IsNotNull(home.Voice(LearningProgress.English, word.id), $"{word.id} has no English voice.");
+            }
+
+            SaveManager.Data.wordProgress.Clear();
+            WordPack farm = WordPack.Load("World2");
+            Assert.IsFalse(LearningProgress.IsPackUnlocked("World3"), "Our Home opened with no farm words learned.");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(farm.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World3"), "Six farm words should open Our Home.");
+        }
+
         private static bool FindCount(WordPack pack, string bosnian)
         {
             foreach (WordEntry phrase in pack.Counts)

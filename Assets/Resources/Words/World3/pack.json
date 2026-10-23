@@ -1,0 +1,90 @@
+{
+  "pack": "World3",
+  "title_bs": "Naša kuća",
+  "title_en": "Our Home",
+  "words": [
+    {
+      "id": "mom",
+      "bs": "mama",
+      "en": "mom"
+    },
+    {
+      "id": "dad",
+      "bs": "tata",
+      "en": "dad"
+    },
+    {
+      "id": "grandma",
+      "bs": "nena",
+      "en": "grandma"
+    },
+    {
+      "id": "grandpa",
+      "bs": "dedo",
+      "en": "grandpa"
+    },
+    {
+      "id": "sister",
+      "bs": "sestra",
+      "en": "sister"
+    },
+    {
+      "id": "brother",
+      "bs": "brat",
+      "en": "brother"
+    },
+    {
+      "id": "baby",
+      "bs": "beba",
+      "en": "baby"
+    },
+    {
+      "id": "house",
+      "bs": "kuća",
+      "en": "house"
+    },
+    {
+      "id": "bread",
+      "bs": "hljeb",
+      "en": "bread"
+    },
+    {
+      "id": "milk",
+      "bs": "mlijeko",
+      "en": "milk"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!"
+    }
+  ],
+  "counts": []
+}
