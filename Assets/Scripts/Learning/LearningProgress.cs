@@ -31,6 +31,47 @@ namespace FootballRunner.Learning
             SetLanguage(Language == English ? Bosnian : English);
         }
 
+        /// <summary>Words to learn in a world before the next one opens.</summary>
+        public const int WordsToUnlockNext = 6;
+
+        /// <summary>The world the next run uses. Falls back to the first if the saved one is locked.</summary>
+        public static string SelectedPack
+        {
+            get
+            {
+                string saved = SaveManager.Data.selectedPack;
+                return System.Array.IndexOf(WordPack.PackOrder, saved) >= 0 && IsPackUnlocked(saved)
+                    ? saved
+                    : WordPack.PackOrder[0];
+            }
+        }
+
+        public static bool SelectPack(string pack)
+        {
+            if (!IsPackUnlocked(pack))
+            {
+                return false;
+            }
+
+            SaveManager.Data.selectedPack = pack;
+            SaveManager.Save();
+            return true;
+        }
+
+        /// <summary>The first world is always open; each later one needs words from the world before.</summary>
+        public static bool IsPackUnlocked(string pack)
+        {
+            int index = System.Array.IndexOf(WordPack.PackOrder, pack);
+
+            if (index <= 0)
+            {
+                return index == 0;
+            }
+
+            WordPack previous = WordPack.Load(WordPack.PackOrder[index - 1]);
+            return LearnedCount(previous) >= WordsToUnlockNext;
+        }
+
         public static WordProgress Get(string wordId)
         {
             List<WordProgress> list = SaveManager.Data.wordProgress;

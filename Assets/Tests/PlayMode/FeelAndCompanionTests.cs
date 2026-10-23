@@ -95,6 +95,26 @@ namespace FootballRunner.Tests
             Assert.AreEqual(0, FxPlayer.Instance.LiveCount, "Particles were not recycled.");
         }
 
+        [UnityTest]
+        public IEnumerator RunUsesTheChosenWorld()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            WordPack garden = WordPack.Load("World1");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(garden.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.SelectPack("World2"));
+
+            // The director reads the chosen world when the run starts.
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            Assert.AreEqual("World2", WordChallengeDirector.Instance.Pack.Name);
+        }
+
         [Test]
         public void VibrationSettingIsSaved()
         {

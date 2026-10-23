@@ -53,6 +53,7 @@ namespace FootballRunner.UI
             EnsureLanguageButton();
             EnsureVibrationToggle();
             WordAlbumUi.EnsureOnCanvas(transform, ResolveFont());
+            WordWorldsUi.EnsureOnCanvas(transform, ResolveFont());
             AdventureMenuFlow.Attach(this);
 
             playButton?.onClick.AddListener(OnPlay);
@@ -254,7 +255,7 @@ namespace FootballRunner.UI
 
         private static string LanguageLabel()
         {
-            WordPack pack = WordPack.Load(WordPack.DefaultPack);
+            WordPack pack = WordPack.Load(LearningProgress.SelectedPack);
             int learned = LearningProgress.LearnedCount(pack);
             int total = pack != null ? pack.Words.Count : 0;
 

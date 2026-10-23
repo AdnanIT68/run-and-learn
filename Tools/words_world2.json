@@ -1,0 +1,25 @@
+{
+  "pack": "World2",
+  "title_bs": "Farma kod dede",
+  "title_en": "Grandpa's Farm",
+  "words": [
+    { "id": "cow",     "bs": "krava",   "en": "cow",     "emoji": "1f404" },
+    { "id": "sheep",   "bs": "ovca",    "en": "sheep",   "emoji": "1f411" },
+    { "id": "goat",    "bs": "koza",    "en": "goat",    "emoji": "1f410" },
+    { "id": "horse",   "bs": "konj",    "en": "horse",   "emoji": "1f40e" },
+    { "id": "hen",     "bs": "kokoš",   "en": "hen",     "emoji": "1f414" },
+    { "id": "rooster", "bs": "pijetao", "en": "rooster", "emoji": "1f413" },
+    { "id": "duck",    "bs": "patka",   "en": "duck",    "emoji": "1f986" },
+    { "id": "cat",     "bs": "mačka",   "en": "cat",     "emoji": "1f408" },
+    { "id": "rabbit",  "bs": "zec",     "en": "rabbit",  "emoji": "1f407" },
+    { "id": "bee",     "bs": "pčela",   "en": "bee",     "emoji": "1f41d" }
+  ],
+  "phrases": [
+    { "id": "praise_1", "bs": "Bravo!",  "en": "Great job!" },
+    { "id": "praise_2", "bs": "Tačno!",  "en": "That's right!" },
+    { "id": "praise_3", "bs": "Super!",  "en": "Awesome!" },
+    { "id": "intro",    "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!" },
+    { "id": "jump",     "bs": "Skoči!",  "en": "Jump!" },
+    { "id": "goal",     "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!" }
+  ]
+}

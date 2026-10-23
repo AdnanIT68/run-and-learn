@@ -1,0 +1,89 @@
+{
+  "pack": "World2",
+  "title_bs": "Farma kod dede",
+  "title_en": "Grandpa's Farm",
+  "words": [
+    {
+      "id": "cow",
+      "bs": "krava",
+      "en": "cow"
+    },
+    {
+      "id": "sheep",
+      "bs": "ovca",
+      "en": "sheep"
+    },
+    {
+      "id": "goat",
+      "bs": "koza",
+      "en": "goat"
+    },
+    {
+      "id": "horse",
+      "bs": "konj",
+      "en": "horse"
+    },
+    {
+      "id": "hen",
+      "bs": "kokoš",
+      "en": "hen"
+    },
+    {
+      "id": "rooster",
+      "bs": "pijetao",
+      "en": "rooster"
+    },
+    {
+      "id": "duck",
+      "bs": "patka",
+      "en": "duck"
+    },
+    {
+      "id": "cat",
+      "bs": "mačka",
+      "en": "cat"
+    },
+    {
+      "id": "rabbit",
+      "bs": "zec",
+      "en": "rabbit"
+    },
+    {
+      "id": "bee",
+      "bs": "pčela",
+      "en": "bee"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!"
+    }
+  ]
+}

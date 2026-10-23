@@ -133,7 +133,7 @@ namespace FootballRunner.Learning
 
         private void Start()
         {
-            _pack = WordPack.Load(WordPack.DefaultPack);
+            _pack = WordPack.Load(LearningProgress.SelectedPack);
 
             if (_pack == null || _pack.Words.Count < optionCount)
             {

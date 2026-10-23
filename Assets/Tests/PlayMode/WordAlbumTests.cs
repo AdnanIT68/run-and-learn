@@ -62,6 +62,69 @@ namespace FootballRunner.Tests
             Assert.IsFalse(album.IsOpen);
         }
 
+        [Test]
+        public void FarmPackIsCompleteAndHasNoPig()
+        {
+            WordPack farm = WordPack.Load("World2");
+
+            Assert.IsNotNull(farm, "World2 pack.json did not load.");
+            Assert.AreEqual(10, farm.Words.Count);
+
+            foreach (WordEntry word in farm.Words)
+            {
+                Assert.AreNotEqual("pig", word.id, "Pigs do not belong in this game.");
+                Assert.IsNotNull(farm.Picture(word.id), $"{word.id} has no picture.");
+                Assert.IsNotNull(farm.Voice(LearningProgress.Bosnian, word.id), $"{word.id} has no Bosnian voice.");
+                Assert.IsNotNull(farm.Voice(LearningProgress.English, word.id), $"{word.id} has no English voice.");
+            }
+        }
+
+        [Test]
+        public void FarmOpensAfterSixGardenWords()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            WordPack garden = WordPack.Load("World1");
+
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World1"), "The first world must always be open.");
+            Assert.IsFalse(LearningProgress.IsPackUnlocked("World2"), "The farm opened with no words learned.");
+            Assert.IsFalse(LearningProgress.SelectPack("World2"), "A locked world could be chosen.");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(garden.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World2"), "Six garden words should open the farm.");
+        }
+
+        [UnityTest]
+        public IEnumerator WorldChooserOnlyPicksOpenWorlds()
+        {
+            yield return null;
+
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.selectedPack = "World1";
+            WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
+            Assert.IsNotNull(worlds, "The main menu has no world chooser.");
+
+            worlds.Open();
+            Assert.AreEqual(WordPack.PackOrder.Length, worlds.CardCount);
+            Assert.IsFalse(worlds.IsWorldUnlocked(1));
+            Assert.IsFalse(worlds.PressWorld(1), "A locked world was chosen.");
+            Assert.AreEqual("World1", LearningProgress.SelectedPack);
+
+            WordPack garden = WordPack.Load("World1");
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(garden.Words[i].id);
+            }
+
+            worlds.Close();
+            worlds.Open();
+            Assert.IsTrue(worlds.PressWorld(1), "An open world could not be chosen.");
+            Assert.AreEqual("World2", LearningProgress.SelectedPack);
+        }
+
         [UnityTest]
         public IEnumerator SettingsHaveAVibrationToggle()
         {

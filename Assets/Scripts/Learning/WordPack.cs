@@ -27,6 +27,15 @@ namespace FootballRunner.Learning
         public const string DefaultPack = "World1";
         private const string Root = "Words";
 
+        /// <summary>Worlds in play order. Each one unlocks from progress in the one before.</summary>
+        public static readonly string[] PackOrder = { "World1", "World2" };
+
+        /// <summary>One picture standing for each world on the world chooser.</summary>
+        public static string CoverWordId(string pack)
+        {
+            return pack == "World2" ? "cow" : "apple";
+        }
+
         [Serializable]
         private class Manifest
         {

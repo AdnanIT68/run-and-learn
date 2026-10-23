@@ -37,8 +37,10 @@ Prva verzija za objavu: samo svijet 1.
 
 ## Sadržaj riječi
 
-- Lista riječi: `Tools/words_world1.json`
-- Generisanje slika i glasova: `Tools/.venv/Scripts/python.exe Tools/generate_words.py Tools/words_world1.json`
+- Liste riječi: `Tools/words_world1.json` (Nenina bašta), `Tools/words_world2.json` (Farma kod dede)
+- Generisanje slika i glasova: `Tools/.venv/Scripts/python.exe Tools/generate_words.py Tools/words_world2.json`
+- Novi svijet: dodati JSON, pokrenuti generator, upisati ime u `WordPack.PackOrder` i sliku u `WordPack.CoverWordId`.
+- Svijet se otključava kad dijete nauči 6 riječi u prethodnom svijetu (`LearningProgress.WordsToUnlockNext`).
 - Slike i glasovi su privremeni (Twemoji, sintetički glas). Zamjena: isti nazivi fajlova
   u `Assets/Resources/Words/<Pack>/`. Izvori: `Assets/Resources/Words/SOURCES.md`.
 

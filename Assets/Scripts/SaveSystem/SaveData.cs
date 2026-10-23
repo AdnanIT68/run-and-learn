@@ -27,6 +27,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>Set once the child has caught a first word with the guided intro.</summary>
         public bool wordTutorialDone;
 
+        /// <summary>The word world the next run uses, e.g. "World1".</summary>
+        public string selectedPack = "World1";
+
         /// <summary>Reserved for future skins and cosmetics.</summary>
         public List<string> unlockedItems = new List<string>();
     }

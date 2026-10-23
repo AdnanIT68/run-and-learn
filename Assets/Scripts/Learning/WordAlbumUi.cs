@@ -78,6 +78,14 @@ namespace FootballRunner.Learning
                 return;
             }
 
+            WordPack selected = WordPack.Load(LearningProgress.SelectedPack);
+
+            if (selected != null && selected != _pack)
+            {
+                _pack = selected;
+                RebuildCards();
+            }
+
             Refresh();
             _panel.SetActive(true);
             _panel.transform.SetAsLastSibling();
@@ -121,7 +129,7 @@ namespace FootballRunner.Learning
 
         private void Build()
         {
-            _pack = WordPack.Load(WordPack.DefaultPack);
+            _pack = WordPack.Load(LearningProgress.SelectedPack);
 
             if (_pack == null)
             {
@@ -176,17 +184,7 @@ namespace FootballRunner.Learning
             _counter = CreateText(_panel.transform, "Counter", "", new Vector2(0f, 375f), new Vector2(800f, 50f),
                 34f, new Color(1f, 0.9f, 0.45f, 1f));
 
-            float gridWidth = Columns * CardWidth + (Columns - 1) * CardGap;
-
-            for (int i = 0; i < _pack.Words.Count; i++)
-            {
-                int column = i % Columns;
-                int row = i / Columns;
-                var position = new Vector2(
-                    -gridWidth * 0.5f + CardWidth * 0.5f + column * (CardWidth + CardGap),
-                    170f - row * (CardHeight + CardGap));
-                _cards.Add(BuildCard(_pack.Words[i], i, position));
-            }
+            RebuildCards();
 
             var back = new GameObject("Back", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image),
                 typeof(Button));
@@ -205,6 +203,31 @@ namespace FootballRunner.Learning
             });
             _backLabel = CreateText(back.transform, "Label", "", Vector2.zero, new Vector2(220f, 90f), 36f,
                 Color.white);
+        }
+
+        /// <summary>One card per word of the current pack; called again when the chosen world changes.</summary>
+        private void RebuildCards()
+        {
+            foreach (Card card in _cards)
+            {
+                if (card.Root != null)
+                {
+                    Destroy(card.Root.gameObject);
+                }
+            }
+
+            _cards.Clear();
+            float gridWidth = Columns * CardWidth + (Columns - 1) * CardGap;
+
+            for (int i = 0; i < _pack.Words.Count; i++)
+            {
+                int column = i % Columns;
+                int row = i / Columns;
+                var position = new Vector2(
+                    -gridWidth * 0.5f + CardWidth * 0.5f + column * (CardWidth + CardGap),
+                    170f - row * (CardHeight + CardGap));
+                _cards.Add(BuildCard(_pack.Words[i], i, position));
+            }
         }
 
         private Card BuildCard(WordEntry word, int index, Vector2 position)
