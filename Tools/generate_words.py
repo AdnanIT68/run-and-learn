@@ -31,6 +31,9 @@ PICTURE_SIZE = 256
 ICONS = {
     "speaker": "1f50a",
     "check": "2705",
+    "album": "1f4d6",
+    "star": "2b50",
+    "lock": "1f512",
 }
 VOICES = {
     "bs": "bs-BA-VesnaNeural",

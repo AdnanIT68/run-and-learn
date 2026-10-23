@@ -49,6 +49,7 @@ namespace FootballRunner.UI
         {
             EnsureHowToPlayUi();
             EnsureLanguageButton();
+            WordAlbumUi.EnsureOnCanvas(transform, ResolveFont());
             AdventureMenuFlow.Attach(this);
 
             playButton?.onClick.AddListener(OnPlay);
