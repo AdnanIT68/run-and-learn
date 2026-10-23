@@ -40,6 +40,27 @@ namespace FootballRunner.UI
 
         private Button _languageButton;
         private Toggle _vibrationToggle;
+        private string _languageLabelPack;
+
+        private void LateUpdate()
+        {
+            // The world chooser can switch worlds; the word count on the language button follows it.
+            if (_languageButton != null && _languageLabelPack != LearningProgress.SelectedPack)
+            {
+                RefreshLanguageLabel();
+            }
+        }
+
+        private void RefreshLanguageLabel()
+        {
+            _languageLabelPack = LearningProgress.SelectedPack;
+            var label = _languageButton.GetComponentInChildren<TMP_Text>();
+
+            if (label != null)
+            {
+                label.text = LanguageLabel();
+            }
+        }
 
         private void Awake()
         {
@@ -210,12 +231,7 @@ namespace FootballRunner.UI
             {
                 AudioManager.Instance?.PlayButton();
                 LearningProgress.ToggleLanguage();
-                var label = _languageButton.GetComponentInChildren<TMP_Text>();
-
-                if (label != null)
-                {
-                    label.text = LanguageLabel();
-                }
+                RefreshLanguageLabel();
             });
         }
 

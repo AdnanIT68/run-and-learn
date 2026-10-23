@@ -77,6 +77,33 @@ namespace FootballRunner.Tests
                 Assert.IsNotNull(farm.Voice(LearningProgress.Bosnian, word.id), $"{word.id} has no Bosnian voice.");
                 Assert.IsNotNull(farm.Voice(LearningProgress.English, word.id), $"{word.id} has no English voice.");
             }
+
+            Assert.AreEqual(25, farm.Counts.Count, "Five animals counted one to five.");
+
+            foreach (WordEntry phrase in farm.Counts)
+            {
+                Assert.IsTrue(phrase.Count >= 1 && phrase.Count <= 5, $"{phrase.id} counts outside one to five.");
+                Assert.IsNotNull(farm.Picture(phrase.PictureId), $"{phrase.id} has no picture.");
+                Assert.IsNotNull(farm.Voice(LearningProgress.Bosnian, phrase.id), $"{phrase.id} has no Bosnian voice.");
+                Assert.IsNotNull(farm.Voice(LearningProgress.English, phrase.id), $"{phrase.id} has no English voice.");
+            }
+
+            // Bosnian number agreement is the point of this step; spot-check the tricky forms.
+            Assert.IsTrue(System.Array.TrueForAll(new[] { "pet ovaca", "pet zečeva", "dvije kokoši" },
+                form => FindCount(farm, form)), "A Bosnian counting form is missing or misspelled.");
+        }
+
+        private static bool FindCount(WordPack pack, string bosnian)
+        {
+            foreach (WordEntry phrase in pack.Counts)
+            {
+                if (phrase.bs == bosnian)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         [Test]

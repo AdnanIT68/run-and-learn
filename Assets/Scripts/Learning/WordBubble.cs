@@ -16,7 +16,29 @@ namespace FootballRunner.Learning
 
         private WordChallengeDirector _owner;
         private SpriteRenderer _back;
-        private SpriteRenderer _picture;
+        private SpriteRenderer[] _pictures;
+
+        /// <summary>How many pictures this bubble shows; more than one for counting phrases.</summary>
+        public int PictureCount => _pictures != null ? _pictures.Length : 0;
+
+        /// <summary>Positions inside a unit-diameter bubble for one to five pictures.</summary>
+        private static Vector2[] PipLayout(int count)
+        {
+            const float d = 0.2f;
+
+            switch (count)
+            {
+                case 2: return new[] { new Vector2(-d, 0f), new Vector2(d, 0f) };
+                case 3: return new[] { new Vector2(0f, d), new Vector2(-d, -d * 0.8f), new Vector2(d, -d * 0.8f) };
+                case 4: return new[] { new Vector2(-d, d), new Vector2(d, d), new Vector2(-d, -d), new Vector2(d, -d) };
+                case 5:
+                    return new[]
+                    {
+                        new Vector2(-d, d), new Vector2(d, d), Vector2.zero, new Vector2(-d, -d), new Vector2(d, -d)
+                    };
+                default: return new[] { Vector2.zero };
+            }
+        }
         private CircleCollider2D _collider;
         private Vector3 _anchor;
         private Vector3 _baseScale;
@@ -48,23 +70,38 @@ namespace FootballRunner.Learning
             go.transform.localScale = Vector3.one * radius * 2f;
             bubble._baseScale = go.transform.localScale;
 
-            var pictureGo = new GameObject("Picture");
-            pictureGo.transform.SetParent(go.transform, false);
-            bubble._picture = pictureGo.AddComponent<SpriteRenderer>();
-            bubble._picture.sprite = picture;
-            bubble._picture.sortingOrder = SortingOrder + 1;
+            // Counting phrases show the same picture several times, laid out like dice pips.
+            Vector2[] layout = PipLayout(word.Count);
+            float pictureSize = word.Count == 1 ? 0.72f : word.Count == 2 ? 0.42f : 0.36f;
+            bubble._pictures = new SpriteRenderer[layout.Length];
 
-            if (picture != null)
+            for (int i = 0; i < layout.Length; i++)
             {
-                // Fit the picture inside the bubble regardless of its pixels-per-unit.
-                float largest = Mathf.Max(picture.bounds.size.x, picture.bounds.size.y);
-                pictureGo.transform.localScale = Vector3.one * (0.72f / Mathf.Max(0.01f, largest));
+                var pictureGo = new GameObject("Picture" + i);
+                pictureGo.transform.SetParent(go.transform, false);
+                pictureGo.transform.localPosition = layout[i];
+                SpriteRenderer renderer = pictureGo.AddComponent<SpriteRenderer>();
+                renderer.sprite = picture;
+                renderer.sortingOrder = SortingOrder + 1;
+
+                if (picture != null)
+                {
+                    // Fit the picture inside the bubble regardless of its pixels-per-unit.
+                    float largest = Mathf.Max(picture.bounds.size.x, picture.bounds.size.y);
+                    pictureGo.transform.localScale = Vector3.one * (pictureSize / Mathf.Max(0.01f, largest));
+                }
+
+                if (material != null)
+                {
+                    renderer.sharedMaterial = material;
+                }
+
+                bubble._pictures[i] = renderer;
             }
 
             if (material != null)
             {
                 bubble._back.sharedMaterial = material;
-                bubble._picture.sharedMaterial = material;
             }
 
             bubble._collider = go.AddComponent<CircleCollider2D>();
@@ -153,7 +190,7 @@ namespace FootballRunner.Learning
             Vector3 start = transform.localScale;
             Vector3 end = _baseScale * endScale;
             Color back = _back.color;
-            Color picture = _picture.color;
+            Color picture = Color.white;
             float elapsed = 0f;
 
             while (elapsed < seconds)
@@ -164,7 +201,12 @@ namespace FootballRunner.Learning
                 back.a = Mathf.Lerp(0.95f, 0f, t);
                 picture.a = Mathf.Lerp(1f, 0f, t);
                 _back.color = back;
-                _picture.color = picture;
+
+                for (int i = 0; i < _pictures.Length; i++)
+                {
+                    _pictures[i].color = picture;
+                }
+
                 yield return null;
             }
 

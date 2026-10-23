@@ -42,6 +42,11 @@ namespace FootballRunner.Learning
         [Tooltip("Running time between neighbouring bubbles.")]
         [SerializeField] private float spacingSeconds = 0.75f;
 
+        [Header("Counting")]
+        [Tooltip("Share of challenges that ask for a number and a word, in worlds that have counting phrases.")]
+        [Range(0f, 1f)]
+        [SerializeField] private float countingChance = 0.4f;
+
         [Header("Layout")]
         [SerializeField] private int optionCount = 3;
         [SerializeField] private float bubbleRadius = 0.6f;
@@ -194,7 +199,7 @@ namespace FootballRunner.Learning
         }
 
         /// <summary>Starts a challenge immediately. Used by tests and the first-run tutorial.</summary>
-        public bool ForceChallenge()
+        public bool ForceChallenge(bool counting = false)
         {
             PlayerController player = PlayerController.Instance;
 
@@ -204,7 +209,7 @@ namespace FootballRunner.Learning
             }
 
             CacheStandingHeight(player);
-            return TryStartChallenge(player);
+            return TryStartChallenge(player, counting);
         }
 
         public void OnBubbleTouched(WordBubble bubble)
@@ -384,17 +389,28 @@ namespace FootballRunner.Learning
             ChallengeEnded?.Invoke(word, caught);
         }
 
-        private bool TryStartChallenge(PlayerController player)
+        private bool TryStartChallenge(PlayerController player, bool forceCounting = false)
         {
             if (float.IsNaN(_standingTop))
             {
                 return false;
             }
 
-            ChooseWords();
+            bool guided = !SaveManager.Data.wordTutorialDone;
+            // Counting only once the child knows how the game works, and only in worlds that count.
+            bool counting = !guided && _pack.Counts.Count > 0 && (forceCounting || Random.value < countingChance);
+
+            if (counting)
+            {
+                ChooseCounting();
+            }
+            else
+            {
+                ChooseWords();
+            }
+
             CacheObstacles();
 
-            bool guided = !SaveManager.Data.wordTutorialDone;
             AudioClip intro = guided ? _pack.Voice(LearningProgress.HomeLanguage, "intro") : null;
             // The guided intro is spoken first, so the bubbles start further ahead.
             float lead = leadSeconds + (intro != null ? intro.length + 0.4f : 0f);
@@ -426,7 +442,7 @@ namespace FootballRunner.Learning
             {
                 WordEntry word = _options[i];
                 WordBubble bubble = WordBubble.Create(transform, new Vector3(positions[i], y, 0f), word,
-                    _pack.Picture(word.id), bubbleRadius, _spriteMaterial, this);
+                    _pack.Picture(word.PictureId), bubbleRadius, _spriteMaterial, this);
                 _bubbles.Add(bubble);
 
                 if (_guided && word == _target)
@@ -489,6 +505,43 @@ namespace FootballRunner.Learning
                 WordEntry candidate = words[Random.Range(0, words.Count)];
 
                 if (!_options.Contains(candidate))
+                {
+                    _options.Add(candidate);
+                }
+            }
+
+            for (int i = _options.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (_options[i], _options[j]) = (_options[j], _options[i]);
+            }
+        }
+
+        /// <summary>
+        /// "Three hens": one animal, three bubbles with different numbers of it.
+        /// The child has to count, not just recognise the picture.
+        /// </summary>
+        private void ChooseCounting()
+        {
+            IReadOnlyList<WordEntry> counts = _pack.Counts;
+            WordEntry target = counts[Random.Range(0, counts.Count)];
+            int guard = 0;
+
+            while (target == _previousTarget && guard++ < 10)
+            {
+                target = counts[Random.Range(0, counts.Count)];
+            }
+
+            _target = target;
+            _options.Clear();
+            _options.Add(_target);
+            guard = 0;
+
+            while (_options.Count < optionCount && guard++ < 100)
+            {
+                WordEntry candidate = counts[Random.Range(0, counts.Count)];
+
+                if (candidate.PictureId == _target.PictureId && !_options.Contains(candidate))
                 {
                     _options.Add(candidate);
                 }

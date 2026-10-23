@@ -92,7 +92,13 @@ async def main(pack_file: Path) -> None:
     for name, code in ICONS.items():
         render_picture(code, icons / f"{name}.png")
 
-    for entry in pack["words"] + pack.get("phrases", []):
+    # Counting phrases ("tri kokoši") reuse the word's picture, drawn several times.
+    counts = [
+        {"id": f"{c['word']}_{c['count']}", "picture": c["word"], "count": c["count"], "bs": c["bs"], "en": c["en"]}
+        for c in pack.get("counts", [])
+    ]
+
+    for entry in pack["words"] + pack.get("phrases", []) + counts:
         for lang, voice in VOICES.items():
             await speak(entry[lang], voice, out / "Audio" / lang / f"{entry['id']}.ogg")
 
@@ -102,9 +108,11 @@ async def main(pack_file: Path) -> None:
         "title_en": pack["title_en"],
         "words": [{"id": w["id"], "bs": w["bs"], "en": w["en"]} for w in pack["words"]],
         "phrases": [{"id": p["id"], "bs": p["bs"], "en": p["en"]} for p in pack.get("phrases", [])],
+        "counts": counts,
     }
     (out / "pack.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"{pack['pack']}: {len(pack['words'])} words, {len(manifest['phrases'])} phrases -> {out}")
+    print(f"{pack['pack']}: {len(pack['words'])} words, {len(manifest['phrases'])} phrases, "
+          f"{len(counts)} counts -> {out}")
 
 
 if __name__ == "__main__":

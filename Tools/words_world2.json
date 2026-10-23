@@ -21,5 +21,32 @@
     { "id": "intro",    "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!" },
     { "id": "jump",     "bs": "Skoči!",  "en": "Jump!" },
     { "id": "goal",     "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!" }
+  ],
+  "counts": [
+    { "word": "hen",    "count": 1, "bs": "jedna kokoš",    "en": "one hen" },
+    { "word": "hen",    "count": 2, "bs": "dvije kokoši",   "en": "two hens" },
+    { "word": "hen",    "count": 3, "bs": "tri kokoši",     "en": "three hens" },
+    { "word": "hen",    "count": 4, "bs": "četiri kokoši",  "en": "four hens" },
+    { "word": "hen",    "count": 5, "bs": "pet kokoši",     "en": "five hens" },
+    { "word": "cow",    "count": 1, "bs": "jedna krava",    "en": "one cow" },
+    { "word": "cow",    "count": 2, "bs": "dvije krave",    "en": "two cows" },
+    { "word": "cow",    "count": 3, "bs": "tri krave",      "en": "three cows" },
+    { "word": "cow",    "count": 4, "bs": "četiri krave",   "en": "four cows" },
+    { "word": "cow",    "count": 5, "bs": "pet krava",      "en": "five cows" },
+    { "word": "sheep",  "count": 1, "bs": "jedna ovca",     "en": "one sheep" },
+    { "word": "sheep",  "count": 2, "bs": "dvije ovce",     "en": "two sheep" },
+    { "word": "sheep",  "count": 3, "bs": "tri ovce",       "en": "three sheep" },
+    { "word": "sheep",  "count": 4, "bs": "četiri ovce",    "en": "four sheep" },
+    { "word": "sheep",  "count": 5, "bs": "pet ovaca",      "en": "five sheep" },
+    { "word": "duck",   "count": 1, "bs": "jedna patka",    "en": "one duck" },
+    { "word": "duck",   "count": 2, "bs": "dvije patke",    "en": "two ducks" },
+    { "word": "duck",   "count": 3, "bs": "tri patke",      "en": "three ducks" },
+    { "word": "duck",   "count": 4, "bs": "četiri patke",   "en": "four ducks" },
+    { "word": "duck",   "count": 5, "bs": "pet pataka",     "en": "five ducks" },
+    { "word": "rabbit", "count": 1, "bs": "jedan zec",      "en": "one rabbit" },
+    { "word": "rabbit", "count": 2, "bs": "dva zeca",       "en": "two rabbits" },
+    { "word": "rabbit", "count": 3, "bs": "tri zeca",       "en": "three rabbits" },
+    { "word": "rabbit", "count": 4, "bs": "četiri zeca",    "en": "four rabbits" },
+    { "word": "rabbit", "count": 5, "bs": "pet zečeva",     "en": "five rabbits" }
   ]
 }

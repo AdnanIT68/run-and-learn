@@ -85,5 +85,182 @@
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!"
     }
+  ],
+  "counts": [
+    {
+      "id": "hen_1",
+      "picture": "hen",
+      "count": 1,
+      "bs": "jedna kokoš",
+      "en": "one hen"
+    },
+    {
+      "id": "hen_2",
+      "picture": "hen",
+      "count": 2,
+      "bs": "dvije kokoši",
+      "en": "two hens"
+    },
+    {
+      "id": "hen_3",
+      "picture": "hen",
+      "count": 3,
+      "bs": "tri kokoši",
+      "en": "three hens"
+    },
+    {
+      "id": "hen_4",
+      "picture": "hen",
+      "count": 4,
+      "bs": "četiri kokoši",
+      "en": "four hens"
+    },
+    {
+      "id": "hen_5",
+      "picture": "hen",
+      "count": 5,
+      "bs": "pet kokoši",
+      "en": "five hens"
+    },
+    {
+      "id": "cow_1",
+      "picture": "cow",
+      "count": 1,
+      "bs": "jedna krava",
+      "en": "one cow"
+    },
+    {
+      "id": "cow_2",
+      "picture": "cow",
+      "count": 2,
+      "bs": "dvije krave",
+      "en": "two cows"
+    },
+    {
+      "id": "cow_3",
+      "picture": "cow",
+      "count": 3,
+      "bs": "tri krave",
+      "en": "three cows"
+    },
+    {
+      "id": "cow_4",
+      "picture": "cow",
+      "count": 4,
+      "bs": "četiri krave",
+      "en": "four cows"
+    },
+    {
+      "id": "cow_5",
+      "picture": "cow",
+      "count": 5,
+      "bs": "pet krava",
+      "en": "five cows"
+    },
+    {
+      "id": "sheep_1",
+      "picture": "sheep",
+      "count": 1,
+      "bs": "jedna ovca",
+      "en": "one sheep"
+    },
+    {
+      "id": "sheep_2",
+      "picture": "sheep",
+      "count": 2,
+      "bs": "dvije ovce",
+      "en": "two sheep"
+    },
+    {
+      "id": "sheep_3",
+      "picture": "sheep",
+      "count": 3,
+      "bs": "tri ovce",
+      "en": "three sheep"
+    },
+    {
+      "id": "sheep_4",
+      "picture": "sheep",
+      "count": 4,
+      "bs": "četiri ovce",
+      "en": "four sheep"
+    },
+    {
+      "id": "sheep_5",
+      "picture": "sheep",
+      "count": 5,
+      "bs": "pet ovaca",
+      "en": "five sheep"
+    },
+    {
+      "id": "duck_1",
+      "picture": "duck",
+      "count": 1,
+      "bs": "jedna patka",
+      "en": "one duck"
+    },
+    {
+      "id": "duck_2",
+      "picture": "duck",
+      "count": 2,
+      "bs": "dvije patke",
+      "en": "two ducks"
+    },
+    {
+      "id": "duck_3",
+      "picture": "duck",
+      "count": 3,
+      "bs": "tri patke",
+      "en": "three ducks"
+    },
+    {
+      "id": "duck_4",
+      "picture": "duck",
+      "count": 4,
+      "bs": "četiri patke",
+      "en": "four ducks"
+    },
+    {
+      "id": "duck_5",
+      "picture": "duck",
+      "count": 5,
+      "bs": "pet pataka",
+      "en": "five ducks"
+    },
+    {
+      "id": "rabbit_1",
+      "picture": "rabbit",
+      "count": 1,
+      "bs": "jedan zec",
+      "en": "one rabbit"
+    },
+    {
+      "id": "rabbit_2",
+      "picture": "rabbit",
+      "count": 2,
+      "bs": "dva zeca",
+      "en": "two rabbits"
+    },
+    {
+      "id": "rabbit_3",
+      "picture": "rabbit",
+      "count": 3,
+      "bs": "tri zeca",
+      "en": "three rabbits"
+    },
+    {
+      "id": "rabbit_4",
+      "picture": "rabbit",
+      "count": 4,
+      "bs": "četiri zeca",
+      "en": "four rabbits"
+    },
+    {
+      "id": "rabbit_5",
+      "picture": "rabbit",
+      "count": 5,
+      "bs": "pet zečeva",
+      "en": "five rabbits"
+    }
   ]
 }

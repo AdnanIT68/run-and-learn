@@ -12,6 +12,19 @@ namespace FootballRunner.Learning
         public string bs;
         public string en;
 
+        [Tooltip("Counting phrases only: the word whose picture is shown, e.g. \"hen\".")]
+        public string picture;
+
+        [Tooltip("Counting phrases only: how many pictures the bubble shows.")]
+        public int count;
+
+        /// <summary>The picture file to show: the word itself, or the counted word.</summary>
+        public string PictureId => string.IsNullOrEmpty(picture) ? id : picture;
+
+        public int Count => Mathf.Max(1, count);
+
+        public bool IsCounting => count > 0;
+
         public string Text(string language)
         {
             return language == LearningProgress.English ? en : bs;
@@ -44,6 +57,7 @@ namespace FootballRunner.Learning
             public string title_en;
             public WordEntry[] words;
             public WordEntry[] phrases;
+            public WordEntry[] counts;
         }
 
         private static readonly Dictionary<string, WordPack> Cache = new Dictionary<string, WordPack>();
@@ -56,6 +70,9 @@ namespace FootballRunner.Learning
         public IReadOnlyList<WordEntry> Words => _manifest.words ?? Array.Empty<WordEntry>();
 
         public IReadOnlyList<WordEntry> Phrases => _manifest.phrases ?? Array.Empty<WordEntry>();
+
+        /// <summary>Number-and-word phrases ("tri kokoši"). Empty in worlds that do not count yet.</summary>
+        public IReadOnlyList<WordEntry> Counts => _manifest.counts ?? Array.Empty<WordEntry>();
 
         private WordPack(string name, Manifest manifest)
         {

@@ -153,7 +153,7 @@ namespace FootballRunner.Learning
 
             int index = caught - 1;
             WordPack pack = WordChallengeDirector.Instance != null ? WordChallengeDirector.Instance.Pack : null;
-            _pictures[index].sprite = pack != null ? pack.Picture(word.id) : null;
+            _pictures[index].sprite = pack != null ? pack.Picture(word.PictureId) : null;
             _pictures[index].enabled = _pictures[index].sprite != null;
             _slots[index].color = FilledColour;
             StartCoroutine(Pop(_slots[index].rectTransform));

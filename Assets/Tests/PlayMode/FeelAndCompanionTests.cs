@@ -115,6 +115,52 @@ namespace FootballRunner.Tests
             Assert.AreEqual("World2", WordChallengeDirector.Instance.Pack.Name);
         }
 
+        [UnityTest]
+        public IEnumerator FarmCountingAsksForOneAnimalInDifferentNumbers()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.wordTutorialDone = true;
+            WordPack garden = WordPack.Load("World1");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(garden.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.SelectPack("World2"));
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            float waited = 0f;
+
+            while (director.CurrentWord == null && waited < 5f)
+            {
+                director.ForceChallenge(true);
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            WordEntry target = director.CurrentWord;
+            Assert.IsNotNull(target, "No counting challenge started.");
+            Assert.IsTrue(target.IsCounting, "The farm did not ask a counting question.");
+            Assert.AreEqual(3, director.Bubbles.Count);
+
+            var counts = new System.Collections.Generic.HashSet<int>();
+            int answers = 0;
+
+            foreach (WordBubble bubble in director.Bubbles)
+            {
+                Assert.AreEqual(target.PictureId, bubble.Word.PictureId, "Every bubble must show the same animal.");
+                Assert.AreEqual(bubble.Word.Count, bubble.PictureCount, "The bubble shows the wrong number of pictures.");
+                counts.Add(bubble.Word.Count);
+                answers += bubble.Word == target ? 1 : 0;
+            }
+
+            Assert.AreEqual(3, counts.Count, "Two bubbles showed the same number.");
+            Assert.AreEqual(1, answers, "There must be exactly one right answer.");
+        }
+
         [Test]
         public void VibrationSettingIsSaved()
         {
