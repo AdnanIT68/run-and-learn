@@ -6,6 +6,7 @@ using FootballRunner.Core;
 using FootballRunner.Gameplay;
 using FootballRunner.Obstacles;
 using FootballRunner.Player;
+using FootballRunner.SaveSystem;
 using FootballRunner.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -27,6 +28,12 @@ namespace FootballRunner.Learning
         /// <summary>The word was caught (true) or passed without catching it (false).</summary>
         public static event Action<WordEntry, bool> ChallengeEnded;
 
+        /// <summary>A word was caught towards the run goal: (word, caught so far, goal size).</summary>
+        public static event Action<WordEntry, int, int> GoalProgress;
+
+        /// <summary>The goal row filled up. The HUD celebrates and the row starts again.</summary>
+        public static event Action<int> GoalCompleted;
+
         [Header("Timing")]
         [SerializeField] private float firstChallengeSeconds = 4f;
         [SerializeField] private float secondsBetweenChallenges = 8f;
@@ -45,6 +52,15 @@ namespace FootballRunner.Learning
 
         [Header("Reward")]
         [SerializeField] private int pointsForCorrect = 50;
+        [Tooltip("Words to catch to fill the goal row shown on the HUD.")]
+        [SerializeField] private int goalSize = 5;
+        [SerializeField] private int coinsForGoal = 10;
+
+        [Header("First-Time Guide")]
+        [Tooltip("Game speed while the runner approaches the right bubble in the guided first word.")]
+        [SerializeField] private float guidedTimeScale = 0.45f;
+        [Tooltip("Distance before the right bubble at which the guide slows the game and says \"Jump!\".")]
+        [SerializeField] private float guidedSlowDistance = 3.2f;
 
         private readonly List<WordBubble> _bubbles = new List<WordBubble>(4);
         private readonly List<WordEntry> _options = new List<WordEntry>(4);
@@ -61,9 +77,20 @@ namespace FootballRunner.Learning
         private bool _active;
         private bool _answered;
         private bool _missRecorded;
+        private bool _guided;
+        private bool _jumpCuePlayed;
+        private bool _slowedByGuide;
+        private int _goalCaught;
         private Coroutine _voiceRoutine;
 
         public WordPack Pack => _pack;
+
+        public int GoalSize => goalSize;
+
+        public int GoalCaught => _goalCaught;
+
+        /// <summary>True while the first-ever word is being shown with the guide.</summary>
+        public bool IsGuided => _active && _guided;
 
         public WordEntry CurrentWord => _active ? _target : null;
 
@@ -139,6 +166,11 @@ namespace FootballRunner.Learning
 
             if (_active)
             {
+                if (_guided)
+                {
+                    GuideApproach(player.transform.position.x);
+                }
+
                 CheckPassed(player.transform.position.x);
                 return;
             }
@@ -230,10 +262,81 @@ namespace FootballRunner.Learning
                 LearningProgress.RecordCorrect(_target.id);
             }
 
+            if (_guided)
+            {
+                SaveManager.Data.wordTutorialDone = true;
+                SaveManager.Save();
+            }
+
             ScoreManager.Instance?.AddPoints(pointsForCorrect);
             FloatingTextSpawner.Instance?.Show($"+{pointsForCorrect}", bubble.transform.position);
-            PlayPraiseThenWord(_target);
+
+            WordEntry word = _target;
+            _goalCaught++;
+            GoalProgress?.Invoke(word, _goalCaught, goalSize);
+            bool goalReached = _goalCaught >= goalSize;
+
+            PlayPraiseThenWord(word, goalReached);
             EndChallenge(true);
+
+            if (goalReached)
+            {
+                _goalCaught = 0;
+                ScoreManager.Instance?.AddCoins(coinsForGoal);
+                GoalCompleted?.Invoke(goalSize);
+            }
+        }
+
+        /// <summary>
+        /// First word ever: slow the game just before the right bubble and say
+        /// "Jump!", so the child sees what the bubbles are for.
+        /// </summary>
+        private void GuideApproach(float playerX)
+        {
+            WordBubble right = null;
+
+            for (int i = 0; i < _bubbles.Count; i++)
+            {
+                if (_bubbles[i] != null && _bubbles[i].Word == _target && !_bubbles[i].IsFinished)
+                {
+                    right = _bubbles[i];
+                }
+            }
+
+            float distance = right != null ? right.transform.position.x - playerX : -1f;
+            bool approaching = distance > 0f && distance < guidedSlowDistance;
+
+            if (approaching && !_slowedByGuide)
+            {
+                _slowedByGuide = true;
+                Time.timeScale = guidedTimeScale;
+
+                if (!_jumpCuePlayed)
+                {
+                    _jumpCuePlayed = true;
+                    PlayVoice(_pack.Voice(LearningProgress.Language, "jump"));
+                }
+            }
+            else if (!approaching && _slowedByGuide)
+            {
+                RestoreGuideSpeed();
+            }
+        }
+
+        private void RestoreGuideSpeed()
+        {
+            if (!_slowedByGuide)
+            {
+                return;
+            }
+
+            _slowedByGuide = false;
+
+            // Pause and Game Over own timeScale; only undo the guide's own slow-down.
+            if (Mathf.Approximately(Time.timeScale, guidedTimeScale))
+            {
+                Time.timeScale = 1f;
+            }
         }
 
         private void CheckPassed(float playerX)
@@ -264,6 +367,7 @@ namespace FootballRunner.Learning
 
         private void EndChallenge(bool caught)
         {
+            RestoreGuideSpeed();
             _active = false;
             _timer = secondsBetweenChallenges;
             WordEntry word = _target;
@@ -290,9 +394,14 @@ namespace FootballRunner.Learning
             ChooseWords();
             CacheObstacles();
 
+            bool guided = !SaveManager.Data.wordTutorialDone;
+            AudioClip intro = guided ? _pack.Voice(LearningProgress.HomeLanguage, "intro") : null;
+            // The guided intro is spoken first, so the bubbles start further ahead.
+            float lead = leadSeconds + (intro != null ? intro.length + 0.4f : 0f);
+
             float speed = Mathf.Max(1f, player.CurrentSpeed);
             float spacing = Mathf.Max(bubbleRadius * 2f + 1.6f, speed * spacingSeconds);
-            float searchFrom = player.transform.position.x + speed * leadSeconds;
+            float searchFrom = player.transform.position.x + speed * lead;
             float y = _standingTop + heightAboveHead;
             var positions = new List<float>(_options.Count);
 
@@ -310,16 +419,33 @@ namespace FootballRunner.Learning
             _active = true;
             _answered = false;
             _missRecorded = false;
+            _guided = guided;
+            _jumpCuePlayed = false;
 
             for (int i = 0; i < _options.Count; i++)
             {
                 WordEntry word = _options[i];
-                _bubbles.Add(WordBubble.Create(transform, new Vector3(positions[i], y, 0f), word,
-                    _pack.Picture(word.id), bubbleRadius, _spriteMaterial, this));
+                WordBubble bubble = WordBubble.Create(transform, new Vector3(positions[i], y, 0f), word,
+                    _pack.Picture(word.id), bubbleRadius, _spriteMaterial, this);
+                _bubbles.Add(bubble);
+
+                if (_guided && word == _target)
+                {
+                    bubble.Highlight();
+                }
             }
 
             _previousTarget = _target;
-            ReplayWord();
+
+            if (_guided)
+            {
+                PlayInSequence(intro, _pack.Voice(LearningProgress.Language, _target.id));
+            }
+            else
+            {
+                ReplayWord();
+            }
+
             ChallengeStarted?.Invoke(_target);
             return true;
         }
@@ -461,33 +587,40 @@ namespace FootballRunner.Learning
             _groundY = bounds.min.y;
         }
 
-        private void PlayPraiseThenWord(WordEntry word)
+        /// <summary>"Bravo!", then the word again, then the goal line when the row is full.</summary>
+        private void PlayPraiseThenWord(WordEntry word, bool goalReached)
+        {
+            string language = LearningProgress.Language;
+            PlayInSequence(
+                _pack.RandomPraise(language),
+                _pack.Voice(language, word.id),
+                goalReached ? _pack.Voice(language, "goal") : null);
+        }
+
+        private void PlayInSequence(params AudioClip[] clips)
         {
             if (_voiceRoutine != null)
             {
                 StopCoroutine(_voiceRoutine);
             }
 
-            _voiceRoutine = StartCoroutine(PraiseThenWord(word));
+            _voiceRoutine = StartCoroutine(Sequence(clips));
         }
 
-        private IEnumerator PraiseThenWord(WordEntry word)
+        private IEnumerator Sequence(AudioClip[] clips)
         {
-            string language = LearningProgress.Language;
-            IReadOnlyList<WordEntry> phrases = _pack.Phrases;
-
-            if (phrases.Count > 0)
+            for (int i = 0; i < clips.Length; i++)
             {
-                AudioClip praise = _pack.Voice(language, phrases[Random.Range(0, phrases.Count)].id);
-                PlayVoice(praise);
-
-                if (praise != null)
+                if (clips[i] == null)
                 {
-                    yield return new WaitForSeconds(praise.length + 0.15f);
+                    continue;
                 }
+
+                PlayVoice(clips[i]);
+                // Realtime, so the guide's slow motion does not stretch the gaps.
+                yield return new WaitForSecondsRealtime(clips[i].length + 0.15f);
             }
 
-            PlayVoice(_pack.Voice(language, word.id));
             _voiceRoutine = null;
         }
 

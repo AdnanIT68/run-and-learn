@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Linq;
 using FootballRunner.Adventure;
+using FootballRunner.Gameplay;
 using FootballRunner.Learning;
 using FootballRunner.Player;
+using FootballRunner.SaveSystem;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,10 +28,89 @@ namespace FootballRunner.Tests
             yield return null;
         }
 
+        private bool _tutorialDoneBefore;
+
+        [SetUp]
+        public void RememberTutorialFlag()
+        {
+            _tutorialDoneBefore = SaveManager.Data.wordTutorialDone;
+        }
+
         [TearDown]
         public void RestoreTimeScale()
         {
             Time.timeScale = 1f;
+            // Tests flip the guide flag; leave the developer's own save as it was.
+            SaveManager.Data.wordTutorialDone = _tutorialDoneBefore;
+            SaveManager.Save();
+        }
+
+        [UnityTest]
+        public IEnumerator FirstWordEverIsGuidedAndCatchingItEndsTheGuide()
+        {
+            SaveManager.Data.wordTutorialDone = false;
+            yield return StartChallenge();
+
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            Assert.IsTrue(director.IsGuided, "The very first word should be guided.");
+
+            director.OnBubbleTouched(director.Bubbles.First(b => b.Word == director.CurrentWord));
+
+            Assert.IsTrue(SaveManager.Data.wordTutorialDone);
+            Assert.AreEqual(1f, Time.timeScale, "The guide must hand normal speed back.");
+        }
+
+        [UnityTest]
+        public IEnumerator GuideSlowsTheGameBeforeTheRightBubbleThenRestoresSpeed()
+        {
+            SaveManager.Data.wordTutorialDone = false;
+            yield return StartChallenge();
+
+            bool slowed = false;
+            float waited = 0f;
+
+            // The test never jumps, so the runner passes underneath every bubble.
+            while (WordChallengeDirector.Instance.CurrentWord != null && waited < 20f)
+            {
+                slowed |= Time.timeScale < 1f && Time.timeScale > 0f;
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            Assert.IsTrue(slowed, "The guide never slowed the game before the right bubble.");
+            Assert.IsNull(WordChallengeDirector.Instance.CurrentWord, "The challenge never ended.");
+            Assert.AreEqual(1f, Time.timeScale, "Normal speed was not restored after the bubbles.");
+            Assert.IsFalse(SaveManager.Data.wordTutorialDone, "A missed guided word must be guided again.");
+        }
+
+        [UnityTest]
+        public IEnumerator CatchingFiveWordsFillsTheGoalAndPaysCoins()
+        {
+            SaveManager.Data.wordTutorialDone = true;
+            int goals = 0;
+            System.Action<int> onGoal = size => goals++;
+            WordChallengeDirector.GoalCompleted += onGoal;
+
+            yield return StartChallenge();
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            int coinsBefore = ScoreManager.Instance.CoinsCollected;
+
+            for (int i = 0; i < director.GoalSize; i++)
+            {
+                if (i > 0)
+                {
+                    Assert.IsTrue(director.ForceChallenge(), $"Challenge {i + 1} did not start.");
+                }
+
+                director.OnBubbleTouched(director.Bubbles.First(b => b.Word == director.CurrentWord));
+                yield return null;
+            }
+
+            WordChallengeDirector.GoalCompleted -= onGoal;
+
+            Assert.AreEqual(1, goals, "Filling the row should complete exactly one goal.");
+            Assert.AreEqual(0, director.GoalCaught, "The row should start again after a goal.");
+            Assert.Greater(ScoreManager.Instance.CoinsCollected, coinsBefore, "The goal paid no coins.");
         }
 
         [Test]

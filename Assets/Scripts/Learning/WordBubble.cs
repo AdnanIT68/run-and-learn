@@ -172,8 +172,8 @@ namespace FootballRunner.Learning
             Destroy(gameObject);
         }
 
-        /// <summary>A soft-edged white disc, generated once and shared by every bubble.</summary>
-        private static Sprite CircleSprite()
+        /// <summary>A soft-edged white disc, generated once and shared by bubbles and HUD slots.</summary>
+        public static Sprite CircleSprite()
         {
             if (_circleSprite != null)
             {

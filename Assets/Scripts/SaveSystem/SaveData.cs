@@ -23,6 +23,9 @@ namespace FootballRunner.SaveSystem
 
         public List<WordProgress> wordProgress = new List<WordProgress>();
 
+        /// <summary>Set once the child has caught a first word with the guided intro.</summary>
+        public bool wordTutorialDone;
+
         /// <summary>Reserved for future skins and cosmetics.</summary>
         public List<string> unlockedItems = new List<string>();
     }

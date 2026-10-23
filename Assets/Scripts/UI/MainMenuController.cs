@@ -13,10 +13,10 @@ namespace FootballRunner.UI
     {
         private const string HowToPlayTitle = "HOW TO PLAY";
         private const string HowToPlayBody =
-            "Tap the screen or press Space to jump.\n\n" +
-            "Reach the finish of each Green Hills trail.\n" +
-            "Collect coins and three lost stars along the way.\n" +
-            "Avoid spikes and other hazards.";
+            "Listen to the word.\n" +
+            "Jump into the bubble with the right picture!\n\n" +
+            "Fill all five circles to win coins.\n" +
+            "Tap the screen to jump over spikes and gaps.";
 
         [Header("Buttons")]
         [SerializeField] private Button playButton;

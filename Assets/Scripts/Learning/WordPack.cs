@@ -102,6 +102,24 @@ namespace FootballRunner.Learning
             return Resources.Load<AudioClip>($"{Root}/{Name}/Audio/{language}/{entryId}");
         }
 
+        /// <summary>A random praise line ("Bravo!", "Super!"). Phrase ids starting with "praise" qualify.</summary>
+        public AudioClip RandomPraise(string language)
+        {
+            int count = 0;
+            WordEntry chosen = null;
+
+            // Reservoir pick, so no temporary list is allocated per catch.
+            for (int i = 0; i < Phrases.Count; i++)
+            {
+                if (Phrases[i].id.StartsWith("praise") && UnityEngine.Random.Range(0, ++count) == 0)
+                {
+                    chosen = Phrases[i];
+                }
+            }
+
+            return chosen != null ? Voice(language, chosen.id) : null;
+        }
+
         public static Sprite Icon(string name)
         {
             return LoadSprite($"{Root}/Icons/{name}");

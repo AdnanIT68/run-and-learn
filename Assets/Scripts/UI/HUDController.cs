@@ -68,6 +68,7 @@ namespace FootballRunner.UI
             UiPointerRepair.DisableDecorativeRaycasts(transform);
             AdventureUi.EnsureOnCanvas(transform);
             Learning.WordPromptUi.EnsureOnCanvas(transform);
+            Learning.WordGoalUi.EnsureOnCanvas(transform);
         }
 
         private void Start()
