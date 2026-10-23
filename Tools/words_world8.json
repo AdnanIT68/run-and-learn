@@ -1,0 +1,28 @@
+{
+  "pack": "World8",
+  "title_bs": "Noćno nebo",
+  "title_en": "Night Sky",
+  "review": true,
+  "goal": 8,
+  "words": [
+    { "id": "star_word", "bs": "zvijezda", "en": "star",      "emoji": "1f31f" },
+    { "id": "moon",      "bs": "mjesec",   "en": "moon",      "emoji": "1f319" },
+    { "id": "rocket",    "bs": "raketa",   "en": "rocket",    "emoji": "1f680" },
+    { "id": "planet",    "bs": "planeta",  "en": "planet",    "emoji": "1fa90" },
+    { "id": "owl",       "bs": "sova",     "en": "owl",       "emoji": "1f989" },
+    { "id": "comet",     "bs": "kometa",   "en": "comet",     "emoji": "2604" },
+    { "id": "telescope", "bs": "teleskop", "en": "telescope", "emoji": "1f52d" },
+    { "id": "bed",       "bs": "krevet",   "en": "bed",       "emoji": "1f6cf" },
+    { "id": "satellite", "bs": "satelit",  "en": "satellite", "emoji": "1f6f0" },
+    { "id": "night",     "bs": "noć",      "en": "night",     "emoji": "1f303" }
+  ],
+  "phrases": [
+    { "id": "praise_1", "bs": "Bravo!",  "en": "Great job!" },
+    { "id": "praise_2", "bs": "Tačno!",  "en": "That's right!" },
+    { "id": "praise_3", "bs": "Super!",  "en": "Awesome!" },
+    { "id": "intro",    "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!" },
+    { "id": "jump",     "bs": "Skoči!",  "en": "Jump!" },
+    { "id": "goal",     "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!" },
+    { "id": "finale",   "bs": "Bravo! Svi svjetovi su završeni!", "en": "Well done! You finished every world!" }
+  ]
+}

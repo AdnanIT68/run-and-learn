@@ -31,13 +31,13 @@ Svaki svijet donosi novu temu, novu mehaniku i jedan korak više u jeziku:
 5. Rijeke i Stari most — priroda, vrijeme (pridjevi)
 6. Planina zimi — godišnja doba, tijelo (rečenice)
 7. Škola — slova, brojevi (čitanje)
-8. Noćno nebo — sve naučeno (mini razgovor)
+8. Noćno nebo — finale: 10 noćnih riječi + ponavljanje svega iz svjetova 1–7 (cilj 8 riječi, bez dugmeta DALJE)
 
 Prva verzija za objavu: samo svijet 1.
 
 ## Sadržaj riječi
 
-- Liste riječi: `Tools/words_world1.json` (Nenina bašta), `Tools/words_world2.json` (Farma kod dede), `Tools/words_world3.json` (Naša kuća), `Tools/words_world4.json` (Čaršija, s komandama), `Tools/words_world5.json` (Rijeka i Stari most, veliko/malo), `Tools/words_world6.json` (Planina zimi, rečenice), `Tools/words_world7.json` (Škola: slova, brojevi, čitanje)
+- Liste riječi: `Tools/words_world1.json` (Nenina bašta), `Tools/words_world2.json` (Farma kod dede), `Tools/words_world3.json` (Naša kuća), `Tools/words_world4.json` (Čaršija, s komandama), `Tools/words_world5.json` (Rijeka i Stari most, veliko/malo), `Tools/words_world6.json` (Planina zimi, rečenice), `Tools/words_world7.json` (Škola: slova, brojevi, čitanje), `Tools/words_world8.json` (Noćno nebo, finale: `"review": true` spaja izazove i riječi ranijih svjetova, `"goal": 8`)
 - Generisanje slika i glasova: `Tools/.venv/Scripts/python.exe Tools/generate_words.py Tools/words_world2.json`
 - Novi svijet: dodati JSON, pokrenuti generator, upisati ime u `WordPack.PackOrder` i sliku u `WordPack.CoverWordId`.
 - Svijet se otključava kad dijete nauči 6 riječi u prethodnom svijetu (`LearningProgress.WordsToUnlockNext`).

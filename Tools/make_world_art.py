@@ -1,11 +1,11 @@
 """Scenery for every word world, written to Assets/Resources/Worlds.
 
-Per world (World1..World6):
+Per world (World1..World8):
   far.png  2048x1024 sky and distant shapes, horizontally seamless
   mid.png  2048x1024 transparent buildings, trees and props, seamless
 Shared:
   Obstacles/<world>_<kind>.png  Twemoji skins for spike, crate and saw obstacles
-  Ambient/<name>.png            petals, fluff, leaves, birds, rain and snow
+  Ambient/<name>.png            petals, fluff, leaves, birds, rain, snow, planes and fireflies
   Ground/<set>/terrain_*.png    Kenney terrain tiles copied from Assets/Art/Tiles
 
 The ground line sits at 73% of the image height, where the run's ground tiles
@@ -459,6 +459,76 @@ def school():
     return far, mid
 
 
+def night():
+    far = canvas(False)
+    sky(far, (18, 24, 66), (78, 66, 140))
+    f = Painter(far)
+    rng = random.Random(16)
+    for _ in range(170):
+        x, y = rng.uniform(0, W), rng.uniform(0, GROUND - 160)
+        r = rng.choice((1.5, 2, 2, 3, 4))
+        wrap(lambda px: f.ellipse(px, y, r, r, (255, 250, 220, rng.randint(150, 255))), x)
+    # A few bigger twinkles with a soft cross.
+    for x, y in ((420, 120), (980, 260), (1460, 90), (1880, 300)):
+        def twinkle(px):
+            f.line([(px - 16, y), (px + 16, y)], (255, 250, 220, 200), 2)
+            f.line([(px, y - 16), (px, y + 16)], (255, 250, 220, 200), 2)
+            f.ellipse(px, y, 5, 5, (255, 252, 230, 255))
+        wrap(twinkle, x)
+    # Crescent moon: a full disc with a sky-coloured disc bitten out of it.
+    moon = Image.new("L", (W * S, H * S), 0)
+    md = ImageDraw.Draw(moon)
+    md.ellipse(p(1560, 90, 1720, 250), fill=255)
+    md.ellipse(p(1603, 78, 1747, 222), fill=0)
+    far.paste((255, 240, 185, 255), (0, 0), moon)
+    f.hills(GROUND - 70, 150, (44, 46, 104, 255), 4, 17, (380, 620))
+
+    # A small mosque on the far hill, its windows lit for the evening prayer.
+    def far_mosque(px):
+        base = GROUND - 150
+        f.rect(px - 70, base - 45, px + 70, base + 20, (34, 36, 86, 255))
+        f.dome(px, base - 45, 48, 44, (34, 36, 86, 255))
+        f.rect(px + 85, base - 150, px + 97, base + 20, (34, 36, 86, 255))
+        f.poly([(px + 82, base - 150), (px + 91, base - 182), (px + 100, base - 150)], (34, 36, 86, 255))
+        for wx in (-40, 0, 40):
+            f.rect(px + wx - 7, base - 25, px + wx + 7, base - 5, (255, 214, 120, 255), 3)
+    wrap(far_mosque, 1320)
+    for i in range(11):
+        x = rng.uniform(0, W)
+        base = GROUND - 30 - rng.uniform(0, 50)
+        f.house(x, base, 46, 34, (52, 56, 112, 255), (40, 40, 92, 255),
+                chimney=False, window=(255, 214, 120, 255), door=(40, 40, 90, 255))
+    f.hills(GROUND, 60, (36, 40, 92, 255), 6, 18)
+
+    mid = canvas(True)
+    m = Painter(mid)
+
+    def observatory(x):
+        wall, dome = (88, 92, 150, 255), (150, 160, 205, 255)
+        m.rect(x - 150, GROUND - 210, x + 150, GROUND + 10, wall)
+        m.dome(x, GROUND - 210, 165, 150, dome)
+        # The open slit in the dome with the telescope looking out of it.
+        m.poly([(x - 18, GROUND - 210), (x - 30, GROUND - 350), (x + 30, GROUND - 350), (x + 18, GROUND - 210)],
+               (30, 34, 80, 255))
+        m.line([(x, GROUND - 250), (x + 70, GROUND - 400)], (210, 215, 235, 255), 22)
+        m.rect(x - 45, GROUND - 100, x + 45, GROUND + 10, (60, 62, 115, 255), 8)
+        m.rect(x - 110, GROUND - 160, x - 60, GROUND - 110, (255, 214, 120, 255), 6)
+        m.rect(x + 60, GROUND - 160, x + 110, GROUND - 110, (255, 214, 120, 255), 6)
+    wrap(observatory, 700)
+
+    def lamp(x):
+        m.rect(x - 6, GROUND - 230, x + 6, GROUND + 10, (40, 44, 80, 255))
+        m.ellipse(x, GROUND - 240, 44, 44, (255, 200, 90, 70))
+        m.ellipse(x, GROUND - 240, 20, 20, (255, 228, 150, 255))
+    for x in (1180, 1700):
+        wrap(lamp, x)
+    for x in (150, 1420, 1900):
+        m.tree(x, GROUND + 10, 270, (36, 58, 82, 255), trunk=(40, 38, 60, 255))
+    for x in (380, 1000):
+        wrap(lambda px: m.ellipse(px, GROUND + 5, 90, 36, (44, 70, 90, 255)), x)
+    return far, mid
+
+
 WORLDS = {
     "World1": garden,
     "World2": farm,
@@ -467,6 +537,7 @@ WORLDS = {
     "World5": river,
     "World6": mountain,
     "World7": school,
+    "World8": night,
 }
 
 # Obstacle skins. None of these pictures are words the child is learning.
@@ -478,9 +549,10 @@ OBSTACLES = {
     "World5": {"spike": "1faa8", "crate": "1fab5", "saw": "1f980"},   # rock, log, crab
     "World6": {"spike": "1f332", "crate": "1faa8", "saw": "1fab5"},   # spruce, rock, log
     "World7": {"spike": "1f9e9", "crate": "1fa91", "saw": "1fa80"},   # puzzle piece, chair, yo-yo
+    "World8": {"spike": "1f525", "crate": "26fa", "saw": "1fab5"},    # campfire, tent, log
 }
 
-GROUND_SETS = ("dirt", "stone", "sand", "snow")
+GROUND_SETS = ("dirt", "stone", "sand", "snow", "purple")
 GROUND_PARTS = ("block_top", "block_center", "horizontal_left", "horizontal_middle", "horizontal_right")
 
 
@@ -523,6 +595,12 @@ def ambient():
     pd.polygon([(6, 34), (90, 10), (40, 40)], fill=(255, 255, 255, 255))
     pd.polygon([(40, 40), (90, 10), (52, 56)], fill=(215, 225, 240, 255))
     shapes["plane"] = plane
+
+    spark = Image.new("RGBA", (48, 48), (255, 240, 140, 0))
+    sd = ImageDraw.Draw(spark)
+    sd.ellipse((4, 4, 44, 44), fill=(255, 240, 140, 90))
+    sd.ellipse((16, 16, 32, 32), fill=(255, 250, 200, 255))
+    shapes["spark"] = spark.filter(ImageFilter.GaussianBlur(3))
 
     flake = Image.new("RGBA", (48, 48), (255, 255, 255, 0))
     ImageDraw.Draw(flake).ellipse((10, 10, 38, 38), fill=(255, 255, 255, 255))

@@ -166,6 +166,14 @@ namespace FootballRunner.Learning
             }
 
             Instance = this;
+
+            // Loaded here, before any Start, so the HUD sizes the goal row correctly.
+            _pack = WordPack.Load(LearningProgress.SelectedPack);
+
+            if (_pack != null && _pack.GoalSize > 0)
+            {
+                goalSize = _pack.GoalSize;
+            }
         }
 
         private void OnDestroy()
@@ -178,9 +186,8 @@ namespace FootballRunner.Learning
 
         private void Start()
         {
-            _pack = WordPack.Load(LearningProgress.SelectedPack);
 
-            if (_pack == null || _pack.Words.Count < optionCount)
+            if (_pack == null || _pack.ChallengeWords.Count < optionCount)
             {
                 Debug.LogWarning("[WordChallengeDirector] Not enough words to run challenges. Disabled.");
                 enabled = false;
@@ -453,6 +460,15 @@ namespace FootballRunner.Learning
             EndChallenge(false);
         }
 
+        /// <summary>Drops the challenge on screen without a miss; tests use it to ask the next kind.</summary>
+        public void CancelChallenge()
+        {
+            if (_active)
+            {
+                EndChallenge(false);
+            }
+        }
+
         private void EndChallenge(bool caught)
         {
             RestoreGuideSpeed();
@@ -504,6 +520,11 @@ namespace FootballRunner.Learning
                 return Kind.Word;
             }
 
+            if (_pack.IsReview)
+            {
+                return PickReviewKind();
+            }
+
             if (_pack.Counts.Count > 0 && Random.value < countingChance) return Kind.Counting;
             if (_pack.Commands.Count > 0 && Random.value < commandChance) return Kind.Command;
             if (_pack.Sizes.Count > 0 && Random.value < sizeChance) return Kind.Size;
@@ -512,6 +533,19 @@ namespace FootballRunner.Learning
             if (_pack.Numbers.Count > 0 && Random.value < numberChance) return Kind.Number;
             if (_pack.HasReading && Random.value < readingChance) return Kind.Reading;
             return Kind.Word;
+        }
+
+        /// <summary>The finale mixes every kind it can offer evenly, so it revisits all of them.</summary>
+        private Kind PickReviewKind()
+        {
+            var kinds = new List<Kind> { Kind.Word, Kind.Reading };
+            if (_pack.Counts.Count > 0) kinds.Add(Kind.Counting);
+            if (_pack.Commands.Count > 0) kinds.Add(Kind.Command);
+            if (_pack.Sizes.Count > 0) kinds.Add(Kind.Size);
+            if (_pack.Sentences.Count > 0) kinds.Add(Kind.Sentence);
+            if (_pack.Letters.Count > 0) kinds.Add(Kind.Letter);
+            if (_pack.Numbers.Count > 0) kinds.Add(Kind.Number);
+            return kinds[Random.Range(0, kinds.Count)];
         }
 
         private bool TryStartChallenge(PlayerController player, Kind? forced)
@@ -644,7 +678,7 @@ namespace FootballRunner.Learning
         private bool ChooseLetter()
         {
             string language = LearningProgress.Language;
-            IReadOnlyList<WordEntry> words = _pack.Words;
+            IReadOnlyList<WordEntry> words = _pack.ChallengeWords;
             var candidates = new List<(WordEntry word, WordEntry letter)>(words.Count);
 
             for (int i = 0; i < words.Count; i++)
@@ -847,7 +881,7 @@ namespace FootballRunner.Learning
         /// <summary>Weighted pick of the target, then random distinct distractors in random order.</summary>
         private void ChooseWords()
         {
-            IReadOnlyList<WordEntry> words = _pack.Words;
+            IReadOnlyList<WordEntry> words = _pack.ChallengeWords;
             float total = 0f;
 
             for (int i = 0; i < words.Count; i++)
@@ -1025,7 +1059,7 @@ namespace FootballRunner.Learning
             PlayInSequence(
                 _pack.RandomPraise(language),
                 _pack.Voice(language, word.id),
-                goalReached ? _pack.Voice(language, "goal") : null);
+                goalReached ? _pack.Voice(language, _pack.IsReview ? "finale" : "goal") : null);
         }
 
         private void PlayInSequence(params AudioClip[] clips)

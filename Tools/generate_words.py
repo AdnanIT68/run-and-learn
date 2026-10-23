@@ -191,6 +191,8 @@ async def main(pack_file: Path) -> None:
         "numbers": numbers,
         "letters": letters,
         "reading": bool(pack.get("reading", False)),
+        "review": bool(pack.get("review", False)),
+        "goal": int(pack.get("goal", 0)),
     }
     (out / "pack.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"{pack['pack']}: {len(pack['words'])} words, {len(manifest['phrases'])} phrases, "

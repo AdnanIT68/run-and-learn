@@ -22,7 +22,8 @@ namespace FootballRunner.Gameplay
             Birds,
             Rain,
             Snow,
-            Planes
+            Planes,
+            Fireflies
         }
 
         private struct Look
@@ -42,7 +43,8 @@ namespace FootballRunner.Gameplay
             { "World4", new Look { Sky = new Color32(140, 195, 250, 255), Ground = "stone", GroundTint = Color.white, Weather = Weather.Birds, Particles = 4 } },
             { "World5", new Look { Sky = new Color32(125, 195, 245, 255), Ground = "sand", GroundTint = Color.white, Weather = Weather.Rain, Particles = 45 } },
             { "World6", new Look { Sky = new Color32(165, 205, 240, 255), Ground = "snow", GroundTint = Color.white, Weather = Weather.Snow, Particles = 40 } },
-            { "World7", new Look { Sky = new Color32(130, 195, 250, 255), Ground = null, GroundTint = Color.white, Weather = Weather.Planes, Particles = 3 } }
+            { "World7", new Look { Sky = new Color32(130, 195, 250, 255), Ground = null, GroundTint = Color.white, Weather = Weather.Planes, Particles = 3 } },
+            { "World8", new Look { Sky = new Color32(24, 28, 72, 255), Ground = "purple", GroundTint = new Color(0.8f, 0.8f, 0.95f), Weather = Weather.Fireflies, Particles = 22 } }
         };
 
         private class Layer
@@ -348,6 +350,7 @@ namespace FootballRunner.Gameplay
                 case Weather.Rain: return "rain";
                 case Weather.Snow: return "snow";
                 case Weather.Planes: return "plane";
+                case Weather.Fireflies: return "spark";
                 default: return "petal";
             }
         }
@@ -399,6 +402,7 @@ namespace FootballRunner.Gameplay
                 case Weather.Rain: return 0.45f;
                 case Weather.Snow: return 0.22f;
                 case Weather.Fluff: return 0.35f;
+                case Weather.Fireflies: return 0.3f;
                 default: return 0.28f;
             }
         }
@@ -412,6 +416,7 @@ namespace FootballRunner.Gameplay
                 case Weather.Rain: return new Vector2(-1.8f, Random.Range(-13f, -10f));
                 case Weather.Snow: return new Vector2(-0.4f, Random.Range(-1.4f, -0.8f));
                 case Weather.Fluff: return new Vector2(Random.Range(0.3f, 0.7f), Random.Range(0.05f, 0.25f));
+                case Weather.Fireflies: return new Vector2(Random.Range(-0.3f, 0.3f), Random.Range(0.1f, 0.3f));
                 case Weather.Leaves: return new Vector2(Random.Range(-0.6f, -0.2f), Random.Range(-1.1f, -0.6f));
                 default: return new Vector2(Random.Range(-0.6f, 0.2f), Random.Range(-0.7f, -0.4f));
             }
@@ -457,6 +462,13 @@ namespace FootballRunner.Gameplay
                     float flap = 1f + Mathf.Sin(time * 9f + particle.Phase) * 0.25f;
                     Vector3 scale = particle.Transform.localScale;
                     particle.Transform.localScale = new Vector3(scale.x, Mathf.Abs(scale.x) * flap * 0.67f, 1f);
+                }
+
+                if (_look.Weather == Weather.Fireflies)
+                {
+                    // Each firefly glows and fades on its own beat.
+                    float glow = 0.35f + 0.65f * Mathf.Abs(Mathf.Sin(time * 1.3f + particle.Phase));
+                    particle.Renderer.color = new Color(1f, 1f, 1f, glow);
                 }
 
                 particle.Transform.Rotate(0f, 0f, particle.Spin * dt);

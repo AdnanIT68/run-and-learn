@@ -89,7 +89,7 @@ namespace FootballRunner.Learning
 
         /// <summary>Worlds in play order. Each one unlocks from progress in the one before.</summary>
         public static readonly string[] PackOrder =
-            { "World1", "World2", "World3", "World4", "World5", "World6", "World7" };
+            { "World1", "World2", "World3", "World4", "World5", "World6", "World7", "World8" };
 
         /// <summary>One picture standing for each world on the world chooser.</summary>
         public static string CoverWordId(string pack)
@@ -102,6 +102,7 @@ namespace FootballRunner.Learning
                 case "World5": return "bridge";
                 case "World6": return "snowman";
                 case "World7": return "school";
+                case "World8": return "moon";
                 default: return "apple";
             }
         }
@@ -121,6 +122,8 @@ namespace FootballRunner.Learning
             public WordEntry[] numbers;
             public WordEntry[] letters;
             public bool reading;
+            public bool review;
+            public int goal;
         }
 
         private static readonly Dictionary<string, WordPack> Cache = new Dictionary<string, WordPack>();
@@ -135,25 +138,127 @@ namespace FootballRunner.Learning
         public IReadOnlyList<WordEntry> Phrases => _manifest.phrases ?? Array.Empty<WordEntry>();
 
         /// <summary>Number-and-word phrases ("tri kokoši"). Empty in worlds that do not count yet.</summary>
-        public IReadOnlyList<WordEntry> Counts => _manifest.counts ?? Array.Empty<WordEntry>();
+        public IReadOnlyList<WordEntry> Counts => Merged(m => m.counts);
 
         /// <summary>Spoken commands ("Skoči!"). Empty in worlds that do not use them yet.</summary>
-        public IReadOnlyList<WordEntry> Commands => _manifest.commands ?? Array.Empty<WordEntry>();
+        public IReadOnlyList<WordEntry> Commands => Merged(m => m.commands);
 
         /// <summary>Adjective phrases ("velika riba"). Empty in worlds that do not use them yet.</summary>
-        public IReadOnlyList<WordEntry> Sizes => _manifest.sizes ?? Array.Empty<WordEntry>();
+        public IReadOnlyList<WordEntry> Sizes => Merged(m => m.sizes);
 
         /// <summary>Short sentences ("Pada snijeg.") matched to a picture. Empty until a world uses them.</summary>
-        public IReadOnlyList<WordEntry> Sentences => _manifest.sentences ?? Array.Empty<WordEntry>();
+        public IReadOnlyList<WordEntry> Sentences => Merged(m => m.sentences);
 
         /// <summary>Number words ("sedam") caught as big numerals.</summary>
-        public IReadOnlyList<WordEntry> Numbers => _manifest.numbers ?? Array.Empty<WordEntry>();
+        public IReadOnlyList<WordEntry> Numbers => Merged(m => m.numbers);
 
         /// <summary>First letters of the words, per language ("Slovo O.").</summary>
-        public IReadOnlyList<WordEntry> Letters => _manifest.letters ?? Array.Empty<WordEntry>();
+        public IReadOnlyList<WordEntry> Letters => Merged(m => m.letters);
 
         /// <summary>True for worlds that also ask silent, read-only words.</summary>
-        public bool HasReading => _manifest.reading;
+        public bool HasReading => _manifest.reading || IsReview;
+
+        /// <summary>
+        /// The finale: besides its own words it asks everything from the worlds before
+        /// it, and borrows their pictures and voices.
+        /// </summary>
+        public bool IsReview => _manifest.review;
+
+        /// <summary>Words to catch to finish this world's level; 0 keeps the usual five.</summary>
+        public int GoalSize => _manifest.goal;
+
+        /// <summary>
+        /// Words a run asks: the world's own, and for the finale also the words the
+        /// child already knows from earlier worlds (all of them if few are known yet).
+        /// </summary>
+        public IReadOnlyList<WordEntry> ChallengeWords
+        {
+            get
+            {
+                if (!IsReview)
+                {
+                    return Words;
+                }
+
+                var known = new List<WordEntry>(Words);
+                var all = new List<WordEntry>();
+
+                foreach (WordPack earlier in EarlierPacks())
+                {
+                    foreach (WordEntry word in earlier.Words)
+                    {
+                        all.Add(word);
+
+                        if (LearningProgress.IsLearned(word.id))
+                        {
+                            known.Add(word);
+                        }
+                    }
+                }
+
+                if (known.Count < Words.Count * 2)
+                {
+                    foreach (WordEntry word in all)
+                    {
+                        if (!known.Contains(word))
+                        {
+                            known.Add(word);
+                        }
+                    }
+                }
+
+                return known;
+            }
+        }
+
+        private Dictionary<string, IReadOnlyList<WordEntry>> _merged;
+
+        private IReadOnlyList<WordEntry> Merged(Func<Manifest, WordEntry[]> select)
+        {
+            WordEntry[] own = select(_manifest) ?? Array.Empty<WordEntry>();
+
+            if (!IsReview)
+            {
+                return own;
+            }
+
+            _merged ??= new Dictionary<string, IReadOnlyList<WordEntry>>();
+            string key = select.Method.Name;
+
+            if (_merged.TryGetValue(key, out IReadOnlyList<WordEntry> cached))
+            {
+                return cached;
+            }
+
+            var list = new List<WordEntry>(own);
+
+            foreach (WordPack earlier in EarlierPacks())
+            {
+                list.AddRange(select(earlier._manifest) ?? Array.Empty<WordEntry>());
+            }
+
+            _merged[key] = list;
+            return list;
+        }
+
+        /// <summary>Every world before this one, in play order.</summary>
+        private IEnumerable<WordPack> EarlierPacks()
+        {
+            foreach (string name in PackOrder)
+            {
+                if (name == Name)
+                {
+                    yield break;
+                }
+
+                WordPack pack = Load(name);
+
+                if (pack != null)
+                {
+                    yield return pack;
+                }
+            }
+        }
 
         private WordPack(string name, Manifest manifest)
         {
@@ -199,15 +304,48 @@ namespace FootballRunner.Learning
             return pack;
         }
 
-        /// <summary>The world's own picture, or a shared icon of that name (commands use "star").</summary>
+        /// <summary>
+        /// The world's own picture, a shared icon of that name (commands use "star"),
+        /// or for the finale the picture from the earlier world it belongs to.
+        /// </summary>
         public Sprite Picture(string wordId)
         {
-            return LoadSprite($"{Root}/{Name}/Pictures/{wordId}") ?? Icon(wordId);
+            Sprite sprite = LoadSprite($"{Root}/{Name}/Pictures/{wordId}") ?? Icon(wordId);
+
+            if (sprite == null && IsReview)
+            {
+                foreach (WordPack earlier in EarlierPacks())
+                {
+                    sprite = earlier.Picture(wordId);
+
+                    if (sprite != null)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return sprite;
         }
 
         public AudioClip Voice(string language, string entryId)
         {
-            return Resources.Load<AudioClip>($"{Root}/{Name}/Audio/{language}/{entryId}");
+            var clip = Resources.Load<AudioClip>($"{Root}/{Name}/Audio/{language}/{entryId}");
+
+            if (clip == null && IsReview)
+            {
+                foreach (WordPack earlier in EarlierPacks())
+                {
+                    clip = earlier.Voice(language, entryId);
+
+                    if (clip != null)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return clip;
         }
 
         /// <summary>A random praise line ("Bravo!", "Super!"). Phrase ids starting with "praise" qualify.</summary>

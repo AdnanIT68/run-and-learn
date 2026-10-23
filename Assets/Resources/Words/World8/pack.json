@@ -1,0 +1,103 @@
+{
+  "pack": "World8",
+  "title_bs": "Noćno nebo",
+  "title_en": "Night Sky",
+  "words": [
+    {
+      "id": "star_word",
+      "bs": "zvijezda",
+      "en": "star"
+    },
+    {
+      "id": "moon",
+      "bs": "mjesec",
+      "en": "moon"
+    },
+    {
+      "id": "rocket",
+      "bs": "raketa",
+      "en": "rocket"
+    },
+    {
+      "id": "planet",
+      "bs": "planeta",
+      "en": "planet"
+    },
+    {
+      "id": "owl",
+      "bs": "sova",
+      "en": "owl"
+    },
+    {
+      "id": "comet",
+      "bs": "kometa",
+      "en": "comet"
+    },
+    {
+      "id": "telescope",
+      "bs": "teleskop",
+      "en": "telescope"
+    },
+    {
+      "id": "bed",
+      "bs": "krevet",
+      "en": "bed"
+    },
+    {
+      "id": "satellite",
+      "bs": "satelit",
+      "en": "satellite"
+    },
+    {
+      "id": "night",
+      "bs": "noć",
+      "en": "night"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!"
+    },
+    {
+      "id": "finale",
+      "bs": "Bravo! Svi svjetovi su završeni!",
+      "en": "Well done! You finished every world!"
+    }
+  ],
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": true,
+  "goal": 8
+}

@@ -12,8 +12,8 @@ namespace FootballRunner.Learning
     /// </summary>
     public class WordGoalUi : MonoBehaviour
     {
-        private const float SlotSize = 78f;
-        private const float SlotGap = 10f;
+        private float SlotSize => _goal > 5 ? 60f : 78f;
+        private float SlotGap => _goal > 5 ? 6f : 10f;
 
         private static readonly Color EmptyColour = new Color(1f, 1f, 1f, 0.45f);
         private static readonly Color FilledColour = new Color(1f, 1f, 1f, 0.95f);
@@ -91,7 +91,7 @@ namespace FootballRunner.Learning
             }
 
             _count = CreateText(row.transform, "Count",
-                new Vector2(_goal * (SlotSize + SlotGap) + 50f, -SlotSize * 0.5f), new Vector2(110f, SlotSize), 40f);
+                new Vector2(_goal * (SlotSize + SlotGap) + 66f, -SlotSize * 0.5f), new Vector2(110f, SlotSize), 40f);
             _banner = CreateText(transform, "GoalBanner", Vector2.zero, new Vector2(900f, 180f), 120f);
             var bannerRect = _banner.rectTransform;
             bannerRect.anchorMin = new Vector2(0.5f, 0.5f);

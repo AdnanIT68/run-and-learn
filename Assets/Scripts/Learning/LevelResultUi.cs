@@ -11,9 +11,9 @@ using UnityEngine.UI;
 namespace FootballRunner.Learning
 {
     /// <summary>
-    /// The end of a level: BRAVO, one to three stars, the five words that were
-    /// caught (tap one to hear it again), the coins earned, and Again / Next /
-    /// Menu. Labels use the language the child already speaks.
+    /// The end of a level: BRAVO, one to three stars, the words that were caught
+    /// (tap one to hear it again), the coins earned, and Again / Next / Menu.
+    /// Labels use the language the child already speaks. The finale has no Next.
     /// </summary>
     public class LevelResultUi : MonoBehaviour
     {
@@ -100,15 +100,22 @@ namespace FootballRunner.Learning
                 _stars.Add(CreateImage(c, "Star" + i, star, new Vector2((i - 1) * 170f, y), new Vector2(150f, 150f)));
             }
 
-            for (int i = 0; i < 5; i++)
+            int slots = WordChallengeDirector.Instance != null
+                ? Mathf.Clamp(WordChallengeDirector.Instance.GoalSize, 1, 8)
+                : 5;
+            float spacing = slots > 5 ? 128f : 170f;
+            float slotSize = slots > 5 ? 112f : 140f;
+
+            for (int i = 0; i < slots; i++)
             {
                 Image slot = CreateImage(c, "WordSlot" + i, RuntimeSprites.Circle(),
-                    new Vector2((i - 2) * 170f, -60f), new Vector2(140f, 140f));
+                    new Vector2((i - (slots - 1) * 0.5f) * spacing, -60f), new Vector2(slotSize, slotSize));
                 slot.color = new Color(0.2f, 0.45f, 0.7f, 0.12f);
                 slot.raycastTarget = true;
                 int index = i;
                 slot.gameObject.AddComponent<Button>().onClick.AddListener(() => SayWord(index));
-                Image picture = CreateImage(slot.transform, "Picture", null, Vector2.zero, new Vector2(104f, 104f));
+                Image picture = CreateImage(slot.transform, "Picture", null, Vector2.zero,
+                    new Vector2(slotSize * 0.74f, slotSize * 0.74f));
                 picture.raycastTarget = false;
                 _wordPictures.Add(picture);
             }
