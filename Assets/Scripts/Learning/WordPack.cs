@@ -24,6 +24,9 @@ namespace FootballRunner.Learning
         [Tooltip("Size phrases only: big or small. The bubble draws the picture at that size.")]
         public string size;
 
+        [Tooltip("Sentences only: entries of one group are each other's wrong answers.")]
+        public string group;
+
         /// <summary>The picture file to show: the word itself, or the counted word.</summary>
         public string PictureId => string.IsNullOrEmpty(picture) ? id : picture;
 
@@ -34,6 +37,8 @@ namespace FootballRunner.Learning
         public bool IsCommand => !string.IsNullOrEmpty(action);
 
         public bool IsSize => !string.IsNullOrEmpty(size);
+
+        public bool IsSentence => !string.IsNullOrEmpty(group);
 
         public string Text(string language)
         {
@@ -51,7 +56,7 @@ namespace FootballRunner.Learning
         private const string Root = "Words";
 
         /// <summary>Worlds in play order. Each one unlocks from progress in the one before.</summary>
-        public static readonly string[] PackOrder = { "World1", "World2", "World3", "World4", "World5" };
+        public static readonly string[] PackOrder = { "World1", "World2", "World3", "World4", "World5", "World6" };
 
         /// <summary>One picture standing for each world on the world chooser.</summary>
         public static string CoverWordId(string pack)
@@ -62,6 +67,7 @@ namespace FootballRunner.Learning
                 case "World3": return "house";
                 case "World4": return "mosque";
                 case "World5": return "bridge";
+                case "World6": return "snowman";
                 default: return "apple";
             }
         }
@@ -77,6 +83,7 @@ namespace FootballRunner.Learning
             public WordEntry[] counts;
             public WordEntry[] commands;
             public WordEntry[] sizes;
+            public WordEntry[] sentences;
         }
 
         private static readonly Dictionary<string, WordPack> Cache = new Dictionary<string, WordPack>();
@@ -98,6 +105,9 @@ namespace FootballRunner.Learning
 
         /// <summary>Adjective phrases ("velika riba"). Empty in worlds that do not use them yet.</summary>
         public IReadOnlyList<WordEntry> Sizes => _manifest.sizes ?? Array.Empty<WordEntry>();
+
+        /// <summary>Short sentences ("Pada snijeg.") matched to a picture. Empty until a world uses them.</summary>
+        public IReadOnlyList<WordEntry> Sentences => _manifest.sentences ?? Array.Empty<WordEntry>();
 
         private WordPack(string name, Manifest manifest)
         {

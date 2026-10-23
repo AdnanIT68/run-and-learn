@@ -1,0 +1,157 @@
+{
+  "pack": "World6",
+  "title_bs": "Planina zimi",
+  "title_en": "Winter Mountain",
+  "words": [
+    {
+      "id": "snow",
+      "bs": "snijeg",
+      "en": "snow"
+    },
+    {
+      "id": "snowman",
+      "bs": "snjegović",
+      "en": "snowman"
+    },
+    {
+      "id": "sled",
+      "bs": "sanke",
+      "en": "sled"
+    },
+    {
+      "id": "skis",
+      "bs": "skije",
+      "en": "skis"
+    },
+    {
+      "id": "gloves",
+      "bs": "rukavice",
+      "en": "gloves"
+    },
+    {
+      "id": "scarf",
+      "bs": "šal",
+      "en": "scarf"
+    },
+    {
+      "id": "boots",
+      "bs": "čizme",
+      "en": "boots"
+    },
+    {
+      "id": "coat",
+      "bs": "jakna",
+      "en": "coat"
+    },
+    {
+      "id": "mountain",
+      "bs": "planina",
+      "en": "mountain"
+    },
+    {
+      "id": "ice",
+      "bs": "led",
+      "en": "ice"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!"
+    }
+  ],
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [
+    {
+      "id": "s_snowing",
+      "group": "weather",
+      "picture": "snow",
+      "bs": "Pada snijeg.",
+      "en": "It is snowing."
+    },
+    {
+      "id": "s_sunny",
+      "group": "weather",
+      "picture": "sun",
+      "bs": "Sija sunce.",
+      "en": "The sun is shining."
+    },
+    {
+      "id": "s_raining",
+      "group": "weather",
+      "picture": "rain",
+      "bs": "Pada kiša.",
+      "en": "It is raining."
+    },
+    {
+      "id": "s_sledding",
+      "group": "play",
+      "picture": "sled",
+      "bs": "Rukajja se sanka.",
+      "en": "Rukajja is sledding."
+    },
+    {
+      "id": "s_skiing",
+      "group": "play",
+      "picture": "skis",
+      "bs": "Rukajja skija.",
+      "en": "Rukajja is skiing."
+    },
+    {
+      "id": "s_snowman",
+      "group": "play",
+      "picture": "snowman",
+      "bs": "Rukajja pravi snjegovića.",
+      "en": "Rukajja is making a snowman."
+    },
+    {
+      "id": "s_gloves",
+      "group": "wear",
+      "picture": "gloves",
+      "bs": "Nosim rukavice.",
+      "en": "I am wearing gloves."
+    },
+    {
+      "id": "s_scarf",
+      "group": "wear",
+      "picture": "scarf",
+      "bs": "Nosim šal.",
+      "en": "I am wearing a scarf."
+    },
+    {
+      "id": "s_boots",
+      "group": "wear",
+      "picture": "boots",
+      "bs": "Nosim čizme.",
+      "en": "I am wearing boots."
+    }
+  ]
+}

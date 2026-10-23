@@ -90,6 +90,8 @@ namespace FootballRunner.Tests
             SetProgress(gardenWords: 7, farmWords: 4, english: false);
             yield return LoadScene("MainMenu");
             yield return Capture("01_main_menu");
+            // Phones are wider than 16:9; check the layout holds there too (not a store shot).
+            yield return Capture("check_main_menu_phone", 2340);
 
             WordAlbumUi album = Object.FindFirstObjectByType<WordAlbumUi>();
             album.Open();
@@ -200,7 +202,7 @@ namespace FootballRunner.Tests
         /// Renders the main camera and every overlay canvas into one 1920x1080 image.
         /// Overlay canvases are switched to camera space for the shot, then restored.
         /// </summary>
-        private static IEnumerator Capture(string name)
+        private static IEnumerator Capture(string name, int width = Width)
         {
             // WaitForEndOfFrame never resumes in batch mode; a frame step is enough here.
             yield return null;
@@ -211,13 +213,13 @@ namespace FootballRunner.Tests
             Canvas[] overlays = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None)
                 .Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
 
-            var target = new RenderTexture(Width, Height, 24, RenderTextureFormat.ARGB32);
+            var target = new RenderTexture(width, Height, 24, RenderTextureFormat.ARGB32);
             RenderTexture previousTarget = camera.targetTexture;
             camera.targetTexture = target;
 
             // Batch mode starts with a 4:3 screen, so backgrounds were fitted to that.
             // Refit them to the 16:9 shot; a phone does this itself at start-up.
-            camera.aspect = (float)Width / Height;
+            camera.aspect = (float)width / Height;
             foreach (Gameplay.ParallaxLayer layer in
                      Object.FindObjectsByType<Gameplay.ParallaxLayer>(FindObjectsSortMode.None))
             {
@@ -235,8 +237,8 @@ namespace FootballRunner.Tests
             camera.Render();
 
             RenderTexture.active = target;
-            var image = new Texture2D(Width, Height, TextureFormat.RGB24, false);
-            image.ReadPixels(new Rect(0, 0, Width, Height), 0, 0);
+            var image = new Texture2D(width, Height, TextureFormat.RGB24, false);
+            image.ReadPixels(new Rect(0, 0, width, Height), 0, 0);
             image.Apply();
             RenderTexture.active = null;
 

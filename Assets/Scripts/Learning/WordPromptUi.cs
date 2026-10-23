@@ -21,6 +21,8 @@ namespace FootballRunner.Learning
         private CanvasGroup _group;
         private Image _card;
         private TMP_Text _word;
+        private RectTransform _root;
+        private RectTransform _speaker;
         private Image _result;
         private Coroutine _hideRoutine;
 
@@ -66,6 +68,7 @@ namespace FootballRunner.Learning
             rect.pivot = new Vector2(0.5f, 1f);
             rect.anchoredPosition = new Vector2(0f, -122f);
             rect.sizeDelta = new Vector2(560f, 120f);
+            _root = rect;
 
             _card = root.GetComponent<Image>();
             _card.sprite = Utilities.RuntimeSprites.RoundedRect();
@@ -76,6 +79,7 @@ namespace FootballRunner.Learning
             root.GetComponent<Button>().onClick.AddListener(OnCardPressed);
 
             Image speaker = CreateIcon(root.transform, "Speaker", WordPack.Icon("speaker"), new Vector2(-210f, 0f), 84f);
+            _speaker = speaker.rectTransform;
             speaker.preserveAspect = true;
 
             var wordGo = new GameObject("Word", typeof(RectTransform));
@@ -149,9 +153,21 @@ namespace FootballRunner.Learning
             }
 
             _card.color = CardColour;
+            Fit(word.IsSentence ? 880f : 560f);
             _word.text = word.Text(LearningProgress.Language);
             _result.gameObject.SetActive(false);
             SetVisible(true);
+        }
+
+        /// <summary>Sentences need a wider card than single words; icons stay at the edges.</summary>
+        private void Fit(float width)
+        {
+            _root.sizeDelta = new Vector2(width, _root.sizeDelta.y);
+            float half = width * 0.5f;
+            _speaker.anchoredPosition = new Vector2(-half + 70f, 0f);
+            _result.rectTransform.anchoredPosition = new Vector2(half - 50f, 0f);
+            _word.rectTransform.anchoredPosition = new Vector2(40f, 0f);
+            _word.rectTransform.sizeDelta = new Vector2(width - 160f, 100f);
         }
 
         private void OnChallengeEnded(WordEntry word, bool caught)

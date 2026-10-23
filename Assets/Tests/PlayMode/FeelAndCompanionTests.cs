@@ -264,6 +264,43 @@ namespace FootballRunner.Tests
             Assert.Greater(big.PictureSize, small.PictureSize * 2f, "Big and small must be easy to tell apart.");
         }
 
+        [UnityTest]
+        public IEnumerator MountainAsksWholeSentencesWithPicturesFromOneGroup()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.wordTutorialDone = true;
+            WordPack river = WordPack.Load("World5");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(river.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.SelectPack("World6"));
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            float waited = 0f;
+
+            while (director.CurrentWord == null && waited < 5f)
+            {
+                director.ForceChallenge(sentence: true);
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            WordEntry target = director.CurrentWord;
+            Assert.IsNotNull(target, "No sentence challenge started.");
+            Assert.IsTrue(target.IsSentence, "The mountain did not ask a sentence.");
+            Assert.AreEqual(2, director.Bubbles.Count);
+
+            WordBubble right = director.Bubbles.First(b => b.Word == target);
+            WordBubble wrong = director.Bubbles.First(b => b.Word != target);
+            Assert.AreEqual(target.group, wrong.Word.group, "The wrong picture must come from the same group.");
+            Assert.AreNotEqual(right.Word.PictureId, wrong.Word.PictureId, "The two pictures must differ.");
+        }
+
         [Test]
         public void VibrationSettingIsSaved()
         {

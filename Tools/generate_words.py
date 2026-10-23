@@ -120,7 +120,15 @@ async def main(pack_file: Path) -> None:
         for z in pack.get("sizes", [])
     ]
 
-    for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes:
+    # Sentences ("Pada snijeg.") point at a picture; the wrong option comes from
+    # the same group. A sentence may bring its own picture via "emoji".
+    sentences = []
+    for z in pack.get("sentences", []):
+        if "emoji" in z:
+            render_picture(z["emoji"], pictures / f"{z['picture']}.png")
+        sentences.append({"id": z["id"], "group": z["group"], "picture": z["picture"], "bs": z["bs"], "en": z["en"]})
+
+    for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes + sentences:
         for lang, voice in VOICES.items():
             await speak(entry[lang], voice, out / "Audio" / lang / f"{entry['id']}.ogg")
 
@@ -133,6 +141,7 @@ async def main(pack_file: Path) -> None:
         "counts": counts,
         "commands": commands,
         "sizes": sizes,
+        "sentences": sentences,
     }
     (out / "pack.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"{pack['pack']}: {len(pack['words'])} words, {len(manifest['phrases'])} phrases, "

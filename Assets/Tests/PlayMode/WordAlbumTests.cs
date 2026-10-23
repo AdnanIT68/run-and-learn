@@ -184,6 +184,39 @@ namespace FootballRunner.Tests
             Assert.IsTrue(LearningProgress.IsPackUnlocked("World5"), "Six bazaar words should open the river.");
         }
 
+        [Test]
+        public void MountainHasWordsAndSentencesAndOpensAfterTheRiver()
+        {
+            WordPack mountain = WordPack.Load("World6");
+
+            Assert.IsNotNull(mountain, "World6 pack.json did not load.");
+            Assert.AreEqual(10, mountain.Words.Count);
+            Assert.AreEqual(9, mountain.Sentences.Count);
+
+            foreach (WordEntry entry in mountain.Words.Concat(mountain.Sentences))
+            {
+                Assert.IsNotNull(mountain.Picture(entry.PictureId), $"{entry.id} has no picture.");
+                Assert.IsNotNull(mountain.Voice(LearningProgress.Bosnian, entry.id), $"{entry.id} has no Bosnian voice.");
+                Assert.IsNotNull(mountain.Voice(LearningProgress.English, entry.id), $"{entry.id} has no English voice.");
+            }
+
+            foreach (var group in mountain.Sentences.GroupBy(z => z.group))
+            {
+                Assert.GreaterOrEqual(group.Count(), 2, $"Group {group.Key} needs a wrong answer to pair with.");
+            }
+
+            SaveManager.Data.wordProgress.Clear();
+            WordPack river = WordPack.Load("World5");
+            Assert.IsFalse(LearningProgress.IsPackUnlocked("World6"));
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(river.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World6"), "Six river words should open the mountain.");
+        }
+
         private static bool FindCount(WordPack pack, string bosnian)
         {
             foreach (WordEntry phrase in pack.Counts)

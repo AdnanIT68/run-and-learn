@@ -64,6 +64,7 @@ namespace FootballRunner.UI
 
         private void Awake()
         {
+            MainMenuStyle.KeepHeight(transform);
             SafeAreaFitter.EnsureOnCanvas(transform, "PausePanel", "GameOverPanel");
             UiPointerRepair.DisableDecorativeRaycasts(transform);
             AdventureUi.EnsureOnCanvas(transform);

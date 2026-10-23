@@ -77,7 +77,6 @@ namespace FootballRunner.UI
             WordWorldsUi.EnsureOnCanvas(transform, ResolveFont());
             MainMenuStyle.Apply(transform, playButton, settingsButton, quitButton, howToPlayButton,
                 highScoreText, totalCoinsText);
-            AdventureMenuFlow.Attach(this);
 
             playButton?.onClick.AddListener(OnPlay);
             settingsButton?.onClick.AddListener(() => ShowSettings(true));
@@ -117,13 +116,9 @@ namespace FootballRunner.UI
         {
             AudioManager.Instance?.PlayButton();
             UiFeedback.Punch(this, playButton);
-            var flow = GetComponent<AdventureMenuFlow>();
-            if (flow != null)
-            {
-                flow.OpenFromMainMenu();
-                return;
-            }
-
+            // Play goes straight into a run in the chosen world. The old Green Hills
+            // trail map is no longer part of the flow; worlds are picked with WORLD.
+            AdventureSession.Clear();
             GameManager.LoadSceneClean(GameManager.GameSceneName);
         }
 

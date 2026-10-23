@@ -48,6 +48,7 @@ namespace FootballRunner.UI
         private void Build(Transform canvas, Button play, Button settings, Button quit, Button howToPlay,
             TMP_Text best, TMP_Text coins)
         {
+            KeepHeight(canvas);
             Transform safe = canvas.Find("SafeArea");
             Transform layer = safe != null ? safe : canvas;
             bool homeIsBosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
@@ -71,6 +72,22 @@ namespace FootballRunner.UI
 
             BuildChip(layer, best, Load("icon_trophy"), new Vector2(-470f, -60f));
             BuildChip(layer, coins, Load("icon_coin"), new Vector2(-230f, -60f));
+        }
+
+        /// <summary>
+        /// Landscape phones are wider than 16:9. Scaling by height keeps the vertical
+        /// layout fixed and lets the extra width open up at the sides, instead of
+        /// squeezing the logo into the Play button.
+        /// </summary>
+        public static void KeepHeight(Transform canvas)
+        {
+            var scaler = canvas != null ? canvas.GetComponent<CanvasScaler>() : null;
+
+            if (scaler != null && scaler.uiScaleMode == CanvasScaler.ScaleMode.ScaleWithScreenSize)
+            {
+                scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+                scaler.matchWidthOrHeight = 1f;
+            }
         }
 
         private static Sprite Load(string name)

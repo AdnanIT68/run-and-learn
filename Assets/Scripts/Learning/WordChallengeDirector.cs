@@ -52,6 +52,11 @@ namespace FootballRunner.Learning
         [Range(0f, 1f)]
         [SerializeField] private float sizeChance = 0.4f;
 
+        [Header("Sentences")]
+        [Tooltip("Share of challenges that are whole sentences, in worlds that have them.")]
+        [Range(0f, 1f)]
+        [SerializeField] private float sentenceChance = 0.45f;
+
         [Header("Commands")]
         [Tooltip("Share of challenges that are spoken commands, in worlds that have them.")]
         [Range(0f, 1f)]
@@ -211,7 +216,8 @@ namespace FootballRunner.Learning
         }
 
         /// <summary>Starts a challenge immediately. Used by tests and the first-run tutorial.</summary>
-        public bool ForceChallenge(bool counting = false, bool command = false, bool size = false)
+        public bool ForceChallenge(bool counting = false, bool command = false, bool size = false,
+            bool sentence = false)
         {
             PlayerController player = PlayerController.Instance;
 
@@ -221,7 +227,7 @@ namespace FootballRunner.Learning
             }
 
             CacheStandingHeight(player);
-            return TryStartChallenge(player, counting, command, size);
+            return TryStartChallenge(player, counting, command, size, sentence);
         }
 
         public void OnBubbleTouched(WordBubble bubble)
@@ -402,7 +408,7 @@ namespace FootballRunner.Learning
         }
 
         private bool TryStartChallenge(PlayerController player, bool forceCounting = false,
-            bool forceCommand = false, bool forceSize = false)
+            bool forceCommand = false, bool forceSize = false, bool forceSentence = false)
         {
             if (float.IsNaN(_standingTop))
             {
@@ -412,12 +418,14 @@ namespace FootballRunner.Learning
             bool guided = !SaveManager.Data.wordTutorialDone;
             // Counting and commands only once the child knows how the game works,
             // and only in worlds that have them.
-            bool counting = !guided && !forceCommand && !forceSize && _pack.Counts.Count > 0 &&
+            bool counting = !guided && !forceCommand && !forceSize && !forceSentence && _pack.Counts.Count > 0 &&
                             (forceCounting || Random.value < countingChance);
-            bool command = !guided && !counting && !forceSize && _pack.Commands.Count > 0 &&
+            bool command = !guided && !counting && !forceSize && !forceSentence && _pack.Commands.Count > 0 &&
                            (forceCommand || Random.value < commandChance);
-            bool sizing = !guided && !counting && !command && _pack.Sizes.Count > 0 &&
+            bool sizing = !guided && !counting && !command && !forceSentence && _pack.Sizes.Count > 0 &&
                           (forceSize || Random.value < sizeChance);
+            bool sentence = !guided && !counting && !command && !sizing && _pack.Sentences.Count > 0 &&
+                            (forceSentence || Random.value < sentenceChance);
 
             if (counting)
             {
@@ -430,6 +438,10 @@ namespace FootballRunner.Learning
             else if (sizing)
             {
                 ChooseSize();
+            }
+            else if (sentence)
+            {
+                ChooseSentence();
             }
             else
             {
@@ -514,6 +526,45 @@ namespace FootballRunner.Learning
         // star as the right one, so only following the command finds the answer.
         private static readonly WordEntry LowSpot = new WordEntry { id = "spot_low", picture = "star", action = "stay" };
         private static readonly WordEntry HighSpot = new WordEntry { id = "spot_high", picture = "star", action = "jump" };
+
+        /// <summary>
+        /// "Pada snijeg.": a whole sentence and two pictures from the same group,
+        /// so the child has to understand the sentence, not just one word in it.
+        /// </summary>
+        private void ChooseSentence()
+        {
+            IReadOnlyList<WordEntry> sentences = _pack.Sentences;
+            int index = Random.Range(0, sentences.Count);
+
+            if (sentences[index] == _previousTarget && sentences.Count > 1)
+            {
+                index = (index + 1) % sentences.Count;
+            }
+
+            _target = sentences[index];
+            _options.Clear();
+            _options.Add(_target);
+
+            var others = new List<WordEntry>(4);
+
+            for (int i = 0; i < sentences.Count; i++)
+            {
+                if (sentences[i] != _target && sentences[i].group == _target.group)
+                {
+                    others.Add(sentences[i]);
+                }
+            }
+
+            if (others.Count > 0)
+            {
+                _options.Add(others[Random.Range(0, others.Count)]);
+            }
+
+            if (Random.value < 0.5f)
+            {
+                _options.Reverse();
+            }
+        }
 
         /// <summary>"Velika riba": the same picture big and small; only the adjective tells them apart.</summary>
         private void ChooseSize()
