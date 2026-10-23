@@ -41,6 +41,10 @@ SHOTS = [
         "en": "Five words, one big BRAVO!",
         "hr": "Pet riječi, jedno veliko BRAVO!",
         "de": "Fünf Wörter, ein großes BRAVO!"}),
+    ("10_level_complete", {
+        "en": "Finish the level, collect your stars!",
+        "hr": "Završi nivo i skupi zvjezdice!",
+        "de": "Level schaffen, Sterne sammeln!"}),
     ("05_album", {
         "en": "Every word saved in a sticker album",
         "hr": "Svaka riječ ostaje u albumu sličica",

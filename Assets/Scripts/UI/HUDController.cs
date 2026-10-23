@@ -70,6 +70,7 @@ namespace FootballRunner.UI
             AdventureUi.EnsureOnCanvas(transform);
             Learning.WordPromptUi.EnsureOnCanvas(transform);
             Learning.WordGoalUi.EnsureOnCanvas(transform);
+            Learning.LevelResultUi.EnsureOnCanvas(transform);
         }
 
         private void Start()

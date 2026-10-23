@@ -43,6 +43,7 @@ namespace FootballRunner.Tests
         public IEnumerator PhotographEveryWorld()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             SaveManager.Data.wordTutorialDone = true;
 
             foreach (string world in WordPack.PackOrder)

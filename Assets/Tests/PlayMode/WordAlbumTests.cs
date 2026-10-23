@@ -110,6 +110,7 @@ namespace FootballRunner.Tests
             }
 
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             WordPack farm = WordPack.Load("World2");
             Assert.IsFalse(LearningProgress.IsPackUnlocked("World3"), "Our Home opened with no farm words learned.");
 
@@ -138,6 +139,7 @@ namespace FootballRunner.Tests
             }
 
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             WordPack home = WordPack.Load("World3");
             Assert.IsFalse(LearningProgress.IsPackUnlocked("World4"), "The bazaar opened with no home words learned.");
 
@@ -173,6 +175,7 @@ namespace FootballRunner.Tests
             }
 
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             WordPack bazaar = WordPack.Load("World4");
             Assert.IsFalse(LearningProgress.IsPackUnlocked("World5"));
 
@@ -206,6 +209,7 @@ namespace FootballRunner.Tests
             }
 
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             WordPack river = WordPack.Load("World5");
             Assert.IsFalse(LearningProgress.IsPackUnlocked("World6"));
 
@@ -234,6 +238,7 @@ namespace FootballRunner.Tests
         public void FarmOpensAfterSixGardenWords()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             WordPack garden = WordPack.Load("World1");
 
             Assert.IsTrue(LearningProgress.IsPackUnlocked("World1"), "The first world must always be open.");
@@ -254,6 +259,7 @@ namespace FootballRunner.Tests
             yield return null;
 
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             SaveManager.Data.selectedPack = "World1";
             WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
             Assert.IsNotNull(worlds, "The main menu has no world chooser.");
@@ -293,6 +299,7 @@ namespace FootballRunner.Tests
 
             WordPack pack = WordPack.Load(WordPack.DefaultPack);
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             LearningProgress.RecordCorrect(pack.Words[2].id);
 
             WordAlbumUi album = Object.FindFirstObjectByType<WordAlbumUi>();

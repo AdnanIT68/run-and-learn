@@ -34,6 +34,7 @@ namespace FootballRunner.Learning
             public Image Lock;
             public TMP_Text Title;
             public TMP_Text Detail;
+            public Image[] Stars;
             public bool Unlocked;
         }
 
@@ -226,7 +227,7 @@ namespace FootballRunner.Learning
                 Background = go.GetComponent<Image>(),
                 Cover = CreateImage(go.transform, "Cover",
                     wordPack != null ? wordPack.Picture(WordPack.CoverWordId(pack)) : null,
-                    new Vector2(0f, 60f * scale), new Vector2(220f, 220f) * scale),
+                    new Vector2(0f, 40f * scale), new Vector2(200f, 200f) * scale),
                 Lock = CreateImage(go.transform, "Lock", WordPack.Icon("lock"), new Vector2(150f, 160f) * scale,
                     new Vector2(80f, 80f)),
                 Title = CreateText(go.transform, "Title", "", new Vector2(0f, -100f * scale), new Vector2(_cardSize - 30f, 60f),
@@ -234,6 +235,15 @@ namespace FootballRunner.Learning
                 Detail = CreateText(go.transform, "Detail", "", new Vector2(0f, -160f * scale),
                     new Vector2(_cardSize - 30f, 50f), 30f, DarkText)
             };
+
+            // Best stars from the world's level, across the top of the card.
+            card.Stars = new Image[3];
+            for (int s = 0; s < card.Stars.Length; s++)
+            {
+                card.Stars[s] = CreateImage(go.transform, "Star" + s, WordPack.Icon("star"),
+                    new Vector2((s - 1) * 52f * scale, 168f * scale), new Vector2(46f, 46f) * scale);
+                card.Stars[s].raycastTarget = false;
+            }
 
             card.Cover.raycastTarget = false;
             card.Lock.raycastTarget = false;
@@ -260,6 +270,13 @@ namespace FootballRunner.Learning
                 card.Background.color = !card.Unlocked ? LockedColour : isSelected ? SelectedColour : CardColour;
                 card.Cover.color = card.Unlocked ? Color.white : new Color(0.1f, 0.12f, 0.12f, 0.55f);
                 card.Lock.enabled = !card.Unlocked && card.Lock.sprite != null;
+
+                int stars = LearningProgress.Stars(card.Pack);
+                for (int s = 0; s < card.Stars.Length; s++)
+                {
+                    card.Stars[s].enabled = card.Unlocked && card.Stars[s].sprite != null;
+                    card.Stars[s].color = s < stars ? Color.white : new Color(0f, 0f, 0f, 0.15f);
+                }
                 card.Title.text = pack != null ? pack.Title(language) : card.Pack;
 
                 if (card.Unlocked)

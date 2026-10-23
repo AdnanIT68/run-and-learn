@@ -30,6 +30,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>The word world the next run uses, e.g. "World1".</summary>
         public string selectedPack = "World1";
 
+        /// <summary>Best stars per world and language, from finished levels.</summary>
+        public List<WorldResult> worldResults = new List<WorldResult>();
+
         /// <summary>Reserved for future skins and cosmetics.</summary>
         public List<string> unlockedItems = new List<string>();
     }
@@ -42,5 +45,15 @@ namespace FootballRunner.SaveSystem
         public string language;
         public int correct;
         public int missed;
+    }
+
+    /// <summary>A world's best level result for one learned language.</summary>
+    [Serializable]
+    public class WorldResult
+    {
+        public string pack;
+        public string language;
+        public int stars;
+        public int completions;
     }
 }

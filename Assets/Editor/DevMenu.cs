@@ -46,6 +46,7 @@ namespace FootballRunner.EditorTools
 
             SaveData data = SaveManager.Data;
             data.wordProgress.Clear();
+            data.worldResults.Clear();
             data.wordTutorialDone = false;
             data.selectedPack = WordPack.DefaultPack;
             data.highScore = 0;

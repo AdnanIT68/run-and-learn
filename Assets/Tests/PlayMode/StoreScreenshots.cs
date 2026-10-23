@@ -59,6 +59,17 @@ namespace FootballRunner.Tests
             yield return new WaitForSecondsRealtime(0.25f);
             yield return Capture("04_bravo");
 
+            // 2b. The level ends: stars, the five words and the next step.
+            float waitedForEnd = 0f;
+            while (Core.GameManager.Instance.State != Core.GameState.LevelComplete && waitedForEnd < 5f)
+            {
+                waitedForEnd += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            yield return new WaitForSecondsRealtime(1.6f);
+            yield return Capture("10_level_complete");
+
             // 3. Counting on the farm.
             LearningProgress.SelectPack("World2");
             yield return LoadScene("Game");
@@ -110,6 +121,7 @@ namespace FootballRunner.Tests
         {
             SaveData data = SaveManager.Data;
             data.wordProgress.Clear();
+            data.worldResults.Clear();
             data.wordTutorialDone = true;
             data.learningLanguage = english ? LearningProgress.English : LearningProgress.Bosnian;
 

@@ -228,6 +228,29 @@ namespace FootballRunner.Core
             SetState(GameState.LevelComplete);
         }
 
+        /// <summary>
+        /// Ends a word-world level once the goal row is full: the runner stops, the
+        /// run's coins and score are saved, and the result screen takes over.
+        /// </summary>
+        public void CompleteWordLevel()
+        {
+            if (State != GameState.Playing || Adventure.AdventureSession.IsActive)
+            {
+                return;
+            }
+
+            FootballRunner.Player.PlayerController.Instance?.HaltMotion();
+            ScoreManager score = ScoreManager.Instance;
+            int runScore = score != null ? score.Score : 0;
+            int previousBest = SaveManager.Data.highScore;
+            LastRunWasNewBest = runScore > previousBest;
+            LastRunBestScore = Mathf.Max(runScore, previousBest);
+            SaveManager.SubmitRunResult(runScore, score != null ? score.CoinsCollected : 0);
+
+            Time.timeScale = 0f;
+            SetState(GameState.LevelComplete);
+        }
+
         public void RestartRun()
         {
             if (Adventure.AdventureSession.IsActive)

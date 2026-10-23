@@ -101,6 +101,7 @@ namespace FootballRunner.Tests
         public IEnumerator RunUsesTheChosenWorld()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             WordPack garden = WordPack.Load("World1");
 
             for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
@@ -121,6 +122,7 @@ namespace FootballRunner.Tests
         public IEnumerator FarmCountingAsksForOneAnimalInDifferentNumbers()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             SaveManager.Data.wordTutorialDone = true;
             WordPack garden = WordPack.Load("World1");
 
@@ -167,6 +169,7 @@ namespace FootballRunner.Tests
         public IEnumerator BazaarCommandsPutTheRightStarAtTheRightHeight()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             SaveManager.Data.wordTutorialDone = true;
             WordPack home = WordPack.Load("World3");
 
@@ -228,6 +231,7 @@ namespace FootballRunner.Tests
         public IEnumerator RiverAsksBigOrSmallWithTheSamePicture()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             SaveManager.Data.wordTutorialDone = true;
             WordPack bazaar = WordPack.Load("World4");
 
@@ -269,6 +273,7 @@ namespace FootballRunner.Tests
         public IEnumerator MountainAsksWholeSentencesWithPicturesFromOneGroup()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             SaveManager.Data.wordTutorialDone = true;
             WordPack river = WordPack.Load("World5");
 
@@ -328,6 +333,7 @@ namespace FootballRunner.Tests
         public IEnumerator MountainRunHasSnowSkyTitleWeatherAndDressedObstacles()
         {
             SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
             WordPack river = WordPack.Load("World5");
 
             for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
@@ -364,6 +370,84 @@ namespace FootballRunner.Tests
             Assert.IsNotNull(skin, "The obstacle was not dressed for the mountain.");
             Assert.IsNotNull(skin.GetComponent<SpriteRenderer>().sprite);
             Assert.AreEqual(hitBoxWasOn, hitBox.enabled, "Dressing an obstacle must not touch its collider.");
+        }
+
+        [UnityTest]
+        public IEnumerator FullGoalRowEndsTheLevelWithStarsResultsAndNextWorld()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
+            SaveManager.Data.wordTutorialDone = true;
+            SaveManager.Data.selectedPack = "World1";
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            Assert.IsFalse(LearningProgress.IsPackUnlocked("World2"), "The farm should still be locked.");
+            yield return CatchGoalRow(mistakes: 0);
+
+            float waited = 0f;
+            while (Core.GameManager.Instance.State != Core.GameState.LevelComplete && waited < 5f)
+            {
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            Assert.AreEqual(Core.GameState.LevelComplete, Core.GameManager.Instance.State, "The level did not end.");
+            Assert.AreEqual(0f, Time.timeScale, "The run should stop on the result screen.");
+            Assert.AreEqual(3, WordChallengeDirector.Instance.LevelStars, "No mistakes should earn three stars.");
+            Assert.AreEqual(5, WordChallengeDirector.Instance.LevelWords.Count);
+            Assert.AreEqual(3, LearningProgress.Stars("World1"), "The stars were not saved.");
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World2"), "Finishing the garden should open the farm.");
+
+            LevelResultUi results = Object.FindFirstObjectByType<LevelResultUi>();
+            yield return null;
+            Assert.IsTrue(results.IsShown, "The result screen did not open.");
+            Assert.IsTrue(results.HasNext, "Next should be offered once the farm is open.");
+
+            results.Next();
+            yield return new WaitForSecondsRealtime(0.5f);
+            Assert.AreEqual("World2", LearningProgress.SelectedPack, "Next did not move on to the farm.");
+        }
+
+        [UnityTest]
+        public IEnumerator MistakesCostStars()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
+            SaveManager.Data.wordTutorialDone = true;
+            SaveManager.Data.selectedPack = "World1";
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            yield return CatchGoalRow(mistakes: 1);
+
+            Assert.IsTrue(WordChallengeDirector.Instance.LevelDone);
+            Assert.AreEqual(2, WordChallengeDirector.Instance.LevelStars, "One mistake should earn two stars.");
+        }
+
+        /// <summary>Catches a full goal row, touching a wrong bubble first on the first few words.</summary>
+        private static IEnumerator CatchGoalRow(int mistakes)
+        {
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+
+            for (int caught = 0; caught < director.GoalSize;)
+            {
+                if (director.CurrentWord == null && !director.ForceChallenge())
+                {
+                    yield return null;
+                    continue;
+                }
+
+                if (mistakes > 0)
+                {
+                    mistakes--;
+                    director.OnBubbleTouched(director.Bubbles.First(b => b.Word != director.CurrentWord));
+                }
+
+                director.OnBubbleTouched(director.Bubbles.First(b => b.Word == director.CurrentWord));
+                caught++;
+                yield return null;
+            }
         }
 
         [Test]

@@ -77,6 +77,8 @@ namespace FootballRunner.Learning
         [Tooltip("Words to catch to fill the goal row shown on the HUD.")]
         [SerializeField] private int goalSize = 5;
         [SerializeField] private int coinsForGoal = 10;
+        [Tooltip("Seconds of BRAVO and confetti before the result screen opens.")]
+        [SerializeField] private float levelEndDelay = 1.8f;
 
         [Header("First-Time Guide")]
         [Tooltip("Game speed while the runner approaches the right bubble in the guided first word.")]
@@ -103,6 +105,8 @@ namespace FootballRunner.Learning
         private bool _jumpCuePlayed;
         private bool _slowedByGuide;
         private int _goalCaught;
+        private int _runMisses;
+        private readonly List<WordEntry> _rowWords = new List<WordEntry>(8);
         private Coroutine _voiceRoutine;
 
         public WordPack Pack => _pack;
@@ -110,6 +114,18 @@ namespace FootballRunner.Learning
         public int GoalSize => goalSize;
 
         public int GoalCaught => _goalCaught;
+
+        /// <summary>True once this run's goal row was filled; no new words are asked.</summary>
+        public bool LevelDone { get; private set; }
+
+        /// <summary>Stars for the finished level (1 to 3).</summary>
+        public int LevelStars { get; private set; }
+
+        /// <summary>The words caught to fill the goal row, for the result screen.</summary>
+        public List<WordEntry> LevelWords { get; } = new List<WordEntry>(8);
+
+        /// <summary>Mistakes so far in this run: wrong bubbles and words passed by.</summary>
+        public int RunMisses => _runMisses;
 
         /// <summary>True while the first-ever word is being shown with the guide.</summary>
         public bool IsGuided => _active && _guided;
@@ -186,6 +202,11 @@ namespace FootballRunner.Learning
 
             CacheStandingHeight(player);
 
+            if (LevelDone)
+            {
+                return;
+            }
+
             if (_active)
             {
                 if (_guided)
@@ -253,6 +274,7 @@ namespace FootballRunner.Learning
             {
                 _missRecorded = true;
                 LearningProgress.RecordMiss(_target.id);
+                _runMisses++;
             }
 
             for (int i = 0; i < _bubbles.Count; i++)
@@ -295,6 +317,7 @@ namespace FootballRunner.Learning
             FloatingTextSpawner.Instance?.Show($"+{pointsForCorrect}", bubble.transform.position);
 
             WordEntry word = _target;
+            _rowWords.Add(word);
             _goalCaught++;
             GoalProgress?.Invoke(word, _goalCaught, goalSize);
             bool goalReached = _goalCaught >= goalSize;
@@ -306,8 +329,30 @@ namespace FootballRunner.Learning
             {
                 _goalCaught = 0;
                 ScoreManager.Instance?.AddCoins(coinsForGoal);
+                FinishLevel();
                 GoalCompleted?.Invoke(goalSize);
             }
+        }
+
+        /// <summary>
+        /// The goal row is full: the level is won. Stars come from this run's
+        /// mistakes; the result screen opens once BRAVO and the confetti have played.
+        /// </summary>
+        private void FinishLevel()
+        {
+            LevelDone = true;
+            LevelStars = LearningProgress.StarsForMisses(_runMisses);
+            LevelWords.Clear();
+            LevelWords.AddRange(_rowWords);
+            _rowWords.Clear();
+            LearningProgress.RecordLevelComplete(_pack.Name, LevelStars);
+            StartCoroutine(OpenResultsSoon());
+        }
+
+        private IEnumerator OpenResultsSoon()
+        {
+            yield return new WaitForSecondsRealtime(levelEndDelay);
+            GameManager.Instance?.CompleteWordLevel();
         }
 
         /// <summary>
@@ -383,6 +428,7 @@ namespace FootballRunner.Learning
             {
                 _missRecorded = true;
                 LearningProgress.RecordMiss(_target.id);
+                _runMisses++;
             }
 
             EndChallenge(false);

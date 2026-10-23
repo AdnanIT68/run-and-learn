@@ -63,6 +63,11 @@ namespace FootballRunner.SaveSystem
                 {
                     _data.wordProgress = new List<WordProgress>();
                 }
+
+                if (_data.worldResults == null)
+                {
+                    _data.worldResults = new List<WorldResult>();
+                }
             }
             catch (Exception e)
             {

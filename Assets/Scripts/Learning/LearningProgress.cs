@@ -68,8 +68,65 @@ namespace FootballRunner.Learning
                 return index == 0;
             }
 
-            WordPack previous = WordPack.Load(WordPack.PackOrder[index - 1]);
-            return LearnedCount(previous) >= WordsToUnlockNext;
+            // Finishing the previous world's level opens the next one; so do six of its words.
+            string previousName = WordPack.PackOrder[index - 1];
+            WordPack previous = WordPack.Load(previousName);
+            return Stars(previousName) > 0 || LearnedCount(previous) >= WordsToUnlockNext;
+        }
+
+        /// <summary>Best stars earned in a world's level for the current language (0 to 3).</summary>
+        public static int Stars(string pack)
+        {
+            WorldResult result = FindResult(pack, create: false);
+            return result != null ? result.stars : 0;
+        }
+
+        /// <summary>Three stars without a mistake, two for one or two, one otherwise.</summary>
+        public static int StarsForMisses(int misses)
+        {
+            if (misses <= 0)
+            {
+                return 3;
+            }
+
+            return misses <= 2 ? 2 : 1;
+        }
+
+        public static void RecordLevelComplete(string pack, int stars)
+        {
+            WorldResult result = FindResult(pack, create: true);
+            result.stars = Mathf.Max(result.stars, Mathf.Clamp(stars, 1, 3));
+            result.completions++;
+            SaveManager.Save();
+        }
+
+        /// <summary>The world after this one, or null for the last world.</summary>
+        public static string NextPack(string pack)
+        {
+            int index = System.Array.IndexOf(WordPack.PackOrder, pack);
+            return index >= 0 && index + 1 < WordPack.PackOrder.Length ? WordPack.PackOrder[index + 1] : null;
+        }
+
+        private static WorldResult FindResult(string pack, bool create)
+        {
+            List<WorldResult> results = SaveManager.Data.worldResults;
+
+            for (int i = 0; i < results.Count; i++)
+            {
+                if (results[i].pack == pack && results[i].language == Language)
+                {
+                    return results[i];
+                }
+            }
+
+            if (!create)
+            {
+                return null;
+            }
+
+            var result = new WorldResult { pack = pack, language = Language };
+            results.Add(result);
+            return result;
         }
 
         public static WordProgress Get(string wordId)
