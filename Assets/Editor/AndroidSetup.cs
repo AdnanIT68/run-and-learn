@@ -23,6 +23,10 @@ namespace FootballRunner.EditorTools
         /// </summary>
         private const int TargetApiLevel = 36;
 
+        public const string ProductName = "Run and Learn";
+        public const string CompanyName = "Rukajja Games";
+        public const string ApplicationId = "com.rukajja.runlearn";
+
         [MenuItem("Tools/Football Runner/4 - Configure Android")]
         public static void Configure()
         {
@@ -57,7 +61,10 @@ namespace FootballRunner.EditorTools
         {
             var android = NamedBuildTarget.Android;
 
-            PlayerSettings.productName = "Endless Runner";
+            PlayerSettings.productName = ProductName;
+            PlayerSettings.companyName = CompanyName;
+            // Permanent once the app is on Google Play: never change after the first upload.
+            PlayerSettings.SetApplicationIdentifier(android, ApplicationId);
             PlayerSettings.SetScriptingBackend(android, ScriptingImplementation.IL2CPP);
 
             // Low stripping only. Medium and High can remove members that are only
@@ -89,6 +96,52 @@ namespace FootballRunner.EditorTools
             {
                 PlayerSettings.Android.bundleVersionCode = 1;
             }
+
+            ConfigureIcons(android);
+        }
+
+        private const string IconFolder = "Assets/Art/AppIcon/";
+
+        /// <summary>
+        /// Launcher icons from Tools/make_store_art.py: one square picture for old
+        /// launchers and round masks, two layers for Android 8+ adaptive icons.
+        /// </summary>
+        private static void ConfigureIcons(NamedBuildTarget android)
+        {
+            var full = AssetDatabase.LoadAssetAtPath<Texture2D>(IconFolder + "icon_512.png");
+            var back = AssetDatabase.LoadAssetAtPath<Texture2D>(IconFolder + "adaptive_background.png");
+            var front = AssetDatabase.LoadAssetAtPath<Texture2D>(IconFolder + "adaptive_foreground.png");
+
+            if (full == null || back == null || front == null)
+            {
+                Debug.LogWarning("[AndroidSetup] App icon textures missing; run Tools/make_store_art.py.");
+                return;
+            }
+
+            SetIcons(android, UnityEditor.Android.AndroidPlatformIconKind.Legacy, full);
+            SetIcons(android, UnityEditor.Android.AndroidPlatformIconKind.Round, full);
+
+            PlatformIcon[] adaptive = PlayerSettings.GetPlatformIcons(android,
+                UnityEditor.Android.AndroidPlatformIconKind.Adaptive);
+
+            foreach (PlatformIcon icon in adaptive)
+            {
+                icon.SetTextures(back, front);
+            }
+
+            PlayerSettings.SetPlatformIcons(android, UnityEditor.Android.AndroidPlatformIconKind.Adaptive, adaptive);
+        }
+
+        private static void SetIcons(NamedBuildTarget target, PlatformIconKind kind, Texture2D texture)
+        {
+            PlatformIcon[] icons = PlayerSettings.GetPlatformIcons(target, kind);
+
+            foreach (PlatformIcon icon in icons)
+            {
+                icon.SetTexture(texture);
+            }
+
+            PlayerSettings.SetPlatformIcons(target, kind, icons);
         }
 
         [MenuItem("Tools/Football Runner/5 - Report Android Config")]

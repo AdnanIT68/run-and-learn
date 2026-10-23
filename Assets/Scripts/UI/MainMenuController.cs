@@ -276,8 +276,8 @@ namespace FootballRunner.UI
             int total = pack != null ? pack.Words.Count : 0;
 
             return LearningProgress.Language == LearningProgress.English
-                ? $"UČIM ENGLESKI  ·  {learned}/{total} RIJEČI"
-                : $"LEARNING BOSNIAN  ·  {learned}/{total} WORDS";
+                ? $"UČIM ENGLESKI  ·  {learned}/{total}"
+                : $"LEARNING BOSNIAN  ·  {learned}/{total}";
         }
 
         private static TMP_FontAsset ResolveFont()

@@ -46,3 +46,7 @@ crashlytics-build.properties
 
 # Android native build scratch
 /.utmp/
+
+# Regenerable store captures (Tools/make_store_screenshots.py)
+/Store/raw/
+/Store/play/screenshots/

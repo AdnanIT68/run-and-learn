@@ -21,7 +21,7 @@ namespace FootballRunner.Learning
         private const float CardHeight = 300f;
         private const float CardGap = 30f;
 
-        private static readonly Color PanelColour = new Color(0.16f, 0.36f, 0.27f, 0.98f);
+        private static readonly Color PanelColour = new Color(0.16f, 0.36f, 0.27f, 1f);
         private static readonly Color CardColour = new Color(1f, 0.98f, 0.92f, 1f);
         private static readonly Color LockedCardColour = new Color(1f, 1f, 1f, 0.35f);
         private static readonly Color SilhouetteColour = new Color(0.1f, 0.12f, 0.12f, 0.55f);
