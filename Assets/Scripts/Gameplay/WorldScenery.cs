@@ -28,18 +28,19 @@ namespace FootballRunner.Gameplay
         {
             public Color Sky;
             public string Ground;
+            public Color GroundTint;
             public Weather Weather;
             public int Particles;
         }
 
         private static readonly Dictionary<string, Look> Looks = new Dictionary<string, Look>
         {
-            { "World1", new Look { Sky = new Color32(120, 200, 255, 255), Ground = null, Weather = Weather.Petals, Particles = 14 } },
-            { "World2", new Look { Sky = new Color32(125, 195, 245, 255), Ground = "dirt", Weather = Weather.Fluff, Particles = 14 } },
-            { "World3", new Look { Sky = new Color32(135, 190, 250, 255), Ground = null, Weather = Weather.Leaves, Particles = 12 } },
-            { "World4", new Look { Sky = new Color32(140, 195, 250, 255), Ground = "stone", Weather = Weather.Birds, Particles = 4 } },
-            { "World5", new Look { Sky = new Color32(125, 195, 245, 255), Ground = "sand", Weather = Weather.Rain, Particles = 45 } },
-            { "World6", new Look { Sky = new Color32(165, 205, 240, 255), Ground = "snow", Weather = Weather.Snow, Particles = 40 } }
+            { "World1", new Look { Sky = new Color32(120, 200, 255, 255), Ground = null, GroundTint = Color.white, Weather = Weather.Petals, Particles = 14 } },
+            { "World2", new Look { Sky = new Color32(125, 195, 245, 255), Ground = null, GroundTint = new Color(1f, 0.92f, 0.72f), Weather = Weather.Fluff, Particles = 14 } },
+            { "World3", new Look { Sky = new Color32(135, 190, 250, 255), Ground = null, GroundTint = Color.white, Weather = Weather.Leaves, Particles = 12 } },
+            { "World4", new Look { Sky = new Color32(140, 195, 250, 255), Ground = "stone", GroundTint = Color.white, Weather = Weather.Birds, Particles = 4 } },
+            { "World5", new Look { Sky = new Color32(125, 195, 245, 255), Ground = "sand", GroundTint = Color.white, Weather = Weather.Rain, Particles = 45 } },
+            { "World6", new Look { Sky = new Color32(165, 205, 240, 255), Ground = "snow", GroundTint = Color.white, Weather = Weather.Snow, Particles = 40 } }
         };
 
         private class Layer
@@ -130,7 +131,7 @@ namespace FootballRunner.Gameplay
                 durationSeconds = 100000f,
                 cameraColor = _look.Sky,
                 backgroundTint = Color.white,
-                groundTint = Color.white
+                groundTint = _look.GroundTint
             };
             EnvironmentDirector.WorldOverride = theme;
             EnvironmentDirector.Instance?.UseSingleTheme(theme);

@@ -50,3 +50,4 @@ crashlytics-build.properties
 # Regenerable store captures (Tools/make_store_screenshots.py)
 /Store/raw/
 /Store/play/screenshots/
+/Store/tour/

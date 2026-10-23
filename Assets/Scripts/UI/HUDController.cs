@@ -148,7 +148,8 @@ namespace FootballRunner.UI
             rect.anchorMin = new Vector2(0.5f, 1f);
             rect.anchorMax = new Vector2(0.5f, 1f);
             rect.pivot = new Vector2(0.5f, 1f);
-            rect.anchoredPosition = new Vector2(0f, -18f);
+            // Below the hearts and the word card, so the world's name never covers them.
+            rect.anchoredPosition = new Vector2(0f, -330f);
             rect.sizeDelta = new Vector2(640f, 110f);
 
             _bannerGroup = root.GetComponent<CanvasGroup>();
