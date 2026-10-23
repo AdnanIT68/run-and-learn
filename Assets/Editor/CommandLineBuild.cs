@@ -25,7 +25,7 @@ namespace FootballRunner.EditorTools
 
             string[] scenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray();
             Directory.CreateDirectory(OutputFolder);
-            string output = Path.Combine(OutputFolder, "RukajjaRunLearn-test.apk");
+            string output = Path.Combine(OutputFolder, "RunAndLearn-test.apk");
 
             var options = new BuildPlayerOptions
             {
