@@ -18,12 +18,17 @@ namespace FootballRunner.Learning
         [Tooltip("Counting phrases only: how many pictures the bubble shows.")]
         public int count;
 
+        [Tooltip("Spoken commands only: jump, stay or double. The child answers by acting.")]
+        public string action;
+
         /// <summary>The picture file to show: the word itself, or the counted word.</summary>
         public string PictureId => string.IsNullOrEmpty(picture) ? id : picture;
 
         public int Count => Mathf.Max(1, count);
 
         public bool IsCounting => count > 0;
+
+        public bool IsCommand => !string.IsNullOrEmpty(action);
 
         public string Text(string language)
         {
@@ -41,7 +46,7 @@ namespace FootballRunner.Learning
         private const string Root = "Words";
 
         /// <summary>Worlds in play order. Each one unlocks from progress in the one before.</summary>
-        public static readonly string[] PackOrder = { "World1", "World2", "World3" };
+        public static readonly string[] PackOrder = { "World1", "World2", "World3", "World4" };
 
         /// <summary>One picture standing for each world on the world chooser.</summary>
         public static string CoverWordId(string pack)
@@ -50,6 +55,7 @@ namespace FootballRunner.Learning
             {
                 case "World2": return "cow";
                 case "World3": return "house";
+                case "World4": return "mosque";
                 default: return "apple";
             }
         }
@@ -63,6 +69,7 @@ namespace FootballRunner.Learning
             public WordEntry[] words;
             public WordEntry[] phrases;
             public WordEntry[] counts;
+            public WordEntry[] commands;
         }
 
         private static readonly Dictionary<string, WordPack> Cache = new Dictionary<string, WordPack>();
@@ -78,6 +85,9 @@ namespace FootballRunner.Learning
 
         /// <summary>Number-and-word phrases ("tri kokoši"). Empty in worlds that do not count yet.</summary>
         public IReadOnlyList<WordEntry> Counts => _manifest.counts ?? Array.Empty<WordEntry>();
+
+        /// <summary>Spoken commands ("Skoči!"). Empty in worlds that do not use them yet.</summary>
+        public IReadOnlyList<WordEntry> Commands => _manifest.commands ?? Array.Empty<WordEntry>();
 
         private WordPack(string name, Manifest manifest)
         {
@@ -123,9 +133,10 @@ namespace FootballRunner.Learning
             return pack;
         }
 
+        /// <summary>The world's own picture, or a shared icon of that name (commands use "star").</summary>
         public Sprite Picture(string wordId)
         {
-            return LoadSprite($"{Root}/{Name}/Pictures/{wordId}");
+            return LoadSprite($"{Root}/{Name}/Pictures/{wordId}") ?? Icon(wordId);
         }
 
         public AudioClip Voice(string language, string entryId)

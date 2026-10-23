@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using FootballRunner.Adventure;
 using FootballRunner.Effects;
 using FootballRunner.Learning;
@@ -159,6 +160,67 @@ namespace FootballRunner.Tests
 
             Assert.AreEqual(3, counts.Count, "Two bubbles showed the same number.");
             Assert.AreEqual(1, answers, "There must be exactly one right answer.");
+        }
+
+        [UnityTest]
+        public IEnumerator BazaarCommandsPutTheRightStarAtTheRightHeight()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.wordTutorialDone = true;
+            WordPack home = WordPack.Load("World3");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(home.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.SelectPack("World4"));
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            var seen = new System.Collections.Generic.HashSet<string>();
+            float waited = 0f;
+
+            while (seen.Count < 3 && waited < 20f)
+            {
+                if (director.CurrentWord == null && !director.ForceChallenge(command: true))
+                {
+                    waited += Time.unscaledDeltaTime;
+                    yield return null;
+                    continue;
+                }
+
+                WordEntry target = director.CurrentWord;
+                Assert.IsTrue(target.IsCommand, "The bazaar did not give a spoken command.");
+                Assert.AreEqual(2, director.Bubbles.Count);
+
+                WordBubble right = director.Bubbles.First(b => b.Word == target);
+                WordBubble wrong = director.Bubbles.First(b => b.Word != target);
+                Assert.AreEqual(right.transform.position.x, wrong.transform.position.x, 0.01f,
+                    "Command stars must share one spot.");
+                Assert.AreEqual("star", right.Word.PictureId);
+                Assert.AreEqual("star", wrong.Word.PictureId, "Both stars must look the same.");
+
+                float rightY = right.transform.position.y;
+                float wrongY = wrong.transform.position.y;
+
+                if (target.action == "stay")
+                {
+                    Assert.Less(rightY, wrongY, "\"Stay down\" must reward the low star.");
+                }
+                else
+                {
+                    Assert.Greater(rightY, wrongY, $"\"{target.action}\" must reward the higher star.");
+                }
+
+                seen.Add(target.action);
+                director.OnBubbleTouched(right);
+                yield return null;
+            }
+
+            CollectionAssert.AreEquivalent(new[] { "jump", "stay", "double" }, seen,
+                "Not every command showed up.");
         }
 
         [Test]

@@ -68,6 +68,9 @@ namespace FootballRunner.Learning
             rect.sizeDelta = new Vector2(560f, 120f);
 
             _card = root.GetComponent<Image>();
+            _card.sprite = Utilities.RuntimeSprites.RoundedRect();
+            _card.type = Image.Type.Sliced;
+            _card.pixelsPerUnitMultiplier = 1.4f;
             _card.color = CardColour;
             _group = root.GetComponent<CanvasGroup>();
             root.GetComponent<Button>().onClick.AddListener(OnCardPressed);
@@ -92,10 +95,18 @@ namespace FootballRunner.Learning
             _word.fontSizeMin = 30f;
             _word.fontSizeMax = 60f;
 
-            TMP_Text existing = parent.GetComponentInChildren<TMP_Text>(true);
-            if (existing != null && existing != _word && existing.font != null)
+            // The rounded display font matches the menu; fall back to the HUD's own font.
+            if (Utilities.GameFonts.Display != null)
             {
-                _word.font = existing.font;
+                Utilities.GameFonts.UseDisplay(_word);
+            }
+            else
+            {
+                TMP_Text existing = parent.GetComponentInChildren<TMP_Text>(true);
+                if (existing != null && existing != _word && existing.font != null)
+                {
+                    _word.font = existing.font;
+                }
             }
 
             _result = CreateIcon(root.transform, "Result", WordPack.Icon("check"), new Vector2(230f, 0f), 70f);

@@ -29,6 +29,10 @@ SHOTS = [
         "en": "Count farm animals from one to five",
         "hr": "Broji životinje od jedan do pet",
         "de": "Tiere zählen von eins bis fünf"}),
+    ("08_command_bazaar", {
+        "en": "Listen and do it: Jump! Stay down!",
+        "hr": "Slušaj i uradi: Skoči! Ostani dolje!",
+        "de": "Hören und tun: Spring! Bleib unten!"}),
     ("04_bravo", {
         "en": "Five words, one big BRAVO!",
         "hr": "Pet riječi, jedno veliko BRAVO!",

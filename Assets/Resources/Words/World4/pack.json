@@ -1,0 +1,113 @@
+{
+  "pack": "World4",
+  "title_bs": "Čaršija",
+  "title_en": "The Old Bazaar",
+  "words": [
+    {
+      "id": "mosque",
+      "bs": "džamija",
+      "en": "mosque"
+    },
+    {
+      "id": "pigeon",
+      "bs": "golub",
+      "en": "pigeon"
+    },
+    {
+      "id": "tram",
+      "bs": "tramvaj",
+      "en": "tram"
+    },
+    {
+      "id": "bus",
+      "bs": "autobus",
+      "en": "bus"
+    },
+    {
+      "id": "bicycle",
+      "bs": "bicikl",
+      "en": "bicycle"
+    },
+    {
+      "id": "ball",
+      "bs": "lopta",
+      "en": "ball"
+    },
+    {
+      "id": "book",
+      "bs": "knjiga",
+      "en": "book"
+    },
+    {
+      "id": "umbrella",
+      "bs": "kišobran",
+      "en": "umbrella"
+    },
+    {
+      "id": "clock",
+      "bs": "sat",
+      "en": "clock"
+    },
+    {
+      "id": "fountain",
+      "bs": "česma",
+      "en": "fountain"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!"
+    }
+  ],
+  "counts": [],
+  "commands": [
+    {
+      "id": "cmd_jump",
+      "action": "jump",
+      "picture": "star",
+      "bs": "Skoči!",
+      "en": "Jump!"
+    },
+    {
+      "id": "cmd_stay",
+      "action": "stay",
+      "picture": "star",
+      "bs": "Ostani dolje!",
+      "en": "Stay down!"
+    },
+    {
+      "id": "cmd_double",
+      "action": "double",
+      "picture": "star",
+      "bs": "Skoči dva puta!",
+      "en": "Jump twice!"
+    }
+  ]
+}

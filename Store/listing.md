@@ -32,6 +32,8 @@ What's inside:
 • Catch the word: hear it, find the picture, jump!
 • Grandma's Garden: fruit and vegetables.
 • Grandpa's Farm: animals and counting from one to five.
+• Our Home: family words like mom, dad, grandma and grandpa.
+• The Old Bazaar: listen to a command and do it. Jump! Stay down! Jump twice!
 • Pepi the parrot flies along, cheers and shows the way on the very first word.
 • A sticker album where every learned word is saved; tap a sticker to hear it again.
 • Stars for every word your child really knows.
@@ -70,6 +72,8 @@ Dva smjera, jedna igra:
 • Uhvati riječ: čuj je, nađi sliku, skoči!
 • Nenina bašta: voće i povrće.
 • Farma kod dede: životinje i brojanje od jedan do pet.
+• Naša kuća: porodica, mama, tata, nena i dedo.
+• Čaršija: slušaj komandu i uradi je. Skoči! Ostani dolje! Skoči dva puta!
 • Papagaj Pepi leti uz Rukajju, raduje se i pokazuje put na prvoj riječi.
 • Album sličica u kojem ostaje svaka naučena riječ; dodirom je ponovo čuješ.
 • Zvjezdice za riječi koje dijete stvarno zna.
@@ -108,6 +112,8 @@ Das steckt drin:
 • Fang das Wort: hören, Bild finden, springen!
 • Omas Garten: Obst und Gemüse.
 • Opas Bauernhof: Tiere und Zählen von eins bis fünf.
+• Unser Zuhause: Familienwörter wie Mama, Papa, Oma und Opa.
+• Der alte Basar: einen Befehl hören und ausführen. Spring! Bleib unten! Spring zweimal!
 • Papagei Pepi fliegt mit, jubelt und zeigt beim ersten Wort den Weg.
 • Ein Stickeralbum, in dem jedes gelernte Wort bleibt; antippen und erneut hören.
 • Sterne für jedes Wort, das dein Kind wirklich kann.

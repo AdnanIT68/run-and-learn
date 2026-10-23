@@ -47,6 +47,13 @@ namespace FootballRunner.Learning
         [Range(0f, 1f)]
         [SerializeField] private float countingChance = 0.4f;
 
+        [Header("Commands")]
+        [Tooltip("Share of challenges that are spoken commands, in worlds that have them.")]
+        [Range(0f, 1f)]
+        [SerializeField] private float commandChance = 0.4f;
+        [Tooltip("Height above the standing runner's head that only a double jump reaches.")]
+        [SerializeField] private float doubleJumpHeight = 3.4f;
+
         [Header("Layout")]
         [SerializeField] private int optionCount = 3;
         [SerializeField] private float bubbleRadius = 0.6f;
@@ -199,7 +206,7 @@ namespace FootballRunner.Learning
         }
 
         /// <summary>Starts a challenge immediately. Used by tests and the first-run tutorial.</summary>
-        public bool ForceChallenge(bool counting = false)
+        public bool ForceChallenge(bool counting = false, bool command = false)
         {
             PlayerController player = PlayerController.Instance;
 
@@ -209,7 +216,7 @@ namespace FootballRunner.Learning
             }
 
             CacheStandingHeight(player);
-            return TryStartChallenge(player, counting);
+            return TryStartChallenge(player, counting, command);
         }
 
         public void OnBubbleTouched(WordBubble bubble)
@@ -389,7 +396,8 @@ namespace FootballRunner.Learning
             ChallengeEnded?.Invoke(word, caught);
         }
 
-        private bool TryStartChallenge(PlayerController player, bool forceCounting = false)
+        private bool TryStartChallenge(PlayerController player, bool forceCounting = false,
+            bool forceCommand = false)
         {
             if (float.IsNaN(_standingTop))
             {
@@ -397,12 +405,20 @@ namespace FootballRunner.Learning
             }
 
             bool guided = !SaveManager.Data.wordTutorialDone;
-            // Counting only once the child knows how the game works, and only in worlds that count.
-            bool counting = !guided && _pack.Counts.Count > 0 && (forceCounting || Random.value < countingChance);
+            // Counting and commands only once the child knows how the game works,
+            // and only in worlds that have them.
+            bool counting = !guided && !forceCommand && _pack.Counts.Count > 0 &&
+                            (forceCounting || Random.value < countingChance);
+            bool command = !guided && !counting && _pack.Commands.Count > 0 &&
+                           (forceCommand || Random.value < commandChance);
 
             if (counting)
             {
                 ChooseCounting();
+            }
+            else if (command)
+            {
+                ChooseCommand();
             }
             else
             {
@@ -418,18 +434,35 @@ namespace FootballRunner.Learning
             float speed = Mathf.Max(1f, player.CurrentSpeed);
             float spacing = Mathf.Max(bubbleRadius * 2f + 1.6f, speed * spacingSeconds);
             float searchFrom = player.transform.position.x + speed * lead;
-            float y = _standingTop + heightAboveHead;
-            var positions = new List<float>(_options.Count);
+            var positions = new List<Vector3>(_options.Count);
 
-            for (int i = 0; i < _options.Count; i++)
+            if (command)
             {
+                // Commands stack their targets in one spot: the child must act, not pick.
                 if (!FindSlot(searchFrom, out float x))
                 {
                     return false;
                 }
 
-                positions.Add(x);
-                searchFrom = x + spacing;
+                for (int i = 0; i < _options.Count; i++)
+                {
+                    positions.Add(new Vector3(x, CommandHeight(_options[i]), 0f));
+                }
+            }
+            else
+            {
+                float y = _standingTop + heightAboveHead;
+
+                for (int i = 0; i < _options.Count; i++)
+                {
+                    if (!FindSlot(searchFrom, out float x))
+                    {
+                        return false;
+                    }
+
+                    positions.Add(new Vector3(x, y, 0f));
+                    searchFrom = x + spacing;
+                }
             }
 
             _active = true;
@@ -441,7 +474,7 @@ namespace FootballRunner.Learning
             for (int i = 0; i < _options.Count; i++)
             {
                 WordEntry word = _options[i];
-                WordBubble bubble = WordBubble.Create(transform, new Vector3(positions[i], y, 0f), word,
+                WordBubble bubble = WordBubble.Create(transform, positions[i], word,
                     _pack.Picture(word.PictureId), bubbleRadius, _spriteMaterial, this);
                 _bubbles.Add(bubble);
 
@@ -464,6 +497,47 @@ namespace FootballRunner.Learning
 
             ChallengeStarted?.Invoke(_target);
             return true;
+        }
+
+        // Stand-ins for the wrong heights of a command challenge. They show the same
+        // star as the right one, so only following the command finds the answer.
+        private static readonly WordEntry LowSpot = new WordEntry { id = "spot_low", picture = "star", action = "stay" };
+        private static readonly WordEntry HighSpot = new WordEntry { id = "spot_high", picture = "star", action = "jump" };
+
+        /// <summary>The spoken command plus one wrong height in the same spot.</summary>
+        private void ChooseCommand()
+        {
+            IReadOnlyList<WordEntry> commands = _pack.Commands;
+            int index = Random.Range(0, commands.Count);
+
+            if (commands[index] == _previousTarget && commands.Count > 1)
+            {
+                index = (index + 1) % commands.Count;
+            }
+
+            _target = commands[index];
+            _options.Clear();
+            _options.Add(_target);
+            // "Jump" pairs with a star at body height that a runner who does not jump
+            // collects; "stay down" and "jump twice" pair with the single-jump star.
+            _options.Add(_target.action == "jump" ? LowSpot : HighSpot);
+        }
+
+        /// <summary>
+        /// Height of a command target: body height for "stay", jump height for
+        /// "jump", out of reach of one jump for "double".
+        /// </summary>
+        private float CommandHeight(WordEntry entry)
+        {
+            switch (entry.action)
+            {
+                case "stay":
+                    return (_groundY + _standingTop) * 0.5f;
+                case "double":
+                    return _standingTop + doubleJumpHeight;
+                default:
+                    return _standingTop + heightAboveHead;
+            }
         }
 
         /// <summary>Weighted pick of the target, then random distinct distractors in random order.</summary>

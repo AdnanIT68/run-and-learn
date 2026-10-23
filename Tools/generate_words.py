@@ -98,7 +98,13 @@ async def main(pack_file: Path) -> None:
         for c in pack.get("counts", [])
     ]
 
-    for entry in pack["words"] + pack.get("phrases", []) + counts:
+    # Spoken commands ("Skoči!") are answered by acting, so their bubbles all show a star.
+    commands = [
+        {"id": c["id"], "action": c["action"], "picture": "star", "bs": c["bs"], "en": c["en"]}
+        for c in pack.get("commands", [])
+    ]
+
+    for entry in pack["words"] + pack.get("phrases", []) + counts + commands:
         for lang, voice in VOICES.items():
             await speak(entry[lang], voice, out / "Audio" / lang / f"{entry['id']}.ogg")
 
@@ -109,10 +115,11 @@ async def main(pack_file: Path) -> None:
         "words": [{"id": w["id"], "bs": w["bs"], "en": w["en"]} for w in pack["words"]],
         "phrases": [{"id": p["id"], "bs": p["bs"], "en": p["en"]} for p in pack.get("phrases", [])],
         "counts": counts,
+        "commands": commands,
     }
     (out / "pack.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"{pack['pack']}: {len(pack['words'])} words, {len(manifest['phrases'])} phrases, "
-          f"{len(counts)} counts -> {out}")
+          f"{len(counts)} counts, {len(commands)} commands -> {out}")
 
 
 if __name__ == "__main__":

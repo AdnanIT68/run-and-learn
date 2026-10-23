@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using FootballRunner.Learning;
 using FootballRunner.SaveSystem;
 using NUnit.Framework;
@@ -118,6 +119,34 @@ namespace FootballRunner.Tests
             }
 
             Assert.IsTrue(LearningProgress.IsPackUnlocked("World3"), "Six farm words should open Our Home.");
+        }
+
+        [Test]
+        public void BazaarIsCompleteWithCommandsAndOpensAfterHome()
+        {
+            WordPack bazaar = WordPack.Load("World4");
+
+            Assert.IsNotNull(bazaar, "World4 pack.json did not load.");
+            Assert.AreEqual(10, bazaar.Words.Count);
+            Assert.AreEqual(3, bazaar.Commands.Count, "Jump, stay down and jump twice.");
+
+            foreach (WordEntry entry in bazaar.Words.Concat(bazaar.Commands))
+            {
+                Assert.IsNotNull(bazaar.Picture(entry.PictureId), $"{entry.id} has no picture.");
+                Assert.IsNotNull(bazaar.Voice(LearningProgress.Bosnian, entry.id), $"{entry.id} has no Bosnian voice.");
+                Assert.IsNotNull(bazaar.Voice(LearningProgress.English, entry.id), $"{entry.id} has no English voice.");
+            }
+
+            SaveManager.Data.wordProgress.Clear();
+            WordPack home = WordPack.Load("World3");
+            Assert.IsFalse(LearningProgress.IsPackUnlocked("World4"), "The bazaar opened with no home words learned.");
+
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(home.Words[i].id);
+            }
+
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World4"), "Six home words should open the bazaar.");
         }
 
         private static bool FindCount(WordPack pack, string bosnian)

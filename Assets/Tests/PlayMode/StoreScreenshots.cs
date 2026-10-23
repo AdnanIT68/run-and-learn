@@ -65,7 +65,14 @@ namespace FootballRunner.Tests
             yield return StartChallengeAndWait("World2", counting: true);
             yield return Capture("03_counting_farm");
 
-            // 4. English learners see the same game in English.
+            // 4. Spoken commands at the bazaar.
+            SetProgress(gardenWords: 7, farmWords: 6, english: false, homeWords: 6);
+            LearningProgress.SelectPack("World4");
+            yield return LoadScene("Game");
+            yield return StartChallengeAndWait("World4", counting: false, command: true);
+            yield return Capture("08_command_bazaar");
+
+            // 5. English learners see the same game in English.
             SetProgress(gardenWords: 7, farmWords: 4, english: true);
             LearningProgress.SelectPack("World1");
             yield return LoadScene("Game");
@@ -89,7 +96,7 @@ namespace FootballRunner.Tests
             yield return Capture("07_worlds");
         }
 
-        private static void SetProgress(int gardenWords, int farmWords, bool english)
+        private static void SetProgress(int gardenWords, int farmWords, bool english, int homeWords = 0)
         {
             SaveData data = SaveManager.Data;
             data.wordProgress.Clear();
@@ -98,6 +105,7 @@ namespace FootballRunner.Tests
 
             Learn(WordPack.Load("World1"), gardenWords);
             Learn(WordPack.Load("World2"), farmWords);
+            Learn(WordPack.Load("World3"), homeWords);
             data.selectedPack = "World1";
         }
 
@@ -120,7 +128,7 @@ namespace FootballRunner.Tests
             yield return new WaitForSecondsRealtime(1.5f);
         }
 
-        private static IEnumerator StartChallengeAndWait(string pack, bool counting)
+        private static IEnumerator StartChallengeAndWait(string pack, bool counting, bool command = false)
         {
             WordChallengeDirector director = WordChallengeDirector.Instance;
             Assert.AreEqual(pack, director.Pack.Name);
@@ -128,7 +136,7 @@ namespace FootballRunner.Tests
 
             while (director.CurrentWord == null && waited < 5f)
             {
-                director.ForceChallenge(counting);
+                director.ForceChallenge(counting, command);
                 waited += Time.unscaledDeltaTime;
                 yield return null;
             }

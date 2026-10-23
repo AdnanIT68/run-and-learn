@@ -135,10 +135,18 @@ namespace FootballRunner.Learning
             text.color = Color.white;
             text.raycastTarget = false;
 
-            TMP_Text existing = transform.GetComponentInChildren<TMP_Text>(true);
-            if (existing != null && existing != text && existing.font != null)
+            // The rounded display font matches the menu; fall back to the HUD's own font.
+            if (Utilities.GameFonts.Display != null)
             {
-                text.font = existing.font;
+                Utilities.GameFonts.UseDisplay(text);
+            }
+            else
+            {
+                TMP_Text existing = transform.GetComponentInChildren<TMP_Text>(true);
+                if (existing != null && existing != text && existing.font != null)
+                {
+                    text.font = existing.font;
+                }
             }
 
             return text;

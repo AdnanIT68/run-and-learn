@@ -15,8 +15,9 @@ namespace FootballRunner.Learning
     /// </summary>
     public class WordWorldsUi : MonoBehaviour
     {
-        private const float CardSize = 420f;
-        private const float CardGap = 80f;
+        private const float MaxCardSize = 420f;
+        private const float CardGap = 60f;
+        private const float RowWidth = 1720f;
 
         private static readonly Color PanelColour = new Color(0.2f, 0.42f, 0.62f, 1f);
         private static readonly Color CardColour = new Color(1f, 0.98f, 0.92f, 1f);
@@ -44,6 +45,7 @@ namespace FootballRunner.Learning
         private TMP_Text _buttonLabel;
         private TMP_FontAsset _font;
         private string _labelLanguage;
+        private float _cardSize = MaxCardSize;
 
         public bool IsOpen => _panel != null && _panel.activeSelf;
 
@@ -173,11 +175,13 @@ namespace FootballRunner.Learning
                 60f, Color.white);
 
             string[] packs = WordPack.PackOrder;
-            float totalWidth = packs.Length * CardSize + (packs.Length - 1) * CardGap;
+            // Cards shrink as worlds are added so the row always fits the screen.
+            _cardSize = Mathf.Min(MaxCardSize, (RowWidth - (packs.Length - 1) * CardGap) / packs.Length);
+            float totalWidth = packs.Length * _cardSize + (packs.Length - 1) * CardGap;
 
             for (int i = 0; i < packs.Length; i++)
             {
-                float x = -totalWidth * 0.5f + CardSize * 0.5f + i * (CardSize + CardGap);
+                float x = -totalWidth * 0.5f + _cardSize * 0.5f + i * (_cardSize + CardGap);
                 _cards.Add(BuildCard(packs[i], i, new Vector2(x, -10f)));
             }
 
@@ -210,7 +214,8 @@ namespace FootballRunner.Learning
             rect.anchorMin = new Vector2(0.5f, 0.5f);
             rect.anchorMax = new Vector2(0.5f, 0.5f);
             rect.anchoredPosition = position;
-            rect.sizeDelta = new Vector2(CardSize, CardSize);
+            rect.sizeDelta = new Vector2(_cardSize, _cardSize);
+            float scale = _cardSize / MaxCardSize;
             go.GetComponent<Button>().onClick.AddListener(() => PressWorld(index));
 
             WordPack wordPack = WordPack.Load(pack);
@@ -221,13 +226,13 @@ namespace FootballRunner.Learning
                 Background = go.GetComponent<Image>(),
                 Cover = CreateImage(go.transform, "Cover",
                     wordPack != null ? wordPack.Picture(WordPack.CoverWordId(pack)) : null,
-                    new Vector2(0f, 60f), new Vector2(220f, 220f)),
-                Lock = CreateImage(go.transform, "Lock", WordPack.Icon("lock"), new Vector2(150f, 160f),
+                    new Vector2(0f, 60f * scale), new Vector2(220f, 220f) * scale),
+                Lock = CreateImage(go.transform, "Lock", WordPack.Icon("lock"), new Vector2(150f, 160f) * scale,
                     new Vector2(80f, 80f)),
-                Title = CreateText(go.transform, "Title", "", new Vector2(0f, -100f), new Vector2(CardSize - 30f, 60f),
+                Title = CreateText(go.transform, "Title", "", new Vector2(0f, -100f * scale), new Vector2(_cardSize - 30f, 60f),
                     40f, DarkText),
-                Detail = CreateText(go.transform, "Detail", "", new Vector2(0f, -160f),
-                    new Vector2(CardSize - 30f, 50f), 30f, DarkText)
+                Detail = CreateText(go.transform, "Detail", "", new Vector2(0f, -160f * scale),
+                    new Vector2(_cardSize - 30f, 50f), 30f, DarkText)
             };
 
             card.Cover.raycastTarget = false;
