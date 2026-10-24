@@ -20,6 +20,7 @@ namespace FootballRunner.Tests
     public class WordChallengeTests
     {
         private string _packBefore;
+        private int _levelBefore;
 
         [UnitySetUp]
         public IEnumerator LoadGameScene()
@@ -28,7 +29,9 @@ namespace FootballRunner.Tests
             AdventureSession.Clear();
             // These tests describe the garden's plain word challenges, whatever world the save had chosen.
             _packBefore = SaveManager.Data.selectedPack;
+            _levelBefore = SaveManager.Data.selectedLevel;
             SaveManager.Data.selectedPack = WordPack.DefaultPack;
+            SaveManager.Data.selectedLevel = 0;
             yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
             yield return null;
         }
@@ -48,6 +51,7 @@ namespace FootballRunner.Tests
             // Tests flip the guide flag; leave the developer's own save as it was.
             SaveManager.Data.wordTutorialDone = _tutorialDoneBefore;
             SaveManager.Data.selectedPack = _packBefore ?? WordPack.DefaultPack;
+            SaveManager.Data.selectedLevel = _levelBefore;
             SaveManager.Save();
         }
 

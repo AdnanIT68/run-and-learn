@@ -72,6 +72,17 @@ namespace FootballRunner.Tests
             yield return Capture("Menu_Today");
             daily.Close();
 
+            // WORLDS with the garden's first two levels done and level 3 chosen.
+            data.worldResults.Clear();
+            LearningProgress.RecordLevelComplete("World1", 0, 3);
+            LearningProgress.RecordLevelComplete("World1", 1, 2);
+            LearningProgress.SelectPack("World1");
+            WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
+            worlds.Open();
+            yield return null;
+            yield return Capture("Menu_Worlds");
+            worlds.Close();
+
             CharacterChooserUi chooser = Object.FindFirstObjectByType<CharacterChooserUi>();
             chooser.Open();
             yield return null;

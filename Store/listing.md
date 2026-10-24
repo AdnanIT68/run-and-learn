@@ -30,6 +30,7 @@ Two directions, one game:
 
 What's inside:
 • Catch the word: hear it, find the picture, jump!
+• Eight worlds with five levels each: every level is a little faster and asks a little more.
 • Grandma's Garden: fruit and vegetables.
 • Grandpa's Farm: animals and counting from one to five.
 • Our Home: family words like mom, dad, grandma and grandpa.
@@ -76,6 +77,7 @@ Dva smjera, jedna igra:
 
 Šta igra nudi:
 • Uhvati riječ: čuj je, nađi sliku, skoči!
+• Osam svjetova s po pet nivoa: svaki nivo je malo brži i traži malo više.
 • Nenina bašta: voće i povrće.
 • Farma kod dede: životinje i brojanje od jedan do pet.
 • Naša kuća: porodica, mama, tata, nena i dedo.
@@ -122,6 +124,7 @@ Zwei Richtungen, ein Spiel:
 
 Das steckt drin:
 • Fang das Wort: hören, Bild finden, springen!
+• Acht Welten mit je fünf Levels: Jedes Level ist etwas schneller und verlangt etwas mehr.
 • Omas Garten: Obst und Gemüse.
 • Opas Bauernhof: Tiere und Zählen von eins bis fünf.
 • Unser Zuhause: Familienwörter wie Mama, Papa, Oma und Opa.

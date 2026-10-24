@@ -352,8 +352,9 @@ namespace FootballRunner.Tests
             Assert.AreEqual(0, Object.FindObjectsByType<ParallaxLayer>(FindObjectsSortMode.None).Length,
                 "The old jungle backdrop is still showing.");
             Assert.Greater(scenery.ParticleCount, 0, "No snow is falling.");
-            Assert.AreEqual(WordPack.Load("World6").Title(LearningProgress.Language).ToUpperInvariant(),
+            StringAssert.StartsWith(WordPack.Load("World6").Title(LearningProgress.Language).ToUpperInvariant(),
                 EnvironmentDirector.Instance.CurrentDisplayName);
+            StringAssert.EndsWith(" 1", EnvironmentDirector.Instance.CurrentDisplayName, "The banner should name the level.");
 
             bool snowyGround = Object.FindObjectsByType<Chunk>(FindObjectsSortMode.None)
                 .SelectMany(c => c.GetComponentsInChildren<SpriteRenderer>())
@@ -373,7 +374,7 @@ namespace FootballRunner.Tests
         }
 
         [UnityTest]
-        public IEnumerator FullGoalRowEndsTheLevelWithStarsResultsAndNextWorld()
+        public IEnumerator FullGoalRowEndsTheLevelWithStarsResultsAndNextLevel()
         {
             SaveManager.Data.wordProgress.Clear();
             SaveManager.Data.worldResults.Clear();
@@ -396,17 +397,19 @@ namespace FootballRunner.Tests
             Assert.AreEqual(0f, Time.timeScale, "The run should stop on the result screen.");
             Assert.AreEqual(3, WordChallengeDirector.Instance.LevelStars, "No mistakes should earn three stars.");
             Assert.AreEqual(5, WordChallengeDirector.Instance.LevelWords.Count);
-            Assert.AreEqual(3, LearningProgress.Stars("World1"), "The stars were not saved.");
-            Assert.IsTrue(LearningProgress.IsPackUnlocked("World2"), "Finishing the garden should open the farm.");
+            Assert.AreEqual(3, LearningProgress.Stars("World1", 0), "The stars were not saved.");
+            Assert.IsTrue(LearningProgress.IsLevelUnlocked("World1", 1), "Finishing level 1 should open level 2.");
+            Assert.IsFalse(LearningProgress.IsPackUnlocked("World2"), "The farm waits for level 3 of the garden.");
 
             LevelResultUi results = Object.FindFirstObjectByType<LevelResultUi>();
             yield return null;
             Assert.IsTrue(results.IsShown, "The result screen did not open.");
-            Assert.IsTrue(results.HasNext, "Next should be offered once the farm is open.");
+            Assert.IsTrue(results.HasNext, "Next should offer level 2.");
 
             results.Next();
             yield return new WaitForSecondsRealtime(0.5f);
-            Assert.AreEqual("World2", LearningProgress.SelectedPack, "Next did not move on to the farm.");
+            Assert.AreEqual("World1", LearningProgress.SelectedPack);
+            Assert.AreEqual(1, LearningProgress.SelectedLevel, "Next did not move on to level 2.");
         }
 
         [UnityTest]

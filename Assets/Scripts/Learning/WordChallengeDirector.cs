@@ -96,6 +96,7 @@ namespace FootballRunner.Learning
         private readonly List<WordEntry> _options = new List<WordEntry>(4);
         private readonly List<float> _obstacleXs = new List<float>(32);
         private WordPack _pack;
+        private int _level;
         private WordEntry _target;
         private WordEntry _previousTarget;
         private Collider2D _playerCollider;
@@ -117,6 +118,9 @@ namespace FootballRunner.Learning
         private Coroutine _voiceRoutine;
 
         public WordPack Pack => _pack;
+
+        /// <summary>The level being played in this world, 0 for level 1.</summary>
+        public int Level => _level;
 
         public int GoalSize => goalSize;
 
@@ -169,12 +173,20 @@ namespace FootballRunner.Learning
 
             // Loaded here, before any Start, so the HUD sizes the goal row correctly.
             _pack = WordPack.Load(LearningProgress.SelectedPack);
+            _level = Adventure.AdventureSession.IsActive ? 0 : LearningProgress.SelectedLevel;
 
             if (_pack != null && _pack.GoalSize > 0)
             {
                 goalSize = _pack.GoalSize;
             }
+
+            // Later levels ask a few more words: five to eight in the worlds, eight to ten in the finale.
+            goalSize += _pack != null && _pack.IsReview ? _level / 2 : Mathf.Min(_level, 3);
+            secondsBetweenChallenges *= 1f - 0.06f * _level;
         }
+
+        /// <summary>Later levels lean more on the world's special challenges than on plain words.</summary>
+        private float KindBoost => Mathf.Clamp(0.6f + 0.2f * _level, 0.6f, 1.4f);
 
         private void OnDestroy()
         {
@@ -371,7 +383,7 @@ namespace FootballRunner.Learning
             LevelWords.Clear();
             LevelWords.AddRange(_rowWords);
             _rowWords.Clear();
-            LearningProgress.RecordLevelComplete(_pack.Name, LevelStars);
+            LearningProgress.RecordLevelComplete(_pack.Name, _level, LevelStars);
             StartCoroutine(OpenResultsSoon());
         }
 
@@ -525,13 +537,14 @@ namespace FootballRunner.Learning
                 return PickReviewKind();
             }
 
-            if (_pack.Counts.Count > 0 && Random.value < countingChance) return Kind.Counting;
-            if (_pack.Commands.Count > 0 && Random.value < commandChance) return Kind.Command;
-            if (_pack.Sizes.Count > 0 && Random.value < sizeChance) return Kind.Size;
-            if (_pack.Sentences.Count > 0 && Random.value < sentenceChance) return Kind.Sentence;
-            if (_pack.Letters.Count > 0 && Random.value < letterChance) return Kind.Letter;
-            if (_pack.Numbers.Count > 0 && Random.value < numberChance) return Kind.Number;
-            if (_pack.HasReading && Random.value < readingChance) return Kind.Reading;
+            float boost = KindBoost;
+            if (_pack.Counts.Count > 0 && Random.value < countingChance * boost) return Kind.Counting;
+            if (_pack.Commands.Count > 0 && Random.value < commandChance * boost) return Kind.Command;
+            if (_pack.Sizes.Count > 0 && Random.value < sizeChance * boost) return Kind.Size;
+            if (_pack.Sentences.Count > 0 && Random.value < sentenceChance * boost) return Kind.Sentence;
+            if (_pack.Letters.Count > 0 && Random.value < letterChance * boost) return Kind.Letter;
+            if (_pack.Numbers.Count > 0 && Random.value < numberChance * boost) return Kind.Number;
+            if (_pack.HasReading && Random.value < readingChance * boost) return Kind.Reading;
             return Kind.Word;
         }
 

@@ -30,6 +30,18 @@ namespace FootballRunner.EditorTools
                 }
             }
 
+            // Levels 1 to 4 count as finished, so every level of every world can be chosen.
+            foreach (string name in WordPack.PackOrder)
+            {
+                for (int level = 0; level < LearningProgress.LevelsPerWorld - 1; level++)
+                {
+                    if (LearningProgress.Stars(name, level) == 0)
+                    {
+                        LearningProgress.RecordLevelComplete(name, level, 1);
+                    }
+                }
+            }
+
             SaveManager.Save();
             Debug.Log($"[DevMenu] All {WordPack.PackOrder.Length} worlds unlocked for {LearningProgress.Language}. " +
                       "Choose one with the WORLD button.");

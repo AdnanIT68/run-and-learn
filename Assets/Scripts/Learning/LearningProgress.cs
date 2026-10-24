@@ -31,8 +31,14 @@ namespace FootballRunner.Learning
             SetLanguage(Language == English ? Bosnian : English);
         }
 
-        /// <summary>Words to learn in a world before the next one opens.</summary>
-        public const int WordsToUnlockNext = 6;
+        /// <summary>Knowing every word of a world (it has ten) also opens the next world.</summary>
+        public const int WordsToUnlockNext = 10;
+
+        /// <summary>Levels in every world; each is a little faster and asks a little more.</summary>
+        public const int LevelsPerWorld = 5;
+
+        /// <summary>Finishing this level (counted from 1) opens the next world.</summary>
+        public const int LevelToOpenNextWorld = 3;
 
         /// <summary>The world the next run uses. Falls back to the first if the saved one is locked.</summary>
         public static string SelectedPack
@@ -54,8 +60,86 @@ namespace FootballRunner.Learning
             }
 
             SaveManager.Data.selectedPack = pack;
+            SaveManager.Data.selectedLevel = FirstOpenLevel(pack);
             SaveManager.Save();
             return true;
+        }
+
+        /// <summary>The level (0 for level 1) the next run in the chosen world uses.</summary>
+        public static int SelectedLevel
+        {
+            get
+            {
+                string pack = SelectedPack;
+                int saved = SaveManager.Data.selectedLevel;
+                return IsLevelUnlocked(pack, saved) ? saved : FirstOpenLevel(pack);
+            }
+        }
+
+        public static bool SelectLevel(int level)
+        {
+            if (!IsLevelUnlocked(SelectedPack, level))
+            {
+                return false;
+            }
+
+            SaveManager.Data.selectedLevel = level;
+            SaveManager.Save();
+            return true;
+        }
+
+        /// <summary>Level 1 of an open world is open; each later level needs the one before it.</summary>
+        public static bool IsLevelUnlocked(string pack, int level)
+        {
+            return level >= 0 && level < LevelsPerWorld && IsPackUnlocked(pack) &&
+                   (level == 0 || Stars(pack, level - 1) > 0);
+        }
+
+        /// <summary>The first level not finished yet, or the last level once all are done.</summary>
+        public static int FirstOpenLevel(string pack)
+        {
+            for (int level = 0; level < LevelsPerWorld; level++)
+            {
+                if (Stars(pack, level) == 0)
+                {
+                    return level;
+                }
+            }
+
+            return LevelsPerWorld - 1;
+        }
+
+        public static int LevelsDone(string pack)
+        {
+            int done = 0;
+
+            for (int level = 0; level < LevelsPerWorld; level++)
+            {
+                if (Stars(pack, level) > 0)
+                {
+                    done++;
+                }
+            }
+
+            return done;
+        }
+
+        /// <summary>
+        /// Where Next on the result screen leads: the following level, then level 1
+        /// of the next world once it is open. False after the very last level.
+        /// </summary>
+        public static bool TryGetNext(string pack, int level, out string nextPack, out int nextLevel)
+        {
+            if (level + 1 < LevelsPerWorld && IsLevelUnlocked(pack, level + 1))
+            {
+                nextPack = pack;
+                nextLevel = level + 1;
+                return true;
+            }
+
+            nextPack = NextPack(pack);
+            nextLevel = 0;
+            return nextPack != null && IsPackUnlocked(nextPack);
         }
 
         /// <summary>The first world is always open; each later one needs words from the world before.</summary>
@@ -68,17 +152,44 @@ namespace FootballRunner.Learning
                 return index == 0;
             }
 
-            // Finishing the previous world's level opens the next one; so do six of its words.
+            // Finishing level 3 of the previous world opens the next one; so does knowing all its words.
             string previousName = WordPack.PackOrder[index - 1];
             WordPack previous = WordPack.Load(previousName);
-            return Stars(previousName) > 0 || LearnedCount(previous) >= WordsToUnlockNext;
+            int allWords = previous != null ? Mathf.Min(WordsToUnlockNext, previous.Words.Count) : WordsToUnlockNext;
+            return Stars(previousName, LevelToOpenNextWorld - 1) > 0 || LearnedCount(previous) >= allWords;
         }
 
-        /// <summary>Best stars earned in a world's level for the current language (0 to 3).</summary>
+        /// <summary>Best stars earned in one level of a world for the current language (0 to 3).</summary>
+        public static int Stars(string pack, int level)
+        {
+            WorldResult result = FindResult(pack, level, create: false);
+            return result != null ? result.stars : 0;
+        }
+
+        /// <summary>Best stars earned in any level of a world (0 to 3).</summary>
         public static int Stars(string pack)
         {
-            WorldResult result = FindResult(pack, create: false);
-            return result != null ? result.stars : 0;
+            int best = 0;
+
+            for (int level = 0; level < LevelsPerWorld; level++)
+            {
+                best = Mathf.Max(best, Stars(pack, level));
+            }
+
+            return best;
+        }
+
+        /// <summary>All stars earned across a world's levels, out of LevelsPerWorld * 3.</summary>
+        public static int TotalStars(string pack)
+        {
+            int total = 0;
+
+            for (int level = 0; level < LevelsPerWorld; level++)
+            {
+                total += Stars(pack, level);
+            }
+
+            return total;
         }
 
         /// <summary>Three stars without a mistake, two for one or two, one otherwise.</summary>
@@ -92,9 +203,9 @@ namespace FootballRunner.Learning
             return misses <= 2 ? 2 : 1;
         }
 
-        public static void RecordLevelComplete(string pack, int stars)
+        public static void RecordLevelComplete(string pack, int level, int stars)
         {
-            WorldResult result = FindResult(pack, create: true);
+            WorldResult result = FindResult(pack, Mathf.Clamp(level, 0, LevelsPerWorld - 1), create: true);
             result.stars = Mathf.Max(result.stars, Mathf.Clamp(stars, 1, 3));
             result.completions++;
             SaveManager.Save();
@@ -107,13 +218,13 @@ namespace FootballRunner.Learning
             return index >= 0 && index + 1 < WordPack.PackOrder.Length ? WordPack.PackOrder[index + 1] : null;
         }
 
-        private static WorldResult FindResult(string pack, bool create)
+        private static WorldResult FindResult(string pack, int level, bool create)
         {
             List<WorldResult> results = SaveManager.Data.worldResults;
 
             for (int i = 0; i < results.Count; i++)
             {
-                if (results[i].pack == pack && results[i].language == Language)
+                if (results[i].pack == pack && results[i].level == level && results[i].language == Language)
                 {
                     return results[i];
                 }
@@ -124,7 +235,7 @@ namespace FootballRunner.Learning
                 return null;
             }
 
-            var result = new WorldResult { pack = pack, language = Language };
+            var result = new WorldResult { pack = pack, level = level, language = Language };
             results.Add(result);
             return result;
         }

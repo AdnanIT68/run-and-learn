@@ -12,8 +12,8 @@ namespace FootballRunner.Learning
     /// </summary>
     public class WordGoalUi : MonoBehaviour
     {
-        private float SlotSize => _goal > 5 ? 60f : 78f;
-        private float SlotGap => _goal > 5 ? 6f : 10f;
+        private float SlotSize => _goal > 8 ? 50f : _goal > 5 ? 60f : 78f;
+        private float SlotGap => _goal > 8 ? 5f : _goal > 5 ? 6f : 10f;
 
         private static readonly Color EmptyColour = new Color(1f, 1f, 1f, 0.45f);
         private static readonly Color FilledColour = new Color(1f, 1f, 1f, 0.95f);

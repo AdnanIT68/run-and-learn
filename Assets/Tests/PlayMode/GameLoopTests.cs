@@ -57,7 +57,7 @@ namespace FootballRunner.Tests
             string world = FootballRunner.Learning.LearningProgress.SelectedPack;
             string title = FootballRunner.Learning.WordPack.Load(world)
                 .Title(FootballRunner.Learning.LearningProgress.Language).ToUpperInvariant();
-            Assert.AreEqual(title, EnvironmentDirector.Instance.CurrentDisplayName);
+            StringAssert.StartsWith(title, EnvironmentDirector.Instance.CurrentDisplayName);
 
             AudioSource[] sources = Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
             for (int i = 0; i < sources.Length; i++)

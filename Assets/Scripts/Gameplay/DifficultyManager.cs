@@ -38,6 +38,9 @@ namespace FootballRunner.Gameplay
 
         public float ElapsedSeconds { get; private set; }
 
+        /// <summary>The world level being played (0 for level 1); later levels start faster and busier.</summary>
+        public int Level { get; private set; }
+
         public float WarmUpSeconds => warmUpSeconds;
 
         public bool IsWarmUp => ElapsedSeconds < warmUpSeconds;
@@ -120,6 +123,23 @@ namespace FootballRunner.Gameplay
             }
 
             Instance = this;
+
+            if (!Adventure.AdventureSession.IsActive)
+            {
+                ApplyLevel(Learning.LearningProgress.SelectedLevel);
+            }
+        }
+
+        /// <summary>
+        /// Each level is a little faster from the start, settles in sooner and has a
+        /// few more hazards. Level 5 starts about a quarter faster than level 1.
+        /// </summary>
+        public void ApplyLevel(int level)
+        {
+            Level = Mathf.Clamp(level, 0, 4);
+            startSpeed *= 1f + 0.06f * Level;
+            warmUpSeconds *= 1f - 0.15f * Level;
+            startObstacleChance = Mathf.Min(maxObstacleChance, startObstacleChance + 0.04f * Level);
         }
 
         private void OnDestroy()

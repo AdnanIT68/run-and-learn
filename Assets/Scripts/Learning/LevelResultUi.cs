@@ -101,10 +101,10 @@ namespace FootballRunner.Learning
             }
 
             int slots = WordChallengeDirector.Instance != null
-                ? Mathf.Clamp(WordChallengeDirector.Instance.GoalSize, 1, 8)
+                ? Mathf.Clamp(WordChallengeDirector.Instance.GoalSize, 1, 10)
                 : 5;
-            float spacing = slots > 5 ? 128f : 170f;
-            float slotSize = slots > 5 ? 112f : 140f;
+            float spacing = slots > 8 ? 105f : slots > 5 ? 128f : 170f;
+            float slotSize = slots > 8 ? 92f : slots > 5 ? 112f : 140f;
 
             for (int i = 0; i < slots; i++)
             {
@@ -140,7 +140,8 @@ namespace FootballRunner.Learning
             string language = LearningProgress.Language;
             bool homeIsBosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
 
-            _world.text = pack != null ? pack.Title(language) : "";
+            string levelWord = homeIsBosnian ? "Nivo" : "Level";
+            _world.text = pack != null ? $"{pack.Title(language)}  ·  {levelWord} {director.Level + 1}" : "";
             int coins = ScoreManager.Instance != null ? ScoreManager.Instance.CoinsCollected : 0;
             _coins.text = "+" + coins;
 
@@ -154,8 +155,8 @@ namespace FootballRunner.Learning
                 _wordPictures[i].enabled = _wordPictures[i].sprite != null;
             }
 
-            string next = pack != null ? LearningProgress.NextPack(pack.Name) : null;
-            _next.gameObject.SetActive(next != null && LearningProgress.IsPackUnlocked(next));
+            _next.gameObject.SetActive(pack != null &&
+                                       LearningProgress.TryGetNext(pack.Name, director.Level, out _, out _));
 
             _againLabel.text = homeIsBosnian ? "PONOVO" : "AGAIN";
             _nextLabel.text = homeIsBosnian ? "DALJE" : "NEXT";
@@ -205,13 +206,15 @@ namespace FootballRunner.Learning
             GameManager.Instance?.RestartRun();
         }
 
-        /// <summary>Same as tapping Next: opens the following world and starts its level.</summary>
+        /// <summary>Same as tapping Next: the following level, or level 1 of the next world after the last.</summary>
         public void Next()
         {
-            WordPack pack = WordChallengeDirector.Instance != null ? WordChallengeDirector.Instance.Pack : null;
-            string next = pack != null ? LearningProgress.NextPack(pack.Name) : null;
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            WordPack pack = director != null ? director.Pack : null;
 
-            if (next == null || !LearningProgress.SelectPack(next))
+            if (pack == null || !LearningProgress.TryGetNext(pack.Name, director.Level, out string nextPack,
+                    out int nextLevel) || !LearningProgress.SelectPack(nextPack) ||
+                !LearningProgress.SelectLevel(nextLevel))
             {
                 return;
             }

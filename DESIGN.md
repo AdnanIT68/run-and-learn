@@ -51,6 +51,15 @@ Prva verzija za objavu: samo svijet 1.
 - Crtanje: `Tools/.venv/Scripts/python.exe Tools/make_characters.py` → `Assets/Resources/Characters/<id>/` (9 sličica kao kod Rukajje + portrait). Pravila: šorc do koljena i štucne preko koljena, djevojčice duge rukave, neke sportski hidžab.
 - U igri `CharacterSkin` mijenja Rukajjine sličice istoimenim sličicama izabranog lika; kretanje i sudari ostaju isti. Prave ilustracije se mogu ubaciti kasnije pod istim imenima fajlova.
 
+## Nivoi u svijetu
+
+- Svaki svijet ima 5 nivoa (`LearningProgress.LevelsPerWorld`); nivo se otvara kad je prethodni završen.
+  Sljedeći svijet se otvara poslije nivoa 3 (`LevelToOpenNextWorld`) ili kad dijete zna svih 10 riječi svijeta.
+- Teži nivoi: više riječi do cilja (5, 6, 7, 8, 8; finale 8–10), brži start i kraće zagrijavanje
+  (`DifficultyManager.ApplyLevel`), češći posebni zadaci i kraći razmak između riječi (`WordChallengeDirector`).
+- Zvjezdice se čuvaju po nivou (`WorldResult.level`, 0 = nivo 1; stari zapisi vrijede kao nivo 1).
+  Ekran SVJETOVI: dva reda kartica s 5 zvjezdica (završeni nivoi) i red za izbor nivoa; DALJE vodi na sljedeći nivo.
+
 ## Dnevni poklon i zadaci
 
 - `Assets/Scripts/Learning/DailyRewards.cs`: poklon jednom dnevno po stazi od 7 dana (10, 15, 20, 25, 30, 40, 60 novčića);

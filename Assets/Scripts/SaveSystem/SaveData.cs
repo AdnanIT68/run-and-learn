@@ -30,6 +30,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>The word world the next run uses, e.g. "World1".</summary>
         public string selectedPack = "World1";
 
+        /// <summary>The level in that world the next run uses, 0 for level 1.</summary>
+        public int selectedLevel;
+
         /// <summary>Best stars per world and language, from finished levels.</summary>
         public List<WorldResult> worldResults = new List<WorldResult>();
 
@@ -69,11 +72,14 @@ namespace FootballRunner.SaveSystem
         public int missed;
     }
 
-    /// <summary>A world's best level result for one learned language.</summary>
+    /// <summary>One level's best result in a world, for one learned language.</summary>
     [Serializable]
     public class WorldResult
     {
         public string pack;
+
+        /// <summary>0 for level 1. Saves from before levels existed hold level 1 here.</summary>
+        public int level;
         public string language;
         public int stars;
         public int completions;

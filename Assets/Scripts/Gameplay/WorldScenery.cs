@@ -131,7 +131,9 @@ namespace FootballRunner.Gameplay
             WordPack pack = WordPack.Load(world);
             var theme = new AreaTheme
             {
-                displayName = pack != null ? pack.Title(LearningProgress.Language).ToUpperInvariant() : world,
+                displayName = (pack != null ? pack.Title(LearningProgress.Language).ToUpperInvariant() : world) +
+                              (LearningProgress.HomeLanguage == LearningProgress.Bosnian ? "  ·  NIVO " : "  ·  LEVEL ") +
+                              (LearningProgress.SelectedLevel + 1),
                 durationSeconds = 100000f,
                 cameraColor = _look.Sky,
                 backgroundTint = Color.white,

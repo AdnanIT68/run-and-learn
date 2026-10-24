@@ -9,13 +9,15 @@ using UnityEngine.UI;
 namespace FootballRunner.Learning
 {
     /// <summary>
-    /// World chooser on the main menu. Each world is a big picture card; locked
-    /// worlds say how many more words open them, in the language the child
-    /// already speaks. The chosen world is used by the next run and the album.
+    /// World chooser on the main menu. Each world is a big picture card with five
+    /// level dots; locked worlds say what opens them, in the language the child
+    /// already speaks. Under the cards, the chosen world's five levels can be
+    /// picked. The chosen world and level are used by the next run.
     /// </summary>
     public class WordWorldsUi : MonoBehaviour
     {
         private const float MaxCardSize = 420f;
+        private const float MaxCardSizeInTwoRows = 235f;
         private const float CardGap = 60f;
         private const float RowWidth = 1720f;
 
@@ -38,7 +40,20 @@ namespace FootballRunner.Learning
             public bool Unlocked;
         }
 
+        private class LevelButton
+        {
+            public RectTransform Root;
+            public Image Background;
+            public TMP_Text Number;
+            public Image Lock;
+            public Image[] Stars;
+        }
+
+        private static readonly Color LevelColour = new Color(1f, 0.98f, 0.92f, 1f);
+
         private readonly List<WorldCard> _cards = new List<WorldCard>();
+        private readonly List<LevelButton> _levels = new List<LevelButton>();
+        private TMP_Text _levelsLabel;
         private GameObject _panel;
         private TMP_Text _heading;
         private TMP_Text _backLabel;
@@ -120,6 +135,31 @@ namespace FootballRunner.Learning
             return true;
         }
 
+        public bool IsLevelUnlocked(int level)
+        {
+            return LearningProgress.IsLevelUnlocked(LearningProgress.SelectedPack, level);
+        }
+
+        /// <summary>Same as tapping a level button. Returns true when that level was chosen.</summary>
+        public bool PressLevel(int level)
+        {
+            if (level < 0 || level >= _levels.Count)
+            {
+                return false;
+            }
+
+            AudioManager.Instance?.PlayButton();
+
+            if (!LearningProgress.SelectLevel(level))
+            {
+                StartCoroutine(Wiggle(_levels[level].Root));
+                return false;
+            }
+
+            Refresh();
+            return true;
+        }
+
         private void LateUpdate()
         {
             // The language button on the menu can switch languages while this is closed.
@@ -176,14 +216,32 @@ namespace FootballRunner.Learning
                 60f, Color.white);
 
             string[] packs = WordPack.PackOrder;
-            // Cards shrink as worlds are added so the row always fits the screen.
-            _cardSize = Mathf.Min(MaxCardSize, (RowWidth - (packs.Length - 1) * CardGap) / packs.Length);
-            float totalWidth = packs.Length * _cardSize + (packs.Length - 1) * CardGap;
+            // Two rows once there are more than four worlds, leaving room for the level row below.
+            int columns = packs.Length > 4 ? Mathf.CeilToInt(packs.Length / 2f) : packs.Length;
+            int rows = Mathf.CeilToInt(packs.Length / (float)columns);
+            _cardSize = Mathf.Min(MaxCardSize, (RowWidth - (columns - 1) * CardGap) / columns,
+                rows > 1 ? MaxCardSizeInTwoRows : MaxCardSize);
+            float totalWidth = columns * _cardSize + (columns - 1) * CardGap;
+            float rowGap = 30f;
+            float topY = rows > 1 ? 125f + (_cardSize + rowGap) * 0.5f : 90f;
 
             for (int i = 0; i < packs.Length; i++)
             {
-                float x = -totalWidth * 0.5f + _cardSize * 0.5f + i * (_cardSize + CardGap);
-                _cards.Add(BuildCard(packs[i], i, new Vector2(x, -10f)));
+                int column = i % columns;
+                int row = i / columns;
+                float x = -totalWidth * 0.5f + _cardSize * 0.5f + column * (_cardSize + CardGap);
+                float y = topY - row * (_cardSize + rowGap);
+                _cards.Add(BuildCard(packs[i], i, new Vector2(x, y)));
+            }
+
+            // The chosen world's levels, as a row of numbered buttons under the cards.
+            _levelsLabel = CreateText(_panel.transform, "LevelsLabel", "", new Vector2(0f, -205f),
+                new Vector2(900f, 60f), 40f, Color.white);
+
+            for (int level = 0; level < LearningProgress.LevelsPerWorld; level++)
+            {
+                float x = (level - (LearningProgress.LevelsPerWorld - 1) * 0.5f) * 190f;
+                _levels.Add(BuildLevelButton(level, new Vector2(x, -340f)));
             }
 
             var back = new GameObject("Back", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image),
@@ -237,18 +295,58 @@ namespace FootballRunner.Learning
             };
 
             // Best stars from the world's level, across the top of the card.
-            card.Stars = new Image[3];
+            // One star per level, filled as levels are finished.
+            card.Stars = new Image[LearningProgress.LevelsPerWorld];
+            float starStep = _cardSize / 6f;
             for (int s = 0; s < card.Stars.Length; s++)
             {
                 card.Stars[s] = CreateImage(go.transform, "Star" + s, WordPack.Icon("star"),
-                    new Vector2((s - 1) * 52f * scale, 168f * scale), new Vector2(46f, 46f) * scale);
+                    new Vector2((s - (card.Stars.Length - 1) * 0.5f) * starStep, 168f * scale),
+                    new Vector2(starStep * 0.9f, starStep * 0.9f));
                 card.Stars[s].raycastTarget = false;
             }
 
+            // One line each, shrinking to fit, so long names never run into the level count.
+            card.Title.textWrappingMode = TextWrappingModes.NoWrap;
+            card.Detail.textWrappingMode = TextWrappingModes.NoWrap;
             card.Cover.raycastTarget = false;
             card.Lock.raycastTarget = false;
             Round(card.Background);
             return card;
+        }
+
+        private LevelButton BuildLevelButton(int level, Vector2 position)
+        {
+            var go = new GameObject("Level" + (level + 1), typeof(RectTransform), typeof(CanvasRenderer), typeof(Image),
+                typeof(Button));
+            go.transform.SetParent(_panel.transform, false);
+            var rect = go.GetComponent<RectTransform>();
+            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = position;
+            rect.sizeDelta = new Vector2(160f, 170f);
+            go.GetComponent<Button>().onClick.AddListener(() => PressLevel(level));
+
+            var button = new LevelButton
+            {
+                Root = rect,
+                Background = go.GetComponent<Image>(),
+                Number = CreateText(go.transform, "Number", (level + 1).ToString(), new Vector2(0f, 18f),
+                    new Vector2(140f, 100f), 80f, DarkText),
+                Lock = CreateImage(go.transform, "Lock", WordPack.Icon("lock"), new Vector2(0f, 18f),
+                    new Vector2(70f, 70f)),
+                Stars = new Image[3]
+            };
+
+            for (int s = 0; s < 3; s++)
+            {
+                button.Stars[s] = CreateImage(go.transform, "Star" + s, WordPack.Icon("star"),
+                    new Vector2((s - 1) * 40f, -55f), new Vector2(36f, 36f));
+                button.Stars[s].raycastTarget = false;
+            }
+
+            button.Lock.raycastTarget = false;
+            Round(button.Background);
+            return button;
         }
 
         private void Refresh()
@@ -271,25 +369,44 @@ namespace FootballRunner.Learning
                 card.Cover.color = card.Unlocked ? Color.white : new Color(0.1f, 0.12f, 0.12f, 0.55f);
                 card.Lock.enabled = !card.Unlocked && card.Lock.sprite != null;
 
-                int stars = LearningProgress.Stars(card.Pack);
+                // One star per finished level along the top of the card.
+                int done = LearningProgress.LevelsDone(card.Pack);
                 for (int s = 0; s < card.Stars.Length; s++)
                 {
                     card.Stars[s].enabled = card.Unlocked && card.Stars[s].sprite != null;
-                    card.Stars[s].color = s < stars ? Color.white : new Color(0f, 0f, 0f, 0.15f);
+                    card.Stars[s].color = s < done ? Color.white : new Color(0f, 0f, 0f, 0.15f);
                 }
                 card.Title.text = pack != null ? pack.Title(language) : card.Pack;
 
                 if (card.Unlocked)
                 {
-                    int learned = LearningProgress.LearnedCount(pack);
-                    int total = pack != null ? pack.Words.Count : 0;
-                    card.Detail.text = $"{learned} / {total}";
+                    card.Detail.text = homeIsBosnian
+                        ? $"Nivo {done}/{LearningProgress.LevelsPerWorld}"
+                        : $"Level {done}/{LearningProgress.LevelsPerWorld}";
                 }
                 else
                 {
-                    WordPack previous = WordPack.Load(WordPack.PackOrder[Mathf.Max(0, i - 1)]);
-                    int missing = Mathf.Max(1, LearningProgress.WordsToUnlockNext - LearningProgress.LearnedCount(previous));
-                    card.Detail.text = homeIsBosnian ? $"Nauči još {missing} riječi" : $"Learn {missing} more words";
+                    int level = LearningProgress.LevelToOpenNextWorld;
+                    card.Detail.text = homeIsBosnian ? $"Završi nivo {level}" : $"Finish level {level}";
+                }
+            }
+
+            int chosen = LearningProgress.SelectedLevel;
+            _levelsLabel.text = homeIsBosnian ? "Izaberi nivo" : "Pick a level";
+
+            for (int level = 0; level < _levels.Count; level++)
+            {
+                LevelButton button = _levels[level];
+                bool open = LearningProgress.IsLevelUnlocked(selected, level);
+                int stars = LearningProgress.Stars(selected, level);
+                button.Background.color = !open ? LockedColour : level == chosen ? SelectedColour : LevelColour;
+                button.Number.gameObject.SetActive(open);
+                button.Lock.enabled = !open && button.Lock.sprite != null;
+
+                for (int s = 0; s < button.Stars.Length; s++)
+                {
+                    button.Stars[s].enabled = open && button.Stars[s].sprite != null;
+                    button.Stars[s].color = s < stars ? Color.white : new Color(0f, 0f, 0f, 0.15f);
                 }
             }
         }

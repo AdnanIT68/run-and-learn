@@ -26,7 +26,7 @@ namespace FootballRunner.Tests
             data.worldResults.Clear();
             data.wordTutorialDone = true;
             data.learningLanguage = LearningProgress.Bosnian;
-            LearningProgress.RecordLevelComplete("World6", 1);
+            LearningProgress.RecordLevelComplete("World6", LearningProgress.LevelToOpenNextWorld - 1, 1);
             Assert.IsTrue(LearningProgress.SelectPack("World7"), "Finishing the mountain should open School.");
 
             yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);

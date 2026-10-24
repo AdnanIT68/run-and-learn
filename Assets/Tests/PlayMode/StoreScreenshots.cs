@@ -93,8 +93,8 @@ namespace FootballRunner.Tests
 
             // 5b. Letters at school.
             SetProgress(gardenWords: 7, farmWords: 6, english: false, homeWords: 6, bazaarWords: 6);
-            LearningProgress.RecordLevelComplete("World6", 2);
-            LearningProgress.RecordLevelComplete("World5", 2);
+            LearningProgress.RecordLevelComplete("World6", LearningProgress.LevelToOpenNextWorld - 1, 2);
+            LearningProgress.RecordLevelComplete("World5", LearningProgress.LevelToOpenNextWorld - 1, 2);
             LearningProgress.SelectPack("World7");
             yield return LoadScene("Game");
             yield return StartChallengeAndWait("World7", counting: false, kind: WordChallengeDirector.Kind.Letter);
