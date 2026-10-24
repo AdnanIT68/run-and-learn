@@ -12,7 +12,7 @@ Sve što se upisuje u Play Console je ovdje. Odgovori važe za verziju 1.0.0 (ve
 | Feature graphic 1024×500 | `Store/play/feature_graphic_1024x500.png` |
 | Snimke ekrana: 8 po jeziku, svaka s menijem na svom jeziku | `Store/play/screenshots/en`, `hr`, `de` |
 | Tekst opisa (en-US, hr = bosanski, de-DE) | `Store/listing.md` |
-| Politika privatnosti | `Store/privacy-policy.html` (treba je staviti na web, vidi korak 2) |
+| Politika privatnosti (objavljena) | **https://sites.google.com/view/runandlearn-privacy** (Google Sites, nalog trmadagaskar@gmail.com) |
 
 ## 1. Napravi aplikaciju
 
@@ -25,10 +25,8 @@ Play Console → **Create app**
 
 ## 2. Politika privatnosti (URL)
 
-Play traži javnu web adresu. `Store/privacy-policy.html` je gotova (engleski, bosanski, njemački).
-Prije postavljanja zamijeni `CONTACT_EMAIL` (3 mjesta) adresom za kontakt.
-Mogućnosti: Google Sites (besplatno, oko 5 minuta) ili GitHub Pages. Adresu upiši u
-**Policy → App content → Privacy policy**.
+Gotovo: **https://sites.google.com/view/runandlearn-privacy**. Upiši je u
+**Policy → App content → Privacy policy**. Izmjene: sites.google.com → Run and Learn → Objavi.
 
 ## 3. App content (Policy → App content)
 

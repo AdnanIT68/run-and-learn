@@ -156,10 +156,10 @@ Neue Welten mit neuen Wörtern sind in Arbeit.
 
 ## Status before publishing
 
-Done: privacy policy (`Store/privacy-policy.html`), answers for Data safety, target audience
+Done: privacy policy online at https://sites.google.com/view/runandlearn-privacy, answers for Data safety, target audience
 and content rating (`Store/play-console-vodic.md`), no INTERNET permission, upload key outside
 the project, Twemoji credit in Settings and in the descriptions, 8 phone screenshots per language
 (`Store/play/screenshots/<en|hr|de>/`).
 
-Owner: put the privacy policy online, create the app in Play Console, upload the .aab.
+Owner: create the app in Play Console, upload the .aab.
 Before production: replace the edge-tts voices (Azure Speech or family recordings).
