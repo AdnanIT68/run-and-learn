@@ -41,6 +41,7 @@ namespace FootballRunner.UI
         private Button _languageButton;
         private Toggle _vibrationToggle;
         private string _languageLabelPack;
+        private bool _creditsBuilt;
 
         private void LateUpdate()
         {
@@ -84,6 +85,7 @@ namespace FootballRunner.UI
             EnsureHowToPlayUi();
             EnsureLanguageButton();
             EnsureVibrationToggle();
+            EnsureCredits();
             WordAlbumUi.EnsureOnCanvas(transform, ResolveFont());
             WordWorldsUi.EnsureOnCanvas(transform, ResolveFont());
             CharacterChooserUi.EnsureOnCanvas(transform, ResolveFont());
@@ -276,6 +278,56 @@ namespace FootballRunner.UI
             {
                 label.text = "VIBRATION";
             }
+        }
+
+        /// <summary>
+        /// Twemoji pictures are CC BY 4.0, which asks for a visible credit; it sits
+        /// quietly at the bottom of Settings.
+        /// </summary>
+        private void EnsureCredits()
+        {
+            if (soundToggle == null || _creditsBuilt)
+            {
+                return;
+            }
+
+            _creditsBuilt = true;
+            var go = new GameObject("Credits", typeof(RectTransform));
+            go.transform.SetParent(soundToggle.transform.parent, false);
+            var rect = go.GetComponent<RectTransform>();
+            var sound = soundToggle.GetComponent<RectTransform>();
+            rect.anchorMin = sound.anchorMin;
+            rect.anchorMax = sound.anchorMax;
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.sizeDelta = new Vector2(600f, 44f);
+            rect.anchoredPosition = new Vector2(0f, sound.anchoredPosition.y - 175f);
+
+            // Along the bottom edge of the Settings card (the Close button's parent), under the button.
+            Transform card = closeSettingsButton != null ? closeSettingsButton.transform.parent : null;
+            if (card != null && card != settingsPanel?.transform)
+            {
+                go.transform.SetParent(card, false);
+                rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0f);
+                rect.pivot = new Vector2(0.5f, 0f);
+                rect.anchoredPosition = new Vector2(0f, 6f);
+            }
+
+            var text = go.AddComponent<TextMeshProUGUI>();
+            TMP_Text sample = soundToggle.GetComponentInChildren<TMP_Text>();
+            if (sample != null)
+            {
+                text.font = sample.font;
+            }
+
+            text.text = "Pictures / Slike: Twemoji © Twitter, Inc. and contributors, CC BY 4.0\n" +
+                        "Sounds / Zvukovi: Kenney, CC0  ·  Font: Titan One, OFL";
+            text.fontSize = 20f;
+            text.enableAutoSizing = true;
+            text.fontSizeMin = 12f;
+            text.fontSizeMax = 20f;
+            text.alignment = TextAlignmentOptions.Center;
+            text.color = new Color(1f, 1f, 1f, 0.7f);
+            text.raycastTarget = false;
         }
 
         private static string LanguageLabel()

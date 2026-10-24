@@ -27,6 +27,12 @@ namespace FootballRunner.EditorTools
         public const string CompanyName = "Rukajja Games";
         public const string ApplicationId = "com.rukajja.runlearn";
 
+        /// <summary>Shown to players. Raise with every Play upload, together with VersionCode.</summary>
+        public const string VersionName = "1.0.0";
+
+        /// <summary>Play's internal number; every upload must be higher than the last.</summary>
+        public const int VersionCode = 1;
+
         [MenuItem("Tools/Football Runner/4 - Configure Android")]
         public static void Configure()
         {
@@ -92,10 +98,12 @@ namespace FootballRunner.EditorTools
             PlayerSettings.allowedAutorotateToLandscapeLeft = true;
             PlayerSettings.allowedAutorotateToLandscapeRight = true;
 
-            if (PlayerSettings.Android.bundleVersionCode < 1)
-            {
-                PlayerSettings.Android.bundleVersionCode = 1;
-            }
+            PlayerSettings.bundleVersion = VersionName;
+            PlayerSettings.Android.bundleVersionCode = VersionCode;
+
+            // The game never goes online; RemoveInternetPermission strips what Unity adds anyway.
+            PlayerSettings.Android.forceInternetPermission = false;
+            PlayerSettings.Android.preferredInstallLocation = AndroidPreferredInstallLocation.Auto;
 
             ConfigureIcons(android);
         }

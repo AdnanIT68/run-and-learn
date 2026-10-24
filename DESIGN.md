@@ -51,6 +51,15 @@ Prva verzija za objavu: samo svijet 1.
 - Crtanje: `Tools/.venv/Scripts/python.exe Tools/make_characters.py` → `Assets/Resources/Characters/<id>/` (9 sličica kao kod Rukajje + portrait). Pravila: šorc do koljena i štucne preko koljena, djevojčice duge rukave, neke sportski hidžab.
 - U igri `CharacterSkin` mijenja Rukajjine sličice istoimenim sličicama izabranog lika; kretanje i sudari ostaju isti. Prave ilustracije se mogu ubaciti kasnije pod istim imenima fajlova.
 
+## Objava na Google Play
+
+- Vodič s odgovorima za Play Console: `Store/play-console-vodic.md`; politika privatnosti: `Store/privacy-policy.html`.
+- Build za upload: `CommandLineBuild.BuildAndroidBundle` → `Builds/RunAndLearn-<verzija>-<code>.aab`, potpisan upload ključem
+  iz `%USERPROFILE%\RunAndLearnSigning` (van projekta, nikad u git). Verzija: `AndroidSetup.VersionName` / `VersionCode`.
+- Igra nema dozvolu za internet (`Assets/Editor/RemoveInternetPermission.cs`); jedina dozvola je vibracija.
+- Prije produkcije: glasovi su napravljeni preko edge-tts (bez komercijalne licence) i treba ih zamijeniti
+  Azure Speech glasovima ili snimcima porodice (isti nazivi fajlova).
+
 ## Build za telefon
 
 ```

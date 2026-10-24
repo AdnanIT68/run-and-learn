@@ -52,6 +52,17 @@ namespace FootballRunner.Tests
             yield return new WaitForSecondsRealtime(0.5f);
             yield return Capture("Players_Menu");
 
+            // Settings carry the picture credits; check they fit.
+            GameObject settings = Resources.FindObjectsOfTypeAll<GameObject>()
+                .FirstOrDefault(go => go.name == "SettingsPanel" && go.scene.IsValid());
+            if (settings != null)
+            {
+                settings.SetActive(true);
+                settings.transform.SetAsLastSibling();
+                yield return Capture("Menu_Settings");
+                settings.SetActive(false);
+            }
+
             CharacterChooserUi chooser = Object.FindFirstObjectByType<CharacterChooserUi>();
             chooser.Open();
             yield return null;
