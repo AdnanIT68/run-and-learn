@@ -31,6 +31,7 @@ namespace FootballRunner.Tests
         public IEnumerator Prepare()
         {
             _saveBefore = JsonUtility.ToJson(SaveManager.Data);
+            FootballRunner.UI.DailyUi.AutoOpen = false;
             Time.timeScale = 1f;
             AdventureSession.Clear();
             yield return null;

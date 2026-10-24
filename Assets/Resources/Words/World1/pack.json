@@ -86,5 +86,13 @@
       "en": "Well done! Goal complete!"
     }
   ],
-  "counts": []
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
 }

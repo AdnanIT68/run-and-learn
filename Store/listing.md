@@ -39,6 +39,7 @@ What's inside:
 • School: letters, numbers from one to ten, and first reading.
 • Night Sky, the finale: stars, moon and rockets, plus a review of everything learned in every world.
 • A team of ten young footballers to play as: Rukajja, Emir and Amina from the start, seven more to unlock with the coins you collect.
+• A daily gift and three small tasks every day, such as Catch 8 words, with coins shown in advance. Missing a day never takes anything away.
 • Pepi the parrot flies along, cheers and shows the way on the very first word.
 • A sticker album where every learned word is saved; tap a sticker to hear it again.
 • Stars for every word your child really knows.
@@ -84,6 +85,7 @@ Dva smjera, jedna igra:
 • Škola: slova, brojevi od jedan do deset i prvo čitanje.
 • Noćno nebo, finale: zvijezde, mjesec i rakete, uz ponavljanje svega naučenog u svim svjetovima.
 • Ekipa od deset malih fudbalera: Rukajja, Emir i Amina odmah, još sedam se otključava skupljenim novčićima.
+• Dnevni poklon i tri mala zadatka svaki dan, npr. Uhvati 8 riječi, s unaprijed poznatim novčićima. Propušten dan ništa ne oduzima.
 • Papagaj Pepi leti uz Rukajju, raduje se i pokazuje put na prvoj riječi.
 • Album sličica u kojem ostaje svaka naučena riječ; dodirom je ponovo čuješ.
 • Zvjezdice za riječi koje dijete stvarno zna.
@@ -129,6 +131,7 @@ Das steckt drin:
 • Schule: Buchstaben, Zahlen von eins bis zehn und erstes Lesen.
 • Nachthimmel, das Finale: Sterne, Mond und Raketen, dazu eine Wiederholung von allem, was in allen Welten gelernt wurde.
 • Ein Team aus zehn jungen Fußballern: Rukajja, Emir und Amina von Anfang an, sieben weitere mit gesammelten Münzen freischalten.
+• Ein tägliches Geschenk und drei kleine Aufgaben pro Tag, z. B. Fang 8 Wörter, mit vorher sichtbaren Münzen. Ein verpasster Tag nimmt nichts weg.
 • Papagei Pepi fliegt mit, jubelt und zeigt beim ersten Wort den Weg.
 • Ein Stickeralbum, in dem jedes gelernte Wort bleibt; antippen und erneut hören.
 • Sterne für jedes Wort, das dein Kind wirklich kann.

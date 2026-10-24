@@ -19,11 +19,16 @@ namespace FootballRunner.Tests
     [Timeout(60000)]
     public class WordChallengeTests
     {
+        private string _packBefore;
+
         [UnitySetUp]
         public IEnumerator LoadGameScene()
         {
             Time.timeScale = 1f;
             AdventureSession.Clear();
+            // These tests describe the garden's plain word challenges, whatever world the save had chosen.
+            _packBefore = SaveManager.Data.selectedPack;
+            SaveManager.Data.selectedPack = WordPack.DefaultPack;
             yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
             yield return null;
         }
@@ -42,6 +47,7 @@ namespace FootballRunner.Tests
             Time.timeScale = 1f;
             // Tests flip the guide flag; leave the developer's own save as it was.
             SaveManager.Data.wordTutorialDone = _tutorialDoneBefore;
+            SaveManager.Data.selectedPack = _packBefore ?? WordPack.DefaultPack;
             SaveManager.Save();
         }
 

@@ -81,6 +81,7 @@ namespace FootballRunner.Core
             Learning.PepiCompanion.EnsureOn();
             Effects.GameFeel.EnsureOn(gameObject);
             FootballRunner.Player.CharacterSkin.EnsureOn(gameObject);
+            Learning.DailyMissionTracker.EnsureOn(gameObject);
             if (Adventure.AdventureSession.IsActive)
             {
                 Adventure.AdventureCourse.EnsureOn(gameObject);

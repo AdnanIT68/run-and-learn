@@ -2,24 +2,32 @@
 
 For every word in a pack JSON this writes:
   Assets/Resources/Words/<Pack>/Pictures/<id>.png   (256 px, from Twemoji SVG)
-  Assets/Resources/Words/<Pack>/Audio/<lang>/<id>.ogg (neural TTS placeholder)
+  Assets/Resources/Words/<Pack>/Audio/<lang>/<id>.ogg (neural TTS)
   Assets/Resources/Words/<Pack>/pack.json            (manifest read at runtime)
 
-The pictures and voices are placeholders for the prototype. Family recordings
-and art in Rukajja's style replace them later without code changes, as long
-as the file names stay the same.
+Voices come from Azure Speech (licensed for use in the app) when the key file
+~/RunAndLearnSigning/azure-speech.txt holds key= and region=;
+without it they fall back to edge-tts, which is only fit for prototypes.
+Family recordings and art in Rukajja's style can replace the files later
+without code changes, as long as the names stay the same.
 
 Usage:
   Tools/.venv/Scripts/python.exe Tools/generate_words.py Tools/words_world1.json
+  Tools/.venv/Scripts/python.exe Tools/generate_words.py --revoice Tools/words_world*.json
+    (--revoice records every voice again, e.g. after switching to Azure)
 """
 
 import asyncio
 import json
+import os
 import subprocess
 import sys
 import tempfile
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 import edge_tts
 import resvg_py
@@ -40,6 +48,8 @@ ICONS = {
     "star": "2b50",
     "lock": "1f512",
     "parrot": "1f99c",
+    "gift": "1f381",
+    "target": "1f3af",
 }
 VOICES = {
     "bs": "bs-BA-VesnaNeural",
@@ -47,6 +57,65 @@ VOICES = {
 }
 # Slower than default so small children can hear every sound.
 SPEECH_RATE = "-15%"
+AZURE_KEY_FILE = Path(os.environ.get("USERPROFILE", str(Path.home()))) / "RunAndLearnSigning" / "azure-speech.txt"
+# The free Azure tier allows 20 requests a minute.
+AZURE_MIN_GAP = 3.2
+REVOICE = False
+_last_azure_call = 0.0
+
+
+def azure_settings():
+    """key and region from the key file kept outside the project, or None."""
+    if not AZURE_KEY_FILE.exists():
+        return None
+
+    values = {}
+    for line in AZURE_KEY_FILE.read_text(encoding="utf-8").splitlines():
+        if "=" in line and not line.lstrip().startswith("#"):
+            name, value = line.split("=", 1)
+            values[name.strip()] = value.strip()
+
+    return values if values.get("key") and values.get("region") else None
+
+
+AZURE = azure_settings()
+
+
+def azure_speak(text: str, voice: str, target: Path) -> None:
+    """One phrase from Azure Speech as MP3, waiting out the free tier's rate limit."""
+    global _last_azure_call
+    locale = voice[:5]
+    ssml = (f"<speak version='1.0' xml:lang='{locale}'><voice name='{voice}'>"
+            f"<prosody rate='{SPEECH_RATE}'>{escape(text)}</prosody></voice></speak>")
+    request = urllib.request.Request(
+        f"https://{AZURE['region']}.tts.speech.microsoft.com/cognitiveservices/v1",
+        data=ssml.encode("utf-8"),
+        headers={
+            "Ocp-Apim-Subscription-Key": AZURE["key"],
+            "Content-Type": "application/ssml+xml",
+            "X-Microsoft-OutputFormat": "audio-24khz-96kbitrate-mono-mp3",
+            "User-Agent": "RunAndLearnContent",
+        },
+    )
+
+    for attempt in range(6):
+        wait = AZURE_MIN_GAP - (time.monotonic() - _last_azure_call)
+        if wait > 0:
+            time.sleep(wait)
+        _last_azure_call = time.monotonic()
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                target.write_bytes(response.read())
+            return
+        except urllib.error.HTTPError as error:
+            # 429: over the free tier's rate; anything else is worth a short retry too.
+            if error.code in (401, 403) or attempt == 5:
+                raise
+            time.sleep(10 * (attempt + 1))
+        except urllib.error.URLError:
+            if attempt == 5:
+                raise
+            time.sleep(5 * (attempt + 1))
 
 
 def render_picture(code: str, target: Path) -> None:
@@ -84,21 +153,24 @@ def initial(word: str) -> str:
 
 
 async def speak(text: str, voice: str, target: Path) -> None:
-    if target.exists():
+    if target.exists() and not REVOICE:
         return
 
     with tempfile.TemporaryDirectory() as tmp:
         raw = Path(tmp) / "raw.mp3"
 
-        # The speech service drops connections now and then; retry before giving up.
-        for attempt in range(4):
-            try:
-                await edge_tts.Communicate(text, voice, rate=SPEECH_RATE).save(str(raw))
-                break
-            except Exception:
-                if attempt == 3:
-                    raise
-                await asyncio.sleep(3 * (attempt + 1))
+        if AZURE:
+            azure_speak(text, voice, raw)
+        else:
+            # The free edge-tts service drops connections now and then; retry before giving up.
+            for attempt in range(4):
+                try:
+                    await edge_tts.Communicate(text, voice, rate=SPEECH_RATE).save(str(raw))
+                    break
+                except Exception:
+                    if attempt == 3:
+                        raise
+                    await asyncio.sleep(3 * (attempt + 1))
 
         # Trim leading/trailing silence so the word lands the moment it is triggered.
         subprocess.run(
@@ -200,4 +272,10 @@ async def main(pack_file: Path) -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main(Path(sys.argv[1])))
+    arguments = sys.argv[1:]
+    if "--revoice" in arguments:
+        REVOICE = True
+        arguments.remove("--revoice")
+    print("voices:", "Azure Speech (" + AZURE["region"] + ")" if AZURE else "edge-tts (prototype only)")
+    for pack_file in arguments:
+        asyncio.run(main(Path(pack_file)))

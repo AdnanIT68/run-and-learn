@@ -27,6 +27,7 @@ namespace FootballRunner.Tests
         public IEnumerator Prepare()
         {
             _saveBefore = JsonUtility.ToJson(SaveManager.Data);
+            FootballRunner.UI.DailyUi.AutoOpen = false;
             yield return null;
         }
 
@@ -62,6 +63,14 @@ namespace FootballRunner.Tests
                 yield return Capture("Menu_Settings");
                 settings.SetActive(false);
             }
+
+            // TODAY with one task half done.
+            FootballRunner.Learning.DailyRewards.Report(FootballRunner.Learning.DailyRewards.Kind.CatchWords, 3);
+            DailyUi daily = Object.FindFirstObjectByType<DailyUi>();
+            daily.Open();
+            yield return null;
+            yield return Capture("Menu_Today");
+            daily.Close();
 
             CharacterChooserUi chooser = Object.FindFirstObjectByType<CharacterChooserUi>();
             chooser.Open();

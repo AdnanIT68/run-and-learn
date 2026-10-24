@@ -89,6 +89,7 @@ namespace FootballRunner.UI
             WordAlbumUi.EnsureOnCanvas(transform, ResolveFont());
             WordWorldsUi.EnsureOnCanvas(transform, ResolveFont());
             CharacterChooserUi.EnsureOnCanvas(transform, ResolveFont());
+            DailyUi.EnsureOnCanvas(transform);
             MainMenuStyle.Apply(transform, playButton, settingsButton, quitButton, howToPlayButton,
                 highScoreText, totalCoinsText);
 

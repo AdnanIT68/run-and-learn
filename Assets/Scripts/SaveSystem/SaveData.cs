@@ -33,8 +33,30 @@ namespace FootballRunner.SaveSystem
         /// <summary>Best stars per world and language, from finished levels.</summary>
         public List<WorldResult> worldResults = new List<WorldResult>();
 
-        /// <summary>Reserved for future skins and cosmetics.</summary>
+        /// <summary>Bought players ("character_harun") and future cosmetics.</summary>
         public List<string> unlockedItems = new List<string>();
+
+        /// <summary>Day ("yyyy-MM-dd") the daily gift was last taken.</summary>
+        public string dailyGiftDate = "";
+
+        /// <summary>Next day on the seven-day gift track, 0 to 6.</summary>
+        public int dailyGiftStep;
+
+        /// <summary>Day today's three tasks belong to.</summary>
+        public string missionDate = "";
+
+        public List<DailyMission> missions = new List<DailyMission>();
+    }
+
+    /// <summary>One of the day's small tasks and how far the child got.</summary>
+    [Serializable]
+    public class DailyMission
+    {
+        public string kind;
+        public int target;
+        public int progress;
+        public int reward;
+        public bool done;
     }
 
     /// <summary>How often one word was caught or missed, per learned language.</summary>

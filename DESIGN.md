@@ -51,6 +51,15 @@ Prva verzija za objavu: samo svijet 1.
 - Crtanje: `Tools/.venv/Scripts/python.exe Tools/make_characters.py` → `Assets/Resources/Characters/<id>/` (9 sličica kao kod Rukajje + portrait). Pravila: šorc do koljena i štucne preko koljena, djevojčice duge rukave, neke sportski hidžab.
 - U igri `CharacterSkin` mijenja Rukajjine sličice istoimenim sličicama izabranog lika; kretanje i sudari ostaju isti. Prave ilustracije se mogu ubaciti kasnije pod istim imenima fajlova.
 
+## Dnevni poklon i zadaci
+
+- `Assets/Scripts/Learning/DailyRewards.cs`: poklon jednom dnevno po stazi od 7 dana (10, 15, 20, 25, 30, 40, 60 novčića);
+  propušten dan ne vraća na početak. Tri zadatka dnevno (uvijek „Uhvati 8 riječi“, plus nivo/3 zvjezdice i
+  novčići/nove riječi po danu), nagrade fiksne i vidljive unaprijed, bez nasumičnih nagrada.
+- `DailyMissionTracker` (na GameManageru) broji uhvaćene i nove riječi, novčiće i završene nivoe; `MissionToastUi`
+  pokaže poruku u igri; `Assets/Scripts/UI/DailyUi.cs` je ekran DANAS (ikona poklona u meniju, sam se otvori
+  prvi put u danu dok poklon čeka).
+
 ## Objava na Google Play
 
 - Vodič s odgovorima za Play Console: `Store/play-console-vodic.md`; politika privatnosti: `Store/privacy-policy.html`.

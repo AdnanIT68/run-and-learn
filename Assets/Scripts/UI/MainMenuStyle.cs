@@ -70,6 +70,8 @@ namespace FootballRunner.UI
             StyleRoundIcon(settings, new Vector2(-150f, 80f), Load("icon_settings"));
             StyleRoundIcon(howToPlay, new Vector2(-290f, 80f), Load("icon_help"));
             StyleRoundIcon(quit, new Vector2(-10f, 80f), Load("icon_exit"));
+            StyleRoundIcon(layer.Find("TodayButton")?.GetComponent<Button>(), new Vector2(-430f, 80f),
+                WordPack.Icon("gift"));
 
             BuildChip(layer, best, Load("icon_trophy"), new Vector2(-470f, -60f));
             BuildChip(layer, coins, Load("icon_coin"), new Vector2(-230f, -60f));
