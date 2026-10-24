@@ -310,16 +310,15 @@ namespace FootballRunner.UI
                 return;
             }
 
-            bool bosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
             bool ready = DailyRewards.GiftReady;
             int step = DailyRewards.GiftStep;
             // Gifts already taken in this round of seven; a finished round shows all seven.
             int taken = ready ? step : step == 0 ? DailyRewards.GiftTrack.Length : step;
 
-            _heading.text = bosnian ? "DANAS" : "TODAY";
-            _giftLabel.text = bosnian ? "Dnevni poklon" : "Daily gift";
-            _tasksLabel.text = bosnian ? "Zadaci za danas" : "Today's tasks";
-            _backLabel.text = bosnian ? "NAZAD" : "BACK";
+            _heading.text = LearningProgress.Ui("DANAS", "TODAY", "HEUTE");
+            _giftLabel.text = LearningProgress.Ui("Dnevni poklon", "Daily gift", "Tagesgeschenk");
+            _tasksLabel.text = LearningProgress.Ui("Zadaci za danas", "Today's tasks", "Aufgaben für heute");
+            _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
             _coins.text = SaveManager.Data.totalCoins.ToString();
 
             for (int i = 0; i < _tiles.Count; i++)
@@ -329,14 +328,14 @@ namespace FootballRunner.UI
                 bool isToday = ready && i == step;
                 tile.Background.color = isTaken ? TakenColour : isToday ? TodayColour : TileColour;
                 tile.Check.enabled = isTaken && tile.Check.sprite != null;
-                tile.Day.text = (bosnian ? "Dan " : "Day ") + (i + 1);
+                tile.Day.text = LearningProgress.Ui("Dan ", "Day ", "Tag ") + (i + 1);
             }
 
             _claim.interactable = ready;
             _claimImage.color = ready ? new Color(0.27f, 0.74f, 0.32f) : new Color(0.55f, 0.5f, 0.62f);
             _claimLabel.text = ready
-                ? (bosnian ? "UZMI +" : "TAKE +") + DailyRewards.NextGift
-                : bosnian ? "Sutra novi poklon" : "New gift tomorrow";
+                ? LearningProgress.Ui("UZMI +", "TAKE +", "NIMM +") + DailyRewards.NextGift
+                : LearningProgress.Ui("Sutra novi poklon", "New gift tomorrow", "Morgen gibt es ein neues Geschenk");
 
             IReadOnlyList<DailyMission> missions = DailyRewards.Missions;
 
@@ -355,7 +354,7 @@ namespace FootballRunner.UI
                 row.Background.color = mission.done ? DoneRowColour : TileColour;
                 row.Icon.sprite = WordPack.Icon(mission.done ? "check" : "target");
                 row.Icon.enabled = row.Icon.sprite != null;
-                row.Task.text = DailyRewards.Describe(mission, bosnian);
+                row.Task.text = DailyRewards.Describe(mission);
                 row.Progress.text = $"{mission.progress}/{mission.target}";
                 row.Reward.text = "+" + mission.reward;
             }

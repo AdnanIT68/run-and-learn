@@ -2,89 +2,114 @@
   "pack": "World3",
   "title_bs": "Naša kuća",
   "title_en": "Our Home",
+  "title_de": "Unser Zuhause",
   "words": [
     {
       "id": "mom",
       "bs": "mama",
-      "en": "mom"
+      "en": "mom",
+      "de": "die Mama"
     },
     {
       "id": "dad",
       "bs": "tata",
-      "en": "dad"
+      "en": "dad",
+      "de": "der Papa"
     },
     {
       "id": "grandma",
       "bs": "nena",
-      "en": "grandma"
+      "en": "grandma",
+      "de": "die Oma"
     },
     {
       "id": "grandpa",
       "bs": "dedo",
-      "en": "grandpa"
+      "en": "grandpa",
+      "de": "der Opa"
     },
     {
       "id": "sister",
       "bs": "sestra",
-      "en": "sister"
+      "en": "sister",
+      "de": "die Schwester"
     },
     {
       "id": "brother",
       "bs": "brat",
-      "en": "brother"
+      "en": "brother",
+      "de": "der Bruder"
     },
     {
       "id": "baby",
       "bs": "beba",
-      "en": "baby"
+      "en": "baby",
+      "de": "das Baby"
     },
     {
       "id": "house",
       "bs": "kuća",
-      "en": "house"
+      "en": "house",
+      "de": "das Haus"
     },
     {
       "id": "bread",
       "bs": "hljeb",
-      "en": "bread"
+      "en": "bread",
+      "de": "das Brot"
     },
     {
       "id": "milk",
       "bs": "mlijeko",
-      "en": "milk"
+      "en": "milk",
+      "de": "die Milch"
     }
   ],
   "phrases": [
     {
       "id": "praise_1",
       "bs": "Bravo!",
-      "en": "Great job!"
+      "en": "Great job!",
+      "de": "Toll!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
-      "en": "That's right!"
+      "en": "That's right!",
+      "de": "Richtig!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "de": "Super!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
-      "en": "Listen to the word, then jump into the right picture!"
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
-      "en": "Well done! Goal complete!"
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!"
     }
   ],
-  "counts": []
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
 }

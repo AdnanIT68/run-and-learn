@@ -132,7 +132,7 @@ namespace FootballRunner.Gameplay
             var theme = new AreaTheme
             {
                 displayName = (pack != null ? pack.Title(LearningProgress.Language).ToUpperInvariant() : world) +
-                              (LearningProgress.HomeLanguage == LearningProgress.Bosnian ? "  ·  NIVO " : "  ·  LEVEL ") +
+                              LearningProgress.Ui("  ·  NIVO ", "  ·  LEVEL ", "  ·  LEVEL ") +
                               (LearningProgress.SelectedLevel + 1),
                 durationSeconds = 100000f,
                 cameraColor = _look.Sky,

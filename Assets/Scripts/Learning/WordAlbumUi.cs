@@ -297,7 +297,7 @@ namespace FootballRunner.Learning
 
             _title.text = $"ALBUM  ·  {_pack.Title(language)}";
             _counter.text = $"{learned} / {_cards.Count}";
-            _backLabel.text = LearningProgress.HomeLanguage == LearningProgress.Bosnian ? "NAZAD" : "BACK";
+            _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
         }
 
         /// <summary>One star for the first catch, more as the word keeps being caught.</summary>

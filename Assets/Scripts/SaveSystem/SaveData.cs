@@ -22,6 +22,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>"bs" when the child is learning Bosnian, "en" when learning English.</summary>
         public string learningLanguage = "bs";
 
+        /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
+        public string homeLanguage = "en";
+
         public List<WordProgress> wordProgress = new List<WordProgress>();
 
         /// <summary>Set once the child has caught a first word with the guided intro.</summary>

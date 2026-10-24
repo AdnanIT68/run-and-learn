@@ -23,6 +23,7 @@ namespace FootballRunner.Learning
         private TMP_Text _task;
         private TMP_Text _coins;
         private Coroutine _routine;
+        private Vector2 _home = new Vector2(-90f, -170f);
 
         public bool IsShowing => _group != null && _group.alpha > 0.01f;
 
@@ -93,11 +94,14 @@ namespace FootballRunner.Learning
             while (_queue.Count > 0)
             {
                 DailyMission mission = _queue.Dequeue();
-                bool bosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
-                _task.text = DailyRewards.Describe(mission, bosnian);
+                _task.text = DailyRewards.Describe(mission);
                 _coins.text = "+" + mission.reward;
-                // Above the result screen if a level just ended.
+                // Above the result screen if a level just ended, under its card so nothing is hidden.
                 _card.SetAsLastSibling();
+                bool results = Core.GameManager.Instance != null &&
+                               Core.GameManager.Instance.State == Core.GameState.LevelComplete;
+                _card.anchorMin = _card.anchorMax = _card.pivot = results ? new Vector2(0.5f, 0f) : new Vector2(1f, 1f);
+                _home = results ? new Vector2(0f, 14f) : new Vector2(-90f, -170f);
                 AudioManager.Instance?.PlayCoin();
                 Haptics.Light();
 
@@ -118,7 +122,7 @@ namespace FootballRunner.Learning
                 elapsed += Time.unscaledDeltaTime;
                 float t = Mathf.Clamp01(elapsed / seconds);
                 _group.alpha = Mathf.Lerp(from, to, t);
-                _card.anchoredPosition = new Vector2(-90f + (1f - _group.alpha) * 80f, -170f);
+                _card.anchoredPosition = _home + new Vector2((1f - _group.alpha) * 80f, 0f);
                 yield return null;
             }
 

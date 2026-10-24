@@ -51,6 +51,15 @@ Prva verzija za objavu: samo svijet 1.
 - Crtanje: `Tools/.venv/Scripts/python.exe Tools/make_characters.py` → `Assets/Resources/Characters/<id>/` (9 sličica kao kod Rukajje + portrait). Pravila: šorc do koljena i štucne preko koljena, djevojčice duge rukave, neke sportski hidžab.
 - U igri `CharacterSkin` mijenja Rukajjine sličice istoimenim sličicama izabranog lika; kretanje i sudari ostaju isti. Prave ilustracije se mogu ubaciti kasnije pod istim imenima fajlova.
 
+## Jezici
+
+- Načini igranja (`LearningProgress.Pairs`): uči bosanski uz meni na engleskom ili njemačkom; uči engleski
+  ili njemački uz meni na bosanskom. Dugme za jezik u meniju ih redom mijenja i ponovo učita meni.
+- Sadržaj: svako polje ima `bs`, `en`, `de` u `Tools/words_world*.json`; njemačke imenice idu s članom
+  (der Apfel), a slovo se uzima iz imenice (`WordEntry.Initial`). Glas za njemački: de-DE-KatjaNeural.
+- Natpisi: kod koristi `LearningProgress.Ui(bs, en, de)`; stari natpisi iz scena (SCORE, PAUSED…) se prevode
+  u `UI/SceneTextLocalizer.cs`.
+
 ## Nivoi u svijetu
 
 - Svaki svijet ima 5 nivoa (`LearningProgress.LevelsPerWorld`); nivo se otvara kad je prethodni završen.

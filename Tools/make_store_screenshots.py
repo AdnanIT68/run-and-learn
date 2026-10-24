@@ -1,6 +1,6 @@
 """Turns raw game captures into captioned Google Play phone screenshots.
 
-Input:  Store/raw/*.png (from the StoreScreenshots play mode test)
+Input:  Store/raw/<lang>/*.png (from the StoreScreenshots play mode test)
 Output: Store/play/screenshots/<lang>/<nn>_<name>.png at 1920x1080
 
 Usage: Tools/.venv/Scripts/python.exe -I Tools/make_store_screenshots.py
@@ -19,52 +19,42 @@ WIDTH, HEIGHT = 1920, 1080
 BAND = (46, 111, 176)
 TEXT = (255, 255, 255)
 
-# Listing order and captions. "hr" carries the Bosnian text (Play has no Bosnian slot).
+# Listing order and captions (Play takes at most eight phone screenshots).
+# "hr" carries the Bosnian text (Play has no Bosnian slot). Each language has its
+# own raw captures, with the game's menus in the way that audience plays.
 SHOTS = [
-    ("02_catch_the_word", {
+    ("01_catch_the_word", {
         "en": "Hear the word, jump into the right picture!",
         "hr": "Čuj riječ i skoči u pravu sliku!",
         "de": "Wort hören, ins richtige Bild springen!"}),
-    ("03_counting_farm", {
+    ("02_players", {
+        "en": "Pick your player: a team of ten kids",
+        "hr": "Izaberi igrača: ekipa od deset djece",
+        "de": "Wähle deinen Spieler: ein Team aus zehn Kindern"}),
+    ("03_worlds", {
+        "en": "8 worlds, 40 levels",
+        "hr": "8 svjetova, 40 nivoa",
+        "de": "8 Welten, 40 Level"}),
+    ("04_counting_farm", {
         "en": "Count farm animals from one to five",
         "hr": "Broji životinje od jedan do pet",
         "de": "Tiere zählen von eins bis fünf"}),
-    ("08_command_bazaar", {
+    ("05_command_bazaar", {
         "en": "Listen and do it: Jump! Stay down!",
         "hr": "Slušaj i uradi: Skoči! Ostani dolje!",
         "de": "Hören und tun: Spring! Bleib unten!"}),
-    ("09_big_small_river", {
-        "en": "Big or small? Listen closely!",
-        "hr": "Veliko ili malo? Slušaj pažljivo!",
-        "de": "Groß oder klein? Gut zuhören!"}),
-    ("04_bravo", {
-        "en": "Five words, one big BRAVO!",
-        "hr": "Pet riječi, jedno veliko BRAVO!",
-        "de": "Fünf Wörter, ein großes BRAVO!"}),
-    ("11_letters_school", {
-        "en": "Letters, numbers and reading at school",
-        "hr": "Slova, brojevi i čitanje u školi",
-        "de": "Buchstaben, Zahlen und Lesen in der Schule"}),
-    ("10_level_complete", {
+    ("06_level_complete", {
         "en": "Finish the level, collect your stars!",
         "hr": "Završi nivo i skupi zvjezdice!",
         "de": "Level schaffen, Sterne sammeln!"}),
-    ("05_album", {
-        "en": "Every word saved in a sticker album",
-        "hr": "Svaka riječ ostaje u albumu sličica",
-        "de": "Jedes Wort bleibt im Stickeralbum"}),
-    ("06_learning_english", {
-        "en": "Children in Bosnia learn English too",
-        "hr": "Djeca u BiH uče i engleski",
-        "de": "Kinder in Bosnien lernen Englisch"}),
-    ("07_worlds", {
-        "en": "New worlds to unlock",
-        "hr": "Novi svjetovi za otključavanje",
-        "de": "Neue Welten freischalten"}),
-    ("01_main_menu", {
-        "en": "Learn Bosnian or English",
-        "hr": "Uči bosanski ili engleski",
-        "de": "Bosnisch oder Englisch lernen"}),
+    ("07_today", {
+        "en": "A daily gift and three small tasks",
+        "hr": "Dnevni poklon i tri mala zadatka",
+        "de": "Tägliches Geschenk und drei kleine Aufgaben"}),
+    ("08_main_menu", {
+        "en": "Learn Bosnian, English or German",
+        "hr": "Uči bosanski, engleski ili njemački",
+        "de": "Bosnisch, Englisch oder Deutsch lernen"}),
 ]
 
 
@@ -99,10 +89,12 @@ def main() -> None:
     for lang in ("en", "hr", "de"):
         folder = OUT / lang
         folder.mkdir(parents=True, exist_ok=True)
+        for old in folder.glob("*.png"):
+            old.unlink()
 
-        for index, (name, captions) in enumerate(SHOTS, start=1):
-            raw = Image.open(RAW / f"{name}.png").convert("RGB")
-            compose(raw, captions[lang]).save(folder / f"{index:02d}_{name}.png")
+        for name, captions in SHOTS:
+            raw = Image.open(RAW / lang / f"{name}.png").convert("RGB")
+            compose(raw, captions[lang]).save(folder / f"{name}.png")
 
     print(f"{len(SHOTS)} screenshots x 3 languages written to {OUT}")
 

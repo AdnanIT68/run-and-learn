@@ -2,93 +2,111 @@
   "pack": "World8",
   "title_bs": "Noćno nebo",
   "title_en": "Night Sky",
+  "title_de": "Nachthimmel",
   "words": [
     {
       "id": "star_word",
       "bs": "zvijezda",
-      "en": "star"
+      "en": "star",
+      "de": "der Stern"
     },
     {
       "id": "moon",
       "bs": "mjesec",
-      "en": "moon"
+      "en": "moon",
+      "de": "der Mond"
     },
     {
       "id": "rocket",
       "bs": "raketa",
-      "en": "rocket"
+      "en": "rocket",
+      "de": "die Rakete"
     },
     {
       "id": "planet",
       "bs": "planeta",
-      "en": "planet"
+      "en": "planet",
+      "de": "der Planet"
     },
     {
       "id": "owl",
       "bs": "sova",
-      "en": "owl"
+      "en": "owl",
+      "de": "die Eule"
     },
     {
       "id": "comet",
       "bs": "kometa",
-      "en": "comet"
+      "en": "comet",
+      "de": "der Komet"
     },
     {
       "id": "telescope",
       "bs": "teleskop",
-      "en": "telescope"
+      "en": "telescope",
+      "de": "das Teleskop"
     },
     {
       "id": "bed",
       "bs": "krevet",
-      "en": "bed"
+      "en": "bed",
+      "de": "das Bett"
     },
     {
       "id": "satellite",
       "bs": "satelit",
-      "en": "satellite"
+      "en": "satellite",
+      "de": "der Satellit"
     },
     {
       "id": "night",
       "bs": "noć",
-      "en": "night"
+      "en": "night",
+      "de": "die Nacht"
     }
   ],
   "phrases": [
     {
       "id": "praise_1",
       "bs": "Bravo!",
-      "en": "Great job!"
+      "en": "Great job!",
+      "de": "Toll!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
-      "en": "That's right!"
+      "en": "That's right!",
+      "de": "Richtig!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "de": "Super!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
-      "en": "Listen to the word, then jump into the right picture!"
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
-      "en": "Well done! Goal complete!"
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!"
     },
     {
       "id": "finale",
       "bs": "Bravo! Svi svjetovi su završeni!",
-      "en": "Well done! You finished every world!"
+      "en": "Well done! You finished every world!",
+      "de": "Super! Du hast alle Welten geschafft!"
     }
   ],
   "counts": [],

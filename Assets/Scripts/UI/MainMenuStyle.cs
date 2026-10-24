@@ -51,7 +51,6 @@ namespace FootballRunner.UI
             KeepHeight(canvas);
             Transform safe = canvas.Find("SafeArea");
             Transform layer = safe != null ? safe : canvas;
-            bool homeIsBosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
 
             BuildBackground(canvas);
             HideOldDecor(canvas);
@@ -59,7 +58,7 @@ namespace FootballRunner.UI
             BuildHero(layer);
             BuildLogo(layer);
 
-            StyleBigButton(play, homeIsBosnian ? "IGRAJ" : "PLAY", new Vector2(420f, 70f), new Vector2(600f, 170f),
+            StyleBigButton(play, LearningProgress.Ui("IGRAJ", "PLAY", "SPIELEN"), new Vector2(420f, 70f), new Vector2(600f, 170f),
                 new Color(0.27f, 0.74f, 0.32f), Load("play"));
             StyleCard(layer.Find("WorldsButton"), new Vector2(120f, -120f), new Color(0.24f, 0.55f, 0.92f));
             StyleCard(layer.Find("CharactersButton"), new Vector2(420f, -120f), new Color(0.2f, 0.62f, 0.42f));

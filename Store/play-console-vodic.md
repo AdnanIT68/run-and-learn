@@ -10,7 +10,7 @@ Sve što se upisuje u Play Console je ovdje. Odgovori važe za verziju 1.0.0 (ve
 | Upload ključ + lozinke (NE dijeliti, napraviti kopiju) | `C:\Users\Korisnik\RunAndLearnSigning\` |
 | Ikona 512×512 | `Store/play/icon_512.png` |
 | Feature graphic 1024×500 | `Store/play/feature_graphic_1024x500.png` |
-| Snimke ekrana (en, hr, de) | `Store/play/screenshots/` |
+| Snimke ekrana: 8 po jeziku, svaka s menijem na svom jeziku | `Store/play/screenshots/en`, `hr`, `de` |
 | Tekst opisa (en-US, hr = bosanski, de-DE) | `Store/listing.md` |
 | Politika privatnosti | `Store/privacy-policy.html` (treba je staviti na web, vidi korak 2) |
 
@@ -78,7 +78,8 @@ Očekivana ocjena: PEGI 3 / Everyone.
 
 - App name: Run and Learn
 - Short description i Full description: iz `Store/listing.md` (en-US)
-- App icon, Feature graphic, Phone screenshots: iz `Store/play/`
+- App icon, Feature graphic: iz `Store/play/`; Phone screenshots: svih 8 iz `Store/play/screenshots/en/`
+  (za prijevode: `hr/` uz bosanski tekst, `de/` uz njemački)
 - Category: **Game → Educational**
 - Tags: Educational, Language learning, Kids, Casual
 - Contact e-mail: tvoj e-mail (obavezno)

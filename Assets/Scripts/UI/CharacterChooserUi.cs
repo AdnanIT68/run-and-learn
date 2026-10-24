@@ -291,12 +291,11 @@ namespace FootballRunner.UI
 
         private void Refresh()
         {
-            bool homeIsBosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
             string selected = CharacterRoster.SelectedId;
             int coins = SaveManager.Data.totalCoins;
 
-            _heading.text = homeIsBosnian ? "IZABERI IGRAČA" : "PICK A PLAYER";
-            _backLabel.text = homeIsBosnian ? "NAZAD" : "BACK";
+            _heading.text = LearningProgress.Ui("IZABERI IGRAČA", "PICK A PLAYER", "WÄHLE EINEN SPIELER");
+            _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
             _coins.text = coins.ToString();
 
             foreach (Card card in _cards)
@@ -319,11 +318,9 @@ namespace FootballRunner.UI
         private void RefreshMenu()
         {
             string id = CharacterRoster.SelectedId;
-            bool homeIsBosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
-
             if (_buttonLabel != null)
             {
-                _buttonLabel.text = homeIsBosnian ? "IGRAČI" : "PLAYERS";
+                _buttonLabel.text = LearningProgress.Ui("IGRAČI", "PLAYERS", "SPIELER");
                 _buttonPicture.sprite = CharacterRoster.Portrait(id);
                 _buttonPicture.enabled = _buttonPicture.sprite != null;
             }

@@ -138,9 +138,8 @@ namespace FootballRunner.Learning
             WordChallengeDirector director = WordChallengeDirector.Instance;
             WordPack pack = director.Pack;
             string language = LearningProgress.Language;
-            bool homeIsBosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
 
-            string levelWord = homeIsBosnian ? "Nivo" : "Level";
+            string levelWord = LearningProgress.Ui("Nivo", "Level", "Level");
             _world.text = pack != null ? $"{pack.Title(language)}  ·  {levelWord} {director.Level + 1}" : "";
             int coins = ScoreManager.Instance != null ? ScoreManager.Instance.CoinsCollected : 0;
             _coins.text = "+" + coins;
@@ -158,9 +157,9 @@ namespace FootballRunner.Learning
             _next.gameObject.SetActive(pack != null &&
                                        LearningProgress.TryGetNext(pack.Name, director.Level, out _, out _));
 
-            _againLabel.text = homeIsBosnian ? "PONOVO" : "AGAIN";
-            _nextLabel.text = homeIsBosnian ? "DALJE" : "NEXT";
-            _menuLabel.text = homeIsBosnian ? "MENI" : "MENU";
+            _againLabel.text = LearningProgress.Ui("PONOVO", "AGAIN", "NOCHMAL");
+            _nextLabel.text = LearningProgress.Ui("DALJE", "NEXT", "WEITER");
+            _menuLabel.text = LearningProgress.Ui("MENI", "MENU", "MENÜ");
 
             _panel.SetActive(true);
             _panel.transform.SetAsLastSibling();

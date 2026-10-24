@@ -76,6 +76,11 @@ namespace FootballRunner.UI
 
         private void Start()
         {
+            foreach (GameObject sceneRoot in gameObject.scene.GetRootGameObjects())
+            {
+                SceneTextLocalizer.Apply(sceneRoot.transform);
+            }
+
             EnsureAreaBanner();
 
             if (EnvironmentDirector.Instance != null && !AdventureSession.IsActive)
@@ -198,7 +203,7 @@ namespace FootballRunner.UI
 
             if (_bannerKicker != null)
             {
-                _bannerKicker.text = "NEW AREA";
+                _bannerKicker.text = Learning.LearningProgress.Ui("IDEMO!", "LET'S GO!", "LOS GEHT'S!");
             }
 
             if (_bannerTitle != null)

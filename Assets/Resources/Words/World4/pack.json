@@ -2,88 +2,105 @@
   "pack": "World4",
   "title_bs": "Čaršija",
   "title_en": "The Old Bazaar",
+  "title_de": "Der alte Basar",
   "words": [
     {
       "id": "mosque",
       "bs": "džamija",
-      "en": "mosque"
+      "en": "mosque",
+      "de": "die Moschee"
     },
     {
       "id": "pigeon",
       "bs": "golub",
-      "en": "pigeon"
+      "en": "pigeon",
+      "de": "die Taube"
     },
     {
       "id": "tram",
       "bs": "tramvaj",
-      "en": "tram"
+      "en": "tram",
+      "de": "die Straßenbahn"
     },
     {
       "id": "bus",
       "bs": "autobus",
-      "en": "bus"
+      "en": "bus",
+      "de": "der Bus"
     },
     {
       "id": "bicycle",
       "bs": "bicikl",
-      "en": "bicycle"
+      "en": "bicycle",
+      "de": "das Fahrrad"
     },
     {
       "id": "ball",
       "bs": "lopta",
-      "en": "ball"
+      "en": "ball",
+      "de": "der Ball"
     },
     {
       "id": "book",
       "bs": "knjiga",
-      "en": "book"
+      "en": "book",
+      "de": "das Buch"
     },
     {
       "id": "umbrella",
       "bs": "kišobran",
-      "en": "umbrella"
+      "en": "umbrella",
+      "de": "der Regenschirm"
     },
     {
       "id": "clock",
       "bs": "sat",
-      "en": "clock"
+      "en": "clock",
+      "de": "die Uhr"
     },
     {
       "id": "fountain",
       "bs": "česma",
-      "en": "fountain"
+      "en": "fountain",
+      "de": "der Brunnen"
     }
   ],
   "phrases": [
     {
       "id": "praise_1",
       "bs": "Bravo!",
-      "en": "Great job!"
+      "en": "Great job!",
+      "de": "Toll!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
-      "en": "That's right!"
+      "en": "That's right!",
+      "de": "Richtig!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "de": "Super!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
-      "en": "Listen to the word, then jump into the right picture!"
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
-      "en": "Well done! Goal complete!"
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!"
     }
   ],
   "counts": [],
@@ -93,21 +110,31 @@
       "action": "jump",
       "picture": "star",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "cmd_stay",
       "action": "stay",
       "picture": "star",
       "bs": "Ostani dolje!",
-      "en": "Stay down!"
+      "en": "Stay down!",
+      "de": "Bleib unten!"
     },
     {
       "id": "cmd_double",
       "action": "double",
       "picture": "star",
       "bs": "Skoči dva puta!",
-      "en": "Jump twice!"
+      "en": "Jump twice!",
+      "de": "Spring zweimal!"
     }
-  ]
+  ],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
 }

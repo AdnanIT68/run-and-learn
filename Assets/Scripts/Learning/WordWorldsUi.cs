@@ -352,11 +352,10 @@ namespace FootballRunner.Learning
         private void Refresh()
         {
             string language = LearningProgress.Language;
-            bool homeIsBosnian = LearningProgress.HomeLanguage == LearningProgress.Bosnian;
             string selected = LearningProgress.SelectedPack;
 
-            _heading.text = homeIsBosnian ? "SVJETOVI" : "WORLDS";
-            _backLabel.text = homeIsBosnian ? "NAZAD" : "BACK";
+            _heading.text = LearningProgress.Ui("SVJETOVI", "WORLDS", "WELTEN");
+            _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
 
             for (int i = 0; i < _cards.Count; i++)
             {
@@ -380,19 +379,19 @@ namespace FootballRunner.Learning
 
                 if (card.Unlocked)
                 {
-                    card.Detail.text = homeIsBosnian
-                        ? $"Nivo {done}/{LearningProgress.LevelsPerWorld}"
-                        : $"Level {done}/{LearningProgress.LevelsPerWorld}";
+                    card.Detail.text = LearningProgress.Ui("Nivo", "Level", "Level") +
+                                       $" {done}/{LearningProgress.LevelsPerWorld}";
                 }
                 else
                 {
                     int level = LearningProgress.LevelToOpenNextWorld;
-                    card.Detail.text = homeIsBosnian ? $"Završi nivo {level}" : $"Finish level {level}";
+                    card.Detail.text = LearningProgress.Ui($"Završi nivo {level}", $"Finish level {level}",
+                        $"Schaffe Level {level}");
                 }
             }
 
             int chosen = LearningProgress.SelectedLevel;
-            _levelsLabel.text = homeIsBosnian ? "Izaberi nivo" : "Pick a level";
+            _levelsLabel.text = LearningProgress.Ui("Izaberi nivo", "Pick a level", "Wähle ein Level");
 
             for (int level = 0; level < _levels.Count; level++)
             {
@@ -422,9 +421,7 @@ namespace FootballRunner.Learning
             WordPack wordPack = WordPack.Load(pack);
             int number = System.Array.IndexOf(WordPack.PackOrder, pack) + 1;
             _labelLanguage = LearningProgress.Language;
-            _buttonLabel.text = LearningProgress.HomeLanguage == LearningProgress.Bosnian
-                ? $"SVIJET {number}"
-                : $"WORLD {number}";
+            _buttonLabel.text = LearningProgress.Ui("SVIJET", "WORLD", "WELT") + " " + number;
             _buttonCover.sprite = wordPack != null ? wordPack.Picture(WordPack.CoverWordId(pack)) : null;
             _buttonCover.enabled = _buttonCover.sprite != null;
         }

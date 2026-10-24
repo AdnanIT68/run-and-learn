@@ -2,88 +2,105 @@
   "pack": "World2",
   "title_bs": "Farma kod dede",
   "title_en": "Grandpa's Farm",
+  "title_de": "Opas Bauernhof",
   "words": [
     {
       "id": "cow",
       "bs": "krava",
-      "en": "cow"
+      "en": "cow",
+      "de": "die Kuh"
     },
     {
       "id": "sheep",
       "bs": "ovca",
-      "en": "sheep"
+      "en": "sheep",
+      "de": "das Schaf"
     },
     {
       "id": "goat",
       "bs": "koza",
-      "en": "goat"
+      "en": "goat",
+      "de": "die Ziege"
     },
     {
       "id": "horse",
       "bs": "konj",
-      "en": "horse"
+      "en": "horse",
+      "de": "das Pferd"
     },
     {
       "id": "hen",
       "bs": "kokoš",
-      "en": "hen"
+      "en": "hen",
+      "de": "das Huhn"
     },
     {
       "id": "rooster",
       "bs": "pijetao",
-      "en": "rooster"
+      "en": "rooster",
+      "de": "der Hahn"
     },
     {
       "id": "duck",
       "bs": "patka",
-      "en": "duck"
+      "en": "duck",
+      "de": "die Ente"
     },
     {
       "id": "cat",
       "bs": "mačka",
-      "en": "cat"
+      "en": "cat",
+      "de": "die Katze"
     },
     {
       "id": "rabbit",
       "bs": "zec",
-      "en": "rabbit"
+      "en": "rabbit",
+      "de": "der Hase"
     },
     {
       "id": "bee",
       "bs": "pčela",
-      "en": "bee"
+      "en": "bee",
+      "de": "die Biene"
     }
   ],
   "phrases": [
     {
       "id": "praise_1",
       "bs": "Bravo!",
-      "en": "Great job!"
+      "en": "Great job!",
+      "de": "Toll!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
-      "en": "That's right!"
+      "en": "That's right!",
+      "de": "Richtig!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "de": "Super!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
-      "en": "Listen to the word, then jump into the right picture!"
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
-      "en": "Well done! Goal complete!"
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!"
     }
   ],
   "counts": [
@@ -92,175 +109,208 @@
       "picture": "hen",
       "count": 1,
       "bs": "jedna kokoš",
-      "en": "one hen"
+      "en": "one hen",
+      "de": "ein Huhn"
     },
     {
       "id": "hen_2",
       "picture": "hen",
       "count": 2,
       "bs": "dvije kokoši",
-      "en": "two hens"
+      "en": "two hens",
+      "de": "zwei Hühner"
     },
     {
       "id": "hen_3",
       "picture": "hen",
       "count": 3,
       "bs": "tri kokoši",
-      "en": "three hens"
+      "en": "three hens",
+      "de": "drei Hühner"
     },
     {
       "id": "hen_4",
       "picture": "hen",
       "count": 4,
       "bs": "četiri kokoši",
-      "en": "four hens"
+      "en": "four hens",
+      "de": "vier Hühner"
     },
     {
       "id": "hen_5",
       "picture": "hen",
       "count": 5,
       "bs": "pet kokoši",
-      "en": "five hens"
+      "en": "five hens",
+      "de": "fünf Hühner"
     },
     {
       "id": "cow_1",
       "picture": "cow",
       "count": 1,
       "bs": "jedna krava",
-      "en": "one cow"
+      "en": "one cow",
+      "de": "eine Kuh"
     },
     {
       "id": "cow_2",
       "picture": "cow",
       "count": 2,
       "bs": "dvije krave",
-      "en": "two cows"
+      "en": "two cows",
+      "de": "zwei Kühe"
     },
     {
       "id": "cow_3",
       "picture": "cow",
       "count": 3,
       "bs": "tri krave",
-      "en": "three cows"
+      "en": "three cows",
+      "de": "drei Kühe"
     },
     {
       "id": "cow_4",
       "picture": "cow",
       "count": 4,
       "bs": "četiri krave",
-      "en": "four cows"
+      "en": "four cows",
+      "de": "vier Kühe"
     },
     {
       "id": "cow_5",
       "picture": "cow",
       "count": 5,
       "bs": "pet krava",
-      "en": "five cows"
+      "en": "five cows",
+      "de": "fünf Kühe"
     },
     {
       "id": "sheep_1",
       "picture": "sheep",
       "count": 1,
       "bs": "jedna ovca",
-      "en": "one sheep"
+      "en": "one sheep",
+      "de": "ein Schaf"
     },
     {
       "id": "sheep_2",
       "picture": "sheep",
       "count": 2,
       "bs": "dvije ovce",
-      "en": "two sheep"
+      "en": "two sheep",
+      "de": "zwei Schafe"
     },
     {
       "id": "sheep_3",
       "picture": "sheep",
       "count": 3,
       "bs": "tri ovce",
-      "en": "three sheep"
+      "en": "three sheep",
+      "de": "drei Schafe"
     },
     {
       "id": "sheep_4",
       "picture": "sheep",
       "count": 4,
       "bs": "četiri ovce",
-      "en": "four sheep"
+      "en": "four sheep",
+      "de": "vier Schafe"
     },
     {
       "id": "sheep_5",
       "picture": "sheep",
       "count": 5,
       "bs": "pet ovaca",
-      "en": "five sheep"
+      "en": "five sheep",
+      "de": "fünf Schafe"
     },
     {
       "id": "duck_1",
       "picture": "duck",
       "count": 1,
       "bs": "jedna patka",
-      "en": "one duck"
+      "en": "one duck",
+      "de": "eine Ente"
     },
     {
       "id": "duck_2",
       "picture": "duck",
       "count": 2,
       "bs": "dvije patke",
-      "en": "two ducks"
+      "en": "two ducks",
+      "de": "zwei Enten"
     },
     {
       "id": "duck_3",
       "picture": "duck",
       "count": 3,
       "bs": "tri patke",
-      "en": "three ducks"
+      "en": "three ducks",
+      "de": "drei Enten"
     },
     {
       "id": "duck_4",
       "picture": "duck",
       "count": 4,
       "bs": "četiri patke",
-      "en": "four ducks"
+      "en": "four ducks",
+      "de": "vier Enten"
     },
     {
       "id": "duck_5",
       "picture": "duck",
       "count": 5,
       "bs": "pet pataka",
-      "en": "five ducks"
+      "en": "five ducks",
+      "de": "fünf Enten"
     },
     {
       "id": "rabbit_1",
       "picture": "rabbit",
       "count": 1,
       "bs": "jedan zec",
-      "en": "one rabbit"
+      "en": "one rabbit",
+      "de": "ein Hase"
     },
     {
       "id": "rabbit_2",
       "picture": "rabbit",
       "count": 2,
       "bs": "dva zeca",
-      "en": "two rabbits"
+      "en": "two rabbits",
+      "de": "zwei Hasen"
     },
     {
       "id": "rabbit_3",
       "picture": "rabbit",
       "count": 3,
       "bs": "tri zeca",
-      "en": "three rabbits"
+      "en": "three rabbits",
+      "de": "drei Hasen"
     },
     {
       "id": "rabbit_4",
       "picture": "rabbit",
       "count": 4,
       "bs": "četiri zeca",
-      "en": "four rabbits"
+      "en": "four rabbits",
+      "de": "vier Hasen"
     },
     {
       "id": "rabbit_5",
       "picture": "rabbit",
       "count": 5,
       "bs": "pet zečeva",
-      "en": "five rabbits"
+      "en": "five rabbits",
+      "de": "fünf Hasen"
     }
-  ]
+  ],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
 }

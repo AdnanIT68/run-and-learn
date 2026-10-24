@@ -2,29 +2,30 @@
   "pack": "World4",
   "title_bs": "Čaršija",
   "title_en": "The Old Bazaar",
+  "title_de": "Der alte Basar",
   "words": [
-    { "id": "mosque",   "bs": "džamija",  "en": "mosque",   "emoji": "1f54c" },
-    { "id": "pigeon",   "bs": "golub",    "en": "pigeon",   "emoji": "1f54a" },
-    { "id": "tram",     "bs": "tramvaj",  "en": "tram",     "emoji": "1f68b" },
-    { "id": "bus",      "bs": "autobus",  "en": "bus",      "emoji": "1f68c" },
-    { "id": "bicycle",  "bs": "bicikl",   "en": "bicycle",  "emoji": "1f6b2" },
-    { "id": "ball",     "bs": "lopta",    "en": "ball",     "emoji": "26bd" },
-    { "id": "book",     "bs": "knjiga",   "en": "book",     "emoji": "1f4d6" },
-    { "id": "umbrella", "bs": "kišobran", "en": "umbrella", "emoji": "2602" },
-    { "id": "clock",    "bs": "sat",      "en": "clock",    "emoji": "1f570" },
-    { "id": "fountain", "bs": "česma",    "en": "fountain", "emoji": "26f2" }
+    { "id": "mosque", "bs": "džamija", "en": "mosque", "de": "die Moschee", "emoji": "1f54c" },
+    { "id": "pigeon", "bs": "golub", "en": "pigeon", "de": "die Taube", "emoji": "1f54a" },
+    { "id": "tram", "bs": "tramvaj", "en": "tram", "de": "die Straßenbahn", "emoji": "1f68b" },
+    { "id": "bus", "bs": "autobus", "en": "bus", "de": "der Bus", "emoji": "1f68c" },
+    { "id": "bicycle", "bs": "bicikl", "en": "bicycle", "de": "das Fahrrad", "emoji": "1f6b2" },
+    { "id": "ball", "bs": "lopta", "en": "ball", "de": "der Ball", "emoji": "26bd" },
+    { "id": "book", "bs": "knjiga", "en": "book", "de": "das Buch", "emoji": "1f4d6" },
+    { "id": "umbrella", "bs": "kišobran", "en": "umbrella", "de": "der Regenschirm", "emoji": "2602" },
+    { "id": "clock", "bs": "sat", "en": "clock", "de": "die Uhr", "emoji": "1f570" },
+    { "id": "fountain", "bs": "česma", "en": "fountain", "de": "der Brunnen", "emoji": "26f2" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!",  "en": "Great job!" },
-    { "id": "praise_2", "bs": "Tačno!",  "en": "That's right!" },
-    { "id": "praise_3", "bs": "Super!",  "en": "Awesome!" },
-    { "id": "intro",    "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!" },
-    { "id": "jump",     "bs": "Skoči!",  "en": "Jump!" },
-    { "id": "goal",     "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!" }
   ],
   "commands": [
-    { "id": "cmd_jump",   "action": "jump",   "bs": "Skoči!",          "en": "Jump!" },
-    { "id": "cmd_stay",   "action": "stay",   "bs": "Ostani dolje!",   "en": "Stay down!" },
-    { "id": "cmd_double", "action": "double", "bs": "Skoči dva puta!", "en": "Jump twice!" }
+    { "id": "cmd_jump", "action": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!" },
+    { "id": "cmd_stay", "action": "stay", "bs": "Ostani dolje!", "en": "Stay down!", "de": "Bleib unten!" },
+    { "id": "cmd_double", "action": "double", "bs": "Skoči dva puta!", "en": "Jump twice!", "de": "Spring zweimal!" }
   ]
 }

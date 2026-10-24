@@ -123,7 +123,7 @@ namespace FootballRunner.Learning
         }
 
         /// <summary>The task in the language the child already speaks.</summary>
-        public static string Describe(DailyMission mission, bool bosnian)
+        public static string Describe(DailyMission mission)
         {
             int n = mission.target;
             Enum.TryParse(mission.kind, out Kind kind);
@@ -131,15 +131,15 @@ namespace FootballRunner.Learning
             switch (kind)
             {
                 case Kind.CatchWords:
-                    return bosnian ? $"Uhvati {n} riječi" : $"Catch {n} words";
+                    return LearningProgress.Ui($"Uhvati {n} riječi", $"Catch {n} words", $"Fang {n} Wörter");
                 case Kind.FinishLevel:
-                    return bosnian ? "Završi jedan nivo" : "Finish a level";
+                    return LearningProgress.Ui("Završi jedan nivo", "Finish a level", "Schaffe ein Level");
                 case Kind.ThreeStars:
-                    return bosnian ? "Osvoji 3 zvjezdice na nivou" : "Win 3 stars on a level";
+                    return LearningProgress.Ui("Osvoji 3 zvjezdice na nivou", "Win 3 stars on a level", "Hol 3 Sterne in einem Level");
                 case Kind.CollectCoins:
-                    return bosnian ? $"Skupi {n} novčića u igri" : $"Collect {n} coins in a run";
+                    return LearningProgress.Ui($"Skupi {n} novčića u igri", $"Collect {n} coins in a run", $"Sammle {n} Münzen in einem Lauf");
                 case Kind.NewWord:
-                    return bosnian ? $"Nauči {n} nove riječi" : $"Learn {n} new words";
+                    return LearningProgress.Ui($"Nauči {n} nove riječi", $"Learn {n} new words", $"Lerne {n} neue Wörter");
                 default:
                     return mission.kind;
             }

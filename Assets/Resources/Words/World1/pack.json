@@ -2,88 +2,105 @@
   "pack": "World1",
   "title_bs": "Nenina bašta",
   "title_en": "Grandma's Garden",
+  "title_de": "Omas Garten",
   "words": [
     {
       "id": "apple",
       "bs": "jabuka",
-      "en": "apple"
+      "en": "apple",
+      "de": "der Apfel"
     },
     {
       "id": "pear",
       "bs": "kruška",
-      "en": "pear"
+      "en": "pear",
+      "de": "die Birne"
     },
     {
       "id": "banana",
       "bs": "banana",
-      "en": "banana"
+      "en": "banana",
+      "de": "die Banane"
     },
     {
       "id": "strawberry",
       "bs": "jagoda",
-      "en": "strawberry"
+      "en": "strawberry",
+      "de": "die Erdbeere"
     },
     {
       "id": "grapes",
       "bs": "grožđe",
-      "en": "grapes"
+      "en": "grapes",
+      "de": "die Weintrauben"
     },
     {
       "id": "watermelon",
       "bs": "lubenica",
-      "en": "watermelon"
+      "en": "watermelon",
+      "de": "die Wassermelone"
     },
     {
       "id": "lemon",
       "bs": "limun",
-      "en": "lemon"
+      "en": "lemon",
+      "de": "die Zitrone"
     },
     {
       "id": "carrot",
       "bs": "mrkva",
-      "en": "carrot"
+      "en": "carrot",
+      "de": "die Karotte"
     },
     {
       "id": "tomato",
       "bs": "paradajz",
-      "en": "tomato"
+      "en": "tomato",
+      "de": "die Tomate"
     },
     {
       "id": "cucumber",
       "bs": "krastavac",
-      "en": "cucumber"
+      "en": "cucumber",
+      "de": "die Gurke"
     }
   ],
   "phrases": [
     {
       "id": "praise_1",
       "bs": "Bravo!",
-      "en": "Great job!"
+      "en": "Great job!",
+      "de": "Toll!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
-      "en": "That's right!"
+      "en": "That's right!",
+      "de": "Richtig!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "de": "Super!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
-      "en": "Listen to the word, then jump into the right picture!"
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
-      "en": "Well done! Goal complete!"
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!"
     }
   ],
   "counts": [],

@@ -37,7 +37,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DISPLAY_FONT = ROOT / "Assets" / "Resources" / "Fonts" / "TitanOne-Regular.ttf"
 DIGIT_COLOURS = [(235, 80, 70), (245, 160, 40), (60, 170, 90), (60, 130, 220), (150, 90, 200)]
 # File-safe names for Bosnian letters (Resources paths stay ASCII).
-SAFE_LETTERS = {"Š": "SH", "Č": "CH", "Ć": "CJ", "Ž": "ZH", "Đ": "DJ", "Dž": "DZH", "Lj": "LJ", "Nj": "NJ"}
+SAFE_LETTERS = {"Š": "SH", "Č": "CH", "Ć": "CJ", "Ž": "ZH", "Đ": "DJ", "Dž": "DZH", "Lj": "LJ", "Nj": "NJ",
+                "Ä": "AE", "Ö": "OE", "Ü": "UE"}
+# German nouns are learned with their article; the first letter is the noun's.
+GERMAN_ARTICLES = ("der ", "die ", "das ")
 TWEMOJI_SVG = "https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/{code}.svg"
 PICTURE_SIZE = 256
 # Shared UI icons, written to Resources/Words/Icons.
@@ -54,7 +57,9 @@ ICONS = {
 VOICES = {
     "bs": "bs-BA-VesnaNeural",
     "en": "en-US-AnaNeural",
+    "de": "de-DE-KatjaNeural",
 }
+LETTER_WORD = {"bs": "Slovo", "en": "Letter", "de": "Buchstabe"}
 # Slower than default so small children can hear every sound.
 SPEECH_RATE = "-15%"
 AZURE_KEY_FILE = Path(os.environ.get("USERPROFILE", str(Path.home()))) / "RunAndLearnSigning" / "azure-speech.txt"
@@ -146,6 +151,10 @@ def render_digit(n: int, target: Path) -> None:
 def initial(word: str) -> str:
     """First letter as children learn it: Bosnian digraphs count as one letter."""
     lower = word.lower()
+    for article in GERMAN_ARTICLES:
+        if lower.startswith(article):
+            lower = lower[len(article):]
+            break
     for digraph in ("dž", "lj", "nj"):
         if lower.startswith(digraph):
             return digraph.capitalize()
@@ -185,6 +194,11 @@ async def speak(text: str, voice: str, target: Path) -> None:
         )
 
 
+def texts(entry: dict) -> dict:
+    """The entry's text in every voiced language, e.g. {"bs": ..., "en": ..., "de": ...}."""
+    return {lang: entry[lang] for lang in VOICES}
+
+
 async def main(pack_file: Path) -> None:
     pack = json.loads(pack_file.read_text(encoding="utf-8"))
     out = ROOT / "Assets" / "Resources" / "Words" / pack["pack"]
@@ -204,19 +218,19 @@ async def main(pack_file: Path) -> None:
 
     # Counting phrases ("tri kokoši") reuse the word's picture, drawn several times.
     counts = [
-        {"id": f"{c['word']}_{c['count']}", "picture": c["word"], "count": c["count"], "bs": c["bs"], "en": c["en"]}
+        {"id": f"{c['word']}_{c['count']}", "picture": c["word"], "count": c["count"], **texts(c)}
         for c in pack.get("counts", [])
     ]
 
     # Spoken commands ("Skoči!") are answered by acting, so their bubbles all show a star.
     commands = [
-        {"id": c["id"], "action": c["action"], "picture": "star", "bs": c["bs"], "en": c["en"]}
+        {"id": c["id"], "action": c["action"], "picture": "star", **texts(c)}
         for c in pack.get("commands", [])
     ]
 
     # Size phrases ("velika riba") show the word's picture drawn big or small.
     sizes = [
-        {"id": f"{z['word']}_{z['size']}", "picture": z["word"], "size": z["size"], "bs": z["bs"], "en": z["en"]}
+        {"id": f"{z['word']}_{z['size']}", "picture": z["word"], "size": z["size"], **texts(z)}
         for z in pack.get("sizes", [])
     ]
 
@@ -226,13 +240,13 @@ async def main(pack_file: Path) -> None:
     for z in pack.get("sentences", []):
         if "emoji" in z:
             render_picture(z["emoji"], pictures / f"{z['picture']}.png")
-        sentences.append({"id": z["id"], "group": z["group"], "picture": z["picture"], "bs": z["bs"], "en": z["en"]})
+        sentences.append({"id": z["id"], "group": z["group"], "picture": z["picture"], **texts(z)})
 
     # Numbers ("sedam") are caught as big numerals drawn in the display font.
     numbers = []
     for z in pack.get("numbers", []):
         render_digit(z["n"], pictures / f"digit_{z['n']}.png")
-        numbers.append({"id": f"num_{z['n']}", "picture": f"digit_{z['n']}", "bs": z["bs"], "en": z["en"]})
+        numbers.append({"id": f"num_{z['n']}", "picture": f"digit_{z['n']}", **texts(z)})
 
     # Letters: one per first letter of the words, per language, voiced only in that language.
     letters = []
@@ -241,10 +255,10 @@ async def main(pack_file: Path) -> None:
             for letter in sorted({initial(w[lang]) for w in pack["words"]}):
                 safe = SAFE_LETTERS.get(letter, letter)
                 entry_id = f"letter_{lang}_{safe}"
-                spoken = f"Slovo {letter}." if lang == "bs" else f"Letter {letter}."
+                spoken = f"{LETTER_WORD[lang]} {letter}."
                 await speak(spoken, VOICES[lang], out / "Audio" / lang / f"{entry_id}.ogg")
-                letters.append({"id": entry_id, "letter": letter, "lang": lang,
-                                "bs": f"{letter} {letter.lower()}", "en": f"{letter} {letter.lower()}"})
+                shown = f"{letter} {letter.lower()}"
+                letters.append({"id": entry_id, "letter": letter, "lang": lang, **{l: shown for l in VOICES}})
 
     for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes + sentences + numbers:
         for lang, voice in VOICES.items():
@@ -254,8 +268,9 @@ async def main(pack_file: Path) -> None:
         "pack": pack["pack"],
         "title_bs": pack["title_bs"],
         "title_en": pack["title_en"],
-        "words": [{"id": w["id"], "bs": w["bs"], "en": w["en"]} for w in pack["words"]],
-        "phrases": [{"id": p["id"], "bs": p["bs"], "en": p["en"]} for p in pack.get("phrases", [])],
+        "title_de": pack.get("title_de", pack["title_en"]),
+        "words": [{"id": w["id"], **texts(w)} for w in pack["words"]],
+        "phrases": [{"id": p["id"], **texts(p)} for p in pack.get("phrases", [])],
         "counts": counts,
         "commands": commands,
         "sizes": sizes,

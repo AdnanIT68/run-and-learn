@@ -2,88 +2,105 @@
   "pack": "World6",
   "title_bs": "Planina zimi",
   "title_en": "Winter Mountain",
+  "title_de": "Winterberg",
   "words": [
     {
       "id": "snow",
       "bs": "snijeg",
-      "en": "snow"
+      "en": "snow",
+      "de": "der Schnee"
     },
     {
       "id": "snowman",
       "bs": "snjegović",
-      "en": "snowman"
+      "en": "snowman",
+      "de": "der Schneemann"
     },
     {
       "id": "sled",
       "bs": "sanke",
-      "en": "sled"
+      "en": "sled",
+      "de": "der Schlitten"
     },
     {
       "id": "skis",
       "bs": "skije",
-      "en": "skis"
+      "en": "skis",
+      "de": "die Skier"
     },
     {
       "id": "gloves",
       "bs": "rukavice",
-      "en": "gloves"
+      "en": "gloves",
+      "de": "die Handschuhe"
     },
     {
       "id": "scarf",
       "bs": "šal",
-      "en": "scarf"
+      "en": "scarf",
+      "de": "der Schal"
     },
     {
       "id": "boots",
       "bs": "čizme",
-      "en": "boots"
+      "en": "boots",
+      "de": "die Stiefel"
     },
     {
       "id": "coat",
       "bs": "jakna",
-      "en": "coat"
+      "en": "coat",
+      "de": "die Jacke"
     },
     {
       "id": "mountain",
       "bs": "planina",
-      "en": "mountain"
+      "en": "mountain",
+      "de": "der Berg"
     },
     {
       "id": "ice",
       "bs": "led",
-      "en": "ice"
+      "en": "ice",
+      "de": "das Eis"
     }
   ],
   "phrases": [
     {
       "id": "praise_1",
       "bs": "Bravo!",
-      "en": "Great job!"
+      "en": "Great job!",
+      "de": "Toll!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
-      "en": "That's right!"
+      "en": "That's right!",
+      "de": "Richtig!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "de": "Super!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
-      "en": "Listen to the word, then jump into the right picture!"
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
-      "en": "Well done! Goal complete!"
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!"
     }
   ],
   "counts": [],
@@ -95,63 +112,77 @@
       "group": "weather",
       "picture": "snow",
       "bs": "Pada snijeg.",
-      "en": "It is snowing."
+      "en": "It is snowing.",
+      "de": "Es schneit."
     },
     {
       "id": "s_sunny",
       "group": "weather",
       "picture": "sun",
       "bs": "Sija sunce.",
-      "en": "The sun is shining."
+      "en": "The sun is shining.",
+      "de": "Die Sonne scheint."
     },
     {
       "id": "s_raining",
       "group": "weather",
       "picture": "rain",
       "bs": "Pada kiša.",
-      "en": "It is raining."
+      "en": "It is raining.",
+      "de": "Es regnet."
     },
     {
       "id": "s_sledding",
       "group": "play",
       "picture": "sled",
       "bs": "Rukajja se sanka.",
-      "en": "Rukajja is sledding."
+      "en": "Rukajja is sledding.",
+      "de": "Rukajja fährt Schlitten."
     },
     {
       "id": "s_skiing",
       "group": "play",
       "picture": "skis",
       "bs": "Rukajja skija.",
-      "en": "Rukajja is skiing."
+      "en": "Rukajja is skiing.",
+      "de": "Rukajja fährt Ski."
     },
     {
       "id": "s_snowman",
       "group": "play",
       "picture": "snowman",
       "bs": "Rukajja pravi snjegovića.",
-      "en": "Rukajja is making a snowman."
+      "en": "Rukajja is making a snowman.",
+      "de": "Rukajja baut einen Schneemann."
     },
     {
       "id": "s_gloves",
       "group": "wear",
       "picture": "gloves",
       "bs": "Nosim rukavice.",
-      "en": "I am wearing gloves."
+      "en": "I am wearing gloves.",
+      "de": "Ich trage Handschuhe."
     },
     {
       "id": "s_scarf",
       "group": "wear",
       "picture": "scarf",
       "bs": "Nosim šal.",
-      "en": "I am wearing a scarf."
+      "en": "I am wearing a scarf.",
+      "de": "Ich trage einen Schal."
     },
     {
       "id": "s_boots",
       "group": "wear",
       "picture": "boots",
       "bs": "Nosim čizme.",
-      "en": "I am wearing boots."
+      "en": "I am wearing boots.",
+      "de": "Ich trage Stiefel."
     }
-  ]
+  ],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
 }

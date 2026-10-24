@@ -113,8 +113,8 @@ namespace FootballRunner.Tests
 
             foreach (DailyMission mission in DailyRewards.Missions)
             {
-                Assert.IsFalse(string.IsNullOrEmpty(DailyRewards.Describe(mission, true)));
-                Assert.IsFalse(string.IsNullOrEmpty(DailyRewards.Describe(mission, false)));
+                Assert.IsFalse(string.IsNullOrEmpty(DailyRewards.Describe(mission)));
+
             }
         }
 

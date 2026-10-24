@@ -2,88 +2,105 @@
   "pack": "World5",
   "title_bs": "Rijeka i Stari most",
   "title_en": "River and Old Bridge",
+  "title_de": "Fluss und Alte Brücke",
   "words": [
     {
       "id": "sun",
       "bs": "sunce",
-      "en": "sun"
+      "en": "sun",
+      "de": "die Sonne"
     },
     {
       "id": "rain",
       "bs": "kiša",
-      "en": "rain"
+      "en": "rain",
+      "de": "der Regen"
     },
     {
       "id": "rainbow",
       "bs": "duga",
-      "en": "rainbow"
+      "en": "rainbow",
+      "de": "der Regenbogen"
     },
     {
       "id": "bridge",
       "bs": "most",
-      "en": "bridge"
+      "en": "bridge",
+      "de": "die Brücke"
     },
     {
       "id": "fish",
       "bs": "riba",
-      "en": "fish"
+      "en": "fish",
+      "de": "der Fisch"
     },
     {
       "id": "frog",
       "bs": "žaba",
-      "en": "frog"
+      "en": "frog",
+      "de": "der Frosch"
     },
     {
       "id": "butterfly",
       "bs": "leptir",
-      "en": "butterfly"
+      "en": "butterfly",
+      "de": "der Schmetterling"
     },
     {
       "id": "flower",
       "bs": "cvijet",
-      "en": "flower"
+      "en": "flower",
+      "de": "die Blume"
     },
     {
       "id": "tree",
       "bs": "drvo",
-      "en": "tree"
+      "en": "tree",
+      "de": "der Baum"
     },
     {
       "id": "boat",
       "bs": "čamac",
-      "en": "boat"
+      "en": "boat",
+      "de": "das Boot"
     }
   ],
   "phrases": [
     {
       "id": "praise_1",
       "bs": "Bravo!",
-      "en": "Great job!"
+      "en": "Great job!",
+      "de": "Toll!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
-      "en": "That's right!"
+      "en": "That's right!",
+      "de": "Richtig!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "de": "Super!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
-      "en": "Listen to the word, then jump into the right picture!"
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
-      "en": "Jump!"
+      "en": "Jump!",
+      "de": "Spring!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
-      "en": "Well done! Goal complete!"
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!"
     }
   ],
   "counts": [],
@@ -94,70 +111,86 @@
       "picture": "fish",
       "size": "big",
       "bs": "velika riba",
-      "en": "big fish"
+      "en": "big fish",
+      "de": "ein großer Fisch"
     },
     {
       "id": "fish_small",
       "picture": "fish",
       "size": "small",
       "bs": "mala riba",
-      "en": "small fish"
+      "en": "small fish",
+      "de": "ein kleiner Fisch"
     },
     {
       "id": "frog_big",
       "picture": "frog",
       "size": "big",
       "bs": "velika žaba",
-      "en": "big frog"
+      "en": "big frog",
+      "de": "ein großer Frosch"
     },
     {
       "id": "frog_small",
       "picture": "frog",
       "size": "small",
       "bs": "mala žaba",
-      "en": "small frog"
+      "en": "small frog",
+      "de": "ein kleiner Frosch"
     },
     {
       "id": "boat_big",
       "picture": "boat",
       "size": "big",
       "bs": "veliki čamac",
-      "en": "big boat"
+      "en": "big boat",
+      "de": "ein großes Boot"
     },
     {
       "id": "boat_small",
       "picture": "boat",
       "size": "small",
       "bs": "mali čamac",
-      "en": "small boat"
+      "en": "small boat",
+      "de": "ein kleines Boot"
     },
     {
       "id": "flower_big",
       "picture": "flower",
       "size": "big",
       "bs": "veliki cvijet",
-      "en": "big flower"
+      "en": "big flower",
+      "de": "eine große Blume"
     },
     {
       "id": "flower_small",
       "picture": "flower",
       "size": "small",
       "bs": "mali cvijet",
-      "en": "small flower"
+      "en": "small flower",
+      "de": "eine kleine Blume"
     },
     {
       "id": "tree_big",
       "picture": "tree",
       "size": "big",
       "bs": "veliko drvo",
-      "en": "big tree"
+      "en": "big tree",
+      "de": "ein großer Baum"
     },
     {
       "id": "tree_small",
       "picture": "tree",
       "size": "small",
       "bs": "malo drvo",
-      "en": "small tree"
+      "en": "small tree",
+      "de": "ein kleiner Baum"
     }
-  ]
+  ],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
 }

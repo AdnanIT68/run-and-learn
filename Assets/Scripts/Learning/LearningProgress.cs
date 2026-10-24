@@ -12,23 +12,77 @@ namespace FootballRunner.Learning
     {
         public const string Bosnian = "bs";
         public const string English = "en";
+        public const string German = "de";
+
+        /// <summary>
+        /// The ways to play, as (learning, already speaks): diaspora children learn
+        /// Bosnian from English or German; children in Bosnia learn English or German.
+        /// </summary>
+        public static readonly (string learn, string home)[] Pairs =
+        {
+            (Bosnian, English),
+            (Bosnian, German),
+            (English, Bosnian),
+            (German, Bosnian)
+        };
 
         /// <summary>The language being learned. Diaspora children learning Bosnian is the default.</summary>
-        public static string Language =>
-            SaveManager.Data.learningLanguage == English ? English : Bosnian;
-
-        /// <summary>The language the child already speaks, used for menus and hints.</summary>
-        public static string HomeLanguage => Language == English ? Bosnian : English;
-
-        public static void SetLanguage(string language)
+        public static string Language
         {
-            SaveManager.Data.learningLanguage = language == English ? English : Bosnian;
+            get
+            {
+                string saved = SaveManager.Data.learningLanguage;
+                return saved == English || saved == German ? saved : Bosnian;
+            }
+        }
+
+        /// <summary>
+        /// The language the child already speaks, used for menus and hints. Bosnian
+        /// learners choose English or German; everyone else hears Bosnian.
+        /// </summary>
+        public static string HomeLanguage
+        {
+            get
+            {
+                if (Language != Bosnian)
+                {
+                    return Bosnian;
+                }
+
+                return SaveManager.Data.homeLanguage == German ? German : English;
+            }
+        }
+
+        /// <summary>A menu text in the language the child already speaks.</summary>
+        public static string Ui(string bs, string en, string de)
+        {
+            switch (HomeLanguage)
+            {
+                case Bosnian: return bs;
+                case German: return de;
+                default: return en;
+            }
+        }
+
+        public static void SetLanguage(string language, string home = null)
+        {
+            SaveData data = SaveManager.Data;
+            data.learningLanguage = language == English || language == German ? language : Bosnian;
+
+            if (home != null)
+            {
+                data.homeLanguage = home;
+            }
+
             SaveManager.Save();
         }
 
+        /// <summary>Moves on to the next way to play in Pairs, as the menu's language button does.</summary>
         public static void ToggleLanguage()
         {
-            SetLanguage(Language == English ? Bosnian : English);
+            int current = System.Array.FindIndex(Pairs, p => p.learn == Language && p.home == HomeLanguage);
+            (string learn, string home) next = Pairs[(current + 1) % Pairs.Length];
+            SetLanguage(next.learn, next.home);
         }
 
         /// <summary>Knowing every word of a world (it has ten) also opens the next world.</summary>

@@ -12,12 +12,16 @@ namespace FootballRunner.UI
 {
     public class MainMenuController : MonoBehaviour
     {
-        private const string HowToPlayTitle = "HOW TO PLAY";
-        private const string HowToPlayBody =
-            "Listen to the word.\n" +
-            "Jump into the bubble with the right picture!\n\n" +
-            "Fill all five circles to win coins.\n" +
-            "Tap the screen to jump over spikes and gaps.";
+        private static string HowToPlayTitle =>
+            LearningProgress.Ui("KAKO SE IGRA", "HOW TO PLAY", "SO WIRD GESPIELT");
+
+        private static string HowToPlayBody => LearningProgress.Ui(
+            "Slušaj riječ.\nSkoči u balon s pravom slikom!\n\n" +
+            "Popuni krugove i završi nivo.\nDodirni ekran da preskočiš prepreke.",
+            "Listen to the word.\nJump into the bubble with the right picture!\n\n" +
+            "Fill the circles to finish the level.\nTap the screen to jump over spikes and gaps.",
+            "Hör auf das Wort.\nSpring in die Blase mit dem richtigen Bild!\n\n" +
+            "Füll die Kreise und schaffe das Level.\nTippe auf den Bildschirm, um über Hindernisse zu springen.");
 
         [Header("Buttons")]
         [SerializeField] private Button playButton;
@@ -125,6 +129,11 @@ namespace FootballRunner.UI
 
             ShowSettings(false);
             ShowHowToPlay(false);
+
+            foreach (GameObject sceneRoot in gameObject.scene.GetRootGameObjects())
+            {
+                SceneTextLocalizer.Apply(sceneRoot.transform);
+            }
         }
 
         private void OnPlay()
@@ -227,8 +236,9 @@ namespace FootballRunner.UI
         }
 
         /// <summary>
-        /// Switches between learning Bosnian and learning English. The label is
-        /// written in the language the child already speaks.
+        /// Steps through the ways to play (learning Bosnian from English or German,
+        /// learning English or German from Bosnian). The menu reloads so every label
+        /// follows the language the child already speaks.
         /// </summary>
         private void EnsureLanguageButton()
         {
@@ -244,6 +254,7 @@ namespace FootballRunner.UI
                 AudioManager.Instance?.PlayButton();
                 LearningProgress.ToggleLanguage();
                 RefreshLanguageLabel();
+                GameManager.LoadSceneClean(GameManager.MainMenuSceneName);
             });
         }
 
@@ -337,9 +348,20 @@ namespace FootballRunner.UI
             int learned = LearningProgress.LearnedCount(pack);
             int total = pack != null ? pack.Words.Count : 0;
 
-            return LearningProgress.Language == LearningProgress.English
-                ? $"UČIM ENGLESKI  ·  {learned}/{total}"
-                : $"LEARNING BOSNIAN  ·  {learned}/{total}";
+            string label;
+
+            switch (LearningProgress.Language)
+            {
+                case LearningProgress.English: label = "UČIM ENGLESKI"; break;
+                case LearningProgress.German: label = "UČIM NJEMAČKI"; break;
+                default:
+                    label = LearningProgress.HomeLanguage == LearningProgress.German
+                        ? "ICH LERNE BOSNISCH"
+                        : "LEARNING BOSNIAN";
+                    break;
+            }
+
+            return $"{label}  ·  {learned}/{total}";
         }
 
         private static TMP_FontAsset ResolveFont()

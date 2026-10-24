@@ -4,13 +4,16 @@ using UnityEngine;
 
 namespace FootballRunner.Learning
 {
-    /// <summary>One word in both languages. The id names its picture and voice files.</summary>
+    /// <summary>One word in every language. The id names its picture and voice files.</summary>
     [Serializable]
     public class WordEntry
     {
         public string id;
         public string bs;
         public string en;
+
+        [Tooltip("German, nouns with their article (der Apfel).")]
+        public string de;
 
         [Tooltip("Counting phrases only: the word whose picture is shown, e.g. \"hen\".")]
         public string picture;
@@ -50,7 +53,8 @@ namespace FootballRunner.Learning
 
         /// <summary>
         /// First letter as children learn it. Bosnian digraphs (dž, lj, nj) count as
-        /// one letter; matches Tools/generate_words.py.
+        /// one letter, and a German noun's article is skipped (der Apfel: A); matches
+        /// Tools/generate_words.py.
         /// </summary>
         public static string Initial(string word)
         {
@@ -60,6 +64,15 @@ namespace FootballRunner.Learning
             }
 
             string lower = word.ToLowerInvariant();
+
+            foreach (string article in new[] { "der ", "die ", "das " })
+            {
+                if (lower.StartsWith(article) && lower.Length > article.Length)
+                {
+                    lower = lower.Substring(article.Length);
+                    break;
+                }
+            }
 
             foreach (string digraph in new[] { "dž", "lj", "nj" })
             {
@@ -74,7 +87,12 @@ namespace FootballRunner.Learning
 
         public string Text(string language)
         {
-            return language == LearningProgress.English ? en : bs;
+            switch (language)
+            {
+                case LearningProgress.English: return en;
+                case LearningProgress.German: return string.IsNullOrEmpty(de) ? en : de;
+                default: return bs;
+            }
         }
     }
 
@@ -113,6 +131,7 @@ namespace FootballRunner.Learning
             public string pack;
             public string title_bs;
             public string title_en;
+            public string title_de;
             public WordEntry[] words;
             public WordEntry[] phrases;
             public WordEntry[] counts;
@@ -268,7 +287,13 @@ namespace FootballRunner.Learning
 
         public string Title(string language)
         {
-            return language == LearningProgress.English ? _manifest.title_en : _manifest.title_bs;
+            switch (language)
+            {
+                case LearningProgress.English: return _manifest.title_en;
+                case LearningProgress.German:
+                    return string.IsNullOrEmpty(_manifest.title_de) ? _manifest.title_en : _manifest.title_de;
+                default: return _manifest.title_bs;
+            }
         }
 
         public static WordPack Load(string name)

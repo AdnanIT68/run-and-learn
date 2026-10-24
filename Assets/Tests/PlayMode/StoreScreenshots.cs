@@ -16,7 +16,7 @@ namespace FootballRunner.Tests
     /// never runs with the normal suite. Run in batch mode WITH graphics:
     /// Unity.exe -batchmode -projectPath . -runTests -testPlatform PlayMode
     ///   -testFilter FootballRunner.Tests.StoreScreenshots
-    /// Output: Store/raw/*.png
+    /// Output: Store/raw/&lt;en|hr|de&gt;/*.png
     /// </summary>
     [Explicit("Store screenshots; run on demand with graphics enabled.")]
     [Timeout(180000)]
@@ -45,22 +45,40 @@ namespace FootballRunner.Tests
             SaveManager.Save();
         }
 
+        /// <summary>
+        /// One set of eight shots per store language, each in the way that audience plays:
+        /// en = learning Bosnian with English menus, hr (Bosnian listing) = learning English
+        /// with Bosnian menus, de = learning Bosnian with German menus.
+        /// </summary>
+        private static readonly (string folder, string learn, string home)[] Profiles =
+        {
+            ("en", LearningProgress.Bosnian, LearningProgress.English),
+            ("hr", LearningProgress.English, LearningProgress.Bosnian),
+            ("de", LearningProgress.Bosnian, LearningProgress.German)
+        };
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {
-            SetProgress(gardenWords: 7, farmWords: 4, english: false);
+            foreach ((string folder, string learn, string home) in Profiles)
+            {
+                yield return CaptureProfile(folder, learn, home);
+            }
+        }
 
-            // 1. Catching a word in the garden.
+        private static IEnumerator CaptureProfile(string folder, string learn, string home)
+        {
+            SetProgress(learn, home);
+
+            // Catching a word in the garden.
+            LearningProgress.SelectPack("World1");
+            LearningProgress.SelectLevel(0);
             yield return LoadScene("Game");
             yield return StartChallengeAndWait("World1", counting: false);
-            yield return Capture("02_catch_the_word");
+            yield return Capture(folder + "/01_catch_the_word");
 
-            // 2. Goal row full: BRAVO and confetti.
+            // A full goal row ends the level: stars, the words and the next step.
             yield return FillGoal();
-            yield return new WaitForSecondsRealtime(0.25f);
-            yield return Capture("04_bravo");
-
-            // 2b. The level ends: stars, the five words and the next step.
             float waitedForEnd = 0f;
             while (Core.GameManager.Instance.State != Core.GameState.LevelComplete && waitedForEnd < 5f)
             {
@@ -69,77 +87,82 @@ namespace FootballRunner.Tests
             }
 
             yield return new WaitForSecondsRealtime(1.6f);
-            yield return Capture("10_level_complete");
+            yield return Capture(folder + "/06_level_complete");
 
-            // 3. Counting on the farm.
+            // Counting on the farm.
+            SetProgress(learn, home);
             LearningProgress.SelectPack("World2");
             yield return LoadScene("Game");
             yield return StartChallengeAndWait("World2", counting: true);
-            yield return Capture("03_counting_farm");
+            yield return Capture(folder + "/04_counting_farm");
 
-            // 4. Spoken commands at the bazaar.
-            SetProgress(gardenWords: 7, farmWords: 6, english: false, homeWords: 6);
+            // Spoken commands at the bazaar.
             LearningProgress.SelectPack("World4");
             yield return LoadScene("Game");
             yield return StartChallengeAndWait("World4", counting: false, command: true);
-            yield return Capture("08_command_bazaar");
+            yield return Capture(folder + "/05_command_bazaar");
 
-            // 5. Big or small by the river.
-            SetProgress(gardenWords: 7, farmWords: 6, english: false, homeWords: 6, bazaarWords: 6);
-            LearningProgress.SelectPack("World5");
-            yield return LoadScene("Game");
-            yield return StartChallengeAndWait("World5", counting: false, size: true);
-            yield return Capture("09_big_small_river");
-
-            // 5b. Letters at school.
-            SetProgress(gardenWords: 7, farmWords: 6, english: false, homeWords: 6, bazaarWords: 6);
-            LearningProgress.RecordLevelComplete("World6", LearningProgress.LevelToOpenNextWorld - 1, 2);
-            LearningProgress.RecordLevelComplete("World5", LearningProgress.LevelToOpenNextWorld - 1, 2);
-            LearningProgress.SelectPack("World7");
-            yield return LoadScene("Game");
-            yield return StartChallengeAndWait("World7", counting: false, kind: WordChallengeDirector.Kind.Letter);
-            yield return Capture("11_letters_school");
-
-            // 6. English learners see the same game in English.
-            SetProgress(gardenWords: 7, farmWords: 4, english: true);
-            LearningProgress.SelectPack("World1");
-            yield return LoadScene("Game");
-            yield return StartChallengeAndWait("World1", counting: false);
-            yield return Capture("06_learning_english");
-
-            // 5. Main menu, album and world chooser.
-            SetProgress(gardenWords: 7, farmWords: 4, english: false);
+            // The menu and its screens.
+            SetProgress(learn, home);
             yield return LoadScene("MainMenu");
-            yield return Capture("01_main_menu");
-            // Phones are wider than 16:9; check the layout holds there too (not a store shot).
-            yield return Capture("check_main_menu_phone", 2340);
+            yield return Capture(folder + "/08_main_menu");
 
-            WordAlbumUi album = Object.FindFirstObjectByType<WordAlbumUi>();
-            album.Open();
+            var players = Object.FindFirstObjectByType<FootballRunner.UI.CharacterChooserUi>();
+            players.Open();
             yield return null;
-            yield return Capture("05_album");
-            album.Close();
+            yield return Capture(folder + "/02_players");
+            players.Close();
 
             WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
             worlds.Open();
             yield return null;
-            yield return Capture("07_worlds");
+            yield return Capture(folder + "/03_worlds");
+            worlds.Close();
+
+            DailyRewards.Report(DailyRewards.Kind.CatchWords, 5);
+            DailyRewards.Report(DailyRewards.Kind.CollectCoins, 50);
+            var today = Object.FindFirstObjectByType<FootballRunner.UI.DailyUi>();
+            today.Open();
+            yield return null;
+            yield return Capture(folder + "/07_today");
+            today.Close();
         }
 
-        private static void SetProgress(int gardenWords, int farmWords, bool english, int homeWords = 0,
-            int bazaarWords = 0)
+        /// <summary>A child some way in: three worlds open, a few levels and words done, coins saved.</summary>
+        private static void SetProgress(string learn, string home)
         {
             SaveData data = SaveManager.Data;
             data.wordProgress.Clear();
             data.worldResults.Clear();
             data.wordTutorialDone = true;
-            data.learningLanguage = english ? LearningProgress.English : LearningProgress.Bosnian;
+            LearningProgress.SetLanguage(learn, home);
 
-            Learn(WordPack.Load("World1"), gardenWords);
-            Learn(WordPack.Load("World2"), farmWords);
-            Learn(WordPack.Load("World3"), homeWords);
-            Learn(WordPack.Load("World4"), bazaarWords);
+            Learn(WordPack.Load("World1"), 8);
+            Learn(WordPack.Load("World2"), 6);
+            Learn(WordPack.Load("World3"), 4);
+            Learn(WordPack.Load("World4"), 3);
+
+            int[] stars = { 3, 2, 3 };
+            foreach (string pack in new[] { "World1", "World2", "World3" })
+            {
+                for (int level = 0; level < stars.Length; level++)
+                {
+                    LearningProgress.RecordLevelComplete(pack, level, stars[level]);
+                }
+            }
+
+            LearningProgress.RecordLevelComplete("World4", 0, 2);
+
             data.selectedPack = "World1";
+            data.selectedLevel = 0;
+            data.totalCoins = 95;
+            data.unlockedItems.Clear();
+            data.unlockedItems.Add("character_harun");
+            data.selectedCharacterId = "rukajja";
+            data.dailyGiftDate = "";
+            data.dailyGiftStep = 2;
+            data.missionDate = "";
+            data.missions.Clear();
         }
 
         private static void Learn(WordPack pack, int count)
@@ -267,6 +290,8 @@ namespace FootballRunner.Tests
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
                 canvas.worldCamera = camera;
                 canvas.planeDistance = 1f;
+                // On a phone an overlay canvas is always drawn last; keep it above coins and gems here too.
+                canvas.sortingOrder += 1000;
             }
 
             Canvas.ForceUpdateCanvases();
@@ -283,12 +308,13 @@ namespace FootballRunner.Tests
 
             foreach (Canvas canvas in overlays)
             {
+                canvas.sortingOrder -= 1000;
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             }
 
-            string folder = Path.Combine(Application.dataPath, "..", "Store", "raw");
-            Directory.CreateDirectory(folder);
-            File.WriteAllBytes(Path.Combine(folder, name + ".png"), image.EncodeToPNG());
+            string path = Path.Combine(Application.dataPath, "..", "Store", "raw", name + ".png");
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            File.WriteAllBytes(path, image.EncodeToPNG());
             Object.Destroy(image);
             target.Release();
             Debug.Log($"[StoreScreenshots] Saved {name}.png");
