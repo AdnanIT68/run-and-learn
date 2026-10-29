@@ -51,3 +51,7 @@ crashlytics-build.properties
 /Store/raw/
 /Store/play/screenshots/
 /Store/tour/
+
+# Python caches and personal notes
+__pycache__/
+/Store/poruka-testerima.md
