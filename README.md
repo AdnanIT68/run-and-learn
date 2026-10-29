@@ -52,7 +52,10 @@ Store/               Play listing texts (en, bs, de), privacy policy, store art
 ## Credits
 
 - Pictures: [Twemoji](https://github.com/twitter/twemoji) by Twitter, Inc. and contributors, CC BY 4.0.
-- Environment art: Sunny Land by Ansimuz.
+- Environment art: Sunny Land by Ansimuz. Its license does not allow redistributing the source files,
+  so `Assets/ThirdParty/` is not in this repository. To open the project in Unity, get the Sunny Land pack
+  from its author and import it into `Assets/ThirdParty/Ansimuz/SunnyLand/`; without it, scenes show
+  missing sprites but the code and tests are complete.
 - Font: Titan One (SIL Open Font License).
 - Rukajja character art was created with the help of AI image tools; the other kids are drawn in code.
 

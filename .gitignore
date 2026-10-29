@@ -55,3 +55,7 @@ crashlytics-build.properties
 # Python caches and personal notes
 __pycache__/
 /Store/poruka-testerima.md
+
+# Third-party art that may not be redistributed (Sunny Land by Ansimuz)
+/Assets/ThirdParty/
+/Assets/ThirdParty.meta
