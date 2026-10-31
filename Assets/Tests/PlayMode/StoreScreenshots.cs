@@ -107,6 +107,15 @@ namespace FootballRunner.Tests
             yield return LoadScene("MainMenu");
             yield return Capture(folder + "/08_main_menu");
 
+            // The listing shows the whole team as it looks once bought, not rows of silhouettes.
+            foreach (var kid in FootballRunner.Player.CharacterRoster.All)
+            {
+                if (!FootballRunner.Player.CharacterRoster.IsUnlocked(kid.Id))
+                {
+                    SaveManager.Data.unlockedItems.Add("character_" + kid.Id);
+                }
+            }
+
             var players = Object.FindFirstObjectByType<FootballRunner.UI.CharacterChooserUi>();
             players.Open();
             yield return null;

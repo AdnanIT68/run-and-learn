@@ -49,9 +49,9 @@ SHOTS = [
         "hr": "Čuj riječ i {skoči na pravu sliku!}",
         "de": "Wort hören, {ins richtige Bild springen!}"}),
     ("02_players", "green", "World4/Pictures/ball.png", {
-        "en": "Pick your player: {a team of ten kids}",
-        "hr": "Izaberi igrača: {ekipa od desetero djece}",
-        "de": "Wähle deinen Spieler: {zehn Kinder}"}),
+        "en": "Pick your player: {a team of thirteen kids}",
+        "hr": "Izaberi igrača: {ekipa od trinaestero djece}",
+        "de": "Wähle deinen Spieler: {dreizehn Kinder}"}),
     ("03_worlds", "violet", "World8/Pictures/rocket.png", {
         "en": "{8 worlds,} 40 levels",
         "hr": "{8 svjetova,} 40 nivoa",

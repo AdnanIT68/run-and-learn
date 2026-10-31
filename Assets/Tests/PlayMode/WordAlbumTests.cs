@@ -283,6 +283,51 @@ namespace FootballRunner.Tests
         }
 
         [UnityTest]
+        public IEnumerator WorldMapTrailAndPlayerFollowTheChild()
+        {
+            yield return null;
+
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
+            SaveManager.Data.selectedPack = "World1";
+            WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
+
+            worlds.Open();
+            Assert.AreEqual(0, worlds.MarkerWorld, "The player should stand on the garden at the start.");
+            Assert.IsFalse(worlds.IsTrailOpen(0), "The trail to a locked world should stay dim.");
+
+            WordPack garden = WordPack.Load("World1");
+            for (int i = 0; i < LearningProgress.WordsToUnlockNext; i++)
+            {
+                LearningProgress.RecordCorrect(garden.Words[i].id);
+            }
+
+            worlds.Close();
+            worlds.Open();
+            Assert.IsTrue(worlds.IsTrailOpen(0), "Opening the farm should light the trail to it.");
+            Assert.IsFalse(worlds.IsTrailOpen(1));
+
+            Assert.IsTrue(worlds.PressWorld(1));
+            Assert.AreEqual(1, worlds.MarkerWorld, "The player should walk to the chosen world.");
+
+            // Every stop sits inside the 1920x1080 frame, and each next stop is a neighbour:
+            // along the same row, or straight below at the turn.
+            int count = WordPack.PackOrder.Length;
+            for (int i = 0; i < count; i++)
+            {
+                Vector2 stop = WordWorldsUi.MapPosition(i, count);
+                Assert.Less(Mathf.Abs(stop.x), 960f - 100f);
+                Assert.Less(Mathf.Abs(stop.y), 540f - 100f);
+                if (i > 0)
+                {
+                    Vector2 previous = WordWorldsUi.MapPosition(i - 1, count);
+                    Assert.IsTrue(Mathf.Approximately(stop.y, previous.y) != Mathf.Approximately(stop.x, previous.x),
+                        $"World {i + 1} is not next to world {i} on the trail.");
+                }
+            }
+        }
+
+        [UnityTest]
         public IEnumerator SettingsHaveAVibrationToggle()
         {
             yield return null;
