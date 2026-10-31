@@ -46,6 +46,15 @@ namespace FootballRunner.Core
         private static void ResetSceneLoadGuard()
         {
             IsLoadingScene = false;
+            // The main menu has no GameManager, so only a scene-loaded hook can lift
+            // the guard there. Without it Play stayed dead after returning to the menu.
+            SceneManager.sceneLoaded -= ReleaseSceneLoadGuard;
+            SceneManager.sceneLoaded += ReleaseSceneLoadGuard;
+        }
+
+        private static void ReleaseSceneLoadGuard(Scene scene, LoadSceneMode mode)
+        {
+            IsLoadingScene = false;
         }
 
         /// <summary>

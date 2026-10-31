@@ -303,6 +303,35 @@ namespace FootballRunner.Tests
         }
 
         [UnityTest]
+        public IEnumerator PlayWorksAgainAfterReturningToTheMenu()
+        {
+            yield return null;
+
+            GameManager.Instance.GoToMainMenu();
+            yield return WaitForActiveScene(GameManager.MainMenuSceneName);
+            Assert.IsFalse(GameManager.IsLoadingScene, "The scene-load guard stayed locked in the main menu.");
+
+            // The menu's Play button goes through the same guarded load.
+            GameManager.LoadSceneClean(GameManager.GameSceneName);
+            yield return WaitForActiveScene(GameManager.GameSceneName);
+            yield return null;
+
+            Assert.IsNotNull(GameManager.Instance, "Play from the menu did not start a new run.");
+            Assert.AreEqual(GameState.Playing, GameManager.Instance.State);
+        }
+
+        private static IEnumerator WaitForActiveScene(string sceneName)
+        {
+            float deadline = Time.realtimeSinceStartup + 10f;
+            while (SceneManager.GetActiveScene().name != sceneName && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            Assert.AreEqual(sceneName, SceneManager.GetActiveScene().name, "Scene did not load: " + sceneName);
+        }
+
+        [UnityTest]
         public IEnumerator DifficultyRaisesSpeedOverTime()
         {
             yield return null;
