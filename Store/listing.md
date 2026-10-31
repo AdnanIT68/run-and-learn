@@ -162,4 +162,4 @@ the project, Twemoji credit in Settings and in the descriptions, 8 phone screens
 (`Store/play/screenshots/<en|hr|de>/`).
 
 Owner: create the app in Play Console, upload the .aab.
-Before production: replace the edge-tts voices (Azure Speech or family recordings).
+Voices: Azure Speech (licensed) since 1.1.0. Family recordings for Bosnian remain an option.
