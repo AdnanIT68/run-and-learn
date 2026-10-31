@@ -94,11 +94,17 @@ namespace FootballRunner.UI
             WordWorldsUi.EnsureOnCanvas(transform, ResolveFont());
             CharacterChooserUi.EnsureOnCanvas(transform, ResolveFont());
             DailyUi.EnsureOnCanvas(transform);
+            ParentsCornerUi parents = ParentsCornerUi.EnsureOnCanvas(transform, ResolveFont());
             MainMenuStyle.Apply(transform, playButton, settingsButton, quitButton, howToPlayButton,
                 highScoreText, totalCoinsText);
 
             playButton?.onClick.AddListener(OnPlay);
-            settingsButton?.onClick.AddListener(() => ShowSettings(true));
+            // Settings live in the parents' corner now, behind its gate.
+            settingsButton?.onClick.AddListener(() =>
+            {
+                AudioManager.Instance?.PlayButton();
+                parents.Open();
+            });
             closeSettingsButton?.onClick.AddListener(() => ShowSettings(false));
             quitButton?.onClick.AddListener(OnQuit);
             howToPlayButton?.onClick.AddListener(() => ShowHowToPlay(true));
