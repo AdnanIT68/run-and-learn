@@ -509,6 +509,106 @@ namespace FootballRunner.Tests
         }
 
         /// <summary>Catches a full goal row, touching a wrong bubble first on the first few words.</summary>
+        [UnityTest]
+        [Timeout(120000)]
+        public IEnumerator EveryResultButtonLeadsToARunThatReallyPlays()
+        {
+            SaveManager.Data.wordProgress.Clear();
+            SaveManager.Data.worldResults.Clear();
+            SaveManager.Data.wordTutorialDone = true;
+            SaveManager.Data.selectedPack = "World1";
+            SaveManager.Data.selectedLevel = 0;
+            yield return SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
+            yield return null;
+
+            // Finish level 1, then DALJE.
+            yield return FinishLevelAndWaitForResults();
+            Object.FindFirstObjectByType<LevelResultUi>().Next();
+            yield return AssertFreshRunThatPlays(expectedLevel: 1, "after NEXT");
+
+            // Finish level 2, then PONOVO.
+            yield return FinishLevelAndWaitForResults();
+            Object.FindFirstObjectByType<LevelResultUi>().Again();
+            yield return AssertFreshRunThatPlays(expectedLevel: 1, "after AGAIN");
+
+            // Finish it again, then MENI and IGRAJ from the main menu.
+            yield return FinishLevelAndWaitForResults();
+            Object.FindFirstObjectByType<LevelResultUi>().Menu();
+            yield return WaitForScene(Core.GameManager.MainMenuSceneName);
+            yield return null;
+            Assert.AreEqual(1f, Time.timeScale, "Time stayed frozen in the main menu.");
+
+            var menu = Object.FindFirstObjectByType<UI.MainMenuController>();
+            var play = (UnityEngine.UI.Button)typeof(UI.MainMenuController)
+                .GetField("playButton", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetValue(menu);
+            Assert.IsTrue(play.interactable && play.isActiveAndEnabled, "Play is not tappable in the menu.");
+            play.onClick.Invoke();
+            yield return AssertFreshRunThatPlays(expectedLevel: 1, "after MENU then PLAY");
+        }
+
+        private static IEnumerator FinishLevelAndWaitForResults()
+        {
+            yield return CatchGoalRow(mistakes: 0);
+
+            float deadline = Time.realtimeSinceStartup + 5f;
+            while (Core.GameManager.Instance.State != Core.GameState.LevelComplete &&
+                   Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            yield return null;
+            Assert.IsTrue(Object.FindFirstObjectByType<LevelResultUi>().IsShown, "The result screen did not open.");
+        }
+
+        /// <summary>A new Game scene whose runner moves and whose words come by themselves.</summary>
+        private static IEnumerator AssertFreshRunThatPlays(int expectedLevel, string when)
+        {
+            Core.GameManager before = Core.GameManager.Instance;
+            float deadline = Time.realtimeSinceStartup + 10f;
+            while ((Core.GameManager.Instance == null || Core.GameManager.Instance == before) &&
+                   Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            Assert.IsNotNull(Core.GameManager.Instance, "No new run started " + when + ".");
+            Assert.AreNotSame(before, Core.GameManager.Instance, "The old run is still on screen " + when + ".");
+            yield return null;
+            yield return null;
+
+            Assert.AreEqual(Core.GameState.Playing, Core.GameManager.Instance.State, "The run is not playing " + when + ".");
+            Assert.AreEqual(1f, Time.timeScale, "Time is frozen " + when + ".");
+            Assert.IsFalse(Object.FindFirstObjectByType<LevelResultUi>().IsShown, "The old results are still up " + when + ".");
+
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            Assert.AreEqual(expectedLevel, director.Level, "Wrong level " + when + ".");
+            Assert.IsFalse(director.LevelDone, "The new level starts already finished " + when + ".");
+
+            // The runner moves and the first word arrives without any help.
+            float startX = PlayerController.Instance.transform.position.x;
+            deadline = Time.realtimeSinceStartup + 10f;
+            while (director.CurrentWord == null && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            Assert.IsNotNull(director.CurrentWord, "No word came by itself " + when + ".");
+            Assert.AreNotEqual(startX, PlayerController.Instance.transform.position.x, "The runner stands still " + when + ".");
+        }
+
+        private static IEnumerator WaitForScene(string sceneName)
+        {
+            float deadline = Time.realtimeSinceStartup + 10f;
+            while (SceneManager.GetActiveScene().name != sceneName && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            Assert.AreEqual(sceneName, SceneManager.GetActiveScene().name);
+        }
+
         private static IEnumerator CatchGoalRow(int mistakes)
         {
             WordChallengeDirector director = WordChallengeDirector.Instance;
