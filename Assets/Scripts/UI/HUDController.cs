@@ -4,6 +4,7 @@ using FootballRunner.Audio;
 using FootballRunner.Core;
 using FootballRunner.Gameplay;
 using FootballRunner.Player;
+using FootballRunner.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -82,6 +83,7 @@ namespace FootballRunner.UI
             }
 
             EnsureAreaBanner();
+            StyleCorners();
 
             if (EnvironmentDirector.Instance != null && !AdventureSession.IsActive)
             {
@@ -115,6 +117,54 @@ namespace FootballRunner.UI
                 {
                     OnHealthChanged(health.CurrentHealth, health.MaxHealth);
                 }
+            }
+        }
+
+        /// <summary>True once score and coins use the game's display font.</summary>
+        public bool CornersStyled => scoreText != null && GameFonts.Display != null && scoreText.font == GameFonts.Display;
+
+        /// <summary>
+        /// Score, coins and pause in the game's own look: the rounded display font with a
+        /// dark outline that stays readable over sky, clouds and sun, and a round pause button.
+        /// </summary>
+        private void StyleCorners()
+        {
+            // Only live texts: TMP cannot set an outline before its material exists.
+            foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>())
+            {
+                bool corner = text == scoreText || text == coinText ||
+                              text.name == "ScoreCaption" || text.name == "CoinsCaption";
+
+                if (!corner || !text.isActiveAndEnabled)
+                {
+                    continue;
+                }
+
+                GameFonts.UseDisplay(text);
+                text.outlineWidth = 0.22f;
+                text.outlineColor = new Color32(20, 45, 80, 220);
+                text.color = Color.white;
+            }
+
+            if (pauseButton == null)
+            {
+                return;
+            }
+
+            var image = pauseButton.GetComponent<Image>();
+
+            if (image != null)
+            {
+                image.sprite = RuntimeSprites.Circle();
+                image.type = Image.Type.Simple;
+                image.preserveAspect = true;
+                image.color = new Color(0.1f, 0.2f, 0.32f, 0.85f);
+            }
+
+            foreach (TMP_Text label in pauseButton.GetComponentsInChildren<TMP_Text>(true))
+            {
+                GameFonts.UseDisplay(label);
+                label.color = Color.white;
             }
         }
 
@@ -157,7 +207,7 @@ namespace FootballRunner.UI
             rect.pivot = new Vector2(0.5f, 1f);
             // Below the hearts and the word card, so the world's name never covers them.
             rect.anchoredPosition = new Vector2(0f, -330f);
-            rect.sizeDelta = new Vector2(640f, 110f);
+            rect.sizeDelta = new Vector2(1100f, 110f);
 
             _bannerGroup = root.GetComponent<CanvasGroup>();
             _bannerGroup.alpha = 0f;
@@ -181,7 +231,7 @@ namespace FootballRunner.UI
             rect.anchorMax = new Vector2(0.5f, 1f);
             rect.pivot = new Vector2(0.5f, 1f);
             rect.anchoredPosition = anchoredPosition;
-            rect.sizeDelta = new Vector2(620f, 50f);
+            rect.sizeDelta = new Vector2(1080f, 50f);
 
             var label = go.AddComponent<TextMeshProUGUI>();
             label.text = text;
@@ -189,7 +239,17 @@ namespace FootballRunner.UI
             label.alignment = TextAlignmentOptions.Center;
             label.color = colour;
             label.raycastTarget = false;
-            if (font != null)
+            // One line in the game's display font; long world names shrink instead of
+            // wrapping into the kicker above them.
+            label.textWrappingMode = TextWrappingModes.NoWrap;
+            label.enableAutoSizing = true;
+            label.fontSizeMin = fontSize * 0.55f;
+            label.fontSizeMax = fontSize;
+            if (GameFonts.Display != null)
+            {
+                GameFonts.UseDisplay(label);
+            }
+            else if (font != null)
             {
                 label.font = font;
             }

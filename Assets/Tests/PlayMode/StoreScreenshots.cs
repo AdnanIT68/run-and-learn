@@ -57,6 +57,28 @@ namespace FootballRunner.Tests
             ("de", LearningProgress.Bosnian, LearningProgress.German)
         };
 
+        /// <summary>Look check for the special hazards and the HUD: Store/raw/check/hazards_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureHazards()
+        {
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+
+            foreach (string world in new[] { "World1", "World4", "World6", "World8" })
+            {
+                LearningProgress.SelectPack(world);
+                LearningProgress.SelectLevel(0);
+                yield return LoadScene("Game");
+                yield return new WaitForSeconds(0.5f);
+
+                Transform runner = FootballRunner.Player.PlayerController.Instance.transform;
+                float feet = runner.GetComponent<Collider2D>().bounds.min.y;
+                FootballRunner.Obstacles.SpecialHazards.CreateFlyers(new Vector3(runner.position.x + 4.5f, feet, 0f), world);
+                FootballRunner.Obstacles.SpecialHazards.CreateBall(new Vector3(runner.position.x + 9.5f, feet, 0f));
+                yield return null;
+                yield return Capture("check/hazards_" + world);
+            }
+        }
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {
@@ -294,12 +316,17 @@ namespace FootballRunner.Tests
                 layer.size = new Vector2(layer.size.x * 2f, layer.size.y);
             }
 
+            // On a phone an overlay canvas is always drawn last; keep it above coins, gems and
+            // the clouds' own sorting layer here too, or a cloud can hide the score.
+            int topLayer = SortingLayer.layers[SortingLayer.layers.Length - 1].id;
+            var layersBefore = new System.Collections.Generic.Dictionary<Canvas, int>();
             foreach (Canvas canvas in overlays)
             {
+                layersBefore[canvas] = canvas.sortingLayerID;
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
                 canvas.worldCamera = camera;
                 canvas.planeDistance = 1f;
-                // On a phone an overlay canvas is always drawn last; keep it above coins and gems here too.
+                canvas.sortingLayerID = topLayer;
                 canvas.sortingOrder += 1000;
             }
 
@@ -318,6 +345,7 @@ namespace FootballRunner.Tests
             foreach (Canvas canvas in overlays)
             {
                 canvas.sortingOrder -= 1000;
+                canvas.sortingLayerID = layersBefore[canvas];
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             }
 

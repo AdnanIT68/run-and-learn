@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FootballRunner.Collectibles;
+using FootballRunner.Obstacles;
 using FootballRunner.Utilities;
 using UnityEngine;
 
@@ -518,9 +519,61 @@ namespace FootballRunner.Gameplay
                     }
                     break;
                 default:
-                    PlaceSingle(chunk, RandomObstacle());
+                    if (!TryPlaceSpecial(chunk, difficulty != null ? difficulty.PatternTierAt(arrivalSeconds) : 1, minGap))
+                    {
+                        PlaceSingle(chunk, RandomObstacle());
+                    }
                     break;
             }
+        }
+
+        /// <summary>Chance that a single hazard is a flock to pass under instead of a block.</summary>
+        public const float FlyerChance = 0.25f;
+
+        /// <summary>Chance, from tier 2, that a single hazard is a rolling football.</summary>
+        public const float BallChance = 0.2f;
+
+        /// <summary>
+        /// Sometimes swaps a single ground hazard for a flock at head height (stay down
+        /// to pass) or, a little later in a run, a football rolling towards the runner.
+        /// </summary>
+        private bool TryPlaceSpecial(Chunk chunk, int tier, float minGap)
+        {
+            if (_usableSlots.Count == 0)
+            {
+                return false;
+            }
+
+            float roll = Random.value;
+            Transform slot = _usableSlots[Random.Range(0, _usableSlots.Count)];
+            GameObject instance;
+
+            if (tier >= 2 && roll < BallChance)
+            {
+                // The ball meets the runner a little before its slot; keep that stretch clear too.
+                float runnerSpeed = DifficultyManager.Instance != null ? DifficultyManager.Instance.CurrentSpeed : 6.5f;
+                float drift = RollingBall.StartDistance * RollingBall.Speed / (RollingBall.Speed + runnerSpeed);
+
+                if (slot.position.x - _lastObstacleX < minGap + drift)
+                {
+                    return false;
+                }
+
+                instance = SpecialHazards.CreateBall(slot.position);
+            }
+            else if (roll < BallChance + FlyerChance)
+            {
+                instance = SpecialHazards.CreateFlyers(slot.position, WorldScenery.Instance?.WorldName);
+            }
+            else
+            {
+                return false;
+            }
+
+            chunk.RegisterContent(instance);
+            _lastObstacleX = slot.position.x;
+            _obstaclesThisChunk.Add(slot.position.x);
+            return true;
         }
 
         private void PlaceSingle(Chunk chunk, GameObject prefab)
