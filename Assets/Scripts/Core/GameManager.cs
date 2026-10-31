@@ -88,6 +88,7 @@ namespace FootballRunner.Core
             WorldScenery.EnsureOn(gameObject);
             Learning.WordChallengeDirector.EnsureOn(gameObject);
             Learning.PepiCompanion.EnsureOn();
+            UI.TapHint.EnsureOn();
             Effects.GameFeel.EnsureOn(gameObject);
             FootballRunner.Player.CharacterSkin.EnsureOn(gameObject);
             Learning.DailyMissionTracker.EnsureOn(gameObject);

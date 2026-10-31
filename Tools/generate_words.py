@@ -53,6 +53,7 @@ ICONS = {
     "parrot": "1f99c",
     "gift": "1f381",
     "target": "1f3af",
+    "tap": "1f446",
 }
 VOICES = {
     "bs": "bs-BA-VesnaNeural",

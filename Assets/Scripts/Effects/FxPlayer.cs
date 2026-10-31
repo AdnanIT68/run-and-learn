@@ -107,8 +107,8 @@ namespace FootballRunner.Effects
             }
         }
 
-        /// <summary>Colourful confetti above the runner when the goal row fills.</summary>
-        public void Confetti(Vector3 position)
+        /// <summary>Colourful confetti above the runner: a full burst when the goal row fills, a smaller one for a streak.</summary>
+        public void Confetti(Vector3 position, int count = 40)
         {
             Color[] colours =
             {
@@ -116,7 +116,7 @@ namespace FootballRunner.Effects
                 new Color(1f, 0.5f, 0.55f), new Color(0.75f, 0.55f, 1f)
             };
 
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < count; i++)
             {
                 var velocity = new Vector3(Random.Range(-5f, 5f), Random.Range(4f, 9f), 0f);
                 Emit(RuntimeSprites.SoftDot(), position, velocity, -12f, Random.Range(0.9f, 1.4f), 0.3f, 0.2f,

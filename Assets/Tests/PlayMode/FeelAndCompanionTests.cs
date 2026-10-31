@@ -86,6 +86,86 @@ namespace FootballRunner.Tests
         }
 
         [UnityTest]
+        public IEnumerator TapHandShowsOnlyWhileTheGuidedWordWaitsForAJump()
+        {
+            SaveManager.Data.wordTutorialDone = false;
+            yield return null;
+
+            Assert.IsNotNull(FootballRunner.UI.TapHint.Instance, "The Game scene has no tap hint.");
+            Assert.IsFalse(FootballRunner.UI.TapHint.Instance.IsShowing, "The hand showed before any word.");
+
+            float waited = 0f;
+
+            while (WordChallengeDirector.Instance.CurrentWord == null && waited < 5f)
+            {
+                WordChallengeDirector.Instance.ForceChallenge();
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            bool shown = false;
+            waited = 0f;
+
+            while (!shown && WordChallengeDirector.Instance.CurrentWord != null && waited < 15f)
+            {
+                shown = FootballRunner.UI.TapHint.Instance.IsShowing;
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            Assert.IsTrue(shown, "The tapping hand never appeared on the guided word.");
+
+            // Catching the word ends the guide, and the hand goes with it.
+            WordBubble right = WordChallengeDirector.Instance.Bubbles
+                .First(b => b != null && b.Word == WordChallengeDirector.Instance.CurrentWord);
+            WordChallengeDirector.Instance.OnBubbleTouched(right);
+            yield return new WaitForSecondsRealtime(0.5f);
+
+            Assert.IsFalse(FootballRunner.UI.TapHint.Instance.IsShowing, "The hand stayed after the word was caught.");
+        }
+
+        [UnityTest]
+        public IEnumerator ThreeCleanCatchesMakeAStreakAndAMistakeBreaksIt()
+        {
+            SaveManager.Data.wordTutorialDone = true;
+            yield return null;
+
+            var feel = FootballRunner.Core.GameManager.Instance.GetComponent<GameFeel>();
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+
+            for (int caught = 1; caught <= GameFeel.StreakLength; caught++)
+            {
+                yield return WaitForWord(director);
+                director.OnBubbleTouched(director.Bubbles.First(b => b.Word == director.CurrentWord));
+                yield return null;
+                Assert.AreEqual(caught, feel.Streak);
+            }
+
+            Assert.Greater(FxPlayer.Instance.LiveCount, 0, "The streak burst left no confetti.");
+
+            // A wrong bubble first, then the right one: practice, but the streak starts over.
+            yield return WaitForWord(director);
+            director.OnBubbleTouched(director.Bubbles.First(b => b.Word != director.CurrentWord));
+            director.OnBubbleTouched(director.Bubbles.First(b => b.Word == director.CurrentWord));
+            yield return null;
+            Assert.AreEqual(0, feel.Streak, "A wrong bubble did not break the streak.");
+        }
+
+        private static IEnumerator WaitForWord(WordChallengeDirector director)
+        {
+            float waited = 0f;
+
+            while (director.CurrentWord == null && waited < 10f)
+            {
+                director.ForceChallenge();
+                waited += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            Assert.IsNotNull(director.CurrentWord, "No word was asked.");
+        }
+
+        [UnityTest]
         public IEnumerator SparklesAppearAndCleanUpAfterThemselves()
         {
             yield return null;

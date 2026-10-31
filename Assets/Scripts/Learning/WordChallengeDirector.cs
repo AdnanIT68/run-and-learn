@@ -141,6 +141,9 @@ namespace FootballRunner.Learning
         /// <summary>True while the first-ever word is being shown with the guide.</summary>
         public bool IsGuided => _active && _guided;
 
+        /// <summary>True while the guide has slowed the game in front of the right bubble: the moment to tap.</summary>
+        public bool IsGuidingJump => IsGuided && _slowedByGuide;
+
         public WordEntry CurrentWord => _active ? _target : null;
 
         public IReadOnlyList<WordBubble> Bubbles => _bubbles;

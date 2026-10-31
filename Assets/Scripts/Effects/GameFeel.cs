@@ -1,5 +1,6 @@
 using FootballRunner.Learning;
 using FootballRunner.Player;
+using FootballRunner.UI;
 using FootballRunner.Utilities;
 using UnityEngine;
 
@@ -11,7 +12,15 @@ namespace FootballRunner.Effects
     /// </summary>
     public class GameFeel : MonoBehaviour
     {
+        /// <summary>Words caught in a row without a mistake that earn a SUPER! burst.</summary>
+        public const int StreakLength = 3;
+
         private int _lastHealth = int.MaxValue;
+        private int _streak;
+        private int _missesSeen;
+
+        /// <summary>Words caught in a row without a wrong bubble or a missed word.</summary>
+        public int Streak => _streak;
 
         public static GameFeel EnsureOn(GameObject host)
         {
@@ -72,6 +81,13 @@ namespace FootballRunner.Effects
 
         private void OnChallengeEnded(WordEntry word, bool caught)
         {
+            // Any wrong bubble or missed word since the last catch breaks the streak.
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+            int misses = director != null ? director.RunMisses : 0;
+            bool clean = caught && misses == _missesSeen;
+            _missesSeen = misses;
+            _streak = clean ? _streak + 1 : 0;
+
             if (!caught || PlayerController.Instance == null)
             {
                 return;
@@ -80,6 +96,16 @@ namespace FootballRunner.Effects
             // The word is caught at the top of the jump, just above the runner's head.
             FxPlayer.Instance.Sparkle(HeadPosition());
             Haptics.Light();
+
+            // The goal row's own confetti takes over on the last word of the level.
+            bool goalReached = director != null && director.GoalCaught >= director.GoalSize;
+
+            if (_streak > 0 && _streak % StreakLength == 0 && !goalReached)
+            {
+                FxPlayer.Instance.Confetti(HeadPosition() + Vector3.up * 0.8f, 18);
+                FloatingTextSpawner.Instance?.Show("SUPER!", HeadPosition() + Vector3.up * 1.4f);
+                Haptics.Medium();
+            }
         }
 
         private void OnGoalCompleted(int goal)
