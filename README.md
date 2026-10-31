@@ -21,7 +21,7 @@ A voice says a word, picture bubbles float ahead, and the child jumps into the r
   ("Jump! Stay down!"), big or small, short sentences, letters and first reading, and a final review world.
 - **Spaced repetition:** words a child misses come back more often; stars track words the child really knows.
 - **No punishment for mistakes:** the right picture lights up and the word is repeated.
-- **Motivation without pressure:** daily gift, three daily tasks, coins, ten unlockable players,
+- **Motivation without pressure:** daily gift, three daily tasks, coins, thirteen players to unlock,
   a sticker album of learned words, and Pepi the parrot as a companion.
 - **Family friendly:** no ads, no data collection, works offline, no `INTERNET` permission.
 

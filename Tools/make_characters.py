@@ -87,6 +87,15 @@ KIDS = [
     Kid("adam", skin=(150, 100, 70, 255), hair=(30, 22, 20, 255), hair_style="curly",
         shirt=(200, 35, 45, 255), trim=WHITE, shorts=BLACK, socks=BLACK, boots=WHITE, number=4,
         stripes=BLACK, eyes=(60, 40, 30, 255)),
+    # Long hair tied back in a tail: brown for Tavus, blond for Alkame.
+    Kid("tavus", skin=(240, 200, 160, 255), hair=(115, 70, 40, 255), hair_style="tail",
+        shirt=(40, 160, 80, 255), trim=WHITE, shorts=WHITE, socks=(40, 160, 80, 255), boots=BLACK, number=3),
+    Kid("alkame", skin=(252, 220, 190, 255), hair=(245, 205, 90, 255), hair_style="tail",
+        shirt=(150, 30, 60, 255), trim=WHITE, shorts=WHITE, socks=(150, 30, 60, 255), boots=WHITE, number=2,
+        eyes=(70, 120, 180, 255)),
+    Kid("hind", skin=(246, 206, 172, 255), hair=(70, 45, 30, 255), hair_style="hijab",
+        hijab=(200, 45, 95, 255), shirt=(250, 150, 190, 255), trim=WHITE, shorts=(200, 45, 95, 255),
+        socks=(250, 150, 190, 255), boots=(250, 205, 40, 255), number=12, long_sleeves=WHITE, long_shirt=True),
 ]
 
 
@@ -222,6 +231,16 @@ def draw_head(pen, kid, cx, cy, face):
         pen.arc(cx - 6, cy + 74, 52, 30, 120, 170, shade(kid.hijab, 0.85), 4)
     elif style == "pony":
         pen.ellipse(cx - r - 8, cy - 30, 34, 26, kid.hair)
+    elif style == "tail":
+        # One smooth tail from the back of the head down over the jersey, tied with a
+        # band in the kit colour and a couple of strands so it reads as hair.
+        tail = [(cx - 50, cy - 20), (cx - 84, cy + 4), (cx - 98, cy + 40), (cx - 98, cy + 78), (cx - 88, cy + 104),
+                (cx - 80, cy + 78), (cx - 76, cy + 46), (cx - 64, cy + 20), (cx - 46, cy + 6)]
+        pen.poly(tail, kid.hair)
+        strand = shade(kid.hair, 0.8)
+        pen.d.line(pen._p([(cx - 86, cy + 30), (cx - 90, cy + 62), (cx - 88, cy + 88)]), fill=strand,
+                   width=int(2.5 * S), joint="curve")
+        pen.capsule((cx - 84, cy + 12), (cx - 66, cy + 4), 10, kid.shirt)
     elif style == "braid":
         for k in range(4):
             pen.ellipse(cx - 52 - k * 4, cy + 40 + k * 26, 16, 16, kid.hair)

@@ -42,7 +42,10 @@ namespace FootballRunner.Player
             new Entry("selma", "Selma", 120),
             new Entry("kenan", "Kenan", 160),
             new Entry("hana", "Hana", 200),
-            new Entry("adam", "Adam", 250)
+            new Entry("adam", "Adam", 250),
+            new Entry("tavus", "Tavus", 300),
+            new Entry("alkame", "Alkame", 350),
+            new Entry("hind", "Hind", 400)
         };
 
         /// <summary>Raised after a kid is chosen or bought.</summary>

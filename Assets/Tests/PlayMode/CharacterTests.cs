@@ -38,9 +38,9 @@ namespace FootballRunner.Tests
         }
 
         [Test]
-        public void TenKidsThreeOpenEveryFrameDrawn()
+        public void ThirteenKidsThreeOpenEveryFrameDrawn()
         {
-            Assert.AreEqual(10, CharacterRoster.All.Length);
+            Assert.AreEqual(13, CharacterRoster.All.Length);
             Assert.AreEqual(3, CharacterRoster.All.Count(e => e.IsFree));
             Assert.AreEqual(CharacterRoster.All.Length, CharacterRoster.All.Select(e => e.Id).Distinct().Count());
 
@@ -120,7 +120,7 @@ namespace FootballRunner.Tests
 
             chooser.Open();
             Assert.IsTrue(chooser.IsOpen);
-            Assert.AreEqual(10, chooser.CardCount);
+            Assert.AreEqual(CharacterRoster.All.Length, chooser.CardCount);
 
             int harun = System.Array.FindIndex(CharacterRoster.All, e => e.Id == "harun");
             Assert.IsFalse(chooser.PressCard(harun), "A locked player was picked without coins.");

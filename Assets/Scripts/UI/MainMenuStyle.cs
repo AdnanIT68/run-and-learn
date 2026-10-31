@@ -191,12 +191,12 @@ namespace FootballRunner.UI
             shadow.effectColor = new Color(0f, 0.15f, 0.35f, 0.35f);
             shadow.effectDistance = new Vector2(0f, -8f);
 
-            TMP_Text subtitle = CreateText(go.transform, "Subtitle", "Bosanski  ·  English", 40f,
+            TMP_Text subtitle = CreateText(go.transform, "Subtitle", "Bosanski  ·  English  ·  Deutsch", 40f,
                 new Color32(30, 86, 150, 255));
             RectTransform sub = subtitle.rectTransform;
             sub.anchorMin = sub.anchorMax = new Vector2(0.5f, 0f);
             sub.anchoredPosition = new Vector2(0f, -20f);
-            sub.sizeDelta = new Vector2(700f, 60f);
+            sub.sizeDelta = new Vector2(1000f, 60f);
         }
 
         private static void StyleBigButton(Button button, string label, Vector2 position, Vector2 size, Color colour,

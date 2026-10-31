@@ -12,16 +12,18 @@ using UnityEngine.UI;
 namespace FootballRunner.UI
 {
     /// <summary>
-    /// The team on the main menu: ten kids on cards. Open kids are chosen with a
+    /// The team on the main menu: thirteen kids on cards. Open kids are chosen with a
     /// tap; locked ones show their price in coins and open with a tap once the
     /// child has saved enough. Tapping the big kid on the menu opens it too.
     /// </summary>
     public class CharacterChooserUi : MonoBehaviour
     {
-        private const int Columns = 5;
+        private const int Columns = 7;
         private const float CardWidth = 290f;
         private const float CardHeight = 340f;
-        private const float Gap = 28f;
+        // Cards keep their 290x340 layout and are scaled down so the team fits in two rows.
+        private const float CardScale = 0.82f;
+        private const float Gap = 20f;
 
         private static readonly Color PanelColour = new Color(0.16f, 0.5f, 0.36f, 1f);
         private static readonly Color CardColour = new Color(1f, 0.98f, 0.92f, 1f);
@@ -221,16 +223,18 @@ namespace FootballRunner.UI
 
             CharacterRoster.Entry[] roster = CharacterRoster.All;
             int rows = Mathf.CeilToInt(roster.Length / (float)Columns);
-            float width = Columns * CardWidth + (Columns - 1) * Gap;
-            float height = rows * CardHeight + (rows - 1) * Gap;
+            float cardWidth = CardWidth * CardScale;
+            float cardHeight = CardHeight * CardScale;
+            float width = Columns * cardWidth + (Columns - 1) * Gap;
+            float height = rows * cardHeight + (rows - 1) * Gap;
 
             for (int i = 0; i < roster.Length; i++)
             {
                 int column = i % Columns;
                 int row = i / Columns;
                 var position = new Vector2(
-                    -width * 0.5f + CardWidth * 0.5f + column * (CardWidth + Gap),
-                    height * 0.5f - CardHeight * 0.5f - row * (CardHeight + Gap) - 40f);
+                    -width * 0.5f + cardWidth * 0.5f + column * (cardWidth + Gap),
+                    height * 0.5f - cardHeight * 0.5f - row * (cardHeight + Gap) - 40f);
                 _cards.Add(BuildCard(roster[i], i, position));
             }
 
@@ -261,6 +265,7 @@ namespace FootballRunner.UI
             rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
             rect.anchoredPosition = position;
             rect.sizeDelta = new Vector2(CardWidth, CardHeight);
+            rect.localScale = Vector3.one * CardScale;
             go.GetComponent<Button>().onClick.AddListener(() => PressCard(index));
 
             var card = new Card
@@ -412,13 +417,13 @@ namespace FootballRunner.UI
             while (elapsed < seconds && target != null)
             {
                 elapsed += Time.unscaledDeltaTime;
-                target.localScale = Vector3.one * (1f + Mathf.Sin(elapsed / seconds * Mathf.PI) * 0.12f);
+                target.localScale = Vector3.one * (CardScale * (1f + Mathf.Sin(elapsed / seconds * Mathf.PI) * 0.12f));
                 yield return null;
             }
 
             if (target != null)
             {
-                target.localScale = Vector3.one;
+                target.localScale = Vector3.one * CardScale;
             }
         }
 
