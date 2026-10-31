@@ -31,6 +31,7 @@ Three languages, one game:
 What's inside:
 • Catch the word: hear it, find the picture, jump!
 • Eight worlds with five levels each: every level is a little faster and asks a little more.
+• A world map: a dotted trail through all eight worlds, with your own player standing on it.
 • Grandma's Garden: fruit and vegetables.
 • Grandpa's Farm: animals and counting from one to five.
 • Our Home: family words like mom, dad, grandma and grandpa.
@@ -50,6 +51,7 @@ What's inside:
 
 Made for families:
 • No ads.
+• A parents' corner behind a small sum: progress in every world, sound and vibration.
 • No musical instruments: only spoken words and sound effects.
 • Works offline, no data collected.
 
@@ -79,6 +81,7 @@ Tri jezika, jedna igra:
 Šta igra nudi:
 • Uhvati riječ: čuj je, nađi sliku, skoči!
 • Osam svjetova s po pet nivoa: svaki nivo je malo brži i traži malo više.
+• Mapa svjetova: staza od tačkica kroz svih osam svjetova, a na njoj stoji tvoj igrač.
 • Nenina bašta: voće i povrće.
 • Farma kod dede: životinje i brojanje od jedan do pet.
 • Naša kuća: porodica, mama, tata, nena i dedo.
@@ -98,6 +101,7 @@ Tri jezika, jedna igra:
 
 Napravljeno za porodice:
 • Bez reklama.
+• Kutak za roditelje iza malog računa: napredak u svakom svijetu, zvuk i vibracija.
 • Bez muzičkih instrumenata: samo izgovorene riječi i zvučni efekti.
 • Radi bez interneta i ne prikuplja podatke.
 
@@ -127,6 +131,7 @@ Drei Sprachen, ein Spiel:
 Das steckt drin:
 • Fang das Wort: hören, Bild finden, springen!
 • Acht Welten mit je fünf Levels: Jedes Level ist etwas schneller und verlangt etwas mehr.
+• Eine Weltkarte: ein Punktepfad durch alle acht Welten, auf dem dein eigener Spieler steht.
 • Omas Garten: Obst und Gemüse.
 • Opas Bauernhof: Tiere und Zählen von eins bis fünf.
 • Unser Zuhause: Familienwörter wie Mama, Papa, Oma und Opa.
@@ -146,6 +151,7 @@ Das steckt drin:
 
 Für Familien gemacht:
 • Keine Werbung.
+• Eine Elternecke hinter einer kleinen Rechenaufgabe: Fortschritt in jeder Welt, Ton und Vibration.
 • Keine Musikinstrumente: nur gesprochene Wörter und Soundeffekte.
 • Funktioniert offline und sammelt keine Daten.
 
