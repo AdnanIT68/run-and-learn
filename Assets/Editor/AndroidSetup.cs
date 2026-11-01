@@ -28,10 +28,10 @@ namespace FootballRunner.EditorTools
         public const string ApplicationId = "com.rukajja.runlearn";
 
         /// <summary>Shown to players. Raise with every Play upload, together with VersionCode.</summary>
-        public const string VersionName = "1.1.0";
+        public const string VersionName = "1.2.0";
 
         /// <summary>Play's internal number; every upload must be higher than the last.</summary>
-        public const int VersionCode = 3;
+        public const int VersionCode = 4;
 
         [MenuItem("Tools/Football Runner/4 - Configure Android")]
         public static void Configure()
