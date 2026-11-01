@@ -44,6 +44,7 @@ namespace FootballRunner.UI
         private CanvasGroup _bannerGroup;
         private TMP_Text _bannerKicker;
         private TMP_Text _bannerTitle;
+        private RectTransform _bannerPlate;
 
         private void OnEnable()
         {
@@ -215,6 +216,21 @@ namespace FootballRunner.UI
             _bannerGroup.interactable = false;
             _bannerGroup.ignoreParentGroups = true;
 
+            // A soft dark plate keeps the white title readable over snowy peaks and clouds.
+            var plate = new GameObject("Plate", typeof(RectTransform), typeof(Image));
+            plate.transform.SetParent(root.transform, false);
+            _bannerPlate = plate.GetComponent<RectTransform>();
+            _bannerPlate.anchorMin = new Vector2(0.5f, 1f);
+            _bannerPlate.anchorMax = new Vector2(0.5f, 1f);
+            _bannerPlate.pivot = new Vector2(0.5f, 1f);
+            _bannerPlate.anchoredPosition = Vector2.zero;
+            _bannerPlate.sizeDelta = new Vector2(700f, 110f);
+            Image plateImage = plate.GetComponent<Image>();
+            plateImage.sprite = RuntimeSprites.RoundedRect();
+            plateImage.type = Image.Type.Sliced;
+            plateImage.color = new Color(0.08f, 0.16f, 0.3f, 0.4f);
+            plateImage.raycastTarget = false;
+
             _bannerKicker = CreateBannerLabel(root.transform, "Kicker", "NEW AREA",
                 new Vector2(0f, -8f), 28f, font, new Color(1f, 1f, 1f, 0.82f));
             _bannerTitle = CreateBannerLabel(root.transform, "Title", "GREEN HILLS",
@@ -269,6 +285,12 @@ namespace FootballRunner.UI
             if (_bannerTitle != null)
             {
                 _bannerTitle.text = areaName;
+
+                if (_bannerPlate != null)
+                {
+                    float width = Mathf.Min(_bannerTitle.GetPreferredValues(areaName).x, 1080f);
+                    _bannerPlate.sizeDelta = new Vector2(Mathf.Max(360f, width + 70f), _bannerPlate.sizeDelta.y);
+                }
             }
 
             if (_bannerRoutine != null)

@@ -1,5 +1,6 @@
 using System.Collections;
 using FootballRunner.Adventure;
+using FootballRunner.Gameplay;
 using FootballRunner.Obstacles;
 using FootballRunner.Player;
 using FootballRunner.SaveSystem;
@@ -10,7 +11,7 @@ using UnityEngine.TestTools;
 
 namespace FootballRunner.Tests
 {
-    /// <summary>Flocks to pass under by staying down, and the football that rolls towards the runner.</summary>
+    /// <summary>Flocks, the rolling football, world props, trampolines, mud and the extra backdrop bands.</summary>
     [Timeout(60000)]
     public class SpecialHazardTests
     {
@@ -116,6 +117,84 @@ namespace FootballRunner.Tests
 
             Object.Destroy(far);
             Object.Destroy(near);
+        }
+
+        [UnityTest]
+        public IEnumerator EveryWorldHasItsOwnGroundHazard()
+        {
+            yield return null;
+
+            for (int world = 1; world <= 8; world++)
+            {
+                GameObject prop = SpecialHazards.CreateProp(GroundAhead(40f), "World" + world);
+                SpriteRenderer picture = prop.GetComponentInChildren<SpriteRenderer>();
+                Assert.IsNotNull(picture.sprite, "World" + world + " has no hazard of its own.");
+                StringAssert.EndsWith("World" + world, picture.sprite.name);
+                Assert.AreEqual(1, prop.GetComponent<Obstacle>().Damage);
+                Assert.Less(prop.GetComponent<BoxCollider2D>().size.y, 1f, "A world hazard must stay jumpable.");
+                Object.Destroy(prop);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator TrampolineThrowsTheRunnerHighAndNeverHurts()
+        {
+            PlayerHealth health = PlayerController.Instance.GetComponent<PlayerHealth>();
+            int before = health.CurrentHealth;
+            Collider2D body = PlayerController.Instance.GetComponent<Collider2D>();
+            float ground = body.bounds.min.y;
+            GameObject trampoline = SpecialHazards.CreateTrampoline(GroundAhead(2.5f));
+
+            float highest = ground;
+            float deadline = Time.realtimeSinceStartup + 4f;
+            while (Time.realtimeSinceStartup < deadline &&
+                   PlayerController.Instance.transform.position.x < trampoline.transform.position.x + 8f)
+            {
+                highest = Mathf.Max(highest, body.bounds.min.y);
+                yield return null;
+            }
+
+            Assert.IsTrue(trampoline.GetComponent<Trampoline>().Used, "The runner never touched the trampoline.");
+            Assert.Greater(highest - ground, 3f, "The trampoline bounce was not higher than a jump.");
+            Assert.AreEqual(before, health.CurrentHealth, "A trampoline must never cost a heart.");
+            Object.Destroy(trampoline);
+        }
+
+        [UnityTest]
+        public IEnumerator MudSlowsTheRunnerForAMomentButNeverHurts()
+        {
+            PlayerHealth health = PlayerController.Instance.GetComponent<PlayerHealth>();
+            int before = health.CurrentHealth;
+            GameObject mud = SpecialHazards.CreateMud(GroundAhead(2.5f), "World1");
+
+            float slowest = 1f;
+            float deadline = Time.realtimeSinceStartup + 4f;
+            while (Time.realtimeSinceStartup < deadline &&
+                   PlayerController.Instance.transform.position.x < mud.transform.position.x + 3f)
+            {
+                slowest = Mathf.Min(slowest, PlayerController.Instance.SpeedFactor);
+                yield return null;
+            }
+
+            Assert.IsTrue(mud.GetComponent<MudPuddle>().Splashed, "The runner never splashed into the mud.");
+            Assert.AreEqual(MudPuddle.SlowFactor, slowest, 0.05f, "The mud did not slow the runner down.");
+            Assert.AreEqual(before, health.CurrentHealth, "Mud must never cost a heart.");
+
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(1f, PlayerController.Instance.SpeedFactor, 0.001f, "Speed did not come back after the mud.");
+            Object.Destroy(mud);
+        }
+
+        [UnityTest]
+        public IEnumerator WorldBackdropHasSkyAndForegroundBands()
+        {
+            yield return null;
+            WorldScenery scenery = WorldScenery.Instance;
+            Assert.IsNotNull(scenery);
+            Assume.That(scenery.WorldName, Is.Not.Null, "This run uses the old backdrop.");
+
+            Assert.AreEqual(4, scenery.LayerCount, "Expected far, mid, sky and foreground layers.");
+            Assert.Greater(scenery.ForegroundCount, 0, "Nothing stands in front of the track.");
         }
     }
 }

@@ -14,6 +14,13 @@ namespace FootballRunner.Obstacles
         [Tooltip("Hit points removed on contact. Zero makes this a harmless prop.")]
         [SerializeField] private int damage = 1;
 
+        /// <summary>Set to zero for things that only get in the way, like mud or a trampoline.</summary>
+        public int Damage
+        {
+            get => damage;
+            set => damage = Mathf.Max(0, value);
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             TryDamage(other);

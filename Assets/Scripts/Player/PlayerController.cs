@@ -61,14 +61,54 @@ namespace FootballRunner.Player
         private float _airtime;
         private bool _isGrounded;
         private bool _jumpThisStep;
+        private bool _bouncing;
+        private float _slowFactor = 1f;
+        private float _slowTimer;
         private PlayerHealth _health;
+
+        /// <summary>How long speed takes to come back after leaving mud.</summary>
+        private const float SlowRecovery = 0.35f;
 
         public bool IsGrounded => _isGrounded;
 
         public int MaxJumps => maxJumps;
 
         public float CurrentSpeed =>
-            DifficultyManager.Instance != null ? DifficultyManager.Instance.CurrentSpeed : fallbackSpeed;
+            (DifficultyManager.Instance != null ? DifficultyManager.Instance.CurrentSpeed : fallbackSpeed) * SpeedFactor;
+
+        /// <summary>1 normally; lower while wading through mud, easing back after.</summary>
+        public float SpeedFactor => Mathf.Lerp(1f, _slowFactor, Mathf.Clamp01(_slowTimer / SlowRecovery));
+
+        /// <summary>Keeps the runner at <paramref name="factor"/> of normal speed for a moment.</summary>
+        public void SlowDown(float factor)
+        {
+            _slowFactor = Mathf.Clamp(factor, 0.2f, 1f);
+            _slowTimer = SlowRecovery;
+        }
+
+        /// <summary>
+        /// Throws the runner up as if from a trampoline. The full rise is kept even
+        /// without a held tap, since a small child will not be holding the screen.
+        /// </summary>
+        public void Bounce(float velocity)
+        {
+            if (body == null || !CanControl())
+            {
+                return;
+            }
+
+            _isGrounded = false;
+            _coyoteTimer = 0f;
+            _jumpThisStep = true;
+            _bouncing = true;
+
+            Vector2 v = body.linearVelocity;
+            v.y = velocity;
+            body.linearVelocity = v;
+
+            AudioManager.Instance?.PlayJump();
+            Jumped?.Invoke(FeetPosition(), false);
+        }
 
         private void Awake()
         {
@@ -146,6 +186,7 @@ namespace FootballRunner.Player
             }
 
             _jumpThisStep = false;
+            _slowTimer = Mathf.Max(0f, _slowTimer - Time.fixedDeltaTime);
             UpdateGrounded();
             ApplyForwardMotion();
             TryJump();
@@ -184,6 +225,11 @@ namespace FootballRunner.Player
             if (_isGrounded)
             {
                 _coyoteTimer = coyoteTime;
+
+                if (body.linearVelocity.y <= 0.01f)
+                {
+                    _bouncing = false;
+                }
 
                 if (!wasGrounded && !_jumpThisStep)
                 {
@@ -289,12 +335,17 @@ namespace FootballRunner.Player
 
             Vector2 velocity = body.linearVelocity;
 
+            if (velocity.y <= 0f)
+            {
+                _bouncing = false;
+            }
+
             if (velocity.y < 0f)
             {
                 velocity += Vector2.up * (Physics2D.gravity.y * body.gravityScale *
                                           (fallGravityMultiplier - 1f) * Time.fixedDeltaTime);
             }
-            else if (velocity.y > 0f && !InputReader.JumpHeld())
+            else if (velocity.y > 0f && !_bouncing && !InputReader.JumpHeld())
             {
                 velocity += Vector2.up * (Physics2D.gravity.y * body.gravityScale *
                                           (shortHopGravityMultiplier - 1f) * Time.fixedDeltaTime);

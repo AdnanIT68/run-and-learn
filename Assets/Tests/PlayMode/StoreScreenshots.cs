@@ -80,6 +80,34 @@ namespace FootballRunner.Tests
         }
 
         [UnityTest]
+        public IEnumerator CaptureWorldExtras()
+        {
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+
+            // Every world open, so each shot shows its own scenery.
+            foreach (string pack in WordPack.PackOrder)
+            {
+                LearningProgress.RecordLevelComplete(pack, LearningProgress.LevelToOpenNextWorld - 1, 1);
+            }
+
+            foreach (string world in new[] { "World1", "World2", "World5", "World6", "World7", "World8" })
+            {
+                LearningProgress.SelectPack(world);
+                LearningProgress.SelectLevel(0);
+                yield return LoadScene("Game");
+                yield return new WaitForSeconds(0.5f);
+
+                Transform runner = FootballRunner.Player.PlayerController.Instance.transform;
+                float feet = runner.GetComponent<Collider2D>().bounds.min.y;
+                FootballRunner.Obstacles.SpecialHazards.CreateMud(new Vector3(runner.position.x + 3.5f, feet, 0f), world);
+                FootballRunner.Obstacles.SpecialHazards.CreateProp(new Vector3(runner.position.x + 7f, feet, 0f), world);
+                FootballRunner.Obstacles.SpecialHazards.CreateTrampoline(new Vector3(runner.position.x + 10.5f, feet, 0f));
+                yield return null;
+                yield return Capture("check/extras_" + world);
+            }
+        }
+
+        [UnityTest]
         public IEnumerator CaptureAll()
         {
             foreach ((string folder, string learn, string home) in Profiles)

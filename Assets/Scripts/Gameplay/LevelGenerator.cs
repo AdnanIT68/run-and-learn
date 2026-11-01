@@ -527,15 +527,28 @@ namespace FootballRunner.Gameplay
             }
         }
 
-        /// <summary>Chance that a single hazard is a flock to pass under instead of a block.</summary>
-        public const float FlyerChance = 0.25f;
-
         /// <summary>Chance, from tier 2, that a single hazard is a rolling football.</summary>
-        public const float BallChance = 0.2f;
+        public const float BallChance = 0.15f;
+
+        /// <summary>Chance that a single hazard is a flock to pass under instead of a block.</summary>
+        public const float FlyerChance = 0.2f;
+
+        /// <summary>Chance that a single hazard is this world's own thing (a sheep, a snowman...).</summary>
+        public const float PropChance = 0.2f;
+
+        /// <summary>Chance of a trampoline up to a row of coins instead of a hazard.</summary>
+        public const float TrampolineChance = 0.1f;
+
+        /// <summary>Chance of a mud puddle that only slows the runner down.</summary>
+        public const float MudChance = 0.1f;
+
+        /// <summary>Airtime of a trampoline bounce, a little over the real arc (rise 0.43 s, fall 0.31 s).</summary>
+        private const float BounceSeconds = 0.8f;
 
         /// <summary>
-        /// Sometimes swaps a single ground hazard for a flock at head height (stay down
-        /// to pass) or, a little later in a run, a football rolling towards the runner.
+        /// Sometimes swaps a single ground hazard for something else: a flock at head
+        /// height (stay down to pass), a football rolling towards the runner, the
+        /// world's own hazard, a trampoline or a mud puddle. The last two never hurt.
         /// </summary>
         private bool TryPlaceSpecial(Chunk chunk, int tier, float minGap)
         {
@@ -546,24 +559,61 @@ namespace FootballRunner.Gameplay
 
             float roll = Random.value;
             Transform slot = _usableSlots[Random.Range(0, _usableSlots.Count)];
+            string world = WorldScenery.Instance != null ? WorldScenery.Instance.WorldName : null;
+            float runnerSpeed = DifficultyManager.Instance != null ? DifficultyManager.Instance.CurrentSpeed : 6.5f;
+            float clearUntil = slot.position.x;
             GameObject instance;
 
-            if (tier >= 2 && roll < BallChance)
+            if (roll < BallChance)
             {
                 // The ball meets the runner a little before its slot; keep that stretch clear too.
-                float runnerSpeed = DifficultyManager.Instance != null ? DifficultyManager.Instance.CurrentSpeed : 6.5f;
                 float drift = RollingBall.StartDistance * RollingBall.Speed / (RollingBall.Speed + runnerSpeed);
 
-                if (slot.position.x - _lastObstacleX < minGap + drift)
+                if (tier < 2 || slot.position.x - _lastObstacleX < minGap + drift)
                 {
                     return false;
                 }
 
                 instance = SpecialHazards.CreateBall(slot.position);
             }
-            else if (roll < BallChance + FlyerChance)
+            else if ((roll -= BallChance) < FlyerChance)
             {
-                instance = SpecialHazards.CreateFlyers(slot.position, WorldScenery.Instance?.WorldName);
+                instance = SpecialHazards.CreateFlyers(slot.position, world);
+            }
+            else if ((roll -= FlyerChance) < PropChance)
+            {
+                if (world == null)
+                {
+                    return false;
+                }
+
+                instance = SpecialHazards.CreateProp(slot.position, world);
+            }
+            else if ((roll -= PropChance) < TrampolineChance)
+            {
+                // Only on flat ground, landing well before the chunk ends, so the bounce
+                // never drops the runner into a pit or under a platform.
+                float landing = runnerSpeed * BounceSeconds;
+
+                if (!IsFlatChunk(chunk) || slot.localPosition.x + landing + 2f > chunk.Length)
+                {
+                    return false;
+                }
+
+                instance = SpecialHazards.CreateTrampoline(slot.position);
+                clearUntil = slot.position.x + landing;
+                PlaceBounceCoins(chunk, slot.position, runnerSpeed);
+            }
+            else if ((roll -= TrampolineChance) < MudChance)
+            {
+                // Full speed is back well before the next chunk, which may start with a pit.
+                if (!IsFlatChunk(chunk) || slot.localPosition.x + SpecialHazards.MudWidth * 0.5f + 4f > chunk.Length)
+                {
+                    return false;
+                }
+
+                instance = SpecialHazards.CreateMud(slot.position, world);
+                clearUntil = slot.position.x + SpecialHazards.MudWidth * 0.5f;
             }
             else
             {
@@ -571,9 +621,34 @@ namespace FootballRunner.Gameplay
             }
 
             chunk.RegisterContent(instance);
-            _lastObstacleX = slot.position.x;
+            _lastObstacleX = clearUntil;
             _obstaclesThisChunk.Add(slot.position.x);
             return true;
+        }
+
+        private static bool IsFlatChunk(Chunk chunk)
+        {
+            return chunk != null && chunk.name.IndexOf("Flat", System.StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        /// <summary>Coins along the trampoline arc, so the bounce pays off.</summary>
+        private void PlaceBounceCoins(Chunk chunk, Vector3 groundPosition, float runnerSpeed)
+        {
+            // The runner's gravity scale is 4 and falling uses 1.9x gravity (PlayerController).
+            float gravity = Mathf.Abs(Physics2D.gravity.y) * 4f;
+            float rise = Trampoline.BounceVelocity / gravity;
+            float apex = Trampoline.BounceVelocity * rise * 0.5f;
+            // Runner's centre rides 0.75 above the feet.
+            float[] times = { 0.18f, 0.3f, rise, 0.53f, 0.62f };
+
+            foreach (float t in times)
+            {
+                float height = t <= rise
+                    ? Trampoline.BounceVelocity * t - 0.5f * gravity * t * t
+                    : apex - 0.5f * gravity * 1.9f * (t - rise) * (t - rise);
+                SpawnCollectible(chunk, new Vector3(groundPosition.x + runnerSpeed * t, groundPosition.y + 0.75f + height, 0f),
+                    PreferCoin());
+            }
         }
 
         private void PlaceSingle(Chunk chunk, GameObject prefab)

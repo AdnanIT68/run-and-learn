@@ -54,6 +54,18 @@ namespace FootballRunner.Gameplay
             public float TileWidth;
         }
 
+        /// <summary>A single picture in a parallax band: clouds or stars far away, plants up close.</summary>
+        private class Decor
+        {
+            public Transform Transform;
+            public SpriteRenderer Renderer;
+            public float Factor;
+            public float Offset;
+            public float Drift;
+            public float Phase;
+            public bool Twinkle;
+        }
+
         private struct Particle
         {
             public Transform Transform;
@@ -67,6 +79,7 @@ namespace FootballRunner.Gameplay
 
         private readonly List<Layer> _layers = new List<Layer>(2);
         private readonly List<Particle> _particles = new List<Particle>(48);
+        private readonly List<Decor> _decor = new List<Decor>(24);
         private readonly Dictionary<string, Sprite> _groundTiles = new Dictionary<string, Sprite>();
         private readonly Dictionary<string, Sprite> _obstacleSkins = new Dictionary<string, Sprite>();
         private Look _look;
@@ -79,6 +92,12 @@ namespace FootballRunner.Gameplay
         public string WorldName { get; private set; }
 
         public int ParticleCount => _particles.Count;
+
+        /// <summary>Backdrop layers in use: the two drawn ones plus the sky and foreground bands.</summary>
+        public int LayerCount => _layers.Count + (_decor.Exists(d => d.Factor < 1f) ? 1 : 0) +
+                                 (_decor.Exists(d => d.Factor > 1f) ? 1 : 0);
+
+        public int ForegroundCount => _decor.FindAll(d => d.Factor > 1f).Count;
 
         public static WorldScenery EnsureOn(GameObject host)
         {
@@ -179,6 +198,8 @@ namespace FootballRunner.Gameplay
                 AddLayer("WorldMid", _mid, 0.3f, -38);
             }
 
+            BuildSky();
+            BuildForeground();
             BuildParticles();
         }
 
@@ -337,7 +358,142 @@ namespace FootballRunner.Gameplay
                 layer.Renderer.transform.position = new Vector3(cameraPosition.x + wrapped, cameraPosition.y, 5f);
             }
 
+            UpdateDecor(cameraPosition);
             UpdateParticles(cameraPosition);
+        }
+
+        // ------------------------------------------------------------ sky and foreground bands
+
+        private const float DecorMargin = 3f;
+
+        /// <summary>Slow clouds high in the sky; twinkling stars at night.</summary>
+        private void BuildSky()
+        {
+            if (_camera == null)
+            {
+                return;
+            }
+
+            bool night = WorldName == "World8";
+            Sprite sprite = Resources.Load<Sprite>(Root + "Decor/" + (night ? "star" : "cloud"));
+
+            if (sprite == null)
+            {
+                return;
+            }
+
+            // The drawn backdrops already have big clouds; a few small, pale ones drifting
+            // in front of them are enough to make the sky move.
+            int count = night ? 10 : 3;
+            float halfHeight = _camera.orthographicSize;
+            float span = SpanWidth();
+
+            for (int i = 0; i < count; i++)
+            {
+                float size = night ? Random.Range(0.14f, 0.24f) : Random.Range(0.9f, 1.3f);
+                Decor decor = AddDecor("Sky", sprite, size, night ? -55 : -50,
+                    night ? new Color(1f, 1f, 1f, 0.8f) : new Color(1f, 1f, 1f, 0.7f));
+                decor.Factor = night ? 0.03f : 0.05f;
+                decor.Drift = night ? 0f : Random.Range(0.15f, 0.35f);
+                decor.Twinkle = night;
+                decor.Phase = Random.Range(0f, Mathf.PI * 2f);
+                decor.Offset = (i + Random.Range(0.1f, 0.9f)) * span / count - span * 0.5f;
+                // Between the level banner (mid-screen) and the hearts at the top.
+                decor.Transform.position = new Vector3(0f,
+                    _camera.transform.position.y + halfHeight * Random.Range(0.3f, 0.55f), 0f);
+            }
+        }
+
+        /// <summary>
+        /// Plants and stones in front of the track, moving faster than it, so the
+        /// ground slab under the runner has depth instead of being one flat colour.
+        /// </summary>
+        private void BuildForeground()
+        {
+            if (_camera == null)
+            {
+                return;
+            }
+
+            var sprites = new List<Sprite>(2);
+
+            foreach (string part in new[] { "a", "b" })
+            {
+                Sprite sprite = Resources.Load<Sprite>(Root + "Decor/front_" + WorldName + "_" + part);
+
+                if (sprite != null)
+                {
+                    sprites.Add(sprite);
+                }
+            }
+
+            if (sprites.Count == 0)
+            {
+                return;
+            }
+
+            const int count = 7;
+            float span = SpanWidth();
+            float bottom = _camera.transform.position.y - _camera.orthographicSize;
+
+            for (int i = 0; i < count; i++)
+            {
+                Sprite sprite = sprites[i % sprites.Count];
+                float size = Random.Range(0.85f, 1.25f);
+                Decor decor = AddDecor("Front", sprite, size, 40, Color.white);
+                decor.Factor = 1.35f;
+                decor.Offset = (i + Random.Range(0.1f, 0.9f)) * span / count - span * 0.5f;
+                // Stand in the lower part of the ground slab, partly cut by the screen edge.
+                decor.Transform.position = new Vector3(0f, bottom + size * Random.Range(0.3f, 0.5f), 0f);
+            }
+        }
+
+        private float SpanWidth()
+        {
+            return _camera.orthographicSize * 2f * Mathf.Max(0.01f, _camera.aspect) + DecorMargin * 2f;
+        }
+
+        private Decor AddDecor(string name, Sprite sprite, float size, int order, Color color)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(transform, false);
+            var renderer = go.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.sortingOrder = order;
+            renderer.color = color;
+            float largest = Mathf.Max(sprite.bounds.size.x, sprite.bounds.size.y);
+            go.transform.localScale = Vector3.one * (size / Mathf.Max(0.01f, largest));
+
+            var decor = new Decor { Transform = go.transform, Renderer = renderer };
+            _decor.Add(decor);
+            return decor;
+        }
+
+        private void UpdateDecor(Vector3 cameraPosition)
+        {
+            if (_decor.Count == 0)
+            {
+                return;
+            }
+
+            float span = SpanWidth();
+            float half = span * 0.5f;
+            float dt = Time.deltaTime;
+
+            foreach (Decor decor in _decor)
+            {
+                // Screen position moves by Factor times the camera: below 1 is behind the track, above 1 in front.
+                decor.Offset -= decor.Drift * dt;
+                float onScreen = Mathf.Repeat(decor.Offset - cameraPosition.x * decor.Factor + half, span) - half;
+                Vector3 position = decor.Transform.position;
+                decor.Transform.position = new Vector3(cameraPosition.x + onScreen, position.y, 0f);
+
+                if (decor.Twinkle)
+                {
+                    float glow = 0.4f + 0.6f * Mathf.Abs(Mathf.Sin(Time.time * 1.1f + decor.Phase));
+                    decor.Renderer.color = new Color(1f, 1f, 1f, glow);
+                }
+            }
         }
 
         // ------------------------------------------------------------ weather
