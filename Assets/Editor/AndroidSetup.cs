@@ -23,15 +23,22 @@ namespace FootballRunner.EditorTools
         /// </summary>
         private const int TargetApiLevel = 36;
 
+        /// <summary>
+        /// Android 7.1, the lowest Unity 6.3 supports (it rejects 23 and 24). Kept as
+        /// low as the editor allows because older family phones and tablets are
+        /// common among players, and Play hides the game from any device below it.
+        /// </summary>
+        private const int MinApiLevel = 25;
+
         public const string ProductName = "Run and Learn";
         public const string CompanyName = "Rukajja Games";
         public const string ApplicationId = "com.rukajja.runlearn";
 
         /// <summary>Shown to players. Raise with every Play upload, together with VersionCode.</summary>
-        public const string VersionName = "1.2.0";
+        public const string VersionName = "1.2.1";
 
         /// <summary>Play's internal number; every upload must be higher than the last.</summary>
-        public const int VersionCode = 4;
+        public const int VersionCode = 5;
 
         [MenuItem("Tools/Football Runner/4 - Configure Android")]
         public static void Configure()
@@ -77,8 +84,11 @@ namespace FootballRunner.EditorTools
             // ever reached through reflection, which fails at runtime, not at build.
             PlayerSettings.SetManagedStrippingLevel(android, ManagedStrippingLevel.Low);
 
-            // Play refuses 32-bit-only uploads, and ARM64-only keeps the download small.
-            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+            // Play requires ARM64. ARMv7 as well, because many budget phones run a 32-bit
+            // Android and Play reports them as incompatible otherwise. The App Bundle
+            // still delivers each phone only its own architecture.
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64 | AndroidArchitecture.ARMv7;
+            PlayerSettings.Android.minSdkVersion = (AndroidSdkVersions)MinApiLevel;
             PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)TargetApiLevel;
 
             // Smooths frame delivery on Android rather than raising the frame rate.
