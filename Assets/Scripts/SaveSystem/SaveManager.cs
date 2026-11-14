@@ -15,7 +15,17 @@ namespace FootballRunner.SaveSystem
 
         private static SaveData _data;
 
-        private static string FilePath => Path.Combine(Application.persistentDataPath, FileName);
+        /// <summary>True when the main file could not be read, so the next save must not rotate it into the backup.</summary>
+        private static bool _mainFileBroken;
+
+        /// <summary>The save file itself.</summary>
+        public static string FilePath => Path.Combine(Application.persistentDataPath, FileName);
+
+        /// <summary>The previous good save, used when the main file is broken.</summary>
+        public static string BackupPath => FilePath + ".bak";
+
+        /// <summary>Where a save is written before it replaces the main file.</summary>
+        public static string TempPath => FilePath + ".tmp";
 
         public static SaveData Data
         {
@@ -30,58 +40,133 @@ namespace FootballRunner.SaveSystem
             }
         }
 
+        /// <summary>
+        /// Reads the main file, falling back to the backup when the main file is
+        /// missing, empty or cut off (for example when Android killed the app mid-write).
+        /// </summary>
         public static void Load()
+        {
+            _mainFileBroken = false;
+            SaveData loaded = TryRead(FilePath);
+
+            if (loaded == null)
+            {
+                _mainFileBroken = File.Exists(FilePath);
+                loaded = TryRead(BackupPath);
+
+                if (loaded != null)
+                {
+                    Debug.LogWarning("[SaveManager] Save file was unreadable; restored the backup copy.");
+                }
+                else if (_mainFileBroken)
+                {
+                    // A corrupt save must never prevent the game from starting.
+                    Debug.LogWarning("[SaveManager] Save file and backup were unreadable; starting fresh.");
+                }
+            }
+
+            _data = loaded ?? new SaveData();
+            Normalize(_data);
+        }
+
+        /// <summary>The save in <paramref name="path"/>, or null when it is missing or not valid save JSON.</summary>
+        private static SaveData TryRead(string path)
         {
             try
             {
-                if (File.Exists(FilePath))
+                if (!File.Exists(path))
                 {
-                    string json = File.ReadAllText(FilePath);
-                    _data = JsonUtility.FromJson<SaveData>(json) ?? new SaveData();
-                }
-                else
-                {
-                    _data = new SaveData();
+                    return null;
                 }
 
-                if (_data.greenHillsUnlockedLevel < 1)
+                string json = File.ReadAllText(path).Trim('\0', ' ', '\t', '\r', '\n', '﻿');
+
+                if (json.Length < 2 || json[0] != '{' || json[json.Length - 1] != '}')
                 {
-                    _data.greenHillsUnlockedLevel = 1;
+                    return null;
                 }
 
-                if (string.IsNullOrEmpty(_data.selectedCharacterId))
-                {
-                    _data.selectedCharacterId = "rukajja";
-                }
-
-                if (string.IsNullOrEmpty(_data.learningLanguage))
-                {
-                    _data.learningLanguage = "bs";
-                }
-
-                if (_data.wordProgress == null)
-                {
-                    _data.wordProgress = new List<WordProgress>();
-                }
-
-                if (_data.worldResults == null)
-                {
-                    _data.worldResults = new List<WorldResult>();
-                }
+                return JsonUtility.FromJson<SaveData>(json);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                // A corrupt save must never prevent the game from starting.
-                Debug.LogWarning($"[SaveManager] Could not read save file, starting fresh. {e.Message}");
-                _data = new SaveData();
+                return null;
             }
         }
 
+        private static void Normalize(SaveData data)
+        {
+            if (data.greenHillsUnlockedLevel < 1)
+            {
+                data.greenHillsUnlockedLevel = 1;
+            }
+
+            if (string.IsNullOrEmpty(data.selectedCharacterId))
+            {
+                data.selectedCharacterId = "rukajja";
+            }
+
+            if (string.IsNullOrEmpty(data.learningLanguage))
+            {
+                data.learningLanguage = "bs";
+            }
+
+            if (data.wordProgress == null)
+            {
+                data.wordProgress = new List<WordProgress>();
+            }
+
+            if (data.worldResults == null)
+            {
+                data.worldResults = new List<WorldResult>();
+            }
+        }
+
+        /// <summary>
+        /// Writes the whole save to a temporary file first and only then swaps it in,
+        /// keeping the previous good save as the backup. If the app is killed
+        /// halfway, the main file is still the last complete save.
+        /// </summary>
         public static void Save()
         {
             try
             {
-                File.WriteAllText(FilePath, JsonUtility.ToJson(Data, true));
+                string json = JsonUtility.ToJson(Data, true);
+
+                using (var stream = new FileStream(TempPath, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (var writer = new StreamWriter(stream, new System.Text.UTF8Encoding(false)))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Flush(true);
+                }
+
+                if (File.Exists(FilePath) && !_mainFileBroken)
+                {
+                    try
+                    {
+                        File.Replace(TempPath, FilePath, BackupPath, true);
+                    }
+                    catch (Exception)
+                    {
+                        // File.Replace is not available on every file system; do the same in steps.
+                        File.Copy(FilePath, BackupPath, true);
+                        File.Delete(FilePath);
+                        File.Move(TempPath, FilePath);
+                    }
+                }
+                else
+                {
+                    // A broken main file is dropped so it never overwrites the good backup.
+                    if (File.Exists(FilePath))
+                    {
+                        File.Delete(FilePath);
+                    }
+
+                    File.Move(TempPath, FilePath);
+                }
+
+                _mainFileBroken = false;
             }
             catch (Exception e)
             {
