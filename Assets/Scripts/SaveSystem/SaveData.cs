@@ -37,6 +37,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>Seconds of running per day, the last 14 days (parents' report, time limit).</summary>
         public List<PlayDay> playDays = new List<PlayDay>();
 
+        /// <summary>Daily play limit in minutes set by a parent; 0 means no limit.</summary>
+        public int dailyLimitMinutes;
+
         /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
         public string homeLanguage = "en";
 

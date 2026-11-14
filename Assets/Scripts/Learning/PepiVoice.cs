@@ -14,6 +14,7 @@ namespace FootballRunner.Learning
         public const string Remind = "pepi_remind";
         public const string Unlocked = "pepi_unlocked";
         public const string StreakPraise = "pepi_praise_3";
+        public const string Rest = "pepi_rest";
 
         /// <summary>Right answers in a row that earn a word from Pepi (3, 6, 9...).</summary>
         public const int StreakLength = 3;

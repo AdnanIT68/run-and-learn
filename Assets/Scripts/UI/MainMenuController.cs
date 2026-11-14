@@ -146,10 +146,29 @@ namespace FootballRunner.UI
         {
             AudioManager.Instance?.PlayButton();
             UiFeedback.Punch(this, playButton);
+
+            // Today's time is used up: no run until a parent changes the limit.
+            if (TimeLimit.IsReached)
+            {
+                ShowRest();
+                return;
+            }
+
             // Play goes straight into a run in the chosen world. The old Green Hills
             // trail map is no longer part of the flow; worlds are picked with WORLD.
             AdventureSession.Clear();
             GameManager.LoadSceneClean(GameManager.GameSceneName);
+        }
+
+        /// <summary>The rest panel; its button opens the parents corner gate, where the limit is set.</summary>
+        private void ShowRest()
+        {
+            RestPanelUi rest = RestPanelUi.EnsureOnCanvas(transform);
+            rest.Show(LearningProgress.Ui("ZA RODITELJE", "FOR PARENTS", "FÜR ELTERN"), () =>
+            {
+                rest.Hide();
+                ParentsCornerUi.EnsureOnCanvas(transform, ResolveFont()).Open();
+            });
         }
 
         private void ShowSettings(bool visible)

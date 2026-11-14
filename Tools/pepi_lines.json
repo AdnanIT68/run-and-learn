@@ -5,6 +5,7 @@
     { "id": "pepi_praise_2", "bs": "Odlično ti ide!", "en": "You're doing great!", "de": "Du machst das toll!" },
     { "id": "pepi_praise_3", "bs": "Tri zaredom! Ti si zvijezda!", "en": "Three in a row! You're a star!", "de": "Drei hintereinander! Du bist ein Star!" },
     { "id": "pepi_remind", "bs": "Pažljivo, ova riječ je teška. Slušaj!", "en": "Careful, this one is tricky. Listen!", "de": "Aufgepasst, das ist knifflig. Hör gut zu!" },
+    { "id": "pepi_rest", "bs": "Vrijeme je za odmor! Vidimo se kasnije.", "en": "Time for a break! See you later.", "de": "Zeit für eine Pause! Bis später." },
     { "id": "pepi_unlocked", "bs": "Hura! Otvoren je novi svijet!", "en": "Hooray! A new world is open!", "de": "Hurra! Eine neue Welt ist offen!" },
     { "id": "pepi_world_World1", "bs": "Dobro došli u Neninu baštu!", "en": "Welcome to Grandma's Garden!", "de": "Willkommen in Omas Garten!" },
     { "id": "pepi_world_World2", "bs": "Dobro došli na farmu kod dede!", "en": "Welcome to Grandpa's Farm!", "de": "Willkommen auf Opas Bauernhof!" },

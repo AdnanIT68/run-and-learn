@@ -292,7 +292,30 @@ namespace FootballRunner.Core
             if (State == GameState.Playing)
             {
                 Learning.PlayTime.Add(Time.unscaledDeltaTime);
+
+                if (Learning.TimeLimit.IsReached)
+                {
+                    TimeUp();
+                }
             }
+        }
+
+        /// <summary>
+        /// The daily limit is used up: the run freezes and the rest panel covers it; its
+        /// only button leads to the menu, where Play stays blocked as well.
+        /// </summary>
+        public void TimeUp()
+        {
+            if (State == GameState.Resting)
+            {
+                return;
+            }
+
+            Time.timeScale = 0f;
+            SetState(GameState.Resting);
+            var canvas = FindFirstObjectByType<UI.HUDController>();
+            Learning.RestPanelUi rest = Learning.RestPanelUi.EnsureOnCanvas(canvas != null ? canvas.transform : transform);
+            rest?.Show(Learning.LearningProgress.Ui("MENI", "MENU", "MENÜ"), GoToMainMenu);
         }
 
         private void SetState(GameState newState)

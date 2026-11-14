@@ -25,6 +25,12 @@
       "de": "Aufgepasst, das ist knifflig. Hör gut zu!"
     },
     {
+      "id": "pepi_rest",
+      "bs": "Vrijeme je za odmor! Vidimo se kasnije.",
+      "en": "Time for a break! See you later.",
+      "de": "Zeit für eine Pause! Bis später."
+    },
+    {
       "id": "pepi_unlocked",
       "bs": "Hura! Otvoren je novi svijet!",
       "en": "Hooray! A new world is open!",

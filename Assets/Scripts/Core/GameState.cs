@@ -7,6 +7,9 @@ namespace FootballRunner.Core
         Paused,
         Dying,
         GameOver,
-        LevelComplete
+        LevelComplete,
+
+        /// <summary>The daily time limit is used up: play stops until a parent changes it.</summary>
+        Resting
     }
 }

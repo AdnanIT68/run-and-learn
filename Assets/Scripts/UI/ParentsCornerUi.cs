@@ -42,6 +42,8 @@ namespace FootballRunner.UI
         private TMP_Text _soundLabel;
         private Image _vibrationButton;
         private TMP_Text _vibrationLabel;
+        private Image _limitButton;
+        private TMP_Text _limitLabel;
         private Image _easyButton;
         private TMP_Text _easyLabel;
         private Image _latinButton;
@@ -65,6 +67,8 @@ namespace FootballRunner.UI
         public string TransliterationLabel => _latinLabel != null ? _latinLabel.text : string.Empty;
 
         public string EasyModeLabel => _easyLabel != null ? _easyLabel.text : string.Empty;
+
+        public string TimeLimitLabel => _limitLabel != null ? _limitLabel.text : string.Empty;
 
         /// <summary>The right answer to the sum on the gate.</summary>
         public int GateAnswer { get; private set; }
@@ -161,6 +165,14 @@ namespace FootballRunner.UI
             Haptics.Enabled = !Haptics.Enabled;
             AudioManager.Instance?.PlayButton();
             Haptics.Light();
+            RefreshTexts();
+        }
+
+        /// <summary>Steps the daily play limit: off, 10, 15, 20, 30, 45, 60 minutes.</summary>
+        public void NextTimeLimit()
+        {
+            TimeLimit.Next();
+            AudioManager.Instance?.PlayButton();
             RefreshTexts();
         }
 
@@ -266,6 +278,12 @@ namespace FootballRunner.UI
             bool vibration = Haptics.Enabled;
             _vibrationButton.color = vibration ? OnColour : OffColour;
             _vibrationLabel.text = LearningProgress.Ui("VIBRACIJA", "VIBRATION", "VIBRATION") + ": " + OnOff(vibration);
+
+            int limit = TimeLimit.Minutes;
+            _limitButton.color = limit > 0 ? OnColour : OffColour;
+            _limitLabel.text = limit > 0
+                ? LearningProgress.Ui($"VRIJEME: {limit} MIN NA DAN", $"TIME: {limit} MIN A DAY", $"ZEIT: {limit} MIN. AM TAG")
+                : LearningProgress.Ui("VRIJEME: BEZ OGRANIČENJA", "TIME: NO LIMIT", "ZEIT: OHNE GRENZE");
 
             bool easy = LearningProgress.EasyMode;
             _easyButton.color = easy ? OnColour : OffColour;
@@ -426,24 +444,28 @@ namespace FootballRunner.UI
 
             // Settings and credits.
             Image settings = CreateCard(_corner.transform, "Settings", new Vector2(620f, -70f), new Vector2(560f, 700f));
-            _soundButton = CreateButton(settings.transform, "Sound", new Vector2(0f, 255f), new Vector2(460f, 100f),
+            _soundButton = CreateButton(settings.transform, "Sound", new Vector2(0f, 275f), new Vector2(460f, 88f),
                 OnColour, ToggleSound);
             _soundLabel = CreateText(_soundButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f), 38f,
                 Color.white);
-            _vibrationButton = CreateButton(settings.transform, "Vibration", new Vector2(0f, 145f),
-                new Vector2(460f, 100f), OnColour, ToggleVibration);
+            _vibrationButton = CreateButton(settings.transform, "Vibration", new Vector2(0f, 175f),
+                new Vector2(460f, 88f), OnColour, ToggleVibration);
             _vibrationLabel = CreateText(_vibrationButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f),
                 38f, Color.white);
-            _easyButton = CreateButton(settings.transform, "EasyMode", new Vector2(0f, 35f),
-                new Vector2(460f, 100f), OnColour, ToggleEasyMode);
+            _limitButton = CreateButton(settings.transform, "TimeLimit", new Vector2(0f, 75f),
+                new Vector2(460f, 88f), OnColour, NextTimeLimit);
+            _limitLabel = CreateText(_limitButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 80f), 30f,
+                Color.white);
+            _easyButton = CreateButton(settings.transform, "EasyMode", new Vector2(0f, -25f),
+                new Vector2(460f, 88f), OnColour, ToggleEasyMode);
             _easyLabel = CreateText(_easyButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 90f), 30f,
                 Color.white);
-            _latinButton = CreateButton(settings.transform, "Transliteration", new Vector2(0f, -75f),
-                new Vector2(460f, 100f), OnColour, ToggleTransliteration);
+            _latinButton = CreateButton(settings.transform, "Transliteration", new Vector2(0f, -125f),
+                new Vector2(460f, 88f), OnColour, ToggleTransliteration);
             _latinLabel = CreateText(_latinButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f), 32f,
                 Color.white);
 
-            _credits = CreateText(settings.transform, "Credits", "", new Vector2(0f, -250f), new Vector2(500f, 180f), 22f,
+            _credits = CreateText(settings.transform, "Credits", "", new Vector2(0f, -262f), new Vector2(500f, 150f), 20f,
                 MutedText);
             _credits.fontStyle = FontStyles.Normal;
             _credits.textWrappingMode = TextWrappingModes.Normal;
