@@ -15,8 +15,8 @@ Google Play has no Bosnian listing language. Plan:
 **Title** (13/30)
 Run and Learn
 
-**Short description** (67/80)
-Kids learn Bosnian, English or German words by running and jumping!
+**Short description** (75/80)
+Kids learn Bosnian, English, German or Arabic words by running and jumping!
 
 **Full description**
 
@@ -24,14 +24,16 @@ Run, jump and learn new words!
 
 Run and Learn is a gentle runner game for children aged 4 to 10. A voice says a word, picture bubbles float ahead, and your child jumps into the right one. Learning happens inside the game, with no quizzes that stop the fun.
 
-Three languages, one game:
+Four languages, one game:
 • Children growing up abroad learn Bosnian, the language of grandma and grandpa, with menus in English or German.
 • Children in Bosnia and Herzegovina learn English or German.
+• Children who speak Bosnian can also learn Arabic words, written with all their vowel marks and with Latin letters underneath. Parents can switch the Latin letters off.
 
 What's inside:
 • Catch the word: hear it, find the picture, jump!
 • Eight worlds with five levels each: every level is a little faster and asks a little more.
-• A world map: a dotted trail through all eight worlds, with your own player standing on it.
+• A story: Brbljavka the magpie has stolen the words of every world. Pepi tells it at the start, and at the end of each world your child jumps to catch her.
+• A world map: a dotted trail through all the worlds, with your own player standing on it.
 • Grandma's Garden: fruit and vegetables.
 • Grandpa's Farm: animals and counting from one to five.
 • Our Home: family words like mom, dad, grandma and grandpa.
@@ -40,18 +42,22 @@ What's inside:
 • Winter Mountain: short sentences such as It is snowing.
 • School: letters, numbers from one to ten, and first reading.
 • Night Sky, the finale: stars, moon and rockets, plus a review of everything learned in every world.
+• Kind Words, a bonus world open from the start: selam, thank you, here you are, sorry, bismillah and mashallah.
 • A team of thirteen young footballers to play as: Rukajja, Emir and Amina from the start, ten more to unlock with the coins you collect.
 • A daily gift and three small tasks every day, such as Catch 8 words, with coins shown in advance. Missing a day never takes anything away.
-• Pepi the parrot flies along, cheers and shows the way on the very first word.
-• A sticker album where every learned word is saved; tap a sticker to hear it again.
+• Pepi the parrot flies along, cheers after three right answers in a row, warns before a tricky word and welcomes you to every world.
+• A sticker album where every learned word is a sticker; tap it to hear the word again. A full page gives a new player.
+• Tap the word to hear it again, tap it twice to hear it slowly.
 • Stars for every word your child really knows.
 • Mistakes are never punished: the right picture lights up and the word is repeated.
-• Words your child misses come back more often.
+• Words your child misses come back more often, and words they know come back less, so practice goes where it is needed.
 • Double jump, sparkles, a goal row of words and gentle vibration.
 
 Made for families:
 • No ads.
-• A parents' corner behind a small sum: progress in every world, sound and vibration.
+• A parents' corner behind a small sum: progress in every world, play time this week and the hardest words, sound and vibration.
+• Easy mode for ages 3 to 4: a slower run, fewer obstacles and only two pictures to choose from.
+• A daily time limit: when it is reached, Pepi says it is time for a break and the game waits until tomorrow or until a parent changes it.
 • No musical instruments: only spoken words and sound effects.
 • Works offline, no data collected.
 
@@ -65,8 +71,8 @@ New worlds with new words are on the way.
 **Naslov** (13/30)
 Run and Learn
 
-**Kratki opis** (66/80)
-Djeca uče bosanski, engleski ili njemački kroz trčanje i skakanje!
+**Kratki opis** (75/80)
+Djeca uče bosanski, engleski, njemački ili arapski kroz trčanje i skakanje!
 
 **Puni opis**
 
@@ -74,14 +80,16 @@ Trči, skači i uči nove riječi!
 
 Run and Learn je nježna trkačka igra za djecu od 4 do 10 godina. Glas izgovori riječ, ispred Rukajje lebde balončići sa slikama, a dijete skokom uhvati pravi. Učenje je dio igre, bez kvizova koji prekidaju zabavu.
 
-Tri jezika, jedna igra:
+Četiri jezika, jedna igra:
 • Djeca u dijaspori uče bosanski, jezik nane i dede, s menijem na engleskom ili njemačkom.
 • Djeca u Bosni i Hercegovini uče engleski ili njemački.
+• Djeca koja govore bosanski mogu učiti i arapske riječi, napisane sa svim harakatima i s latinicom ispod. Roditelji latinicu mogu isključiti.
 
 Šta igra nudi:
 • Uhvati riječ: čuj je, nađi sliku, skoči!
 • Osam svjetova s po pet nivoa: svaki nivo je malo brži i traži malo više.
-• Mapa svjetova: staza od tačkica kroz svih osam svjetova, a na njoj stoji tvoj igrač.
+• Priča: svraka Brbljavka je ukrala riječi svakog svijeta. Pepi je ispriča na početku, a na kraju svijeta dijete skokom uhvati svraku.
+• Mapa svjetova: staza od tačkica kroz sve svjetove, a na njoj stoji tvoj igrač.
 • Nenina bašta: voće i povrće.
 • Farma kod dede: životinje i brojanje od jedan do pet.
 • Naša kuća: porodica, mama, tata, nena i dedo.
@@ -90,18 +98,22 @@ Tri jezika, jedna igra:
 • Planina zimi: kratke rečenice poput Pada snijeg.
 • Škola: slova, brojevi od jedan do deset i prvo čitanje.
 • Noćno nebo, finale: zvijezde, mjesec i rakete, uz ponavljanje svega naučenog u svim svjetovima.
+• Lijepe riječi, bonus svijet otvoren od početka: selam, hvala, izvoli, oprosti, bismillah i mašallah.
 • Ekipa od trinaest malih fudbalera: Rukajja, Emir i Amina odmah, još deset se otključava skupljenim novčićima.
 • Dnevni poklon i tri mala zadatka svaki dan, npr. Uhvati 8 riječi, s unaprijed poznatim novčićima. Propušten dan ništa ne oduzima.
-• Papagaj Pepi leti uz Rukajju, raduje se i pokazuje put na prvoj riječi.
-• Album sličica u kojem ostaje svaka naučena riječ; dodirom je ponovo čuješ.
+• Papagaj Pepi leti uz Rukajju, pohvali tri tačna odgovora zaredom, upozori na tešku riječ i poželi dobrodošlicu u svaki svijet.
+• Album naljepnica: svaka naučena riječ je naljepnica, dodirom je ponovo čuješ. Puna stranica donosi novog igrača.
+• Dodirni riječ da je čuješ ponovo, dodirni dvaput da je čuješ polako.
 • Zvjezdice za riječi koje dijete stvarno zna.
 • Greška se nikad ne kažnjava: prava slika zasvijetli i riječ se ponovi.
-• Riječi koje dijete promaši vraćaju se češće.
+• Riječi koje dijete promaši vraćaju se češće, a one koje zna rjeđe, pa se vježba ono što treba.
 • Dupli skok, iskrice, red riječi za cilj i nježna vibracija.
 
 Napravljeno za porodice:
 • Bez reklama.
-• Kutak za roditelje iza malog računa: napredak u svakom svijetu, zvuk i vibracija.
+• Kutak za roditelje iza malog računa: napredak u svakom svijetu, vrijeme igre ove sedmice i najteže riječi, zvuk i vibracija.
+• Lagani način za djecu od 3 do 4 godine: sporije trčanje, manje prepreka i samo dvije slike za izbor.
+• Dnevno ograničenje vremena: kad istekne, Pepi kaže da je vrijeme za odmor i igra čeka do sutra ili dok roditelj ne promijeni vrijeme.
 • Bez muzičkih instrumenata: samo izgovorene riječi i zvučni efekti.
 • Radi bez interneta i ne prikuplja podatke.
 
@@ -115,8 +127,8 @@ Uskoro stižu novi svjetovi s novim riječima.
 **Titel** (13/30)
 Run and Learn
 
-**Kurzbeschreibung** (73/80)
-Kinder lernen Bosnisch, Englisch oder Deutsch – laufen, springen, lernen!
+**Kurzbeschreibung** (78/80)
+Kinder lernen Bosnisch, Englisch, Deutsch oder Arabisch – laufen und springen!
 
 **Vollständige Beschreibung**
 
@@ -124,14 +136,16 @@ Laufen, springen und neue Wörter lernen!
 
 Run and Learn ist ein sanftes Lauf-Spiel für Kinder von 4 bis 10 Jahren. Eine Stimme sagt ein Wort, Bilderblasen schweben voraus, und dein Kind springt in die richtige. Gelernt wird mitten im Spiel, ohne Quiz, das den Spaß unterbricht.
 
-Drei Sprachen, ein Spiel:
+Vier Sprachen, ein Spiel:
 • Kinder, die im Ausland aufwachsen, lernen Bosnisch, die Sprache von Oma und Opa – mit Menüs auf Deutsch oder Englisch.
 • Kinder in Bosnien und Herzegowina lernen Englisch oder Deutsch.
+• Kinder, die Bosnisch sprechen, können auch arabische Wörter lernen, mit allen Vokalzeichen und lateinischer Umschrift darunter. Eltern können die Umschrift ausblenden.
 
 Das steckt drin:
 • Fang das Wort: hören, Bild finden, springen!
 • Acht Welten mit je fünf Levels: Jedes Level ist etwas schneller und verlangt etwas mehr.
-• Eine Weltkarte: ein Punktepfad durch alle acht Welten, auf dem dein eigener Spieler steht.
+• Eine Geschichte: Die Elster Brbljavka hat die Wörter jeder Welt gestohlen. Pepi erzählt sie am Anfang, und am Ende jeder Welt fängt dein Kind sie mit einem Sprung.
+• Eine Weltkarte: ein Punktepfad durch alle Welten, auf dem dein eigener Spieler steht.
 • Omas Garten: Obst und Gemüse.
 • Opas Bauernhof: Tiere und Zählen von eins bis fünf.
 • Unser Zuhause: Familienwörter wie Mama, Papa, Oma und Opa.
@@ -140,18 +154,22 @@ Das steckt drin:
 • Winterberg: kurze Sätze wie Es schneit.
 • Schule: Buchstaben, Zahlen von eins bis zehn und erstes Lesen.
 • Nachthimmel, das Finale: Sterne, Mond und Raketen, dazu eine Wiederholung von allem, was in allen Welten gelernt wurde.
+• Freundliche Worte, eine Bonuswelt von Anfang an: Selam, danke, bitte schön, Entschuldigung, Bismillah und Maschallah.
 • Ein Team aus dreizehn jungen Fußballern: Rukajja, Emir und Amina von Anfang an, zehn weitere mit gesammelten Münzen freischalten.
 • Ein tägliches Geschenk und drei kleine Aufgaben pro Tag, z. B. Fang 8 Wörter, mit vorher sichtbaren Münzen. Ein verpasster Tag nimmt nichts weg.
-• Papagei Pepi fliegt mit, jubelt und zeigt beim ersten Wort den Weg.
-• Ein Stickeralbum, in dem jedes gelernte Wort bleibt; antippen und erneut hören.
+• Papagei Pepi fliegt mit, lobt drei richtige Antworten hintereinander, warnt vor schweren Wörtern und begrüßt dich in jeder Welt.
+• Ein Stickeralbum: Jedes gelernte Wort ist ein Sticker, antippen und erneut hören. Eine volle Seite schenkt einen neuen Spieler.
+• Wort antippen zum Wiederhören, zweimal antippen, um es langsam zu hören.
 • Sterne für jedes Wort, das dein Kind wirklich kann.
 • Fehler werden nie bestraft: Das richtige Bild leuchtet auf und das Wort wird wiederholt.
-• Verpasste Wörter kommen öfter wieder.
+• Verpasste Wörter kommen öfter wieder, bekannte seltener, so wird geübt, was nötig ist.
 • Doppelsprung, Funkeln, eine Wörter-Zielreihe und sanfte Vibration.
 
 Für Familien gemacht:
 • Keine Werbung.
-• Eine Elternecke hinter einer kleinen Rechenaufgabe: Fortschritt in jeder Welt, Ton und Vibration.
+• Eine Elternecke hinter einer kleinen Rechenaufgabe: Fortschritt in jeder Welt, Spielzeit dieser Woche und die schwersten Wörter, Ton und Vibration.
+• Leichter Modus für 3- bis 4-Jährige: langsamer, weniger Hindernisse und nur zwei Bilder zur Auswahl.
+• Ein tägliches Zeitlimit: Ist es erreicht, sagt Pepi, dass Pause ist, und das Spiel wartet bis morgen oder bis die Eltern es ändern.
 • Keine Musikinstrumente: nur gesprochene Wörter und Soundeffekte.
 • Funktioniert offline und sammelt keine Daten.
 
@@ -169,3 +187,5 @@ the project, Twemoji credit in Settings and in the descriptions, 8 phone screens
 
 Owner: create the app in Play Console, upload the .aab.
 Voices: Azure Speech (licensed) since 1.1.0. Family recordings for Bosnian remain an option.
+1.3.0: the texts above describe 1.3 (Arabic, Lijepe riječi, story, sticker gifts, easy mode, time limit,
+report). Update Play only after the Arabic review (`Store/arabic-review.md`) and the phone test.
