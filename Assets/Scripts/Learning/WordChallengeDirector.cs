@@ -928,6 +928,8 @@ namespace FootballRunner.Learning
                 }
             }
 
+            LearningProgress.RecordAsked(_target.id);
+
             _options.Clear();
             _options.Add(_target);
             int guard = 0;

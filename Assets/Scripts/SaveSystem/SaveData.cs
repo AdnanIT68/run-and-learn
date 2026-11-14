@@ -30,6 +30,9 @@ namespace FootballRunner.SaveSystem
 
         public List<WordProgress> wordProgress = new List<WordProgress>();
 
+        /// <summary>Counts every word asked, in any language; the clock for spaced repetition.</summary>
+        public int askTick;
+
         /// <summary>Set once the child has caught a first word with the guided intro.</summary>
         public bool wordTutorialDone;
 
@@ -76,6 +79,18 @@ namespace FootballRunner.SaveSystem
         public string language;
         public int correct;
         public int missed;
+
+        /// <summary>
+        /// Spaced repetition box, 0 to 4: a right answer moves the word up one box, a
+        /// miss sends it back to 0. Higher boxes are asked less often and after longer gaps.
+        /// </summary>
+        public int box;
+
+        /// <summary>SaveData.askTick when the word was last asked; spacing is counted in asks.</summary>
+        public int lastAsked;
+
+        /// <summary>False for records saved before boxes existed; their box is estimated once.</summary>
+        public bool spaced;
     }
 
     /// <summary>One level's best result in a world, for one learned language.</summary>

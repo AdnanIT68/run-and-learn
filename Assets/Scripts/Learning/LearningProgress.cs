@@ -339,14 +339,27 @@ namespace FootballRunner.Learning
 
         public static void RecordCorrect(string wordId)
         {
-            Get(wordId).correct++;
+            WordProgress progress = Spaced(Get(wordId));
+            progress.correct++;
+            progress.box = Mathf.Min(progress.box + 1, MaxBox);
             SaveManager.Save();
         }
 
         public static void RecordMiss(string wordId)
         {
-            Get(wordId).missed++;
+            WordProgress progress = Spaced(Get(wordId));
+            progress.missed++;
+            progress.box = 0;
             SaveManager.Save();
+        }
+
+        /// <summary>Called when a word is asked; the gap since then decides when it is due again.</summary>
+        public static void RecordAsked(string wordId)
+        {
+            SaveData data = SaveManager.Data;
+            data.askTick++;
+            WordProgress progress = Spaced(Get(wordId));
+            progress.lastAsked = data.askTick;
         }
 
         public static bool IsLearned(string wordId)
@@ -374,18 +387,49 @@ namespace FootballRunner.Learning
             return count;
         }
 
-        /// <summary>Relative chance of asking this word next.</summary>
+        public const int MaxBox = 4;
+
+        /// <summary>How often a word in each box is asked, relative to the others.</summary>
+        private static readonly float[] BoxWeight = { 3f, 2f, 1.2f, 0.7f, 0.35f };
+
+        /// <summary>Asks (of any word) to wait before a word in each box is due again.</summary>
+        private static readonly int[] BoxGap = { 1, 3, 6, 12, 24 };
+
+        /// <summary>
+        /// Relative chance of asking this word next. Spaced repetition per learned
+        /// language: missed words (box 0) come back often, words answered right
+        /// several times in a row come back rarely, and a word that has waited past
+        /// its gap is due and counts double.
+        /// </summary>
         public static float Weight(string wordId)
         {
-            WordProgress progress = Get(wordId);
+            WordProgress progress = Spaced(Get(wordId));
 
             if (progress.correct == 0 && progress.missed == 0)
             {
                 return 1.5f;
             }
 
-            float weight = 1f + progress.missed * 1.5f - Mathf.Min(progress.correct, 5) * 0.15f;
-            return Mathf.Max(0.3f, weight);
+            int box = Mathf.Clamp(progress.box, 0, MaxBox);
+            int waited = SaveManager.Data.askTick - progress.lastAsked;
+            bool due = waited >= BoxGap[box];
+            return BoxWeight[box] * (due ? 2f : 0.6f);
+        }
+
+        /// <summary>
+        /// Gives records from before spaced repetition a box from their history:
+        /// right answers count up, each miss counts two down.
+        /// </summary>
+        private static WordProgress Spaced(WordProgress progress)
+        {
+            if (!progress.spaced)
+            {
+                progress.box = Mathf.Clamp(progress.correct - 2 * progress.missed, 0, MaxBox);
+                progress.lastAsked = 0;
+                progress.spaced = true;
+            }
+
+            return progress;
         }
     }
 }
