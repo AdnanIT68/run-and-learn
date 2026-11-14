@@ -2,7 +2,8 @@
 
 Pepi speaks the language the child already speaks: Bosnian, English or German
 (Arabic is only ever learned, never the menu language). Writes
-Assets/Resources/Words/Pepi/Audio/<lang>/<id>.ogg; existing files are kept.
+Assets/Resources/Words/Pepi/Audio/<lang>/<id>.ogg (existing files are kept) and
+Assets/Resources/Words/Pepi/lines.json with the texts, for the story card.
 
 Usage:
   Tools/.venv/Scripts/python.exe Tools/generate_pepi.py
@@ -27,6 +28,9 @@ async def main() -> None:
         for line in lines:
             await words.speak(line[lang], words.VOICES[lang], out / lang / f"{line['id']}.ogg")
 
+    # The texts too, for the story card that shows what Pepi tells.
+    manifest = {"lines": [{"id": l["id"], **{lang: l[lang] for lang in HOME_LANGUAGES}} for l in lines]}
+    (out.parent / "lines.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Pepi: {len(lines)} lines x {len(HOME_LANGUAGES)} languages -> {out}")
 
 

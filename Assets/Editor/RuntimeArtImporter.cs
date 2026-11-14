@@ -16,7 +16,8 @@ namespace FootballRunner.EditorTools
             "Assets/Resources/Menu/",
             "Assets/Resources/Words/",
             "Assets/Resources/Worlds/",
-            "Assets/Resources/Characters/"
+            "Assets/Resources/Characters/",
+            "Assets/Resources/Story/"
         };
 
         private void OnPreprocessTexture()
@@ -54,7 +55,8 @@ namespace FootballRunner.EditorTools
             // The children and the menu art are seen up close, so they get the finer
             // compression (ASTC 4x4); scenery and word pictures use the normal one.
             bool closeUp = assetPath.StartsWith("Assets/Resources/Characters/") ||
-                           assetPath.StartsWith("Assets/Resources/Menu/");
+                           assetPath.StartsWith("Assets/Resources/Menu/") ||
+                           assetPath.StartsWith("Assets/Resources/Story/");
             importer.textureCompression = closeUp
                 ? TextureImporterCompression.CompressedHQ
                 : TextureImporterCompression.Compressed;
@@ -89,7 +91,7 @@ namespace FootballRunner.EditorTools
         /// <summary>Raised whenever the rules above change, so Unity reimports the affected files.</summary>
         public override uint GetVersion()
         {
-            return 2;
+            return 3;
         }
 
         private static bool IsRuntimeArt(string path)
