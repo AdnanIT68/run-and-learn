@@ -239,6 +239,12 @@ namespace FootballRunner.Learning
 
             CacheStandingHeight(player);
 
+            if (_magpie != null)
+            {
+                UpdateMagpieChase(player);
+                return;
+            }
+
             if (LevelDone)
             {
                 return;
@@ -413,9 +419,77 @@ namespace FootballRunner.Learning
             {
                 _goalCaught = 0;
                 ScoreManager.Instance?.AddCoins(coinsForGoal);
+
+                if (EndsWithMagpie)
+                {
+                    StartMagpieChase();
+                    return;
+                }
+
                 FinishLevel();
                 GoalCompleted?.Invoke(goalSize);
             }
+        }
+
+        // ------------------------------------------------------------ Brbljavka
+
+        /// <summary>The last level of a world ends with catching Brbljavka the magpie.</summary>
+        public bool EndsWithMagpie =>
+            !Adventure.AdventureSession.IsActive && _level == LearningProgress.LevelsPerWorld - 1;
+
+        public bool IsChasingMagpie => _magpie != null;
+
+        public MagpieTarget Magpie => _magpie;
+
+        /// <summary>Raised when the child jumps into the magpie at the end of a world.</summary>
+        public static event System.Action MagpieCaught;
+
+        private MagpieTarget _magpie;
+
+        private void StartMagpieChase()
+        {
+            PlayerController player = PlayerController.Instance;
+            float x = player != null ? player.transform.position.x + MagpieTarget.LeadDistance : 0f;
+            float y = (float.IsNaN(_standingTop) ? 0f : _standingTop) + heightAboveHead;
+            _magpie = MagpieTarget.Create(transform, new Vector3(x, y, 0f));
+        }
+
+        private void UpdateMagpieChase(PlayerController player)
+        {
+            Vector3 runner = player.transform.position;
+
+            if (_playerCollider != null && _playerCollider.bounds.Intersects(_magpie.Bounds))
+            {
+                CatchMagpieNow();
+                return;
+            }
+
+            // Missed her: she circles back ahead, so the child can always try again.
+            if (_magpie.transform.position.x < runner.x - 2f)
+            {
+                _magpie.transform.position = new Vector3(runner.x + MagpieTarget.LeadDistance,
+                    _magpie.transform.position.y, 0f);
+            }
+        }
+
+        /// <summary>The magpie is caught: Pepi tells the end of the story and the level is won.</summary>
+        public void CatchMagpieNow()
+        {
+            if (_magpie == null)
+            {
+                return;
+            }
+
+            _magpie.Caught();
+            _magpie = null;
+            LastStoryLine = PepiVoice.StoryOutroFor(_pack.Name);
+            AudioClip outro = PepiVoice.Line(LastStoryLine);
+            StoryCardUi.Instance?.Show(PepiVoice.Text(LastStoryLine), StoryArt.Magpie(carryingLetters: false),
+                outro != null ? outro.length + 0.5f : 4f);
+            PlayInSequence(outro);
+            MagpieCaught?.Invoke();
+            FinishLevel();
+            GoalCompleted?.Invoke(goalSize);
         }
 
         /// <summary>
