@@ -29,6 +29,7 @@ import urllib.request
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+import arabic_reshaper
 import edge_tts
 import resvg_py
 from PIL import Image, ImageDraw, ImageFont
@@ -59,8 +60,32 @@ VOICES = {
     "bs": "bs-BA-VesnaNeural",
     "en": "en-US-AnaNeural",
     "de": "de-DE-KatjaNeural",
+    # Modern Standard Arabic, a female voice like the others. Learned from Bosnian only.
+    "ar": "ar-SA-ZariyahNeural",
 }
 LETTER_WORD = {"bs": "Slovo", "en": "Letter", "de": "Buchstabe"}
+# Arabic letters are spoken by their names; ids use a Latin name so paths stay ASCII.
+# Letter names use q for qaf so it differs from kaf (words write both as k).
+ARABIC_LETTERS = {
+    "ا": ("أَلِف", "alif"), "ب": ("بَاء", "bā'"), "ت": ("تَاء", "tā'"), "ث": ("ثَاء", "sā'"),
+    "ج": ("جِيم", "džīm"), "ح": ("حَاء", "hā'"), "خ": ("خَاء", "hā'"), "د": ("دَال", "dāl"),
+    "ذ": ("ذَال", "zāl"), "ر": ("رَاء", "rā'"), "ز": ("زَاي", "zāj"), "س": ("سِين", "sīn"),
+    "ش": ("شِين", "šīn"), "ص": ("صَاد", "sād"), "ض": ("ضَاد", "dād"), "ط": ("طَاء", "tā'"),
+    "ظ": ("ظَاء", "zā'"), "ع": ("عَيْن", "'ajn"), "غ": ("غَيْن", "gajn"), "ف": ("فَاء", "fā'"),
+    "ق": ("قَاف", "qāf"), "ك": ("كَاف", "kāf"), "ل": ("لَام", "lām"), "م": ("مِيم", "mīm"),
+    "ن": ("نُون", "nūn"), "ه": ("هَاء", "hā'"), "و": ("وَاو", "vāv"), "ي": ("يَاء", "jā'"),
+}
+ARABIC_LETTER_IDS = {
+    "ا": "alif", "ب": "ba", "ت": "ta", "ث": "tha", "ج": "jim", "ح": "hha", "خ": "kha", "د": "dal",
+    "ذ": "dhal", "ر": "ra", "ز": "zay", "س": "sin", "ش": "shin", "ص": "sad", "ض": "dad", "ط": "tta",
+    "ظ": "dha", "ع": "ayn", "غ": "ghayn", "ف": "fa", "ق": "qaf", "ك": "kaf", "ل": "lam", "م": "mim",
+    "ن": "nun", "ه": "ha", "و": "waw", "ي": "ya",
+}
+# Harakat, shadda, sukun, dagger alif and tatweel: marks, not letters.
+ARABIC_MARKS = set(chr(c) for c in range(0x064B, 0x0660)) | {"ٰ", "ـ"}
+# Hamza and madda on alif still count as the letter alif for children.
+ARABIC_ALIF_FORMS = {"أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا"}
+RESHAPER = arabic_reshaper.ArabicReshaper(configuration={"delete_harakat": False, "support_ligatures": True})
 # Slower than default so small children can hear every sound.
 SPEECH_RATE = "-15%"
 AZURE_KEY_FILE = Path(os.environ.get("USERPROFILE", str(Path.home()))) / "RunAndLearnSigning" / "azure-speech.txt"
@@ -149,8 +174,47 @@ def render_digit(n: int, target: Path) -> None:
     image.save(target)
 
 
+# Sun letters take the article without its lam sound and double their own letter.
+ARABIC_SUN_LETTERS = set("تثدذرزسشصضطظلن")
+
+
+def arabic_letter_phrase(letter: str, name: str) -> str:
+    """'The letter qaf' (حَرْفُ الْقَاف): a bare letter name is too short to hear for small children."""
+    if letter in ARABIC_SUN_LETTERS:
+        article = "ال" + name[0] + "ّ" + name[1:]
+    else:
+        article = "الْ" + name
+    return "حَرْفُ " + article
+
+
+def is_arabic(text: str) -> bool:
+    return any("؀" <= ch <= "ۿ" for ch in text)
+
+
+def shape_arabic(text: str) -> str:
+    """Arabic ready for TextMeshPro, which neither joins letters nor runs right to left:
+    letters become their joined presentation forms, then the text is reversed letter
+    by letter. Each letter's harakat go just before it: the font draws a mark from the
+    pen position towards the right, as if the text ran right to left, so drawn left to
+    right the mark must come first to land on its letter."""
+    shaped = RESHAPER.reshape(text)
+    clusters = []  # [letter, marks]
+    for ch in shaped:
+        if clusters and (ch in ARABIC_MARKS or "ﹰ" <= ch <= "ﹿ"):
+            clusters[-1][1] += ch
+        else:
+            clusters.append([ch, ""])
+    mirrored = {"(": ")", ")": "("}
+    return "".join(marks + mirrored.get(letter, letter) for letter, marks in reversed(clusters))
+
+
 def initial(word: str) -> str:
     """First letter as children learn it: Bosnian digraphs count as one letter."""
+    if is_arabic(word):
+        for ch in word:
+            if ch not in ARABIC_MARKS and not ch.isspace():
+                return ARABIC_ALIF_FORMS.get(ch, ch)
+        return ""
     lower = word.lower()
     for article in GERMAN_ARTICLES:
         if lower.startswith(article):
@@ -196,8 +260,12 @@ async def speak(text: str, voice: str, target: Path) -> None:
 
 
 def texts(entry: dict) -> dict:
-    """The entry's text in every voiced language, e.g. {"bs": ..., "en": ..., "de": ...}."""
-    return {lang: entry[lang] for lang in VOICES}
+    """The entry's text in every voiced language, e.g. {"bs": ..., "en": ..., "de": ..., "ar": ...},
+    plus the Arabic as shown on screen (ar_shown) and its Latin transliteration (ar_latin)."""
+    result = {lang: entry[lang] for lang in VOICES}
+    result["ar_shown"] = shape_arabic(entry["ar"])
+    result["ar_latin"] = entry["ar_latin"]
+    return result
 
 
 async def main(pack_file: Path) -> None:
@@ -254,12 +322,21 @@ async def main(pack_file: Path) -> None:
     if pack.get("letters"):
         for lang in VOICES:
             for letter in sorted({initial(w[lang]) for w in pack["words"]}):
-                safe = SAFE_LETTERS.get(letter, letter)
-                entry_id = f"letter_{lang}_{safe}"
-                spoken = f"{LETTER_WORD[lang]} {letter}."
+                if lang == "ar":
+                    # Shown on its own, so the isolated form needs no shaping.
+                    entry_id = f"letter_ar_{ARABIC_LETTER_IDS[letter]}"
+                    name, latin = ARABIC_LETTERS[letter]
+                    spoken = arabic_letter_phrase(letter, name)
+                    shown = letter
+                else:
+                    safe = SAFE_LETTERS.get(letter, letter)
+                    entry_id = f"letter_{lang}_{safe}"
+                    spoken = f"{LETTER_WORD[lang]} {letter}."
+                    shown = f"{letter} {letter.lower()}"
+                    latin = ""
                 await speak(spoken, VOICES[lang], out / "Audio" / lang / f"{entry_id}.ogg")
-                shown = f"{letter} {letter.lower()}"
-                letters.append({"id": entry_id, "letter": letter, "lang": lang, **{l: shown for l in VOICES}})
+                letters.append({"id": entry_id, "letter": letter, "lang": lang, **{l: shown for l in VOICES},
+                                "ar_shown": shown, "ar_latin": latin})
 
     for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes + sentences + numbers:
         for lang, voice in VOICES.items():

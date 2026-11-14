@@ -8,61 +8,91 @@
       "id": "star_word",
       "bs": "zvijezda",
       "en": "star",
-      "de": "der Stern"
+      "de": "der Stern",
+      "ar": "نَجْمَة",
+      "ar_shown": "ﺔَﻤْﺠَﻧ",
+      "ar_latin": "nadžma"
     },
     {
       "id": "moon",
       "bs": "mjesec",
       "en": "moon",
-      "de": "der Mond"
+      "de": "der Mond",
+      "ar": "قَمَر",
+      "ar_shown": "ﺮَﻤَﻗ",
+      "ar_latin": "kamar"
     },
     {
       "id": "rocket",
       "bs": "raketa",
       "en": "rocket",
-      "de": "die Rakete"
+      "de": "die Rakete",
+      "ar": "صَارُوخ",
+      "ar_shown": "ﺥﻭُﺭﺎَﺻ",
+      "ar_latin": "sārūh"
     },
     {
       "id": "planet",
       "bs": "planeta",
       "en": "planet",
-      "de": "der Planet"
+      "de": "der Planet",
+      "ar": "كَوْكَب",
+      "ar_shown": "ﺐَﻛْﻮَﻛ",
+      "ar_latin": "kavkab"
     },
     {
       "id": "owl",
       "bs": "sova",
       "en": "owl",
-      "de": "die Eule"
+      "de": "die Eule",
+      "ar": "بُومَة",
+      "ar_shown": "ﺔَﻣﻮُﺑ",
+      "ar_latin": "būma"
     },
     {
       "id": "comet",
       "bs": "kometa",
       "en": "comet",
-      "de": "der Komet"
+      "de": "der Komet",
+      "ar": "مُذَنَّب",
+      "ar_shown": "ﺐَّﻧَﺬُﻣ",
+      "ar_latin": "muzannab"
     },
     {
       "id": "telescope",
       "bs": "teleskop",
       "en": "telescope",
-      "de": "das Teleskop"
+      "de": "das Teleskop",
+      "ar": "تِلِسْكُوب",
+      "ar_shown": "ﺏﻮُﻜْﺴِﻠِﺗ",
+      "ar_latin": "tiliskūb"
     },
     {
       "id": "bed",
       "bs": "krevet",
       "en": "bed",
-      "de": "das Bett"
+      "de": "das Bett",
+      "ar": "سَرِير",
+      "ar_shown": "ﺮﻳِﺮَﺳ",
+      "ar_latin": "sarīr"
     },
     {
       "id": "satellite",
       "bs": "satelit",
       "en": "satellite",
-      "de": "der Satellit"
+      "de": "der Satellit",
+      "ar": "قَمَر صِنَاعِيّ",
+      "ar_shown": "ّﻲِﻋﺎَﻨِﺻ ﺮَﻤَﻗ",
+      "ar_latin": "kamar sinā'ī"
     },
     {
       "id": "night",
       "bs": "noć",
       "en": "night",
-      "de": "die Nacht"
+      "de": "die Nacht",
+      "ar": "لَيْل",
+      "ar_shown": "ﻞْﻴَﻟ",
+      "ar_latin": "lejl"
     }
   ],
   "phrases": [
@@ -70,43 +100,64 @@
       "id": "praise_1",
       "bs": "Bravo!",
       "en": "Great job!",
-      "de": "Toll!"
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
       "en": "That's right!",
-      "de": "Richtig!"
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahīh!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
       "en": "Awesome!",
-      "de": "Super!"
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtāz!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
       "en": "Listen to the word, then jump into the right picture!",
-      "de": "Hör auf das Wort und spring in das richtige Bild!"
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
       "en": "Jump!",
-      "de": "Spring!"
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",
-      "de": "Super! Ziel geschafft!"
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
     },
     {
       "id": "finale",
       "bs": "Bravo! Svi svjetovi su završeni!",
       "en": "Well done! You finished every world!",
-      "de": "Super! Du hast alle Welten geschafft!"
+      "de": "Super! Du hast alle Welten geschafft!",
+      "ar": "رَائِع! اِنْتَهَتْ كُلُّ الْعَوَالِم!",
+      "ar_shown": "!ﻢِﻟﺍَﻮَﻌْﻟﺍ ُّﻞُﻛ ْﺖَﻬَﺘْﻧِﺍ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Intahat kullu-l-'avālim!"
     }
   ],
   "counts": [],

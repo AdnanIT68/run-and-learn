@@ -8,61 +8,91 @@
       "id": "mom",
       "bs": "mama",
       "en": "mom",
-      "de": "die Mama"
+      "de": "die Mama",
+      "ar": "أُمّ",
+      "ar_shown": "ّﻡُﺃ",
+      "ar_latin": "umm"
     },
     {
       "id": "dad",
       "bs": "tata",
       "en": "dad",
-      "de": "der Papa"
+      "de": "der Papa",
+      "ar": "أَب",
+      "ar_shown": "ﺏَﺃ",
+      "ar_latin": "ab"
     },
     {
       "id": "grandma",
       "bs": "nena",
       "en": "grandma",
-      "de": "die Oma"
+      "de": "die Oma",
+      "ar": "جَدَّة",
+      "ar_shown": "ﺓَّﺪَﺟ",
+      "ar_latin": "džadda"
     },
     {
       "id": "grandpa",
       "bs": "dedo",
       "en": "grandpa",
-      "de": "der Opa"
+      "de": "der Opa",
+      "ar": "جَدّ",
+      "ar_shown": "ّﺪَﺟ",
+      "ar_latin": "džadd"
     },
     {
       "id": "sister",
       "bs": "sestra",
       "en": "sister",
-      "de": "die Schwester"
+      "de": "die Schwester",
+      "ar": "أُخْت",
+      "ar_shown": "ﺖْﺧُﺃ",
+      "ar_latin": "uht"
     },
     {
       "id": "brother",
       "bs": "brat",
       "en": "brother",
-      "de": "der Bruder"
+      "de": "der Bruder",
+      "ar": "أَخ",
+      "ar_shown": "ﺥَﺃ",
+      "ar_latin": "ah"
     },
     {
       "id": "baby",
       "bs": "beba",
       "en": "baby",
-      "de": "das Baby"
+      "de": "das Baby",
+      "ar": "رَضِيع",
+      "ar_shown": "ﻊﻴِﺿَﺭ",
+      "ar_latin": "radī'"
     },
     {
       "id": "house",
       "bs": "kuća",
       "en": "house",
-      "de": "das Haus"
+      "de": "das Haus",
+      "ar": "بَيْت",
+      "ar_shown": "ﺖْﻴَﺑ",
+      "ar_latin": "bejt"
     },
     {
       "id": "bread",
       "bs": "hljeb",
       "en": "bread",
-      "de": "das Brot"
+      "de": "das Brot",
+      "ar": "خُبْز",
+      "ar_shown": "ﺰْﺒُﺧ",
+      "ar_latin": "hubz"
     },
     {
       "id": "milk",
       "bs": "mlijeko",
       "en": "milk",
-      "de": "die Milch"
+      "de": "die Milch",
+      "ar": "حَلِيب",
+      "ar_shown": "ﺐﻴِﻠَﺣ",
+      "ar_latin": "halīb"
     }
   ],
   "phrases": [
@@ -70,37 +100,55 @@
       "id": "praise_1",
       "bs": "Bravo!",
       "en": "Great job!",
-      "de": "Toll!"
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
       "en": "That's right!",
-      "de": "Richtig!"
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahīh!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
       "en": "Awesome!",
-      "de": "Super!"
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtāz!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
       "en": "Listen to the word, then jump into the right picture!",
-      "de": "Hör auf das Wort und spring in das richtige Bild!"
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
       "en": "Jump!",
-      "de": "Spring!"
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",
-      "de": "Super! Ziel geschafft!"
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],

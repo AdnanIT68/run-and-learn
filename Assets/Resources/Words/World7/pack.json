@@ -8,61 +8,91 @@
       "id": "pencil",
       "bs": "olovka",
       "en": "pencil",
-      "de": "der Bleistift"
+      "de": "der Bleistift",
+      "ar": "قَلَمُ رَصَاص",
+      "ar_shown": "ﺹﺎَﺻَﺭ ُﻢَﻠَﻗ",
+      "ar_latin": "kalamu rasās"
     },
     {
       "id": "notebook",
       "bs": "sveska",
       "en": "notebook",
-      "de": "das Heft"
+      "de": "das Heft",
+      "ar": "دَفْتَر",
+      "ar_shown": "ﺮَﺘْﻓَﺩ",
+      "ar_latin": "daftar"
     },
     {
       "id": "backpack",
       "bs": "ranac",
       "en": "backpack",
-      "de": "der Rucksack"
+      "de": "der Rucksack",
+      "ar": "حَقِيبَة",
+      "ar_shown": "ﺔَﺒﻴِﻘَﺣ",
+      "ar_latin": "hakība"
     },
     {
       "id": "scissors",
       "bs": "makaze",
       "en": "scissors",
-      "de": "die Schere"
+      "de": "die Schere",
+      "ar": "مِقَصّ",
+      "ar_shown": "ّﺺَﻘِﻣ",
+      "ar_latin": "mikass"
     },
     {
       "id": "ruler",
       "bs": "lenjir",
       "en": "ruler",
-      "de": "das Lineal"
+      "de": "das Lineal",
+      "ar": "مِسْطَرَة",
+      "ar_shown": "ﺓَﺮَﻄْﺴِﻣ",
+      "ar_latin": "mistara"
     },
     {
       "id": "crayon",
       "bs": "bojica",
       "en": "crayon",
-      "de": "der Buntstift"
+      "de": "der Buntstift",
+      "ar": "قَلَمُ تَلْوِين",
+      "ar_shown": "ﻦﻳِﻮْﻠَﺗ ُﻢَﻠَﻗ",
+      "ar_latin": "kalamu talvīn"
     },
     {
       "id": "globe",
       "bs": "globus",
       "en": "globe",
-      "de": "der Globus"
+      "de": "der Globus",
+      "ar": "كُرَة أَرْضِيَّة",
+      "ar_shown": "ﺔَّﻴِﺿْﺭَﺃ ﺓَﺮُﻛ",
+      "ar_latin": "kura ardijja"
     },
     {
       "id": "abacus",
       "bs": "računaljka",
       "en": "abacus",
-      "de": "der Rechenrahmen"
+      "de": "der Rechenrahmen",
+      "ar": "مِعْدَاد",
+      "ar_shown": "ﺩﺍَﺪْﻌِﻣ",
+      "ar_latin": "mi'dād"
     },
     {
       "id": "bell",
       "bs": "zvono",
       "en": "bell",
-      "de": "die Glocke"
+      "de": "die Glocke",
+      "ar": "جَرَس",
+      "ar_shown": "ﺱَﺮَﺟ",
+      "ar_latin": "džaras"
     },
     {
       "id": "school",
       "bs": "škola",
       "en": "school",
-      "de": "die Schule"
+      "de": "die Schule",
+      "ar": "مَدْرَسَة",
+      "ar_shown": "ﺔَﺳَﺭْﺪَﻣ",
+      "ar_latin": "madrasa"
     }
   ],
   "phrases": [
@@ -70,37 +100,55 @@
       "id": "praise_1",
       "bs": "Bravo!",
       "en": "Great job!",
-      "de": "Toll!"
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
       "en": "That's right!",
-      "de": "Richtig!"
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahīh!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
       "en": "Awesome!",
-      "de": "Super!"
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtāz!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
       "en": "Listen to the word, then jump into the right picture!",
-      "de": "Hör auf das Wort und spring in das richtige Bild!"
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
       "en": "Jump!",
-      "de": "Spring!"
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",
-      "de": "Super! Ziel geschafft!"
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],
@@ -113,70 +161,100 @@
       "picture": "digit_1",
       "bs": "jedan",
       "en": "one",
-      "de": "eins"
+      "de": "eins",
+      "ar": "وَاحِد",
+      "ar_shown": "ﺪِﺣﺍَﻭ",
+      "ar_latin": "vāhid"
     },
     {
       "id": "num_2",
       "picture": "digit_2",
       "bs": "dva",
       "en": "two",
-      "de": "zwei"
+      "de": "zwei",
+      "ar": "اِثْنَان",
+      "ar_shown": "ﻥﺎَﻨْﺛِﺍ",
+      "ar_latin": "isnān"
     },
     {
       "id": "num_3",
       "picture": "digit_3",
       "bs": "tri",
       "en": "three",
-      "de": "drei"
+      "de": "drei",
+      "ar": "ثَلَاثَة",
+      "ar_shown": "ﺔَﺛَﻼَﺛ",
+      "ar_latin": "salāsa"
     },
     {
       "id": "num_4",
       "picture": "digit_4",
       "bs": "četiri",
       "en": "four",
-      "de": "vier"
+      "de": "vier",
+      "ar": "أَرْبَعَة",
+      "ar_shown": "ﺔَﻌَﺑْﺭَﺃ",
+      "ar_latin": "arba'a"
     },
     {
       "id": "num_5",
       "picture": "digit_5",
       "bs": "pet",
       "en": "five",
-      "de": "fünf"
+      "de": "fünf",
+      "ar": "خَمْسَة",
+      "ar_shown": "ﺔَﺴْﻤَﺧ",
+      "ar_latin": "hamsa"
     },
     {
       "id": "num_6",
       "picture": "digit_6",
       "bs": "šest",
       "en": "six",
-      "de": "sechs"
+      "de": "sechs",
+      "ar": "سِتَّة",
+      "ar_shown": "ﺔَّﺘِﺳ",
+      "ar_latin": "sitta"
     },
     {
       "id": "num_7",
       "picture": "digit_7",
       "bs": "sedam",
       "en": "seven",
-      "de": "sieben"
+      "de": "sieben",
+      "ar": "سَبْعَة",
+      "ar_shown": "ﺔَﻌْﺒَﺳ",
+      "ar_latin": "sab'a"
     },
     {
       "id": "num_8",
       "picture": "digit_8",
       "bs": "osam",
       "en": "eight",
-      "de": "acht"
+      "de": "acht",
+      "ar": "ثَمَانِيَة",
+      "ar_shown": "ﺔَﻴِﻧﺎَﻤَﺛ",
+      "ar_latin": "samānija"
     },
     {
       "id": "num_9",
       "picture": "digit_9",
       "bs": "devet",
       "en": "nine",
-      "de": "neun"
+      "de": "neun",
+      "ar": "تِسْعَة",
+      "ar_shown": "ﺔَﻌْﺴِﺗ",
+      "ar_latin": "tis'a"
     },
     {
       "id": "num_10",
       "picture": "digit_10",
       "bs": "deset",
       "en": "ten",
-      "de": "zehn"
+      "de": "zehn",
+      "ar": "عَشَرَة",
+      "ar_shown": "ﺓَﺮَﺸَﻋ",
+      "ar_latin": "'ašara"
     }
   ],
   "letters": [
@@ -186,7 +264,10 @@
       "lang": "bs",
       "bs": "B b",
       "en": "B b",
-      "de": "B b"
+      "de": "B b",
+      "ar": "B b",
+      "ar_shown": "B b",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_G",
@@ -194,7 +275,10 @@
       "lang": "bs",
       "bs": "G g",
       "en": "G g",
-      "de": "G g"
+      "de": "G g",
+      "ar": "G g",
+      "ar_shown": "G g",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_L",
@@ -202,7 +286,10 @@
       "lang": "bs",
       "bs": "L l",
       "en": "L l",
-      "de": "L l"
+      "de": "L l",
+      "ar": "L l",
+      "ar_shown": "L l",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_M",
@@ -210,7 +297,10 @@
       "lang": "bs",
       "bs": "M m",
       "en": "M m",
-      "de": "M m"
+      "de": "M m",
+      "ar": "M m",
+      "ar_shown": "M m",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_O",
@@ -218,7 +308,10 @@
       "lang": "bs",
       "bs": "O o",
       "en": "O o",
-      "de": "O o"
+      "de": "O o",
+      "ar": "O o",
+      "ar_shown": "O o",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_R",
@@ -226,7 +319,10 @@
       "lang": "bs",
       "bs": "R r",
       "en": "R r",
-      "de": "R r"
+      "de": "R r",
+      "ar": "R r",
+      "ar_shown": "R r",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_S",
@@ -234,7 +330,10 @@
       "lang": "bs",
       "bs": "S s",
       "en": "S s",
-      "de": "S s"
+      "de": "S s",
+      "ar": "S s",
+      "ar_shown": "S s",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_Z",
@@ -242,7 +341,10 @@
       "lang": "bs",
       "bs": "Z z",
       "en": "Z z",
-      "de": "Z z"
+      "de": "Z z",
+      "ar": "Z z",
+      "ar_shown": "Z z",
+      "ar_latin": ""
     },
     {
       "id": "letter_bs_SH",
@@ -250,7 +352,10 @@
       "lang": "bs",
       "bs": "Š š",
       "en": "Š š",
-      "de": "Š š"
+      "de": "Š š",
+      "ar": "Š š",
+      "ar_shown": "Š š",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_A",
@@ -258,7 +363,10 @@
       "lang": "en",
       "bs": "A a",
       "en": "A a",
-      "de": "A a"
+      "de": "A a",
+      "ar": "A a",
+      "ar_shown": "A a",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_B",
@@ -266,7 +374,10 @@
       "lang": "en",
       "bs": "B b",
       "en": "B b",
-      "de": "B b"
+      "de": "B b",
+      "ar": "B b",
+      "ar_shown": "B b",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_C",
@@ -274,7 +385,10 @@
       "lang": "en",
       "bs": "C c",
       "en": "C c",
-      "de": "C c"
+      "de": "C c",
+      "ar": "C c",
+      "ar_shown": "C c",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_G",
@@ -282,7 +396,10 @@
       "lang": "en",
       "bs": "G g",
       "en": "G g",
-      "de": "G g"
+      "de": "G g",
+      "ar": "G g",
+      "ar_shown": "G g",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_N",
@@ -290,7 +407,10 @@
       "lang": "en",
       "bs": "N n",
       "en": "N n",
-      "de": "N n"
+      "de": "N n",
+      "ar": "N n",
+      "ar_shown": "N n",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_P",
@@ -298,7 +418,10 @@
       "lang": "en",
       "bs": "P p",
       "en": "P p",
-      "de": "P p"
+      "de": "P p",
+      "ar": "P p",
+      "ar_shown": "P p",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_R",
@@ -306,7 +429,10 @@
       "lang": "en",
       "bs": "R r",
       "en": "R r",
-      "de": "R r"
+      "de": "R r",
+      "ar": "R r",
+      "ar_shown": "R r",
+      "ar_latin": ""
     },
     {
       "id": "letter_en_S",
@@ -314,7 +440,10 @@
       "lang": "en",
       "bs": "S s",
       "en": "S s",
-      "de": "S s"
+      "de": "S s",
+      "ar": "S s",
+      "ar_shown": "S s",
+      "ar_latin": ""
     },
     {
       "id": "letter_de_B",
@@ -322,7 +451,10 @@
       "lang": "de",
       "bs": "B b",
       "en": "B b",
-      "de": "B b"
+      "de": "B b",
+      "ar": "B b",
+      "ar_shown": "B b",
+      "ar_latin": ""
     },
     {
       "id": "letter_de_G",
@@ -330,7 +462,10 @@
       "lang": "de",
       "bs": "G g",
       "en": "G g",
-      "de": "G g"
+      "de": "G g",
+      "ar": "G g",
+      "ar_shown": "G g",
+      "ar_latin": ""
     },
     {
       "id": "letter_de_H",
@@ -338,7 +473,10 @@
       "lang": "de",
       "bs": "H h",
       "en": "H h",
-      "de": "H h"
+      "de": "H h",
+      "ar": "H h",
+      "ar_shown": "H h",
+      "ar_latin": ""
     },
     {
       "id": "letter_de_L",
@@ -346,7 +484,10 @@
       "lang": "de",
       "bs": "L l",
       "en": "L l",
-      "de": "L l"
+      "de": "L l",
+      "ar": "L l",
+      "ar_shown": "L l",
+      "ar_latin": ""
     },
     {
       "id": "letter_de_R",
@@ -354,7 +495,10 @@
       "lang": "de",
       "bs": "R r",
       "en": "R r",
-      "de": "R r"
+      "de": "R r",
+      "ar": "R r",
+      "ar_shown": "R r",
+      "ar_latin": ""
     },
     {
       "id": "letter_de_S",
@@ -362,7 +506,76 @@
       "lang": "de",
       "bs": "S s",
       "en": "S s",
-      "de": "S s"
+      "de": "S s",
+      "ar": "S s",
+      "ar_shown": "S s",
+      "ar_latin": ""
+    },
+    {
+      "id": "letter_ar_jim",
+      "letter": "ج",
+      "lang": "ar",
+      "bs": "ج",
+      "en": "ج",
+      "de": "ج",
+      "ar": "ج",
+      "ar_shown": "ج",
+      "ar_latin": "džīm"
+    },
+    {
+      "id": "letter_ar_hha",
+      "letter": "ح",
+      "lang": "ar",
+      "bs": "ح",
+      "en": "ح",
+      "de": "ح",
+      "ar": "ح",
+      "ar_shown": "ح",
+      "ar_latin": "hā'"
+    },
+    {
+      "id": "letter_ar_dal",
+      "letter": "د",
+      "lang": "ar",
+      "bs": "د",
+      "en": "د",
+      "de": "د",
+      "ar": "د",
+      "ar_shown": "د",
+      "ar_latin": "dāl"
+    },
+    {
+      "id": "letter_ar_qaf",
+      "letter": "ق",
+      "lang": "ar",
+      "bs": "ق",
+      "en": "ق",
+      "de": "ق",
+      "ar": "ق",
+      "ar_shown": "ق",
+      "ar_latin": "qāf"
+    },
+    {
+      "id": "letter_ar_kaf",
+      "letter": "ك",
+      "lang": "ar",
+      "bs": "ك",
+      "en": "ك",
+      "de": "ك",
+      "ar": "ك",
+      "ar_shown": "ك",
+      "ar_latin": "kāf"
+    },
+    {
+      "id": "letter_ar_mim",
+      "letter": "م",
+      "lang": "ar",
+      "bs": "م",
+      "en": "م",
+      "de": "م",
+      "ar": "م",
+      "ar_shown": "م",
+      "ar_latin": "mīm"
     }
   ],
   "reading": true,

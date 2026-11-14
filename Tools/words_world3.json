@@ -4,23 +4,23 @@
   "title_en": "Our Home",
   "title_de": "Unser Zuhause",
   "words": [
-    { "id": "mom", "bs": "mama", "en": "mom", "de": "die Mama", "emoji": "1f469" },
-    { "id": "dad", "bs": "tata", "en": "dad", "de": "der Papa", "emoji": "1f468" },
-    { "id": "grandma", "bs": "nena", "en": "grandma", "de": "die Oma", "emoji": "1f475" },
-    { "id": "grandpa", "bs": "dedo", "en": "grandpa", "de": "der Opa", "emoji": "1f474" },
-    { "id": "sister", "bs": "sestra", "en": "sister", "de": "die Schwester", "emoji": "1f467" },
-    { "id": "brother", "bs": "brat", "en": "brother", "de": "der Bruder", "emoji": "1f466" },
-    { "id": "baby", "bs": "beba", "en": "baby", "de": "das Baby", "emoji": "1f476" },
-    { "id": "house", "bs": "kuća", "en": "house", "de": "das Haus", "emoji": "1f3e0" },
-    { "id": "bread", "bs": "hljeb", "en": "bread", "de": "das Brot", "emoji": "1f35e" },
-    { "id": "milk", "bs": "mlijeko", "en": "milk", "de": "die Milch", "emoji": "1f95b" }
+    { "id": "mom", "bs": "mama", "en": "mom", "de": "die Mama", "emoji": "1f469", "ar": "أُمّ", "ar_latin": "umm", "ar_status": "za provjeru" },
+    { "id": "dad", "bs": "tata", "en": "dad", "de": "der Papa", "emoji": "1f468", "ar": "أَب", "ar_latin": "ab", "ar_status": "za provjeru" },
+    { "id": "grandma", "bs": "nena", "en": "grandma", "de": "die Oma", "emoji": "1f475", "ar": "جَدَّة", "ar_latin": "džadda", "ar_status": "za provjeru" },
+    { "id": "grandpa", "bs": "dedo", "en": "grandpa", "de": "der Opa", "emoji": "1f474", "ar": "جَدّ", "ar_latin": "džadd", "ar_status": "za provjeru" },
+    { "id": "sister", "bs": "sestra", "en": "sister", "de": "die Schwester", "emoji": "1f467", "ar": "أُخْت", "ar_latin": "uht", "ar_status": "za provjeru" },
+    { "id": "brother", "bs": "brat", "en": "brother", "de": "der Bruder", "emoji": "1f466", "ar": "أَخ", "ar_latin": "ah", "ar_status": "za provjeru" },
+    { "id": "baby", "bs": "beba", "en": "baby", "de": "das Baby", "emoji": "1f476", "ar": "رَضِيع", "ar_latin": "radī'", "ar_status": "za provjeru" },
+    { "id": "house", "bs": "kuća", "en": "house", "de": "das Haus", "emoji": "1f3e0", "ar": "بَيْت", "ar_latin": "bejt", "ar_status": "za provjeru" },
+    { "id": "bread", "bs": "hljeb", "en": "bread", "de": "das Brot", "emoji": "1f35e", "ar": "خُبْز", "ar_latin": "hubz", "ar_status": "za provjeru" },
+    { "id": "milk", "bs": "mlijeko", "en": "milk", "de": "die Milch", "emoji": "1f95b", "ar": "حَلِيب", "ar_latin": "halīb", "ar_status": "za provjeru" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!" },
-    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Rā'i'!", "ar_status": "za provjeru" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahīh!", "ar_status": "za provjeru" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtāz!", "ar_status": "za provjeru" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Rā'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
   ]
 }

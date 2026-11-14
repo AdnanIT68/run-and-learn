@@ -4,35 +4,35 @@
   "title_en": "River and Old Bridge",
   "title_de": "Fluss und Alte Brücke",
   "words": [
-    { "id": "sun", "bs": "sunce", "en": "sun", "de": "die Sonne", "emoji": "2600" },
-    { "id": "rain", "bs": "kiša", "en": "rain", "de": "der Regen", "emoji": "1f327" },
-    { "id": "rainbow", "bs": "duga", "en": "rainbow", "de": "der Regenbogen", "emoji": "1f308" },
-    { "id": "bridge", "bs": "most", "en": "bridge", "de": "die Brücke", "emoji": "1f309" },
-    { "id": "fish", "bs": "riba", "en": "fish", "de": "der Fisch", "emoji": "1f41f" },
-    { "id": "frog", "bs": "žaba", "en": "frog", "de": "der Frosch", "emoji": "1f438" },
-    { "id": "butterfly", "bs": "leptir", "en": "butterfly", "de": "der Schmetterling", "emoji": "1f98b" },
-    { "id": "flower", "bs": "cvijet", "en": "flower", "de": "die Blume", "emoji": "1f33c" },
-    { "id": "tree", "bs": "drvo", "en": "tree", "de": "der Baum", "emoji": "1f333" },
-    { "id": "boat", "bs": "čamac", "en": "boat", "de": "das Boot", "emoji": "1f6f6" }
+    { "id": "sun", "bs": "sunce", "en": "sun", "de": "die Sonne", "emoji": "2600", "ar": "شَمْس", "ar_latin": "šams", "ar_status": "za provjeru" },
+    { "id": "rain", "bs": "kiša", "en": "rain", "de": "der Regen", "emoji": "1f327", "ar": "مَطَر", "ar_latin": "matar", "ar_status": "za provjeru" },
+    { "id": "rainbow", "bs": "duga", "en": "rainbow", "de": "der Regenbogen", "emoji": "1f308", "ar": "قَوْسُ قُزَح", "ar_latin": "kavsu kuzah", "ar_status": "za provjeru" },
+    { "id": "bridge", "bs": "most", "en": "bridge", "de": "die Brücke", "emoji": "1f309", "ar": "جِسْر", "ar_latin": "džisr", "ar_status": "za provjeru" },
+    { "id": "fish", "bs": "riba", "en": "fish", "de": "der Fisch", "emoji": "1f41f", "ar": "سَمَكَة", "ar_latin": "samaka", "ar_status": "za provjeru" },
+    { "id": "frog", "bs": "žaba", "en": "frog", "de": "der Frosch", "emoji": "1f438", "ar": "ضِفْدَع", "ar_latin": "difda'", "ar_status": "za provjeru" },
+    { "id": "butterfly", "bs": "leptir", "en": "butterfly", "de": "der Schmetterling", "emoji": "1f98b", "ar": "فَرَاشَة", "ar_latin": "farāša", "ar_status": "za provjeru" },
+    { "id": "flower", "bs": "cvijet", "en": "flower", "de": "die Blume", "emoji": "1f33c", "ar": "زَهْرَة", "ar_latin": "zahra", "ar_status": "za provjeru" },
+    { "id": "tree", "bs": "drvo", "en": "tree", "de": "der Baum", "emoji": "1f333", "ar": "شَجَرَة", "ar_latin": "šadžara", "ar_status": "za provjeru" },
+    { "id": "boat", "bs": "čamac", "en": "boat", "de": "das Boot", "emoji": "1f6f6", "ar": "قَارِب", "ar_latin": "kārib", "ar_status": "za provjeru" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!" },
-    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Rā'i'!", "ar_status": "za provjeru" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahīh!", "ar_status": "za provjeru" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtāz!", "ar_status": "za provjeru" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Rā'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
   ],
   "sizes": [
-    { "word": "fish", "size": "big", "bs": "velika riba", "en": "big fish", "de": "ein großer Fisch" },
-    { "word": "fish", "size": "small", "bs": "mala riba", "en": "small fish", "de": "ein kleiner Fisch" },
-    { "word": "frog", "size": "big", "bs": "velika žaba", "en": "big frog", "de": "ein großer Frosch" },
-    { "word": "frog", "size": "small", "bs": "mala žaba", "en": "small frog", "de": "ein kleiner Frosch" },
-    { "word": "boat", "size": "big", "bs": "veliki čamac", "en": "big boat", "de": "ein großes Boot" },
-    { "word": "boat", "size": "small", "bs": "mali čamac", "en": "small boat", "de": "ein kleines Boot" },
-    { "word": "flower", "size": "big", "bs": "veliki cvijet", "en": "big flower", "de": "eine große Blume" },
-    { "word": "flower", "size": "small", "bs": "mali cvijet", "en": "small flower", "de": "eine kleine Blume" },
-    { "word": "tree", "size": "big", "bs": "veliko drvo", "en": "big tree", "de": "ein großer Baum" },
-    { "word": "tree", "size": "small", "bs": "malo drvo", "en": "small tree", "de": "ein kleiner Baum" }
+    { "word": "fish", "size": "big", "bs": "velika riba", "en": "big fish", "de": "ein großer Fisch", "ar": "سَمَكَة كَبِيرَة", "ar_latin": "samaka kabīra", "ar_status": "za provjeru" },
+    { "word": "fish", "size": "small", "bs": "mala riba", "en": "small fish", "de": "ein kleiner Fisch", "ar": "سَمَكَة صَغِيرَة", "ar_latin": "samaka sagīra", "ar_status": "za provjeru" },
+    { "word": "frog", "size": "big", "bs": "velika žaba", "en": "big frog", "de": "ein großer Frosch", "ar": "ضِفْدَع كَبِير", "ar_latin": "difda' kabīr", "ar_status": "za provjeru" },
+    { "word": "frog", "size": "small", "bs": "mala žaba", "en": "small frog", "de": "ein kleiner Frosch", "ar": "ضِفْدَع صَغِير", "ar_latin": "difda' sagīr", "ar_status": "za provjeru" },
+    { "word": "boat", "size": "big", "bs": "veliki čamac", "en": "big boat", "de": "ein großes Boot", "ar": "قَارِب كَبِير", "ar_latin": "kārib kabīr", "ar_status": "za provjeru" },
+    { "word": "boat", "size": "small", "bs": "mali čamac", "en": "small boat", "de": "ein kleines Boot", "ar": "قَارِب صَغِير", "ar_latin": "kārib sagīr", "ar_status": "za provjeru" },
+    { "word": "flower", "size": "big", "bs": "veliki cvijet", "en": "big flower", "de": "eine große Blume", "ar": "زَهْرَة كَبِيرَة", "ar_latin": "zahra kabīra", "ar_status": "za provjeru" },
+    { "word": "flower", "size": "small", "bs": "mali cvijet", "en": "small flower", "de": "eine kleine Blume", "ar": "زَهْرَة صَغِيرَة", "ar_latin": "zahra sagīra", "ar_status": "za provjeru" },
+    { "word": "tree", "size": "big", "bs": "veliko drvo", "en": "big tree", "de": "ein großer Baum", "ar": "شَجَرَة كَبِيرَة", "ar_latin": "šadžara kabīra", "ar_status": "za provjeru" },
+    { "word": "tree", "size": "small", "bs": "malo drvo", "en": "small tree", "de": "ein kleiner Baum", "ar": "شَجَرَة صَغِيرَة", "ar_latin": "šadžara sagīra", "ar_status": "za provjeru" }
   ]
 }

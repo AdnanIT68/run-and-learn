@@ -8,61 +8,91 @@
       "id": "mosque",
       "bs": "džamija",
       "en": "mosque",
-      "de": "die Moschee"
+      "de": "die Moschee",
+      "ar": "مَسْجِد",
+      "ar_shown": "ﺪِﺠْﺴَﻣ",
+      "ar_latin": "masdžid"
     },
     {
       "id": "pigeon",
       "bs": "golub",
       "en": "pigeon",
-      "de": "die Taube"
+      "de": "die Taube",
+      "ar": "حَمَامَة",
+      "ar_shown": "ﺔَﻣﺎَﻤَﺣ",
+      "ar_latin": "hamāma"
     },
     {
       "id": "tram",
       "bs": "tramvaj",
       "en": "tram",
-      "de": "die Straßenbahn"
+      "de": "die Straßenbahn",
+      "ar": "تِرَام",
+      "ar_shown": "ﻡﺍَﺮِﺗ",
+      "ar_latin": "tirām"
     },
     {
       "id": "bus",
       "bs": "autobus",
       "en": "bus",
-      "de": "der Bus"
+      "de": "der Bus",
+      "ar": "حَافِلَة",
+      "ar_shown": "ﺔَﻠِﻓﺎَﺣ",
+      "ar_latin": "hāfila"
     },
     {
       "id": "bicycle",
       "bs": "bicikl",
       "en": "bicycle",
-      "de": "das Fahrrad"
+      "de": "das Fahrrad",
+      "ar": "دَرَّاجَة",
+      "ar_shown": "ﺔَﺟﺍَّﺭَﺩ",
+      "ar_latin": "darrādža"
     },
     {
       "id": "ball",
       "bs": "lopta",
       "en": "ball",
-      "de": "der Ball"
+      "de": "der Ball",
+      "ar": "كُرَة",
+      "ar_shown": "ﺓَﺮُﻛ",
+      "ar_latin": "kura"
     },
     {
       "id": "book",
       "bs": "knjiga",
       "en": "book",
-      "de": "das Buch"
+      "de": "das Buch",
+      "ar": "كِتَاب",
+      "ar_shown": "ﺏﺎَﺘِﻛ",
+      "ar_latin": "kitāb"
     },
     {
       "id": "umbrella",
       "bs": "kišobran",
       "en": "umbrella",
-      "de": "der Regenschirm"
+      "de": "der Regenschirm",
+      "ar": "مِظَلَّة",
+      "ar_shown": "ﺔَّﻠَﻈِﻣ",
+      "ar_latin": "mizalla"
     },
     {
       "id": "clock",
       "bs": "sat",
       "en": "clock",
-      "de": "die Uhr"
+      "de": "die Uhr",
+      "ar": "سَاعَة",
+      "ar_shown": "ﺔَﻋﺎَﺳ",
+      "ar_latin": "sā'a"
     },
     {
       "id": "fountain",
       "bs": "česma",
       "en": "fountain",
-      "de": "der Brunnen"
+      "de": "der Brunnen",
+      "ar": "نَافُورَة",
+      "ar_shown": "ﺓَﺭﻮُﻓﺎَﻧ",
+      "ar_latin": "nāfūra"
     }
   ],
   "phrases": [
@@ -70,37 +100,55 @@
       "id": "praise_1",
       "bs": "Bravo!",
       "en": "Great job!",
-      "de": "Toll!"
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
       "en": "That's right!",
-      "de": "Richtig!"
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahīh!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
       "en": "Awesome!",
-      "de": "Super!"
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtāz!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
       "en": "Listen to the word, then jump into the right picture!",
-      "de": "Hör auf das Wort und spring in das richtige Bild!"
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
       "en": "Jump!",
-      "de": "Spring!"
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",
-      "de": "Super! Ziel geschafft!"
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],
@@ -111,7 +159,10 @@
       "picture": "star",
       "bs": "Skoči!",
       "en": "Jump!",
-      "de": "Spring!"
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
     },
     {
       "id": "cmd_stay",
@@ -119,7 +170,10 @@
       "picture": "star",
       "bs": "Ostani dolje!",
       "en": "Stay down!",
-      "de": "Bleib unten!"
+      "de": "Bleib unten!",
+      "ar": "اِبْقَ فِي الْأَسْفَل!",
+      "ar_shown": "!ﻞَﻔْﺳَْﻷﺍ ﻲِﻓ َﻖْﺑِﺍ",
+      "ar_latin": "Ibka fi-l-asfal!"
     },
     {
       "id": "cmd_double",
@@ -127,7 +181,10 @@
       "picture": "star",
       "bs": "Skoči dva puta!",
       "en": "Jump twice!",
-      "de": "Spring zweimal!"
+      "de": "Spring zweimal!",
+      "ar": "اِقْفِزْ مَرَّتَيْن!",
+      "ar_shown": "!ﻦْﻴَﺗَّﺮَﻣ ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz marratejn!"
     }
   ],
   "sizes": [],

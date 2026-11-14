@@ -8,61 +8,91 @@
       "id": "sun",
       "bs": "sunce",
       "en": "sun",
-      "de": "die Sonne"
+      "de": "die Sonne",
+      "ar": "شَمْس",
+      "ar_shown": "ﺲْﻤَﺷ",
+      "ar_latin": "šams"
     },
     {
       "id": "rain",
       "bs": "kiša",
       "en": "rain",
-      "de": "der Regen"
+      "de": "der Regen",
+      "ar": "مَطَر",
+      "ar_shown": "ﺮَﻄَﻣ",
+      "ar_latin": "matar"
     },
     {
       "id": "rainbow",
       "bs": "duga",
       "en": "rainbow",
-      "de": "der Regenbogen"
+      "de": "der Regenbogen",
+      "ar": "قَوْسُ قُزَح",
+      "ar_shown": "ﺡَﺰُﻗ ُﺱْﻮَﻗ",
+      "ar_latin": "kavsu kuzah"
     },
     {
       "id": "bridge",
       "bs": "most",
       "en": "bridge",
-      "de": "die Brücke"
+      "de": "die Brücke",
+      "ar": "جِسْر",
+      "ar_shown": "ﺮْﺴِﺟ",
+      "ar_latin": "džisr"
     },
     {
       "id": "fish",
       "bs": "riba",
       "en": "fish",
-      "de": "der Fisch"
+      "de": "der Fisch",
+      "ar": "سَمَكَة",
+      "ar_shown": "ﺔَﻜَﻤَﺳ",
+      "ar_latin": "samaka"
     },
     {
       "id": "frog",
       "bs": "žaba",
       "en": "frog",
-      "de": "der Frosch"
+      "de": "der Frosch",
+      "ar": "ضِفْدَع",
+      "ar_shown": "ﻉَﺪْﻔِﺿ",
+      "ar_latin": "difda'"
     },
     {
       "id": "butterfly",
       "bs": "leptir",
       "en": "butterfly",
-      "de": "der Schmetterling"
+      "de": "der Schmetterling",
+      "ar": "فَرَاشَة",
+      "ar_shown": "ﺔَﺷﺍَﺮَﻓ",
+      "ar_latin": "farāša"
     },
     {
       "id": "flower",
       "bs": "cvijet",
       "en": "flower",
-      "de": "die Blume"
+      "de": "die Blume",
+      "ar": "زَهْرَة",
+      "ar_shown": "ﺓَﺮْﻫَﺯ",
+      "ar_latin": "zahra"
     },
     {
       "id": "tree",
       "bs": "drvo",
       "en": "tree",
-      "de": "der Baum"
+      "de": "der Baum",
+      "ar": "شَجَرَة",
+      "ar_shown": "ﺓَﺮَﺠَﺷ",
+      "ar_latin": "šadžara"
     },
     {
       "id": "boat",
       "bs": "čamac",
       "en": "boat",
-      "de": "das Boot"
+      "de": "das Boot",
+      "ar": "قَارِب",
+      "ar_shown": "ﺏِﺭﺎَﻗ",
+      "ar_latin": "kārib"
     }
   ],
   "phrases": [
@@ -70,37 +100,55 @@
       "id": "praise_1",
       "bs": "Bravo!",
       "en": "Great job!",
-      "de": "Toll!"
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
       "en": "That's right!",
-      "de": "Richtig!"
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahīh!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
       "en": "Awesome!",
-      "de": "Super!"
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtāz!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
       "en": "Listen to the word, then jump into the right picture!",
-      "de": "Hör auf das Wort und spring in das richtige Bild!"
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
       "en": "Jump!",
-      "de": "Spring!"
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",
-      "de": "Super! Ziel geschafft!"
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],
@@ -112,7 +160,10 @@
       "size": "big",
       "bs": "velika riba",
       "en": "big fish",
-      "de": "ein großer Fisch"
+      "de": "ein großer Fisch",
+      "ar": "سَمَكَة كَبِيرَة",
+      "ar_shown": "ﺓَﺮﻴِﺒَﻛ ﺔَﻜَﻤَﺳ",
+      "ar_latin": "samaka kabīra"
     },
     {
       "id": "fish_small",
@@ -120,7 +171,10 @@
       "size": "small",
       "bs": "mala riba",
       "en": "small fish",
-      "de": "ein kleiner Fisch"
+      "de": "ein kleiner Fisch",
+      "ar": "سَمَكَة صَغِيرَة",
+      "ar_shown": "ﺓَﺮﻴِﻐَﺻ ﺔَﻜَﻤَﺳ",
+      "ar_latin": "samaka sagīra"
     },
     {
       "id": "frog_big",
@@ -128,7 +182,10 @@
       "size": "big",
       "bs": "velika žaba",
       "en": "big frog",
-      "de": "ein großer Frosch"
+      "de": "ein großer Frosch",
+      "ar": "ضِفْدَع كَبِير",
+      "ar_shown": "ﺮﻴِﺒَﻛ ﻉَﺪْﻔِﺿ",
+      "ar_latin": "difda' kabīr"
     },
     {
       "id": "frog_small",
@@ -136,7 +193,10 @@
       "size": "small",
       "bs": "mala žaba",
       "en": "small frog",
-      "de": "ein kleiner Frosch"
+      "de": "ein kleiner Frosch",
+      "ar": "ضِفْدَع صَغِير",
+      "ar_shown": "ﺮﻴِﻐَﺻ ﻉَﺪْﻔِﺿ",
+      "ar_latin": "difda' sagīr"
     },
     {
       "id": "boat_big",
@@ -144,7 +204,10 @@
       "size": "big",
       "bs": "veliki čamac",
       "en": "big boat",
-      "de": "ein großes Boot"
+      "de": "ein großes Boot",
+      "ar": "قَارِب كَبِير",
+      "ar_shown": "ﺮﻴِﺒَﻛ ﺏِﺭﺎَﻗ",
+      "ar_latin": "kārib kabīr"
     },
     {
       "id": "boat_small",
@@ -152,7 +215,10 @@
       "size": "small",
       "bs": "mali čamac",
       "en": "small boat",
-      "de": "ein kleines Boot"
+      "de": "ein kleines Boot",
+      "ar": "قَارِب صَغِير",
+      "ar_shown": "ﺮﻴِﻐَﺻ ﺏِﺭﺎَﻗ",
+      "ar_latin": "kārib sagīr"
     },
     {
       "id": "flower_big",
@@ -160,7 +226,10 @@
       "size": "big",
       "bs": "veliki cvijet",
       "en": "big flower",
-      "de": "eine große Blume"
+      "de": "eine große Blume",
+      "ar": "زَهْرَة كَبِيرَة",
+      "ar_shown": "ﺓَﺮﻴِﺒَﻛ ﺓَﺮْﻫَﺯ",
+      "ar_latin": "zahra kabīra"
     },
     {
       "id": "flower_small",
@@ -168,7 +237,10 @@
       "size": "small",
       "bs": "mali cvijet",
       "en": "small flower",
-      "de": "eine kleine Blume"
+      "de": "eine kleine Blume",
+      "ar": "زَهْرَة صَغِيرَة",
+      "ar_shown": "ﺓَﺮﻴِﻐَﺻ ﺓَﺮْﻫَﺯ",
+      "ar_latin": "zahra sagīra"
     },
     {
       "id": "tree_big",
@@ -176,7 +248,10 @@
       "size": "big",
       "bs": "veliko drvo",
       "en": "big tree",
-      "de": "ein großer Baum"
+      "de": "ein großer Baum",
+      "ar": "شَجَرَة كَبِيرَة",
+      "ar_shown": "ﺓَﺮﻴِﺒَﻛ ﺓَﺮَﺠَﺷ",
+      "ar_latin": "šadžara kabīra"
     },
     {
       "id": "tree_small",
@@ -184,7 +259,10 @@
       "size": "small",
       "bs": "malo drvo",
       "en": "small tree",
-      "de": "ein kleiner Baum"
+      "de": "ein kleiner Baum",
+      "ar": "شَجَرَة صَغِيرَة",
+      "ar_shown": "ﺓَﺮﻴِﻐَﺻ ﺓَﺮَﺠَﺷ",
+      "ar_latin": "šadžara sagīra"
     }
   ],
   "sentences": [],

@@ -4,28 +4,28 @@
   "title_en": "The Old Bazaar",
   "title_de": "Der alte Basar",
   "words": [
-    { "id": "mosque", "bs": "džamija", "en": "mosque", "de": "die Moschee", "emoji": "1f54c" },
-    { "id": "pigeon", "bs": "golub", "en": "pigeon", "de": "die Taube", "emoji": "1f54a" },
-    { "id": "tram", "bs": "tramvaj", "en": "tram", "de": "die Straßenbahn", "emoji": "1f68b" },
-    { "id": "bus", "bs": "autobus", "en": "bus", "de": "der Bus", "emoji": "1f68c" },
-    { "id": "bicycle", "bs": "bicikl", "en": "bicycle", "de": "das Fahrrad", "emoji": "1f6b2" },
-    { "id": "ball", "bs": "lopta", "en": "ball", "de": "der Ball", "emoji": "26bd" },
-    { "id": "book", "bs": "knjiga", "en": "book", "de": "das Buch", "emoji": "1f4d6" },
-    { "id": "umbrella", "bs": "kišobran", "en": "umbrella", "de": "der Regenschirm", "emoji": "2602" },
-    { "id": "clock", "bs": "sat", "en": "clock", "de": "die Uhr", "emoji": "1f570" },
-    { "id": "fountain", "bs": "česma", "en": "fountain", "de": "der Brunnen", "emoji": "26f2" }
+    { "id": "mosque", "bs": "džamija", "en": "mosque", "de": "die Moschee", "emoji": "1f54c", "ar": "مَسْجِد", "ar_latin": "masdžid", "ar_status": "za provjeru" },
+    { "id": "pigeon", "bs": "golub", "en": "pigeon", "de": "die Taube", "emoji": "1f54a", "ar": "حَمَامَة", "ar_latin": "hamāma", "ar_status": "za provjeru" },
+    { "id": "tram", "bs": "tramvaj", "en": "tram", "de": "die Straßenbahn", "emoji": "1f68b", "ar": "تِرَام", "ar_latin": "tirām", "ar_status": "za provjeru: posuđenica; provjeriti uobičajen oblik" },
+    { "id": "bus", "bs": "autobus", "en": "bus", "de": "der Bus", "emoji": "1f68c", "ar": "حَافِلَة", "ar_latin": "hāfila", "ar_status": "za provjeru" },
+    { "id": "bicycle", "bs": "bicikl", "en": "bicycle", "de": "das Fahrrad", "emoji": "1f6b2", "ar": "دَرَّاجَة", "ar_latin": "darrādža", "ar_status": "za provjeru" },
+    { "id": "ball", "bs": "lopta", "en": "ball", "de": "der Ball", "emoji": "26bd", "ar": "كُرَة", "ar_latin": "kura", "ar_status": "za provjeru" },
+    { "id": "book", "bs": "knjiga", "en": "book", "de": "das Buch", "emoji": "1f4d6", "ar": "كِتَاب", "ar_latin": "kitāb", "ar_status": "za provjeru" },
+    { "id": "umbrella", "bs": "kišobran", "en": "umbrella", "de": "der Regenschirm", "emoji": "2602", "ar": "مِظَلَّة", "ar_latin": "mizalla", "ar_status": "za provjeru" },
+    { "id": "clock", "bs": "sat", "en": "clock", "de": "die Uhr", "emoji": "1f570", "ar": "سَاعَة", "ar_latin": "sā'a", "ar_status": "za provjeru" },
+    { "id": "fountain", "bs": "česma", "en": "fountain", "de": "der Brunnen", "emoji": "26f2", "ar": "نَافُورَة", "ar_latin": "nāfūra", "ar_status": "za provjeru" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!" },
-    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Rā'i'!", "ar_status": "za provjeru" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahīh!", "ar_status": "za provjeru" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtāz!", "ar_status": "za provjeru" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Rā'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
   ],
   "commands": [
-    { "id": "cmd_jump", "action": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!" },
-    { "id": "cmd_stay", "action": "stay", "bs": "Ostani dolje!", "en": "Stay down!", "de": "Bleib unten!" },
-    { "id": "cmd_double", "action": "double", "bs": "Skoči dva puta!", "en": "Jump twice!", "de": "Spring zweimal!" }
+    { "id": "cmd_jump", "action": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa" },
+    { "id": "cmd_stay", "action": "stay", "bs": "Ostani dolje!", "en": "Stay down!", "de": "Bleib unten!", "ar": "اِبْقَ فِي الْأَسْفَل!", "ar_latin": "Ibka fi-l-asfal!", "ar_status": "za provjeru: muški rod imperativa" },
+    { "id": "cmd_double", "action": "double", "bs": "Skoči dva puta!", "en": "Jump twice!", "de": "Spring zweimal!", "ar": "اِقْفِزْ مَرَّتَيْن!", "ar_latin": "Ikfiz marratejn!", "ar_status": "za provjeru: muški rod imperativa" }
   ]
 }

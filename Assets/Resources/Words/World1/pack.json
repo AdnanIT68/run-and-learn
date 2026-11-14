@@ -8,61 +8,91 @@
       "id": "apple",
       "bs": "jabuka",
       "en": "apple",
-      "de": "der Apfel"
+      "de": "der Apfel",
+      "ar": "تُفَّاحَة",
+      "ar_shown": "ﺔَﺣﺎَّﻔُﺗ",
+      "ar_latin": "tuffāha"
     },
     {
       "id": "pear",
       "bs": "kruška",
       "en": "pear",
-      "de": "die Birne"
+      "de": "die Birne",
+      "ar": "كُمَّثْرَى",
+      "ar_shown": "ﻯَﺮْﺜَّﻤُﻛ",
+      "ar_latin": "kummasrā"
     },
     {
       "id": "banana",
       "bs": "banana",
       "en": "banana",
-      "de": "die Banane"
+      "de": "die Banane",
+      "ar": "مَوْزَة",
+      "ar_shown": "ﺓَﺯْﻮَﻣ",
+      "ar_latin": "mavza"
     },
     {
       "id": "strawberry",
       "bs": "jagoda",
       "en": "strawberry",
-      "de": "die Erdbeere"
+      "de": "die Erdbeere",
+      "ar": "فَرَاوِلَة",
+      "ar_shown": "ﺔَﻟِﻭﺍَﺮَﻓ",
+      "ar_latin": "farāvila"
     },
     {
       "id": "grapes",
       "bs": "grožđe",
       "en": "grapes",
-      "de": "die Weintrauben"
+      "de": "die Weintrauben",
+      "ar": "عِنَب",
+      "ar_shown": "ﺐَﻨِﻋ",
+      "ar_latin": "'inab"
     },
     {
       "id": "watermelon",
       "bs": "lubenica",
       "en": "watermelon",
-      "de": "die Wassermelone"
+      "de": "die Wassermelone",
+      "ar": "بِطِّيخ",
+      "ar_shown": "ﺦﻴِّﻄِﺑ",
+      "ar_latin": "bittīh"
     },
     {
       "id": "lemon",
       "bs": "limun",
       "en": "lemon",
-      "de": "die Zitrone"
+      "de": "die Zitrone",
+      "ar": "لَيْمُون",
+      "ar_shown": "ﻥﻮُﻤْﻴَﻟ",
+      "ar_latin": "lejmūn"
     },
     {
       "id": "carrot",
       "bs": "mrkva",
       "en": "carrot",
-      "de": "die Karotte"
+      "de": "die Karotte",
+      "ar": "جَزَرَة",
+      "ar_shown": "ﺓَﺭَﺰَﺟ",
+      "ar_latin": "džazara"
     },
     {
       "id": "tomato",
       "bs": "paradajz",
       "en": "tomato",
-      "de": "die Tomate"
+      "de": "die Tomate",
+      "ar": "طَمَاطِم",
+      "ar_shown": "ﻢِﻃﺎَﻤَﻃ",
+      "ar_latin": "tamātim"
     },
     {
       "id": "cucumber",
       "bs": "krastavac",
       "en": "cucumber",
-      "de": "die Gurke"
+      "de": "die Gurke",
+      "ar": "خِيَار",
+      "ar_shown": "ﺭﺎَﻴِﺧ",
+      "ar_latin": "hijār"
     }
   ],
   "phrases": [
@@ -70,37 +100,55 @@
       "id": "praise_1",
       "bs": "Bravo!",
       "en": "Great job!",
-      "de": "Toll!"
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'!"
     },
     {
       "id": "praise_2",
       "bs": "Tačno!",
       "en": "That's right!",
-      "de": "Richtig!"
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahīh!"
     },
     {
       "id": "praise_3",
       "bs": "Super!",
       "en": "Awesome!",
-      "de": "Super!"
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtāz!"
     },
     {
       "id": "intro",
       "bs": "Slušaj riječ, pa skoči u pravu sliku!",
       "en": "Listen to the word, then jump into the right picture!",
-      "de": "Hör auf das Wort und spring in das richtige Bild!"
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
     },
     {
       "id": "jump",
       "bs": "Skoči!",
       "en": "Jump!",
-      "de": "Spring!"
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
     },
     {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",
-      "de": "Super! Ziel geschafft!"
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],
