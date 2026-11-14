@@ -57,6 +57,20 @@ namespace FootballRunner.Learning
             }
         }
 
+        /// <summary>
+        /// Parents corner switch for 3 and 4 year olds: a slower run with fewer hazards
+        /// and two pictures to choose from instead of three.
+        /// </summary>
+        public static bool EasyMode
+        {
+            get => SaveManager.Data.easyMode;
+            set
+            {
+                SaveManager.Data.easyMode = value;
+                SaveManager.Save();
+            }
+        }
+
         private static string Learnable(string language)
         {
             return language == English || language == German || language == Arabic ? language : Bosnian;

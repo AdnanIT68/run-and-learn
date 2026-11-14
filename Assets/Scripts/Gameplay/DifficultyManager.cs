@@ -128,6 +128,35 @@ namespace FootballRunner.Gameplay
             {
                 ApplyLevel(Learning.LearningProgress.SelectedLevel);
             }
+
+            if (Learning.LearningProgress.EasyMode)
+            {
+                ApplyEasyMode();
+            }
+        }
+
+        /// <summary>True when the parents corner's easy mode for the youngest children is on.</summary>
+        public bool IsEasy { get; private set; }
+
+        /// <summary>
+        /// Easy mode for 3 and 4 year olds: a slower run that speeds up less, half the
+        /// hazards, never two in one stretch, and a longer calm start.
+        /// </summary>
+        public void ApplyEasyMode()
+        {
+            if (IsEasy)
+            {
+                return;
+            }
+
+            IsEasy = true;
+            startSpeed *= 0.75f;
+            maxSpeed = Mathf.Max(startSpeed, maxSpeed * 0.65f);
+            startObstacleChance *= 0.5f;
+            maxObstacleChance *= 0.5f;
+            maxObstaclesPerChunkLate = 1;
+            secondsUntilLateDensity = float.MaxValue / 4f;
+            warmUpSeconds *= 1.5f;
         }
 
         /// <summary>

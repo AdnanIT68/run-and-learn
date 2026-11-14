@@ -25,6 +25,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>Show the Latin transliteration under Arabic words (parents corner switch).</summary>
         public bool showTransliteration = true;
 
+        /// <summary>Easy mode for 3 and 4 year olds (parents corner switch).</summary>
+        public bool easyMode;
+
         /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
         public string homeLanguage = "en";
 

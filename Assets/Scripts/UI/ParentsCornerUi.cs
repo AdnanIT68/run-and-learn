@@ -42,6 +42,8 @@ namespace FootballRunner.UI
         private TMP_Text _soundLabel;
         private Image _vibrationButton;
         private TMP_Text _vibrationLabel;
+        private Image _easyButton;
+        private TMP_Text _easyLabel;
         private Image _latinButton;
         private TMP_Text _latinLabel;
         private TMP_Text _credits;
@@ -57,6 +59,8 @@ namespace FootballRunner.UI
         public bool IsTransliterationSwitchShowing => _latinButton != null && _latinButton.gameObject.activeSelf;
 
         public string TransliterationLabel => _latinLabel != null ? _latinLabel.text : string.Empty;
+
+        public string EasyModeLabel => _easyLabel != null ? _easyLabel.text : string.Empty;
 
         /// <summary>The right answer to the sum on the gate.</summary>
         public int GateAnswer { get; private set; }
@@ -156,6 +160,14 @@ namespace FootballRunner.UI
             RefreshTexts();
         }
 
+        /// <summary>Easy mode for the youngest: slower, fewer hazards, two pictures.</summary>
+        public void ToggleEasyMode()
+        {
+            LearningProgress.EasyMode = !LearningProgress.EasyMode;
+            AudioManager.Instance?.PlayButton();
+            RefreshTexts();
+        }
+
         /// <summary>Shows or hides the Latin letters under Arabic words.</summary>
         public void ToggleTransliteration()
         {
@@ -248,6 +260,11 @@ namespace FootballRunner.UI
             bool vibration = Haptics.Enabled;
             _vibrationButton.color = vibration ? OnColour : OffColour;
             _vibrationLabel.text = LearningProgress.Ui("VIBRACIJA", "VIBRATION", "VIBRATION") + ": " + OnOff(vibration);
+
+            bool easy = LearningProgress.EasyMode;
+            _easyButton.color = easy ? OnColour : OffColour;
+            _easyLabel.text = LearningProgress.Ui("LAGANI NAČIN (3–4 G.)", "EASY MODE (AGE 3–4)", "LEICHT (3–4 J.)") +
+                              ": " + OnOff(easy);
 
             // Only Arabic has a second script, so the switch only shows while learning it.
             _latinButton.gameObject.SetActive(LearningProgress.IsArabic);
@@ -385,20 +402,24 @@ namespace FootballRunner.UI
 
             // Settings and credits.
             Image settings = CreateCard(_corner.transform, "Settings", new Vector2(620f, -70f), new Vector2(560f, 700f));
-            _soundButton = CreateButton(settings.transform, "Sound", new Vector2(0f, 230f), new Vector2(460f, 110f),
+            _soundButton = CreateButton(settings.transform, "Sound", new Vector2(0f, 255f), new Vector2(460f, 100f),
                 OnColour, ToggleSound);
             _soundLabel = CreateText(_soundButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f), 38f,
                 Color.white);
-            _vibrationButton = CreateButton(settings.transform, "Vibration", new Vector2(0f, 90f),
-                new Vector2(460f, 110f), OnColour, ToggleVibration);
+            _vibrationButton = CreateButton(settings.transform, "Vibration", new Vector2(0f, 145f),
+                new Vector2(460f, 100f), OnColour, ToggleVibration);
             _vibrationLabel = CreateText(_vibrationButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f),
                 38f, Color.white);
-            _latinButton = CreateButton(settings.transform, "Transliteration", new Vector2(0f, -50f),
-                new Vector2(460f, 110f), OnColour, ToggleTransliteration);
+            _easyButton = CreateButton(settings.transform, "EasyMode", new Vector2(0f, 35f),
+                new Vector2(460f, 100f), OnColour, ToggleEasyMode);
+            _easyLabel = CreateText(_easyButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 90f), 30f,
+                Color.white);
+            _latinButton = CreateButton(settings.transform, "Transliteration", new Vector2(0f, -75f),
+                new Vector2(460f, 100f), OnColour, ToggleTransliteration);
             _latinLabel = CreateText(_latinButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f), 32f,
                 Color.white);
 
-            _credits = CreateText(settings.transform, "Credits", "", new Vector2(0f, -240f), new Vector2(500f, 200f), 24f,
+            _credits = CreateText(settings.transform, "Credits", "", new Vector2(0f, -250f), new Vector2(500f, 180f), 22f,
                 MutedText);
             _credits.fontStyle = FontStyles.Normal;
             _credits.textWrappingMode = TextWrappingModes.Normal;

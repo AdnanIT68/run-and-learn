@@ -72,6 +72,9 @@ namespace FootballRunner.Learning
 
         [Header("Layout")]
         [SerializeField] private int optionCount = 3;
+
+        /// <summary>Pictures to choose from: two in easy mode for the youngest, otherwise three.</summary>
+        public int OptionCount => LearningProgress.EasyMode ? 2 : optionCount;
         [SerializeField] private float bubbleRadius = 0.6f;
         [Tooltip("Bubble centre above the top of the standing runner. Out of reach without a jump.")]
         [SerializeField] private float heightAboveHead = 1.05f;
@@ -202,7 +205,7 @@ namespace FootballRunner.Learning
         private void Start()
         {
 
-            if (_pack == null || _pack.ChallengeWords.Count < optionCount)
+            if (_pack == null || _pack.ChallengeWords.Count < OptionCount)
             {
                 Debug.LogWarning("[WordChallengeDirector] Not enough words to run challenges. Disabled.");
                 enabled = false;
@@ -769,7 +772,7 @@ namespace FootballRunner.Learning
                 }
             }
 
-            while (_options.Count < optionCount && others.Count > 0)
+            while (_options.Count < OptionCount && others.Count > 0)
             {
                 int pick = Random.Range(0, others.Count);
                 _options.Add(others[pick]);
@@ -795,7 +798,7 @@ namespace FootballRunner.Learning
             _options.Add(_target);
             int guard = 0;
 
-            while (_options.Count < optionCount && guard++ < 100)
+            while (_options.Count < OptionCount && guard++ < 100)
             {
                 WordEntry candidate = list[Random.Range(0, list.Count)];
 
@@ -958,7 +961,7 @@ namespace FootballRunner.Learning
             _options.Add(_target);
             int guard = 0;
 
-            while (_options.Count < optionCount && guard++ < 100)
+            while (_options.Count < OptionCount && guard++ < 100)
             {
                 WordEntry candidate = words[Random.Range(0, words.Count)];
 
@@ -995,7 +998,7 @@ namespace FootballRunner.Learning
             _options.Add(_target);
             guard = 0;
 
-            while (_options.Count < optionCount && guard++ < 100)
+            while (_options.Count < OptionCount && guard++ < 100)
             {
                 WordEntry candidate = counts[Random.Range(0, counts.Count)];
 
