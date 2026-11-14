@@ -43,6 +43,9 @@ namespace FootballRunner.Learning
         private readonly List<Card> _cards = new List<Card>();
         private TMP_Text _pageNote;
 
+        /// <summary>The album's cards are small, so their Latin line is drawn larger than on the word card.</summary>
+        public const int AlbumLatinPercent = 70;
+
         /// <summary>The line under the page about its gift; for tests.</summary>
         public string PageNote => _pageNote != null ? _pageNote.text : string.Empty;
         private WordPack _pack;
@@ -292,7 +295,7 @@ namespace FootballRunner.Learning
                 card.Root.localRotation = Quaternion.Euler(0f, 0f, card.Unlocked ? StickerTilt(card.Word.id) : 0f);
                 card.Picture.color = card.Unlocked ? Color.white : SilhouetteColour;
                 card.Lock.enabled = !card.Unlocked && card.Lock.sprite != null;
-                card.Label.text = card.Unlocked ? card.Word.CardText(language, LearningProgress.ShowTransliteration) : "?";
+                card.Label.text = card.Unlocked ? card.Word.CardText(language, LearningProgress.ShowTransliteration, AlbumLatinPercent) : "?";
 
                 int stars = StarsFor(progress.correct);
 
@@ -303,7 +306,7 @@ namespace FootballRunner.Learning
                 }
             }
 
-            _title.text = $"ALBUM  ·  {_pack.Title(language)}";
+            _title.text = $"ALBUM  ·  {_pack.Title(LearningProgress.HomeLanguage)}";
             _counter.text = LearningProgress.Ui("NALJEPNICE", "STICKERS", "STICKER") + $"  {learned} / {_cards.Count}";
             _pageNote.text = PageNoteText();
             _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");

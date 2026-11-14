@@ -20,7 +20,7 @@
       "de": "das Schaf",
       "ar": "خَرُوف",
       "ar_shown": "ﻑﻭُﺮَﺧ",
-      "ar_latin": "harūf"
+      "ar_latin": "harûf"
     },
     {
       "id": "goat",
@@ -29,7 +29,7 @@
       "de": "die Ziege",
       "ar": "مَاعِز",
       "ar_shown": "ﺰِﻋﺎَﻣ",
-      "ar_latin": "mā'iz"
+      "ar_latin": "mâ'iz"
     },
     {
       "id": "horse",
@@ -38,7 +38,7 @@
       "de": "das Pferd",
       "ar": "حِصَان",
       "ar_shown": "ﻥﺎَﺼِﺣ",
-      "ar_latin": "hisān"
+      "ar_latin": "hisân"
     },
     {
       "id": "hen",
@@ -47,7 +47,7 @@
       "de": "das Huhn",
       "ar": "دَجَاجَة",
       "ar_shown": "ﺔَﺟﺎَﺟَﺩ",
-      "ar_latin": "dadžādža"
+      "ar_latin": "dadžâdža"
     },
     {
       "id": "rooster",
@@ -56,7 +56,7 @@
       "de": "der Hahn",
       "ar": "دِيك",
       "ar_shown": "ﻚﻳِﺩ",
-      "ar_latin": "dīk"
+      "ar_latin": "dîk"
     },
     {
       "id": "duck",
@@ -103,7 +103,7 @@
       "de": "Toll!",
       "ar": "رَائِع!",
       "ar_shown": "!ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'!"
+      "ar_latin": "Râ'i'!"
     },
     {
       "id": "praise_2",
@@ -112,7 +112,7 @@
       "de": "Richtig!",
       "ar": "صَحِيح!",
       "ar_shown": "!ﺢﻴِﺤَﺻ",
-      "ar_latin": "Sahīh!"
+      "ar_latin": "Sahîh!"
     },
     {
       "id": "praise_3",
@@ -121,7 +121,7 @@
       "de": "Super!",
       "ar": "مُمْتَاز!",
       "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
-      "ar_latin": "Mumtāz!"
+      "ar_latin": "Mumtâz!"
     },
     {
       "id": "intro",
@@ -130,7 +130,7 @@
       "de": "Hör auf das Wort und spring in das richtige Bild!",
       "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
       "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
-      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!"
     },
     {
       "id": "jump",
@@ -148,7 +148,7 @@
       "de": "Super! Ziel geschafft!",
       "ar": "رَائِع! تَمَّ الْهَدَف!",
       "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
+      "ar_latin": "Râ'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [
@@ -161,7 +161,7 @@
       "de": "ein Huhn",
       "ar": "دَجَاجَة وَاحِدَة",
       "ar_shown": "ﺓَﺪِﺣﺍَﻭ ﺔَﺟﺎَﺟَﺩ",
-      "ar_latin": "dadžādža vāhida"
+      "ar_latin": "dadžâdža vâhida"
     },
     {
       "id": "hen_2",
@@ -172,7 +172,7 @@
       "de": "zwei Hühner",
       "ar": "دَجَاجَتَان",
       "ar_shown": "ﻥﺎَﺘَﺟﺎَﺟَﺩ",
-      "ar_latin": "dadžādžatān"
+      "ar_latin": "dadžâdžatân"
     },
     {
       "id": "hen_3",
@@ -183,7 +183,7 @@
       "de": "drei Hühner",
       "ar": "ثَلَاثُ دَجَاجَات",
       "ar_shown": "ﺕﺎَﺟﺎَﺟَﺩ ُﺙَﻼَﺛ",
-      "ar_latin": "salāsu dadžādžāt"
+      "ar_latin": "salâsu dadžâdžât"
     },
     {
       "id": "hen_4",
@@ -194,7 +194,7 @@
       "de": "vier Hühner",
       "ar": "أَرْبَعُ دَجَاجَات",
       "ar_shown": "ﺕﺎَﺟﺎَﺟَﺩ ُﻊَﺑْﺭَﺃ",
-      "ar_latin": "arba'u dadžādžāt"
+      "ar_latin": "arba'u dadžâdžât"
     },
     {
       "id": "hen_5",
@@ -205,7 +205,7 @@
       "de": "fünf Hühner",
       "ar": "خَمْسُ دَجَاجَات",
       "ar_shown": "ﺕﺎَﺟﺎَﺟَﺩ ُﺲْﻤَﺧ",
-      "ar_latin": "hamsu dadžādžāt"
+      "ar_latin": "hamsu dadžâdžât"
     },
     {
       "id": "cow_1",
@@ -216,7 +216,7 @@
       "de": "eine Kuh",
       "ar": "بَقَرَة وَاحِدَة",
       "ar_shown": "ﺓَﺪِﺣﺍَﻭ ﺓَﺮَﻘَﺑ",
-      "ar_latin": "bakara vāhida"
+      "ar_latin": "bakara vâhida"
     },
     {
       "id": "cow_2",
@@ -227,7 +227,7 @@
       "de": "zwei Kühe",
       "ar": "بَقَرَتَان",
       "ar_shown": "ﻥﺎَﺗَﺮَﻘَﺑ",
-      "ar_latin": "bakaratān"
+      "ar_latin": "bakaratân"
     },
     {
       "id": "cow_3",
@@ -238,7 +238,7 @@
       "de": "drei Kühe",
       "ar": "ثَلَاثُ بَقَرَات",
       "ar_shown": "ﺕﺍَﺮَﻘَﺑ ُﺙَﻼَﺛ",
-      "ar_latin": "salāsu bakarāt"
+      "ar_latin": "salâsu bakarât"
     },
     {
       "id": "cow_4",
@@ -249,7 +249,7 @@
       "de": "vier Kühe",
       "ar": "أَرْبَعُ بَقَرَات",
       "ar_shown": "ﺕﺍَﺮَﻘَﺑ ُﻊَﺑْﺭَﺃ",
-      "ar_latin": "arba'u bakarāt"
+      "ar_latin": "arba'u bakarât"
     },
     {
       "id": "cow_5",
@@ -260,7 +260,7 @@
       "de": "fünf Kühe",
       "ar": "خَمْسُ بَقَرَات",
       "ar_shown": "ﺕﺍَﺮَﻘَﺑ ُﺲْﻤَﺧ",
-      "ar_latin": "hamsu bakarāt"
+      "ar_latin": "hamsu bakarât"
     },
     {
       "id": "sheep_1",
@@ -271,7 +271,7 @@
       "de": "ein Schaf",
       "ar": "خَرُوف وَاحِد",
       "ar_shown": "ﺪِﺣﺍَﻭ ﻑﻭُﺮَﺧ",
-      "ar_latin": "harūf vāhid"
+      "ar_latin": "harûf vâhid"
     },
     {
       "id": "sheep_2",
@@ -282,7 +282,7 @@
       "de": "zwei Schafe",
       "ar": "خَرُوفَان",
       "ar_shown": "ﻥﺎَﻓﻭُﺮَﺧ",
-      "ar_latin": "harūfān"
+      "ar_latin": "harûfân"
     },
     {
       "id": "sheep_3",
@@ -293,7 +293,7 @@
       "de": "drei Schafe",
       "ar": "ثَلَاثَةُ خِرَاف",
       "ar_shown": "ﻑﺍَﺮِﺧ ُﺔَﺛَﻼَﺛ",
-      "ar_latin": "salāsatu hirāf"
+      "ar_latin": "salâsatu hirâf"
     },
     {
       "id": "sheep_4",
@@ -304,7 +304,7 @@
       "de": "vier Schafe",
       "ar": "أَرْبَعَةُ خِرَاف",
       "ar_shown": "ﻑﺍَﺮِﺧ ُﺔَﻌَﺑْﺭَﺃ",
-      "ar_latin": "arba'atu hirāf"
+      "ar_latin": "arba'atu hirâf"
     },
     {
       "id": "sheep_5",
@@ -315,7 +315,7 @@
       "de": "fünf Schafe",
       "ar": "خَمْسَةُ خِرَاف",
       "ar_shown": "ﻑﺍَﺮِﺧ ُﺔَﺴْﻤَﺧ",
-      "ar_latin": "hamsatu hirāf"
+      "ar_latin": "hamsatu hirâf"
     },
     {
       "id": "duck_1",
@@ -326,7 +326,7 @@
       "de": "eine Ente",
       "ar": "بَطَّة وَاحِدَة",
       "ar_shown": "ﺓَﺪِﺣﺍَﻭ ﺔَّﻄَﺑ",
-      "ar_latin": "batta vāhida"
+      "ar_latin": "batta vâhida"
     },
     {
       "id": "duck_2",
@@ -337,7 +337,7 @@
       "de": "zwei Enten",
       "ar": "بَطَّتَان",
       "ar_shown": "ﻥﺎَﺘَّﻄَﺑ",
-      "ar_latin": "battatān"
+      "ar_latin": "battatân"
     },
     {
       "id": "duck_3",
@@ -348,7 +348,7 @@
       "de": "drei Enten",
       "ar": "ثَلَاثُ بَطَّات",
       "ar_shown": "ﺕﺎَّﻄَﺑ ُﺙَﻼَﺛ",
-      "ar_latin": "salāsu battāt"
+      "ar_latin": "salâsu battât"
     },
     {
       "id": "duck_4",
@@ -359,7 +359,7 @@
       "de": "vier Enten",
       "ar": "أَرْبَعُ بَطَّات",
       "ar_shown": "ﺕﺎَّﻄَﺑ ُﻊَﺑْﺭَﺃ",
-      "ar_latin": "arba'u battāt"
+      "ar_latin": "arba'u battât"
     },
     {
       "id": "duck_5",
@@ -370,7 +370,7 @@
       "de": "fünf Enten",
       "ar": "خَمْسُ بَطَّات",
       "ar_shown": "ﺕﺎَّﻄَﺑ ُﺲْﻤَﺧ",
-      "ar_latin": "hamsu battāt"
+      "ar_latin": "hamsu battât"
     },
     {
       "id": "rabbit_1",
@@ -381,7 +381,7 @@
       "de": "ein Hase",
       "ar": "أَرْنَب وَاحِد",
       "ar_shown": "ﺪِﺣﺍَﻭ ﺐَﻧْﺭَﺃ",
-      "ar_latin": "arnab vāhid"
+      "ar_latin": "arnab vâhid"
     },
     {
       "id": "rabbit_2",
@@ -392,7 +392,7 @@
       "de": "zwei Hasen",
       "ar": "أَرْنَبَان",
       "ar_shown": "ﻥﺎَﺒَﻧْﺭَﺃ",
-      "ar_latin": "arnabān"
+      "ar_latin": "arnabân"
     },
     {
       "id": "rabbit_3",
@@ -403,7 +403,7 @@
       "de": "drei Hasen",
       "ar": "ثَلَاثَةُ أَرَانِب",
       "ar_shown": "ﺐِﻧﺍَﺭَﺃ ُﺔَﺛَﻼَﺛ",
-      "ar_latin": "salāsatu arānib"
+      "ar_latin": "salâsatu arânib"
     },
     {
       "id": "rabbit_4",
@@ -414,7 +414,7 @@
       "de": "vier Hasen",
       "ar": "أَرْبَعَةُ أَرَانِب",
       "ar_shown": "ﺐِﻧﺍَﺭَﺃ ُﺔَﻌَﺑْﺭَﺃ",
-      "ar_latin": "arba'atu arānib"
+      "ar_latin": "arba'atu arânib"
     },
     {
       "id": "rabbit_5",
@@ -425,7 +425,7 @@
       "de": "fünf Hasen",
       "ar": "خَمْسَةُ أَرَانِب",
       "ar_shown": "ﺐِﻧﺍَﺭَﺃ ُﺔَﺴْﻤَﺧ",
-      "ar_latin": "hamsatu arānib"
+      "ar_latin": "hamsatu arânib"
     }
   ],
   "commands": [],

@@ -140,7 +140,7 @@ namespace FootballRunner.Learning
             string language = LearningProgress.Language;
 
             string levelWord = LearningProgress.Ui("Nivo", "Level", "Level");
-            _world.text = pack != null ? $"{pack.Title(language)}  ·  {levelWord} {director.Level + 1}" : "";
+            _world.text = pack != null ? $"{pack.Title(LearningProgress.HomeLanguage)}  ·  {levelWord} {director.Level + 1}" : "";
             int coins = ScoreManager.Instance != null ? ScoreManager.Instance.CoinsCollected : 0;
             _coins.text = "+" + coins;
 

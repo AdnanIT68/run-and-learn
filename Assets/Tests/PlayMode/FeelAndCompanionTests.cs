@@ -434,7 +434,7 @@ namespace FootballRunner.Tests
                 "The old jungle backdrop is still showing.");
             Assert.Greater(scenery.ParticleCount, 0, "No snow is falling.");
             Assert.AreEqual(4, scenery.LayerCount, "The mountain should have far, mid, sky and foreground layers.");
-            StringAssert.StartsWith(WordPack.Load("World6").Title(LearningProgress.Language).ToUpperInvariant(),
+            StringAssert.StartsWith(WordPack.Load("World6").Title(LearningProgress.HomeLanguage).ToUpperInvariant(),
                 EnvironmentDirector.Instance.CurrentDisplayName);
             StringAssert.EndsWith(" 1", EnvironmentDirector.Instance.CurrentDisplayName, "The banner should name the level.");
 

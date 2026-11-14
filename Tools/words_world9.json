@@ -4,19 +4,19 @@
   "title_en": "Kind Words",
   "title_de": "Freundliche Worte",
   "words": [
-    { "id": "selam", "bs": "selam", "en": "hello", "de": "hallo", "emoji": "1f44b", "ar": "السَّلَامُ عَلَيْكُم", "ar_latin": "es-selāmu alejkum", "ar_status": "za provjeru: pozdrav, pauzalni oblik" },
+    { "id": "selam", "bs": "selam", "en": "hello", "de": "hallo", "emoji": "1f44b", "ar": "السَّلَامُ عَلَيْكُم", "ar_latin": "es-selâmu alejkum", "ar_status": "za provjeru: pozdrav, pauzalni oblik" },
     { "id": "thanks", "bs": "hvala", "en": "thank you", "de": "danke", "emoji": "1f64f", "ar": "شُكْرًا", "ar_latin": "šukran", "ar_status": "za provjeru" },
     { "id": "here_you_are", "bs": "izvoli", "en": "here you are", "de": "bitte schön", "emoji": "1f932", "ar": "تَفَضَّل", "ar_latin": "tafaddal", "ar_status": "za provjeru: muški rod (ženski: تَفَضَّلِي)" },
-    { "id": "sorry", "bs": "oprosti", "en": "sorry", "de": "Entschuldigung", "emoji": "1f97a", "ar": "آسِف", "ar_latin": "āsif", "ar_status": "za provjeru: muški rod (ženski: آسِفَة)" },
-    { "id": "bismillah", "bs": "bismillah", "en": "bismillah", "de": "Bismillah", "emoji": "1f37d", "ar": "بِسْمِ اللّٰه", "ar_latin": "bismillāh", "ar_status": "za provjeru" },
-    { "id": "mashallah", "bs": "mašallah", "en": "mashallah", "de": "Maschallah", "emoji": "1f31f", "ar": "مَا شَاءَ اللّٰه", "ar_latin": "mā šā' allāh", "ar_status": "za provjeru" }
+    { "id": "sorry", "bs": "oprosti", "en": "sorry", "de": "Entschuldigung", "emoji": "1f97a", "ar": "آسِف", "ar_latin": "âsif", "ar_status": "za provjeru: muški rod (ženski: آسِفَة)" },
+    { "id": "bismillah", "bs": "bismillah", "en": "bismillah", "de": "Bismillah", "emoji": "1f37d", "ar": "بِسْمِ اللّٰه", "ar_latin": "bismillâh", "ar_status": "za provjeru" },
+    { "id": "mashallah", "bs": "mašallah", "en": "mashallah", "de": "Maschallah", "emoji": "1f31f", "ar": "مَا شَاءَ اللّٰه", "ar_latin": "mâ šâ' allâh", "ar_status": "za provjeru" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Rā'i'!", "ar_status": "za provjeru" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahīh!", "ar_status": "za provjeru" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtāz!", "ar_status": "za provjeru" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "za provjeru" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "za provjeru" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "za provjeru" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
     { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Rā'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
   ]
 }

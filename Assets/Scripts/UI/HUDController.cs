@@ -107,6 +107,8 @@ namespace FootballRunner.UI
                 _coinBaseScale = coinText.transform.localScale;
             }
 
+            UseMenuCoin();
+
             _lastScore = ScoreManager.Instance != null ? ScoreManager.Instance.Score : 0;
             OnScoreChanged(_lastScore);
             OnCoinsChanged(ScoreManager.Instance != null ? ScoreManager.Instance.CoinsCollected : 0);
@@ -347,6 +349,26 @@ namespace FootballRunner.UI
                 if (delta >= 5)
                 {
                     _scorePunch = RestartPunch(_scorePunch, scoreText.transform, _scoreBaseScale);
+                }
+            }
+        }
+
+        /// <summary>The coin by the counter is the same gold coin as in the menu, the shop and the results.</summary>
+        private void UseMenuCoin()
+        {
+            Sprite coin = Resources.Load<Sprite>("Menu/icon_coin");
+
+            if (coin == null)
+            {
+                return;
+            }
+
+            foreach (UnityEngine.UI.Image image in GetComponentsInChildren<UnityEngine.UI.Image>(true))
+            {
+                if (image.name == "CoinIcon")
+                {
+                    image.sprite = coin;
+                    image.preserveAspect = true;
                 }
             }
         }

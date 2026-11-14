@@ -70,16 +70,16 @@ namespace FootballRunner.Tests
         [Test]
         public void ArabicWordsShowShapedTextWithLatinUnderneath()
         {
-            var word = new WordEntry { id = "apple", bs = "jabuka", ar = "تُفَّاحَة", ar_shown = "ﺔﺣَﺎﻔَّﺗُ", ar_latin = "tuffāha" };
+            var word = new WordEntry { id = "apple", bs = "jabuka", ar = "تُفَّاحَة", ar_shown = "ﺔﺣَﺎﻔَّﺗُ", ar_latin = "tuffâha" };
 
             Assert.AreEqual("تُفَّاحَة", word.Text(LearningProgress.Arabic), "Voices and letters use reading order.");
             Assert.AreEqual("ﺔﺣَﺎﻔَّﺗُ", word.Display(LearningProgress.Arabic), "The screen gets the joined form.");
-            Assert.AreEqual("tuffāha", word.Latin(LearningProgress.Arabic));
+            Assert.AreEqual("tuffâha", word.Latin(LearningProgress.Arabic));
             Assert.IsNull(word.Latin(LearningProgress.Bosnian));
 
             string withLatin = word.CardText(LearningProgress.Arabic, true);
             StringAssert.StartsWith("ﺔﺣَﺎﻔَّﺗُ", withLatin);
-            StringAssert.Contains("tuffāha", withLatin);
+            StringAssert.Contains("tuffâha", withLatin);
             Assert.AreEqual("ﺔﺣَﺎﻔَّﺗُ", word.CardText(LearningProgress.Arabic, false));
             Assert.AreEqual("jabuka", word.CardText(LearningProgress.Bosnian, true), "Other languages never get a second line.");
         }

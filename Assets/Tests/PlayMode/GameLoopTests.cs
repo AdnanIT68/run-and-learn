@@ -56,7 +56,7 @@ namespace FootballRunner.Tests
             // The run opens in the chosen world and is named after it.
             string world = FootballRunner.Learning.LearningProgress.SelectedPack;
             string title = FootballRunner.Learning.WordPack.Load(world)
-                .Title(FootballRunner.Learning.LearningProgress.Language).ToUpperInvariant();
+                .Title(FootballRunner.Learning.LearningProgress.HomeLanguage).ToUpperInvariant();
             StringAssert.StartsWith(title, EnvironmentDirector.Instance.CurrentDisplayName);
 
             AudioSource[] sources = Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);

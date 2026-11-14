@@ -65,7 +65,7 @@
       "de": "der Schmetterling",
       "ar": "فَرَاشَة",
       "ar_shown": "ﺔَﺷﺍَﺮَﻓ",
-      "ar_latin": "farāša"
+      "ar_latin": "farâša"
     },
     {
       "id": "flower",
@@ -92,7 +92,7 @@
       "de": "das Boot",
       "ar": "قَارِب",
       "ar_shown": "ﺏِﺭﺎَﻗ",
-      "ar_latin": "kārib"
+      "ar_latin": "kârib"
     }
   ],
   "phrases": [
@@ -103,7 +103,7 @@
       "de": "Toll!",
       "ar": "رَائِع!",
       "ar_shown": "!ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'!"
+      "ar_latin": "Râ'i'!"
     },
     {
       "id": "praise_2",
@@ -112,7 +112,7 @@
       "de": "Richtig!",
       "ar": "صَحِيح!",
       "ar_shown": "!ﺢﻴِﺤَﺻ",
-      "ar_latin": "Sahīh!"
+      "ar_latin": "Sahîh!"
     },
     {
       "id": "praise_3",
@@ -121,7 +121,7 @@
       "de": "Super!",
       "ar": "مُمْتَاز!",
       "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
-      "ar_latin": "Mumtāz!"
+      "ar_latin": "Mumtâz!"
     },
     {
       "id": "intro",
@@ -130,7 +130,7 @@
       "de": "Hör auf das Wort und spring in das richtige Bild!",
       "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
       "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
-      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!"
     },
     {
       "id": "jump",
@@ -148,7 +148,7 @@
       "de": "Super! Ziel geschafft!",
       "ar": "رَائِع! تَمَّ الْهَدَف!",
       "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
+      "ar_latin": "Râ'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],
@@ -163,7 +163,7 @@
       "de": "ein großer Fisch",
       "ar": "سَمَكَة كَبِيرَة",
       "ar_shown": "ﺓَﺮﻴِﺒَﻛ ﺔَﻜَﻤَﺳ",
-      "ar_latin": "samaka kabīra"
+      "ar_latin": "samaka kabîra"
     },
     {
       "id": "fish_small",
@@ -174,7 +174,7 @@
       "de": "ein kleiner Fisch",
       "ar": "سَمَكَة صَغِيرَة",
       "ar_shown": "ﺓَﺮﻴِﻐَﺻ ﺔَﻜَﻤَﺳ",
-      "ar_latin": "samaka sagīra"
+      "ar_latin": "samaka sagîra"
     },
     {
       "id": "frog_big",
@@ -185,7 +185,7 @@
       "de": "ein großer Frosch",
       "ar": "ضِفْدَع كَبِير",
       "ar_shown": "ﺮﻴِﺒَﻛ ﻉَﺪْﻔِﺿ",
-      "ar_latin": "difda' kabīr"
+      "ar_latin": "difda' kabîr"
     },
     {
       "id": "frog_small",
@@ -196,7 +196,7 @@
       "de": "ein kleiner Frosch",
       "ar": "ضِفْدَع صَغِير",
       "ar_shown": "ﺮﻴِﻐَﺻ ﻉَﺪْﻔِﺿ",
-      "ar_latin": "difda' sagīr"
+      "ar_latin": "difda' sagîr"
     },
     {
       "id": "boat_big",
@@ -207,7 +207,7 @@
       "de": "ein großes Boot",
       "ar": "قَارِب كَبِير",
       "ar_shown": "ﺮﻴِﺒَﻛ ﺏِﺭﺎَﻗ",
-      "ar_latin": "kārib kabīr"
+      "ar_latin": "kârib kabîr"
     },
     {
       "id": "boat_small",
@@ -218,7 +218,7 @@
       "de": "ein kleines Boot",
       "ar": "قَارِب صَغِير",
       "ar_shown": "ﺮﻴِﻐَﺻ ﺏِﺭﺎَﻗ",
-      "ar_latin": "kārib sagīr"
+      "ar_latin": "kârib sagîr"
     },
     {
       "id": "flower_big",
@@ -229,7 +229,7 @@
       "de": "eine große Blume",
       "ar": "زَهْرَة كَبِيرَة",
       "ar_shown": "ﺓَﺮﻴِﺒَﻛ ﺓَﺮْﻫَﺯ",
-      "ar_latin": "zahra kabīra"
+      "ar_latin": "zahra kabîra"
     },
     {
       "id": "flower_small",
@@ -240,7 +240,7 @@
       "de": "eine kleine Blume",
       "ar": "زَهْرَة صَغِيرَة",
       "ar_shown": "ﺓَﺮﻴِﻐَﺻ ﺓَﺮْﻫَﺯ",
-      "ar_latin": "zahra sagīra"
+      "ar_latin": "zahra sagîra"
     },
     {
       "id": "tree_big",
@@ -251,7 +251,7 @@
       "de": "ein großer Baum",
       "ar": "شَجَرَة كَبِيرَة",
       "ar_shown": "ﺓَﺮﻴِﺒَﻛ ﺓَﺮَﺠَﺷ",
-      "ar_latin": "šadžara kabīra"
+      "ar_latin": "šadžara kabîra"
     },
     {
       "id": "tree_small",
@@ -262,7 +262,7 @@
       "de": "ein kleiner Baum",
       "ar": "شَجَرَة صَغِيرَة",
       "ar_shown": "ﺓَﺮﻴِﻐَﺻ ﺓَﺮَﺠَﺷ",
-      "ar_latin": "šadžara sagīra"
+      "ar_latin": "šadžara sagîra"
     }
   ],
   "sentences": [],

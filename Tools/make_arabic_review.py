@@ -38,7 +38,7 @@ def main() -> None:
         "",
         "Pravila koja su korištena: standardni arapski (fusha), riječi bez člana „al-“, u",
         "pauzalnom obliku (bez padežnog nastavka na kraju). Latinica je prilagođena bosanskom",
-        "čitanju: dž = ج, š = ش, h = ح/خ/ه, ' = ع ili hamza, crtica nad slovom = dug samoglasnik.",
+        "čitanju: dž = ج, š = ش, h = ح/خ/ه, ' = ع ili hamza, kapica (â, î, û) = dug samoglasnik.",
         "Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali se ne čuje.",
         "",
         "Kad je unos provjeren, u `Tools/words_world*.json` promijeniti `ar_status` u „provjereno“",

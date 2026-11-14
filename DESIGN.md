@@ -61,7 +61,7 @@ Prva verzija za objavu: samo svijet 1.
   u `UI/SceneTextLocalizer.cs`.
 - **Arapski** (od 1.3, `LearningProgress.Arabic`): uči se samo iz bosanskog, meni ostaje na bosanskom; arapske su
   samo riječi i glas (ar-SA-ZariyahNeural, standardni arapski). U JSON-u svaki unos ima `ar` (s harakatima, bez
-  člana „al-“, pauzalni oblik), `ar_latin` (latinica za bosanske roditelje) i `ar_status` („za provjeru“ dok ga
+  člana „al-“, pauzalni oblik), `ar_latin` (latinica za bosanske roditelje; dugi samoglasnici s kapicom â, î, û, jer Titan One crta ī kao veliko I) i `ar_status` („za provjeru“ dok ga
   ne provjeri neko ko zna arapski; lista: `Store/arabic-review.md`, pravi je `Tools/make_arabic_review.py`).
 - TextMeshPro ne spaja arapska slova i ne piše zdesna nalijevo, pa generator pravi `ar_shown`: spojeni oblici
   (arabic-reshaper) okrenuti po grupama slovo+harakati. Igra crta `WordEntry.Display`, a glas i slova koriste

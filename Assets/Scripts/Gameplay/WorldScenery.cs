@@ -157,7 +157,7 @@ namespace FootballRunner.Gameplay
             WordPack words = WordPack.Load(pack);
             var theme = new AreaTheme
             {
-                displayName = (words != null ? words.Title(LearningProgress.Language).ToUpperInvariant() : pack) +
+                displayName = (words != null ? words.Title(LearningProgress.HomeLanguage).ToUpperInvariant() : pack) +
                               LearningProgress.Ui("  ·  NIVO ", "  ·  LEVEL ", "  ·  LEVEL ") +
                               (LearningProgress.SelectedLevel + 1),
                 durationSeconds = 100000f,

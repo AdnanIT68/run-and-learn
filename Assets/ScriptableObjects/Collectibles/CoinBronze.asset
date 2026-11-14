@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CoinBronze
   m_EditorClassIdentifier: FootballRunner::FootballRunner.Collectibles.CollectibleData
   displayName: CoinBronze
-  sprite: {fileID: 21300000, guid: c3ba76e853b2bbb48ba0f0647f371f98, type: 3}
+  sprite: {fileID: 21300000, guid: 72d334732a654314870cbeec48600678, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
   scale: 1.15
   scorePoints: 10

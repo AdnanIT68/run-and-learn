@@ -6,34 +6,34 @@
   "reading": true,
   "letters": true,
   "words": [
-    { "id": "pencil", "bs": "olovka", "en": "pencil", "de": "der Bleistift", "emoji": "270f", "ar": "قَلَمُ رَصَاص", "ar_latin": "kalamu rasās", "ar_status": "za provjeru" },
+    { "id": "pencil", "bs": "olovka", "en": "pencil", "de": "der Bleistift", "emoji": "270f", "ar": "قَلَمُ رَصَاص", "ar_latin": "kalamu rasâs", "ar_status": "za provjeru" },
     { "id": "notebook", "bs": "sveska", "en": "notebook", "de": "das Heft", "emoji": "1f4d3", "ar": "دَفْتَر", "ar_latin": "daftar", "ar_status": "za provjeru" },
-    { "id": "backpack", "bs": "ranac", "en": "backpack", "de": "der Rucksack", "emoji": "1f392", "ar": "حَقِيبَة", "ar_latin": "hakība", "ar_status": "za provjeru" },
+    { "id": "backpack", "bs": "ranac", "en": "backpack", "de": "der Rucksack", "emoji": "1f392", "ar": "حَقِيبَة", "ar_latin": "hakîba", "ar_status": "za provjeru" },
     { "id": "scissors", "bs": "makaze", "en": "scissors", "de": "die Schere", "emoji": "2702", "ar": "مِقَصّ", "ar_latin": "mikass", "ar_status": "za provjeru" },
     { "id": "ruler", "bs": "lenjir", "en": "ruler", "de": "das Lineal", "emoji": "1f4cf", "ar": "مِسْطَرَة", "ar_latin": "mistara", "ar_status": "za provjeru" },
-    { "id": "crayon", "bs": "bojica", "en": "crayon", "de": "der Buntstift", "emoji": "1f58d", "ar": "قَلَمُ تَلْوِين", "ar_latin": "kalamu talvīn", "ar_status": "za provjeru" },
+    { "id": "crayon", "bs": "bojica", "en": "crayon", "de": "der Buntstift", "emoji": "1f58d", "ar": "قَلَمُ تَلْوِين", "ar_latin": "kalamu talvîn", "ar_status": "za provjeru" },
     { "id": "globe", "bs": "globus", "en": "globe", "de": "der Globus", "emoji": "1f30d", "ar": "كُرَة أَرْضِيَّة", "ar_latin": "kura ardijja", "ar_status": "za provjeru" },
-    { "id": "abacus", "bs": "računaljka", "en": "abacus", "de": "der Rechenrahmen", "emoji": "1f9ee", "ar": "مِعْدَاد", "ar_latin": "mi'dād", "ar_status": "za provjeru" },
+    { "id": "abacus", "bs": "računaljka", "en": "abacus", "de": "der Rechenrahmen", "emoji": "1f9ee", "ar": "مِعْدَاد", "ar_latin": "mi'dâd", "ar_status": "za provjeru" },
     { "id": "bell", "bs": "zvono", "en": "bell", "de": "die Glocke", "emoji": "1f514", "ar": "جَرَس", "ar_latin": "džaras", "ar_status": "za provjeru" },
     { "id": "school", "bs": "škola", "en": "school", "de": "die Schule", "emoji": "1f3eb", "ar": "مَدْرَسَة", "ar_latin": "madrasa", "ar_status": "za provjeru" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Rā'i'!", "ar_status": "za provjeru" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahīh!", "ar_status": "za provjeru" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtāz!", "ar_status": "za provjeru" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "za provjeru" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "za provjeru" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "za provjeru" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
     { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Rā'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
   ],
   "numbers": [
-    { "n": 1, "bs": "jedan", "en": "one", "de": "eins", "ar": "وَاحِد", "ar_latin": "vāhid", "ar_status": "za provjeru" },
-    { "n": 2, "bs": "dva", "en": "two", "de": "zwei", "ar": "اِثْنَان", "ar_latin": "isnān", "ar_status": "za provjeru" },
-    { "n": 3, "bs": "tri", "en": "three", "de": "drei", "ar": "ثَلَاثَة", "ar_latin": "salāsa", "ar_status": "za provjeru" },
+    { "n": 1, "bs": "jedan", "en": "one", "de": "eins", "ar": "وَاحِد", "ar_latin": "vâhid", "ar_status": "za provjeru" },
+    { "n": 2, "bs": "dva", "en": "two", "de": "zwei", "ar": "اِثْنَان", "ar_latin": "isnân", "ar_status": "za provjeru" },
+    { "n": 3, "bs": "tri", "en": "three", "de": "drei", "ar": "ثَلَاثَة", "ar_latin": "salâsa", "ar_status": "za provjeru" },
     { "n": 4, "bs": "četiri", "en": "four", "de": "vier", "ar": "أَرْبَعَة", "ar_latin": "arba'a", "ar_status": "za provjeru" },
     { "n": 5, "bs": "pet", "en": "five", "de": "fünf", "ar": "خَمْسَة", "ar_latin": "hamsa", "ar_status": "za provjeru" },
     { "n": 6, "bs": "šest", "en": "six", "de": "sechs", "ar": "سِتَّة", "ar_latin": "sitta", "ar_status": "za provjeru" },
     { "n": 7, "bs": "sedam", "en": "seven", "de": "sieben", "ar": "سَبْعَة", "ar_latin": "sab'a", "ar_status": "za provjeru" },
-    { "n": 8, "bs": "osam", "en": "eight", "de": "acht", "ar": "ثَمَانِيَة", "ar_latin": "samānija", "ar_status": "za provjeru" },
+    { "n": 8, "bs": "osam", "en": "eight", "de": "acht", "ar": "ثَمَانِيَة", "ar_latin": "samânija", "ar_status": "za provjeru" },
     { "n": 9, "bs": "devet", "en": "nine", "de": "neun", "ar": "تِسْعَة", "ar_latin": "tis'a", "ar_status": "za provjeru" },
     { "n": 10, "bs": "deset", "en": "ten", "de": "zehn", "ar": "عَشَرَة", "ar_latin": "'ašara", "ar_status": "za provjeru" }
   ]

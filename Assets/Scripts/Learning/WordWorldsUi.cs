@@ -34,6 +34,7 @@ namespace FootballRunner.Learning
         private static readonly Color CardColour = new Color(1f, 0.98f, 0.92f, 1f);
         private static readonly Color SelectedColour = new Color(1f, 0.85f, 0.35f, 1f);
         private static readonly Color LockedColour = new Color(1f, 1f, 1f, 0.35f);
+        private static readonly Color LockedCoverColour = new Color(0.85f, 0.85f, 0.9f, 0.8f);
         private static readonly Color DarkText = new Color(0.16f, 0.2f, 0.26f, 1f);
 
         private class WorldCard
@@ -83,6 +84,12 @@ namespace FootballRunner.Learning
         public int MarkerWorld { get; private set; } = -1;
 
         /// <summary>True when the trail from world <paramref name="index"/> to the next one is lit.</summary>
+        /// <summary>The tint on a world's picture: white when open, faded but visible when locked.</summary>
+        public Color CoverColour(int index)
+        {
+            return index >= 0 && index < _cards.Count ? _cards[index].Cover.color : Color.clear;
+        }
+
         public bool IsTrailOpen(int index)
         {
             return index >= 0 && index < _trail.Count && _trail[index][0].color == TrailOpen;
@@ -453,7 +460,8 @@ namespace FootballRunner.Learning
                 bool isSelected = card.Pack == selected;
 
                 card.Background.color = !card.Unlocked ? LockedColour : isSelected ? SelectedColour : CardColour;
-                card.Cover.color = card.Unlocked ? Color.white : new Color(1f, 1f, 1f, 0.3f);
+                // A locked world still shows its own picture, a little faded, with the lock on top.
+                card.Cover.color = card.Unlocked ? Color.white : LockedCoverColour;
                 card.Lock.enabled = !card.Unlocked && card.Lock.sprite != null;
                 card.Root.localScale = Vector3.one * (isSelected ? 1.12f : 1f);
 
@@ -464,7 +472,7 @@ namespace FootballRunner.Learning
                     card.Stars[s].enabled = card.Unlocked && card.Stars[s].sprite != null;
                     card.Stars[s].color = s < done ? Color.white : new Color(0f, 0f, 0f, 0.15f);
                 }
-                card.Title.text = pack != null ? pack.Title(language) : card.Pack;
+                card.Title.text = pack != null ? pack.Title(LearningProgress.HomeLanguage) : card.Pack;
 
                 if (card.Unlocked)
                 {

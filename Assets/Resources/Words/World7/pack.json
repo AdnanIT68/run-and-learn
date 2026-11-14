@@ -11,7 +11,7 @@
       "de": "der Bleistift",
       "ar": "قَلَمُ رَصَاص",
       "ar_shown": "ﺹﺎَﺻَﺭ ُﻢَﻠَﻗ",
-      "ar_latin": "kalamu rasās"
+      "ar_latin": "kalamu rasâs"
     },
     {
       "id": "notebook",
@@ -29,7 +29,7 @@
       "de": "der Rucksack",
       "ar": "حَقِيبَة",
       "ar_shown": "ﺔَﺒﻴِﻘَﺣ",
-      "ar_latin": "hakība"
+      "ar_latin": "hakîba"
     },
     {
       "id": "scissors",
@@ -56,7 +56,7 @@
       "de": "der Buntstift",
       "ar": "قَلَمُ تَلْوِين",
       "ar_shown": "ﻦﻳِﻮْﻠَﺗ ُﻢَﻠَﻗ",
-      "ar_latin": "kalamu talvīn"
+      "ar_latin": "kalamu talvîn"
     },
     {
       "id": "globe",
@@ -74,7 +74,7 @@
       "de": "der Rechenrahmen",
       "ar": "مِعْدَاد",
       "ar_shown": "ﺩﺍَﺪْﻌِﻣ",
-      "ar_latin": "mi'dād"
+      "ar_latin": "mi'dâd"
     },
     {
       "id": "bell",
@@ -103,7 +103,7 @@
       "de": "Toll!",
       "ar": "رَائِع!",
       "ar_shown": "!ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'!"
+      "ar_latin": "Râ'i'!"
     },
     {
       "id": "praise_2",
@@ -112,7 +112,7 @@
       "de": "Richtig!",
       "ar": "صَحِيح!",
       "ar_shown": "!ﺢﻴِﺤَﺻ",
-      "ar_latin": "Sahīh!"
+      "ar_latin": "Sahîh!"
     },
     {
       "id": "praise_3",
@@ -121,7 +121,7 @@
       "de": "Super!",
       "ar": "مُمْتَاز!",
       "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
-      "ar_latin": "Mumtāz!"
+      "ar_latin": "Mumtâz!"
     },
     {
       "id": "intro",
@@ -130,7 +130,7 @@
       "de": "Hör auf das Wort und spring in das richtige Bild!",
       "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
       "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
-      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!"
     },
     {
       "id": "jump",
@@ -148,7 +148,7 @@
       "de": "Super! Ziel geschafft!",
       "ar": "رَائِع! تَمَّ الْهَدَف!",
       "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
+      "ar_latin": "Râ'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],
@@ -164,7 +164,7 @@
       "de": "eins",
       "ar": "وَاحِد",
       "ar_shown": "ﺪِﺣﺍَﻭ",
-      "ar_latin": "vāhid"
+      "ar_latin": "vâhid"
     },
     {
       "id": "num_2",
@@ -174,7 +174,7 @@
       "de": "zwei",
       "ar": "اِثْنَان",
       "ar_shown": "ﻥﺎَﻨْﺛِﺍ",
-      "ar_latin": "isnān"
+      "ar_latin": "isnân"
     },
     {
       "id": "num_3",
@@ -184,7 +184,7 @@
       "de": "drei",
       "ar": "ثَلَاثَة",
       "ar_shown": "ﺔَﺛَﻼَﺛ",
-      "ar_latin": "salāsa"
+      "ar_latin": "salâsa"
     },
     {
       "id": "num_4",
@@ -234,7 +234,7 @@
       "de": "acht",
       "ar": "ثَمَانِيَة",
       "ar_shown": "ﺔَﻴِﻧﺎَﻤَﺛ",
-      "ar_latin": "samānija"
+      "ar_latin": "samânija"
     },
     {
       "id": "num_9",
@@ -520,7 +520,7 @@
       "de": "ج",
       "ar": "ج",
       "ar_shown": "ج",
-      "ar_latin": "džīm"
+      "ar_latin": "džîm"
     },
     {
       "id": "letter_ar_hha",
@@ -531,7 +531,7 @@
       "de": "ح",
       "ar": "ح",
       "ar_shown": "ح",
-      "ar_latin": "hā'"
+      "ar_latin": "hâ'"
     },
     {
       "id": "letter_ar_dal",
@@ -542,7 +542,7 @@
       "de": "د",
       "ar": "د",
       "ar_shown": "د",
-      "ar_latin": "dāl"
+      "ar_latin": "dâl"
     },
     {
       "id": "letter_ar_qaf",
@@ -553,7 +553,7 @@
       "de": "ق",
       "ar": "ق",
       "ar_shown": "ق",
-      "ar_latin": "qāf"
+      "ar_latin": "qâf"
     },
     {
       "id": "letter_ar_kaf",
@@ -564,7 +564,7 @@
       "de": "ك",
       "ar": "ك",
       "ar_shown": "ك",
-      "ar_latin": "kāf"
+      "ar_latin": "kâf"
     },
     {
       "id": "letter_ar_mim",
@@ -575,7 +575,7 @@
       "de": "م",
       "ar": "م",
       "ar_shown": "م",
-      "ar_latin": "mīm"
+      "ar_latin": "mîm"
     }
   ],
   "reading": true,

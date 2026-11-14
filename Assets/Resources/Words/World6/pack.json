@@ -38,7 +38,7 @@
       "de": "die Skier",
       "ar": "زَلَّاجَات",
       "ar_shown": "ﺕﺎَﺟَّﻻَﺯ",
-      "ar_latin": "zallādžāt"
+      "ar_latin": "zallâdžât"
     },
     {
       "id": "gloves",
@@ -47,7 +47,7 @@
       "de": "die Handschuhe",
       "ar": "قُفَّازَات",
       "ar_shown": "ﺕﺍَﺯﺎَّﻔُﻗ",
-      "ar_latin": "kuffāzāt"
+      "ar_latin": "kuffâzât"
     },
     {
       "id": "scarf",
@@ -56,7 +56,7 @@
       "de": "der Schal",
       "ar": "وِشَاح",
       "ar_shown": "ﺡﺎَﺷِﻭ",
-      "ar_latin": "višāh"
+      "ar_latin": "višâh"
     },
     {
       "id": "boots",
@@ -92,7 +92,7 @@
       "de": "das Eis",
       "ar": "جَلِيد",
       "ar_shown": "ﺪﻴِﻠَﺟ",
-      "ar_latin": "džalīd"
+      "ar_latin": "džalîd"
     }
   ],
   "phrases": [
@@ -103,7 +103,7 @@
       "de": "Toll!",
       "ar": "رَائِع!",
       "ar_shown": "!ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'!"
+      "ar_latin": "Râ'i'!"
     },
     {
       "id": "praise_2",
@@ -112,7 +112,7 @@
       "de": "Richtig!",
       "ar": "صَحِيح!",
       "ar_shown": "!ﺢﻴِﺤَﺻ",
-      "ar_latin": "Sahīh!"
+      "ar_latin": "Sahîh!"
     },
     {
       "id": "praise_3",
@@ -121,7 +121,7 @@
       "de": "Super!",
       "ar": "مُمْتَاز!",
       "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
-      "ar_latin": "Mumtāz!"
+      "ar_latin": "Mumtâz!"
     },
     {
       "id": "intro",
@@ -130,7 +130,7 @@
       "de": "Hör auf das Wort und spring in das richtige Bild!",
       "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
       "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
-      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!"
     },
     {
       "id": "jump",
@@ -148,7 +148,7 @@
       "de": "Super! Ziel geschafft!",
       "ar": "رَائِع! تَمَّ الْهَدَف!",
       "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
-      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
+      "ar_latin": "Râ'i'! Tamma-l-hadaf!"
     }
   ],
   "counts": [],
@@ -164,7 +164,7 @@
       "de": "Es schneit.",
       "ar": "الثَّلْجُ يَتَسَاقَط.",
       "ar_shown": ".ﻂَﻗﺎَﺴَﺘَﻳ ُﺞْﻠَّﺜﻟﺍ",
-      "ar_latin": "As-saldžu jatasākat."
+      "ar_latin": "As-saldžu jatasâkat."
     },
     {
       "id": "s_sunny",
@@ -186,7 +186,7 @@
       "de": "Es regnet.",
       "ar": "السَّمَاءُ تُمْطِر.",
       "ar_shown": ".ﺮِﻄْﻤُﺗ ُﺀﺎَﻤَّﺴﻟﺍ",
-      "ar_latin": "As-samā'u tumtir."
+      "ar_latin": "As-samâ'u tumtir."
     },
     {
       "id": "s_sledding",
@@ -208,7 +208,7 @@
       "de": "Rukajja fährt Ski.",
       "ar": "رُقَيَّةُ تَتَزَلَّجُ بِالزَّلَّاجَات.",
       "ar_shown": ".ﺕﺎَﺟَّﻻَّﺰﻟﺎِﺑ ُﺞَّﻟَﺰَﺘَﺗ ُﺔَّﻴَﻗُﺭ",
-      "ar_latin": "Rukajjatu tatazalladžu bi-z-zallādžāt."
+      "ar_latin": "Rukajjatu tatazalladžu bi-z-zallâdžât."
     },
     {
       "id": "s_snowman",
@@ -230,7 +230,7 @@
       "de": "Ich trage Handschuhe.",
       "ar": "أَلْبَسُ قُفَّازَات.",
       "ar_shown": ".ﺕﺍَﺯﺎَّﻔُﻗ ُﺲَﺒْﻟَﺃ",
-      "ar_latin": "Albasu kuffāzāt."
+      "ar_latin": "Albasu kuffâzât."
     },
     {
       "id": "s_scarf",
@@ -241,7 +241,7 @@
       "de": "Ich trage einen Schal.",
       "ar": "أَلْبَسُ وِشَاحًا.",
       "ar_shown": ".ﺎًﺣﺎَﺷِﻭ ُﺲَﺒْﻟَﺃ",
-      "ar_latin": "Albasu višāhā."
+      "ar_latin": "Albasu višâhâ."
     },
     {
       "id": "s_boots",

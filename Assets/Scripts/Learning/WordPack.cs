@@ -169,11 +169,11 @@ namespace FootballRunner.Learning
         /// What a word card shows: the word, and for Arabic the transliteration small
         /// underneath when the parents corner switch is on.
         /// </summary>
-        public string CardText(string language, bool showLatin)
+        public string CardText(string language, bool showLatin, int latinPercent = 45)
         {
             string shown = Display(language);
             string latin = Latin(language);
-            return showLatin && latin != null ? $"{shown}\n<size=45%>{latin}</size>" : shown;
+            return showLatin && latin != null ? $"{shown}\n<size={latinPercent}%>{latin}</size>" : shown;
         }
     }
 
