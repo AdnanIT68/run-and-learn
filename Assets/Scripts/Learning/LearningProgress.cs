@@ -246,6 +246,11 @@ namespace FootballRunner.Learning
                 return index == 0;
             }
 
+            if (WordPack.IsBonus(pack))
+            {
+                return true;
+            }
+
             // Finishing level 3 of the previous world opens the next one; so does knowing all its words.
             string previousName = WordPack.PackOrder[index - 1];
             WordPack previous = WordPack.Load(previousName);
@@ -309,7 +314,9 @@ namespace FootballRunner.Learning
         public static string NextPack(string pack)
         {
             int index = System.Array.IndexOf(WordPack.PackOrder, pack);
-            return index >= 0 && index + 1 < WordPack.PackOrder.Length ? WordPack.PackOrder[index + 1] : null;
+            string next = index >= 0 && index + 1 < WordPack.PackOrder.Length ? WordPack.PackOrder[index + 1] : null;
+            // The bonus world is not part of the chain: the finale still ends the journey.
+            return next != null && !WordPack.IsBonus(next) && !WordPack.IsBonus(pack) ? next : null;
         }
 
         private static WorldResult FindResult(string pack, int level, bool create)

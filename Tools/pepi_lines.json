@@ -30,6 +30,9 @@
     { "id": "story_intro_World7", "bs": "Svraka Brbljavka je ukrala riječi iz škole! Pomozi Rukajji da ih vrati!", "en": "Brbljavka the magpie stole the words from the school! Help Rukajja bring them back!", "de": "Die Elster Brbljavka hat die Wörter aus der Schule gestohlen! Hilf Rukajja, sie zurückzuholen!" },
     { "id": "story_outro_World7", "bs": "Brbljavka je uhvaćena! Vratila je sve riječi iz škole.", "en": "Brbljavka is caught! She gave back all the words from the school.", "de": "Brbljavka ist gefangen! Sie hat alle Wörter aus der Schule zurückgegeben." },
     { "id": "story_intro_World8", "bs": "Svraka Brbljavka je ukrala riječi sa noćnog neba! Pomozi Rukajji da ih vrati!", "en": "Brbljavka the magpie stole the words from the night sky! Help Rukajja bring them back!", "de": "Die Elster Brbljavka hat die Wörter vom Nachthimmel gestohlen! Hilf Rukajja, sie zurückzuholen!" },
-    { "id": "story_outro_World8", "bs": "Brbljavka je uhvaćena! Vratila je sve riječi sa noćnog neba.", "en": "Brbljavka is caught! She gave back all the words from the night sky.", "de": "Brbljavka ist gefangen! Sie hat alle Wörter vom Nachthimmel zurückgegeben." }
+    { "id": "story_outro_World8", "bs": "Brbljavka je uhvaćena! Vratila je sve riječi sa noćnog neba.", "en": "Brbljavka is caught! She gave back all the words from the night sky.", "de": "Brbljavka ist gefangen! Sie hat alle Wörter vom Nachthimmel zurückgegeben." },
+    { "id": "pepi_world_World9", "bs": "Dobro došli u svijet lijepih riječi!", "en": "Welcome to the world of kind words!", "de": "Willkommen in der Welt der freundlichen Worte!" },
+    { "id": "story_intro_World9", "bs": "Svraka Brbljavka je ukrala lijepe riječi! Pomozi Rukajji da ih vrati!", "en": "Brbljavka the magpie stole the kind words! Help Rukajja bring them back!", "de": "Die Elster Brbljavka hat die freundlichen Worte gestohlen! Hilf Rukajja, sie zurückzuholen!" },
+    { "id": "story_outro_World9", "bs": "Brbljavka je uhvaćena! Vratila je sve lijepe riječi.", "en": "Brbljavka is caught! She gave back all the kind words.", "de": "Brbljavka ist gefangen! Sie hat alle freundlichen Worte zurückgegeben." }
   ]
 }

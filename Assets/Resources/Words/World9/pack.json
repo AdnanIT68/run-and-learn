@@ -1,0 +1,127 @@
+{
+  "pack": "World9",
+  "title_bs": "Lijepe riječi",
+  "title_en": "Kind Words",
+  "title_de": "Freundliche Worte",
+  "words": [
+    {
+      "id": "selam",
+      "bs": "selam",
+      "en": "hello",
+      "de": "hallo",
+      "ar": "السَّلَامُ عَلَيْكُم",
+      "ar_shown": "ﻢُﻜْﻴَﻠَﻋ ُﻡَﻼَّﺴﻟﺍ",
+      "ar_latin": "es-selāmu alejkum"
+    },
+    {
+      "id": "thanks",
+      "bs": "hvala",
+      "en": "thank you",
+      "de": "danke",
+      "ar": "شُكْرًا",
+      "ar_shown": "ﺍًﺮْﻜُﺷ",
+      "ar_latin": "šukran"
+    },
+    {
+      "id": "here_you_are",
+      "bs": "izvoli",
+      "en": "here you are",
+      "de": "bitte schön",
+      "ar": "تَفَضَّل",
+      "ar_shown": "ﻞَّﻀَﻔَﺗ",
+      "ar_latin": "tafaddal"
+    },
+    {
+      "id": "sorry",
+      "bs": "oprosti",
+      "en": "sorry",
+      "de": "Entschuldigung",
+      "ar": "آسِف",
+      "ar_shown": "ﻒِﺳﺁ",
+      "ar_latin": "āsif"
+    },
+    {
+      "id": "bismillah",
+      "bs": "bismillah",
+      "en": "bismillah",
+      "de": "Bismillah",
+      "ar": "بِسْمِ اللّٰه",
+      "ar_shown": "ّٰﷲ ِﻢْﺴِﺑ",
+      "ar_latin": "bismillāh"
+    },
+    {
+      "id": "mashallah",
+      "bs": "mašallah",
+      "en": "mashallah",
+      "de": "Maschallah",
+      "ar": "مَا شَاءَ اللّٰه",
+      "ar_shown": "ّٰﷲ َﺀﺎَﺷ ﺎَﻣ",
+      "ar_latin": "mā šā' allāh"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!",
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!",
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahīh!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!",
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtāz!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sūrati-s-sahīha!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!",
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Rā'i'! Tamma-l-hadaf!"
+    }
+  ],
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
+}

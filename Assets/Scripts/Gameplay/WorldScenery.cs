@@ -14,6 +14,12 @@ namespace FootballRunner.Gameplay
     {
         private const string Root = "Worlds/";
 
+        /// <summary>Whose scenery a world uses: its own, or for Lijepe riječi the home of Naša kuća.</summary>
+        public static string SceneryFor(string pack)
+        {
+            return pack == WordPack.BonusPack ? "World3" : pack;
+        }
+
         private enum Weather
         {
             Petals,
@@ -125,7 +131,8 @@ namespace FootballRunner.Gameplay
                 return;
             }
 
-            string world = LearningProgress.SelectedPack;
+            string pack = LearningProgress.SelectedPack;
+            string world = SceneryFor(pack);
 
             if (!Looks.TryGetValue(world, out _look))
             {
@@ -147,10 +154,10 @@ namespace FootballRunner.Gameplay
             _particleSprite = Resources.Load<Sprite>(Root + "Ambient/" + WeatherSprite(_look.Weather));
 
             // One fixed area named after the world, instead of the green/sunset/night cycle.
-            WordPack pack = WordPack.Load(world);
+            WordPack words = WordPack.Load(pack);
             var theme = new AreaTheme
             {
-                displayName = (pack != null ? pack.Title(LearningProgress.Language).ToUpperInvariant() : world) +
+                displayName = (words != null ? words.Title(LearningProgress.Language).ToUpperInvariant() : pack) +
                               LearningProgress.Ui("  ·  NIVO ", "  ·  LEVEL ", "  ·  LEVEL ") +
                               (LearningProgress.SelectedLevel + 1),
                 durationSeconds = 100000f,

@@ -84,8 +84,9 @@ namespace FootballRunner.Tests
             Assert.IsTrue(corner.PressAnswer(corner.GateAnswer));
 
             StringAssert.Contains(": 2 ", corner.Summary, "Learned words are not counted.");
-            StringAssert.Contains(" 1/40", corner.Summary, "Finished levels are not counted.");
-            StringAssert.Contains(" 3/120", corner.Summary, "Stars are not counted.");
+            int worlds = WordPack.PackOrder.Length;
+            StringAssert.Contains($" 1/{worlds * 5}", corner.Summary, "Finished levels are not counted.");
+            StringAssert.Contains($" 3/{worlds * 15}", corner.Summary, "Stars are not counted.");
 
             bool sound = SaveManager.Data.soundEnabled;
             corner.ToggleSound();

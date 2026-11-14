@@ -390,7 +390,8 @@ namespace FootballRunner.Tests
         [Test]
         public void EveryWorldHasItsOwnSceneryArt()
         {
-            foreach (string world in WordPack.PackOrder)
+            // Lijepe riječi borrows the home of Naša kuća; every other world has its own.
+            foreach (string world in WordPack.PackOrder.Select(Gameplay.WorldScenery.SceneryFor).Distinct())
             {
                 Assert.IsNotNull(Resources.Load<Sprite>($"Worlds/{world}/far"), $"{world} has no far backdrop.");
                 Assert.IsNotNull(Resources.Load<Sprite>($"Worlds/{world}/mid"), $"{world} has no middle layer.");

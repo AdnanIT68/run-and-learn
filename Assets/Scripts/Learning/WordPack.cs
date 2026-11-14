@@ -186,9 +186,24 @@ namespace FootballRunner.Learning
         public const string DefaultPack = "World1";
         private const string Root = "Words";
 
-        /// <summary>Worlds in play order. Each one unlocks from progress in the one before.</summary>
+        /// <summary>
+        /// Worlds in play order. Each one unlocks from progress in the one before, except
+        /// the bonus world at the end, which is open from the start.
+        /// </summary>
         public static readonly string[] PackOrder =
-            { "World1", "World2", "World3", "World4", "World5", "World6", "World7", "World8" };
+            { "World1", "World2", "World3", "World4", "World5", "World6", "World7", "World8", BonusPack };
+
+        /// <summary>
+        /// "Lijepe riječi" (selam, hvala, izvoli, oprosti, bismillah, mašallah): open from
+        /// the start and outside the chain, so it never locks a later world and Noćno nebo
+        /// stays the finale.
+        /// </summary>
+        public const string BonusPack = "World9";
+
+        public static bool IsBonus(string pack)
+        {
+            return pack == BonusPack;
+        }
 
         /// <summary>One picture standing for each world on the world chooser.</summary>
         public static string CoverWordId(string pack)
@@ -202,6 +217,7 @@ namespace FootballRunner.Learning
                 case "World6": return "snowman";
                 case "World7": return "school";
                 case "World8": return "moon";
+                case "World9": return "thanks";
                 default: return "apple";
             }
         }

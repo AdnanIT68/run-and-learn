@@ -20,6 +20,9 @@ namespace FootballRunner.Learning
     {
         private const float NodeSize = 170f;
         private const float ColumnStep = 460f;
+
+        /// <summary>Distance between the first and the last stop of a row, so all stay on screen.</summary>
+        private const float MaxRowWidth = 1640f;
         private const float TopRowY = 260f;
         private const float BottomRowY = -40f;
         private const int DotsPerStep = 5;
@@ -100,7 +103,9 @@ namespace FootballRunner.Learning
                 column = columns - 1 - column;
             }
 
-            float x = (column - (columns - 1) * 0.5f) * ColumnStep;
+            // Nine worlds make five columns; they close up so the row still fits the screen.
+            float step = columns > 1 ? Mathf.Min(ColumnStep, MaxRowWidth / (columns - 1)) : ColumnStep;
+            float x = (column - (columns - 1) * 0.5f) * step;
             return new Vector2(x, row == 0 ? TopRowY : BottomRowY);
         }
 

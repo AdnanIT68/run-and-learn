@@ -11,7 +11,7 @@ Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali
 
 Kad je unos provjeren, u `Tools/words_world*.json` promijeniti `ar_status` u „provjereno“
 i ponovo pokrenuti `Tools/.venv/Scripts/python.exe Tools/make_arabic_review.py`.
-Ukupno 150 unosa, od toga 150 čeka provjeru.
+Ukupno 156 unosa, od toga 156 čeka provjeru.
 
 
 ## World1: Nenina bašta
@@ -197,6 +197,17 @@ Ukupno 150 unosa, od toga 150 čeka provjeru.
 | riječ | `satellite` | satelit | قَمَر صِنَاعِيّ | kamar sinā'ī | za provjeru |
 | riječ | `night` | noć | لَيْل | lejl | za provjeru |
 | fraza | `finale` | Bravo! Svi svjetovi su završeni! | رَائِع! اِنْتَهَتْ كُلُّ الْعَوَالِم! | Rā'i'! Intahat kullu-l-'avālim! | za provjeru |
+
+## World9: Lijepe riječi
+
+| vrsta | id | bosanski | arapski | latinica | status |
+|---|---|---|---|---|---|
+| riječ | `selam` | selam | السَّلَامُ عَلَيْكُم | es-selāmu alejkum | za provjeru: pozdrav, pauzalni oblik |
+| riječ | `thanks` | hvala | شُكْرًا | šukran | za provjeru |
+| riječ | `here_you_are` | izvoli | تَفَضَّل | tafaddal | za provjeru: muški rod (ženski: تَفَضَّلِي) |
+| riječ | `sorry` | oprosti | آسِف | āsif | za provjeru: muški rod (ženski: آسِفَة) |
+| riječ | `bismillah` | bismillah | بِسْمِ اللّٰه | bismillāh | za provjeru |
+| riječ | `mashallah` | mašallah | مَا شَاءَ اللّٰه | mā šā' allāh | za provjeru |
 
 ## Slova u svijetu 7 (imena slova, glas izgovara ime)
 
