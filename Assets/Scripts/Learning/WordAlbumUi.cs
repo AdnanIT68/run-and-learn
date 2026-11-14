@@ -41,6 +41,10 @@ namespace FootballRunner.Learning
         }
 
         private readonly List<Card> _cards = new List<Card>();
+        private TMP_Text _pageNote;
+
+        /// <summary>The line under the page about its gift; for tests.</summary>
+        public string PageNote => _pageNote != null ? _pageNote.text : string.Empty;
         private WordPack _pack;
         private GameObject _panel;
         private TMP_Text _title;
@@ -184,6 +188,8 @@ namespace FootballRunner.Learning
                 Color.white);
             _counter = CreateText(_panel.transform, "Counter", "", new Vector2(0f, 375f), new Vector2(800f, 50f),
                 34f, new Color(1f, 0.9f, 0.45f, 1f));
+            _pageNote = CreateText(_panel.transform, "PageNote", "", new Vector2(0f, -470f), new Vector2(1400f, 50f),
+                30f, Color.white);
 
             RebuildCards();
 
@@ -282,6 +288,8 @@ namespace FootballRunner.Learning
                 learned += card.Unlocked ? 1 : 0;
 
                 card.Background.color = card.Unlocked ? CardColour : LockedCardColour;
+                // Stickers sit a little crooked, each its own way, like stuck on by hand.
+                card.Root.localRotation = Quaternion.Euler(0f, 0f, card.Unlocked ? StickerTilt(card.Word.id) : 0f);
                 card.Picture.color = card.Unlocked ? Color.white : SilhouetteColour;
                 card.Lock.enabled = !card.Unlocked && card.Lock.sprite != null;
                 card.Label.text = card.Unlocked ? card.Word.CardText(language, LearningProgress.ShowTransliteration) : "?";
@@ -296,8 +304,44 @@ namespace FootballRunner.Learning
             }
 
             _title.text = $"ALBUM  ·  {_pack.Title(language)}";
-            _counter.text = $"{learned} / {_cards.Count}";
+            _counter.text = LearningProgress.Ui("NALJEPNICE", "STICKERS", "STICKER") + $"  {learned} / {_cards.Count}";
+            _pageNote.text = PageNoteText();
             _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
+        }
+
+        /// <summary>What a full page of this world gives, or gave.</summary>
+        private string PageNoteText()
+        {
+            Player.CharacterRoster.Entry gift = StickerAlbum.GiftFor(_pack.Name);
+
+            if (StickerAlbum.WasRewarded(_pack.Name))
+            {
+                return gift != null
+                    ? LearningProgress.Ui($"PUNA STRANICA! POKLON: {gift.Name}", $"PAGE FULL! GIFT: {gift.Name}",
+                        $"SEITE VOLL! GESCHENK: {gift.Name}")
+                    : LearningProgress.Ui("PUNA STRANICA!", "PAGE FULL!", "SEITE VOLL!");
+            }
+
+            Player.CharacterRoster.Entry next = StickerAlbum.NextGift();
+            string reward = next != null
+                ? next.Name
+                : LearningProgress.Ui($"{StickerAlbum.CoinsWhenAllPlayersOpen} novčića",
+                    $"{StickerAlbum.CoinsWhenAllPlayersOpen} coins", $"{StickerAlbum.CoinsWhenAllPlayersOpen} Münzen");
+            return LearningProgress.Ui($"Skupi sve naljepnice na stranici i dobij: {reward}",
+                $"Fill the page with stickers to get: {reward}", $"Sammle alle Sticker der Seite für: {reward}");
+        }
+
+        /// <summary>A small fixed tilt per word, between -4 and 4 degrees.</summary>
+        public static float StickerTilt(string wordId)
+        {
+            int hash = 17;
+
+            foreach (char c in wordId)
+            {
+                hash = hash * 31 + c;
+            }
+
+            return (Mathf.Abs(hash) % 9) - 4f;
         }
 
         /// <summary>One star for the first catch, more as the word keeps being caught.</summary>

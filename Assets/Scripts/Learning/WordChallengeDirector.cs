@@ -371,6 +371,7 @@ namespace FootballRunner.Learning
             if (!_missRecorded)
             {
                 LearningProgress.RecordCorrect(_target.id);
+                StickerAlbum.OnWordLearned(_target.id);
             }
 
             if (_guided)

@@ -11,13 +11,26 @@ namespace FootballRunner.Learning
 {
     /// <summary>
     /// A small card that slides in at the top right when a daily task is done:
-    /// a check, the task and the coins it gave. Several in a row queue up.
+    /// a check, the task and the coins it gave. Several in a row queue up. A full
+    /// sticker page shows here too, with the player it gave.
     /// </summary>
     public class MissionToastUi : MonoBehaviour
     {
         private const float ShowSeconds = 2.6f;
 
-        private readonly Queue<DailyMission> _queue = new Queue<DailyMission>();
+        /// <summary>One card: its text, the short text on the right and the small icon before it.</summary>
+        private struct Toast
+        {
+            public string Text;
+            public string Right;
+            public Sprite RightIcon;
+        }
+
+        private readonly Queue<Toast> _queue = new Queue<Toast>();
+        private Image _rightIcon;
+
+        /// <summary>The text of the card showing now or last shown; for tests.</summary>
+        public string LastText { get; private set; }
         private RectTransform _card;
         private CanvasGroup _group;
         private TMP_Text _task;
@@ -38,11 +51,13 @@ namespace FootballRunner.Learning
         private void OnEnable()
         {
             DailyRewards.MissionCompleted += OnMissionCompleted;
+            StickerAlbum.PageCompleted += OnPageCompleted;
         }
 
         private void OnDisable()
         {
             DailyRewards.MissionCompleted -= OnMissionCompleted;
+            StickerAlbum.PageCompleted -= OnPageCompleted;
         }
 
         private void Start()
@@ -75,13 +90,37 @@ namespace FootballRunner.Learning
 
             Icon(go.transform, WordPack.Icon("check"), new Vector2(-220f, 0f), 70f);
             _task = Text(go.transform, new Vector2(-10f, 0f), new Vector2(330f, 90f), 34f);
-            Icon(go.transform, Resources.Load<Sprite>("Menu/icon_coin"), new Vector2(185f, 0f), 46f);
+            _rightIcon = Icon(go.transform, Resources.Load<Sprite>("Menu/icon_coin"), new Vector2(185f, 0f), 46f);
             _coins = Text(go.transform, new Vector2(240f, 0f), new Vector2(90f, 70f), 38f);
         }
 
         private void OnMissionCompleted(DailyMission mission)
         {
-            _queue.Enqueue(mission);
+            Enqueue(new Toast
+            {
+                Text = DailyRewards.Describe(mission),
+                Right = "+" + mission.reward,
+                RightIcon = Resources.Load<Sprite>("Menu/icon_coin")
+            });
+        }
+
+        private void OnPageCompleted(string pack, Player.CharacterRoster.Entry gift)
+        {
+            Enqueue(new Toast
+            {
+                Text = gift != null
+                    ? LearningProgress.Ui($"Puna stranica! Novi igrač: {gift.Name}", $"Page full! New player: {gift.Name}",
+                        $"Seite voll! Neu: {gift.Name}")
+                    : LearningProgress.Ui("Puna stranica naljepnica!", "Sticker page full!", "Stickerseite voll!"),
+                Right = gift != null ? "" : "+" + StickerAlbum.CoinsWhenAllPlayersOpen,
+                RightIcon = gift != null ? Player.CharacterRoster.Portrait(gift.Id) : Resources.Load<Sprite>("Menu/icon_coin")
+            });
+        }
+
+        private void Enqueue(Toast toast)
+        {
+            _queue.Enqueue(toast);
+            LastText = toast.Text;
 
             if (_routine == null && _card != null)
             {
@@ -93,9 +132,11 @@ namespace FootballRunner.Learning
         {
             while (_queue.Count > 0)
             {
-                DailyMission mission = _queue.Dequeue();
-                _task.text = DailyRewards.Describe(mission);
-                _coins.text = "+" + mission.reward;
+                Toast toast = _queue.Dequeue();
+                _task.text = toast.Text;
+                _coins.text = toast.Right;
+                _rightIcon.sprite = toast.RightIcon;
+                _rightIcon.enabled = toast.RightIcon != null;
                 // Above the result screen if a level just ended, under its card so nothing is hidden.
                 _card.SetAsLastSibling();
                 bool results = Core.GameManager.Instance != null &&
@@ -129,7 +170,7 @@ namespace FootballRunner.Learning
             _group.alpha = to;
         }
 
-        private static void Icon(Transform parent, Sprite sprite, Vector2 position, float size)
+        private static Image Icon(Transform parent, Sprite sprite, Vector2 position, float size)
         {
             var go = new GameObject("Icon", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
             go.transform.SetParent(parent, false);
@@ -141,6 +182,7 @@ namespace FootballRunner.Learning
             image.preserveAspect = true;
             image.raycastTarget = false;
             image.enabled = sprite != null;
+            return image;
         }
 
         private static TMP_Text Text(Transform parent, Vector2 position, Vector2 size, float fontSize)

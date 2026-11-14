@@ -28,6 +28,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>Easy mode for 3 and 4 year olds (parents corner switch).</summary>
         public bool easyMode;
 
+        /// <summary>Full sticker pages already rewarded, as "World1:bs=harun" (or "=coins").</summary>
+        public List<string> stickerPages = new List<string>();
+
         /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
         public string homeLanguage = "en";
 

@@ -125,6 +125,19 @@ namespace FootballRunner.Player
             return Select(id);
         }
 
+        /// <summary>Opens a kid without coins: the gift for a full sticker page. The current choice stays.</summary>
+        public static void Gift(string id)
+        {
+            if (Find(id) == null || IsUnlocked(id))
+            {
+                return;
+            }
+
+            SaveManager.Data.unlockedItems.Add(UnlockPrefix + id);
+            SaveManager.Save();
+            Changed?.Invoke();
+        }
+
         /// <summary>One animation frame, e.g. "Run_03", or the standing "Idle" for menus.</summary>
         public static Sprite Frame(string id, string frame)
         {

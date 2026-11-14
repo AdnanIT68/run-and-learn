@@ -120,6 +120,11 @@ namespace FootballRunner.SaveSystem
             {
                 data.worldResults = new List<WorldResult>();
             }
+
+            if (data.stickerPages == null)
+            {
+                data.stickerPages = new List<string>();
+            }
         }
 
         /// <summary>
