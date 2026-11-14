@@ -265,6 +265,29 @@ namespace FootballRunner.Learning
             }
         }
 
+        private int _speakerTaps;
+
+        /// <summary>True when the last tap on the word card played the slow recording.</summary>
+        public bool LastReplayWasSlow { get; private set; }
+
+        /// <summary>
+        /// "Say it again": the first tap on the word card repeats the word, the second
+        /// says it slowly, and further taps take turns. Words without a slow copy
+        /// (praise, phrases) just repeat.
+        /// </summary>
+        public void ReplayFromSpeaker()
+        {
+            if (!_active || _target == null)
+            {
+                return;
+            }
+
+            _speakerTaps++;
+            AudioClip slow = _speakerTaps % 2 == 0 ? _pack.SlowVoice(LearningProgress.Language, _target.id) : null;
+            LastReplayWasSlow = slow != null;
+            PlayVoice(slow != null ? slow : _pack.Voice(LearningProgress.Language, _target.id));
+        }
+
         /// <summary>Starts a challenge immediately. Used by tests and the first-run tutorial.</summary>
         public bool ForceChallenge(bool counting = false, bool command = false, bool size = false,
             bool sentence = false)
@@ -648,6 +671,7 @@ namespace FootballRunner.Learning
             _active = true;
             _answered = false;
             _missRecorded = false;
+            _speakerTaps = 0;
             _guided = guided;
             _jumpCuePlayed = false;
 

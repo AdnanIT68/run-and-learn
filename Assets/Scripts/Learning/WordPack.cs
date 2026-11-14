@@ -455,6 +455,27 @@ namespace FootballRunner.Learning
         }
 
         /// <summary>A random praise line ("Bravo!", "Super!"). Phrase ids starting with "praise" qualify.</summary>
+        /// <summary>The same word said slowly (Audio/&lt;lang&gt;/slow), or null when there is none.</summary>
+        public AudioClip SlowVoice(string language, string entryId)
+        {
+            var clip = Resources.Load<AudioClip>($"{Root}/{Name}/Audio/{language}/slow/{entryId}");
+
+            if (clip == null && IsReview)
+            {
+                foreach (WordPack earlier in EarlierPacks())
+                {
+                    clip = earlier.SlowVoice(language, entryId);
+
+                    if (clip != null)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return clip;
+        }
+
         public AudioClip RandomPraise(string language)
         {
             int count = 0;

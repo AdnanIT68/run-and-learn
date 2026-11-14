@@ -259,6 +259,23 @@ async def speak(text: str, voice: str, target: Path) -> None:
         )
 
 
+# The second tap on the speaker plays the word slowly: same recording, 70 % tempo, same pitch.
+SLOW_TEMPO = 0.7
+
+
+def make_slow(source: Path, target: Path) -> None:
+    """A slowed copy of a voice for "say it again, slowly" (Audio/<lang>/slow/<id>.ogg)."""
+    if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
+        return
+    target.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(source),
+         "-filter:a", f"atempo={SLOW_TEMPO}", "-ac", "1", "-ar", "44100", "-c:a", "libvorbis", "-q:a", "5",
+         str(target)],
+        check=True,
+    )
+
+
 def texts(entry: dict) -> dict:
     """The entry's text in every voiced language, e.g. {"bs": ..., "en": ..., "de": ..., "ar": ...},
     plus the Arabic as shown on screen (ar_shown) and its Latin transliteration (ar_latin)."""
@@ -341,6 +358,14 @@ async def main(pack_file: Path) -> None:
     for entry in pack["words"] + pack.get("phrases", []) + counts + commands + sizes + sentences + numbers:
         for lang, voice in VOICES.items():
             await speak(entry[lang], voice, out / "Audio" / lang / f"{entry['id']}.ogg")
+
+    # Everything the child is asked gets a slow copy; praise and other phrases do not.
+    for entry in pack["words"] + counts + commands + sizes + sentences + numbers:
+        for lang in VOICES:
+            make_slow(out / "Audio" / lang / f"{entry['id']}.ogg", out / "Audio" / lang / "slow" / f"{entry['id']}.ogg")
+    for letter in letters:
+        lang = letter["lang"]
+        make_slow(out / "Audio" / lang / f"{letter['id']}.ogg", out / "Audio" / lang / "slow" / f"{letter['id']}.ogg")
 
     manifest = {
         "pack": pack["pack"],

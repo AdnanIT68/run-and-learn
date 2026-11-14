@@ -136,7 +136,7 @@ namespace FootballRunner.Learning
 
         private void OnCardPressed()
         {
-            WordChallengeDirector.Instance?.ReplayWord();
+            WordChallengeDirector.Instance?.ReplayFromSpeaker();
         }
 
         private void OnChallengeStarted(WordEntry word)
