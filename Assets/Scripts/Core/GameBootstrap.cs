@@ -43,9 +43,9 @@ namespace FootballRunner.Core
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
 
-            // The player may go several seconds without touching the screen while
-            // running, and the OS would otherwise dim and lock the display.
-            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            // Menus use the phone's own screen timeout; GameManager keeps the display
+            // on only while a run is going (see GameManager.KeepsScreenAwake).
+            Screen.sleepTimeout = SleepTimeout.SystemSetting;
         }
     }
 }

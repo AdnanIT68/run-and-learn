@@ -114,6 +114,7 @@ namespace FootballRunner.Core
             if (Instance == this)
             {
                 Instance = null;
+                Screen.sleepTimeout = SleepTimeout.SystemSetting;
             }
         }
 
@@ -286,7 +287,18 @@ namespace FootballRunner.Core
         private void SetState(GameState newState)
         {
             State = newState;
+            Screen.sleepTimeout = KeepsScreenAwake(newState) ? SleepTimeout.NeverSleep : SleepTimeout.SystemSetting;
             StateChanged?.Invoke(newState);
+        }
+
+        /// <summary>
+        /// The child may run for a while without touching the screen, so the display
+        /// stays on during a run; in pauses, result screens and menus the phone's own
+        /// timeout applies again, so a forgotten phone does not drain its battery.
+        /// </summary>
+        public static bool KeepsScreenAwake(GameState state)
+        {
+            return state == GameState.Ready || state == GameState.Playing || state == GameState.Dying;
         }
     }
 }
