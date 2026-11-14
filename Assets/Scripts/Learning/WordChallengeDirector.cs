@@ -215,6 +215,11 @@ namespace FootballRunner.Learning
             _groundMask = LayerMask.GetMask("Ground");
             _timer = firstChallengeSeconds;
 
+            if (PepiVoice.TakeWelcome(_pack.Name))
+            {
+                StartCoroutine(WelcomeSoon());
+            }
+
             if (PlayerController.Instance != null)
             {
                 _playerCollider = PlayerController.Instance.GetComponent<Collider2D>();
@@ -269,6 +274,15 @@ namespace FootballRunner.Learning
         }
 
         private int _speakerTaps;
+
+        /// <summary>Right answers in a row this run, without a miss in between.</summary>
+        private int _streak;
+
+        /// <summary>The id of the last line Pepi said (pepi_remind, pepi_praise_3...); for tests.</summary>
+        public string LastPepiLine { get; private set; }
+
+        /// <summary>True when the level just won opened the next world.</summary>
+        public bool OpenedNewWorld { get; private set; }
 
         /// <summary>True when the last tap on the word card played the slow recording.</summary>
         public bool LastReplayWasSlow { get; private set; }
@@ -341,6 +355,7 @@ namespace FootballRunner.Learning
                 _missRecorded = true;
                 LearningProgress.RecordMiss(_target.id);
                 _runMisses++;
+                _streak = 0;
             }
 
             for (int i = 0; i < _bubbles.Count; i++)
@@ -372,6 +387,7 @@ namespace FootballRunner.Learning
             {
                 LearningProgress.RecordCorrect(_target.id);
                 StickerAlbum.OnWordLearned(_target.id);
+                _streak++;
             }
 
             if (_guided)
@@ -413,8 +429,43 @@ namespace FootballRunner.Learning
             LevelWords.Clear();
             LevelWords.AddRange(_rowWords);
             _rowWords.Clear();
+            string next = LearningProgress.NextPack(_pack.Name);
+            bool wasOpen = next == null || LearningProgress.IsPackUnlocked(next);
             LearningProgress.RecordLevelComplete(_pack.Name, _level, LevelStars);
+            OpenedNewWorld = !wasOpen && LearningProgress.IsPackUnlocked(next);
+
+            if (OpenedNewWorld)
+            {
+                StartCoroutine(SayAfterCurrentVoice(PepiVoice.Unlocked));
+            }
+
             StartCoroutine(OpenResultsSoon());
+        }
+
+        /// <summary>Pepi speaks once the praise and goal lines already playing have finished.</summary>
+        private IEnumerator SayAfterCurrentVoice(string line)
+        {
+            LastPepiLine = line;
+            yield return null;
+
+            while (_voiceRoutine != null)
+            {
+                yield return null;
+            }
+
+            PlayInSequence(PepiVoice.Line(line));
+        }
+
+        /// <summary>The first run in a world (per learned language) starts with Pepi's welcome.</summary>
+        private IEnumerator WelcomeSoon()
+        {
+            yield return new WaitForSecondsRealtime(1f);
+
+            if (_voiceRoutine == null)
+            {
+                LastPepiLine = PepiVoice.WelcomeFor(_pack.Name);
+                PlayInSequence(PepiVoice.Line(LastPepiLine));
+            }
         }
 
         private IEnumerator OpenResultsSoon()
@@ -497,6 +548,7 @@ namespace FootballRunner.Learning
                 _missRecorded = true;
                 LearningProgress.RecordMiss(_target.id);
                 _runMisses++;
+                _streak = 0;
             }
 
             EndChallenge(false);
@@ -698,6 +750,12 @@ namespace FootballRunner.Learning
             if (_guided)
             {
                 PlayInSequence(intro, _pack.Voice(LearningProgress.Language, _target.id));
+            }
+            else if (kind != Kind.Reading && PepiVoice.IsTroubleWord(_target.id))
+            {
+                // A word the child keeps missing: Pepi warns first, then the word.
+                LastPepiLine = PepiVoice.Remind;
+                PlayInSequence(PepiVoice.Line(PepiVoice.Remind), _pack.Voice(LearningProgress.Language, _target.id));
             }
             else if (kind != Kind.Reading)
             {
@@ -1106,10 +1164,19 @@ namespace FootballRunner.Learning
         private void PlayPraiseThenWord(WordEntry word, bool goalReached)
         {
             string language = LearningProgress.Language;
+            AudioClip pepi = null;
+
+            if (!goalReached && _streak > 0 && _streak % PepiVoice.StreakLength == 0)
+            {
+                LastPepiLine = PepiVoice.PraiseFor(_streak);
+                pepi = PepiVoice.Line(LastPepiLine);
+            }
+
             PlayInSequence(
                 _pack.RandomPraise(language),
                 _pack.Voice(language, word.id),
-                goalReached ? _pack.Voice(language, _pack.IsReview ? "finale" : "goal") : null);
+                goalReached ? _pack.Voice(language, _pack.IsReview ? "finale" : "goal") : null,
+                pepi);
         }
 
         private void PlayInSequence(params AudioClip[] clips)

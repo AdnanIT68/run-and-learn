@@ -125,6 +125,11 @@ namespace FootballRunner.SaveSystem
             {
                 data.stickerPages = new List<string>();
             }
+
+            if (data.pepiWelcomed == null)
+            {
+                data.pepiWelcomed = new List<string>();
+            }
         }
 
         /// <summary>

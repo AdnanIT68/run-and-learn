@@ -1,0 +1,18 @@
+{
+  "comment": "What Pepi the parrot says, in the language the child already speaks (menus). Voiced by Tools/generate_pepi.py into Assets/Resources/Words/Pepi/Audio/<lang>/<id>.ogg.",
+  "lines": [
+    { "id": "pepi_praise_1", "bs": "Bravo, tako treba!", "en": "Well done, keep going!", "de": "Super, weiter so!" },
+    { "id": "pepi_praise_2", "bs": "Odlično ti ide!", "en": "You're doing great!", "de": "Du machst das toll!" },
+    { "id": "pepi_praise_3", "bs": "Tri zaredom! Ti si zvijezda!", "en": "Three in a row! You're a star!", "de": "Drei hintereinander! Du bist ein Star!" },
+    { "id": "pepi_remind", "bs": "Pažljivo, ova riječ je teška. Slušaj!", "en": "Careful, this one is tricky. Listen!", "de": "Aufgepasst, das ist knifflig. Hör gut zu!" },
+    { "id": "pepi_unlocked", "bs": "Hura! Otvoren je novi svijet!", "en": "Hooray! A new world is open!", "de": "Hurra! Eine neue Welt ist offen!" },
+    { "id": "pepi_world_World1", "bs": "Dobro došli u Neninu baštu!", "en": "Welcome to Grandma's Garden!", "de": "Willkommen in Omas Garten!" },
+    { "id": "pepi_world_World2", "bs": "Dobro došli na farmu kod dede!", "en": "Welcome to Grandpa's Farm!", "de": "Willkommen auf Opas Bauernhof!" },
+    { "id": "pepi_world_World3", "bs": "Dobro došli u našu kuću!", "en": "Welcome to our home!", "de": "Willkommen in unserem Zuhause!" },
+    { "id": "pepi_world_World4", "bs": "Dobro došli u Čaršiju!", "en": "Welcome to the Old Bazaar!", "de": "Willkommen im alten Basar!" },
+    { "id": "pepi_world_World5", "bs": "Dobro došli na rijeku kod Starog mosta!", "en": "Welcome to the river and the Old Bridge!", "de": "Willkommen am Fluss und an der Alten Brücke!" },
+    { "id": "pepi_world_World6", "bs": "Dobro došli na planinu zimi!", "en": "Welcome to Winter Mountain!", "de": "Willkommen am Winterberg!" },
+    { "id": "pepi_world_World7", "bs": "Dobro došli u školu!", "en": "Welcome to school!", "de": "Willkommen in der Schule!" },
+    { "id": "pepi_world_World8", "bs": "Dobro došli pod noćno nebo!", "en": "Welcome to the night sky!", "de": "Willkommen unter dem Nachthimmel!" }
+  ]
+}

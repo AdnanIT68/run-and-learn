@@ -31,6 +31,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>Full sticker pages already rewarded, as "World1:bs=harun" (or "=coins").</summary>
         public List<string> stickerPages = new List<string>();
 
+        /// <summary>Worlds Pepi has already welcomed the child to, as "World1:bs".</summary>
+        public List<string> pepiWelcomed = new List<string>();
+
         /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
         public string homeLanguage = "en";
 
