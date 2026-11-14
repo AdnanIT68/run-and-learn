@@ -9,12 +9,16 @@ Twemoji by Twitter, Inc. and contributors, maintained at <https://github.com/jde
 Attribution is required in the store listing or an in-game credits screen while these
 pictures are used. Plan: replace with art in Rukajja's style.
 
-## Voices (placeholder)
+## Voices
 
-Microsoft neural text-to-speech voices `bs-BA-VesnaNeural` and `en-US-AnaNeural`,
-generated through the `edge-tts` package on 23 October 2026. These are for the
-prototype only. Before release, replace them with family recordings (preferred) or
-voices generated under a commercial Azure Speech licence.
+Microsoft Azure Speech neural voices `bs-BA-VesnaNeural`, `en-US-AnaNeural` and
+`de-DE-KatjaNeural`, generated through the Azure Speech REST API with the owner's own
+Azure key. All 581 clips were recorded again with Azure on 31 October 2026 (commit
+63c5e0e, release 1.1.0); none have been added or changed since. The early prototype
+voices from the free `edge-tts` service (23 October 2026) are no longer in the game.
+`Tools/generate_words.py` only falls back to edge-tts when the Azure key file is
+missing, so new voices must always be generated with the key present.
+Family recordings for Bosnian remain an option.
 
 File names must stay the same when replacing content: `Pictures/<id>.png`,
-`Audio/<bs|en>/<id>.ogg`.
+`Audio/<bs|en|de>/<id>.ogg`.
