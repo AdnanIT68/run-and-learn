@@ -19,8 +19,11 @@ namespace FootballRunner.SaveSystem
         public int greenHillsUnlockedLevel = 1;
         public int greenHillsLevel1Stars;
 
-        /// <summary>"bs" when the child is learning Bosnian, "en" when learning English.</summary>
+        /// <summary>"bs", "en", "de" or "ar": the language the child is learning.</summary>
         public string learningLanguage = "bs";
+
+        /// <summary>Show the Latin transliteration under Arabic words (parents corner switch).</summary>
+        public bool showTransliteration = true;
 
         /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
         public string homeLanguage = "en";

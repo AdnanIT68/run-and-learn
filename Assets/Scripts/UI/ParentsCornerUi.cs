@@ -42,6 +42,8 @@ namespace FootballRunner.UI
         private TMP_Text _soundLabel;
         private Image _vibrationButton;
         private TMP_Text _vibrationLabel;
+        private Image _latinButton;
+        private TMP_Text _latinLabel;
         private TMP_Text _credits;
         private TMP_FontAsset _font;
 
@@ -50,6 +52,11 @@ namespace FootballRunner.UI
         public bool IsGateShowing => IsOpen && _gate.activeSelf;
 
         public bool IsCornerShowing => IsOpen && _corner.activeSelf;
+
+        /// <summary>The Latin-letters switch, shown only while the child learns Arabic.</summary>
+        public bool IsTransliterationSwitchShowing => _latinButton != null && _latinButton.gameObject.activeSelf;
+
+        public string TransliterationLabel => _latinLabel != null ? _latinLabel.text : string.Empty;
 
         /// <summary>The right answer to the sum on the gate.</summary>
         public int GateAnswer { get; private set; }
@@ -149,6 +156,14 @@ namespace FootballRunner.UI
             RefreshTexts();
         }
 
+        /// <summary>Shows or hides the Latin letters under Arabic words.</summary>
+        public void ToggleTransliteration()
+        {
+            LearningProgress.ShowTransliteration = !LearningProgress.ShowTransliteration;
+            AudioManager.Instance?.PlayButton();
+            RefreshTexts();
+        }
+
         // ------------------------------------------------------------ gate
 
         private void NewQuestion()
@@ -234,10 +249,18 @@ namespace FootballRunner.UI
             _vibrationButton.color = vibration ? OnColour : OffColour;
             _vibrationLabel.text = LearningProgress.Ui("VIBRACIJA", "VIBRATION", "VIBRATION") + ": " + OnOff(vibration);
 
+            // Only Arabic has a second script, so the switch only shows while learning it.
+            _latinButton.gameObject.SetActive(LearningProgress.IsArabic);
+            bool latin = LearningProgress.ShowTransliteration;
+            _latinButton.color = latin ? OnColour : OffColour;
+            _latinLabel.text = latin
+                ? LearningProgress.Ui("ARAPSKI + LATINICA", "ARABIC + LATIN", "ARABISCH + LATEIN")
+                : LearningProgress.Ui("SAMO ARAPSKO PISMO", "ARABIC SCRIPT ONLY", "NUR ARABISCHE SCHRIFT");
+
             _credits.text = LearningProgress.Ui(
-                "Slike: Twemoji © Twitter, Inc. i saradnici, CC BY 4.0\nZvukovi: Kenney, CC0  ·  Font: Titan One, OFL\nBez reklama, bez prikupljanja podataka.",
-                "Pictures: Twemoji © Twitter, Inc. and contributors, CC BY 4.0\nSounds: Kenney, CC0  ·  Font: Titan One, OFL\nNo ads, no data collection.",
-                "Bilder: Twemoji © Twitter, Inc. und Mitwirkende, CC BY 4.0\nTöne: Kenney, CC0  ·  Schrift: Titan One, OFL\nKeine Werbung, keine Datensammlung.");
+                "Slike: Twemoji © Twitter, Inc. i saradnici, CC BY 4.0\nZvukovi: Kenney, CC0  ·  Fontovi: Titan One, Noto Sans Arabic, OFL\nBez reklama, bez prikupljanja podataka.",
+                "Pictures: Twemoji © Twitter, Inc. and contributors, CC BY 4.0\nSounds: Kenney, CC0  ·  Fonts: Titan One, Noto Sans Arabic, OFL\nNo ads, no data collection.",
+                "Bilder: Twemoji © Twitter, Inc. und Mitwirkende, CC BY 4.0\nTöne: Kenney, CC0  ·  Schriften: Titan One, Noto Sans Arabic, OFL\nKeine Werbung, keine Datensammlung.");
         }
 
         private static string OnOff(bool on)
@@ -253,6 +276,7 @@ namespace FootballRunner.UI
             {
                 case LearningProgress.English: return LearningProgress.Ui("engleski", "English", "Englisch");
                 case LearningProgress.German: return LearningProgress.Ui("njemački", "German", "Deutsch");
+                case LearningProgress.Arabic: return LearningProgress.Ui("arapski", "Arabic", "Arabisch");
                 default: return LearningProgress.Ui("bosanski", "Bosnian", "Bosnisch");
             }
         }
@@ -369,8 +393,12 @@ namespace FootballRunner.UI
                 new Vector2(460f, 110f), OnColour, ToggleVibration);
             _vibrationLabel = CreateText(_vibrationButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f),
                 38f, Color.white);
+            _latinButton = CreateButton(settings.transform, "Transliteration", new Vector2(0f, -50f),
+                new Vector2(460f, 110f), OnColour, ToggleTransliteration);
+            _latinLabel = CreateText(_latinButton.transform, "Label", "", Vector2.zero, new Vector2(430f, 100f), 32f,
+                Color.white);
 
-            _credits = CreateText(settings.transform, "Credits", "", new Vector2(0f, -200f), new Vector2(500f, 240f), 24f,
+            _credits = CreateText(settings.transform, "Credits", "", new Vector2(0f, -240f), new Vector2(500f, 200f), 24f,
                 MutedText);
             _credits.fontStyle = FontStyles.Normal;
             _credits.textWrappingMode = TextWrappingModes.Normal;

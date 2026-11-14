@@ -284,7 +284,7 @@ namespace FootballRunner.Learning
                 card.Background.color = card.Unlocked ? CardColour : LockedCardColour;
                 card.Picture.color = card.Unlocked ? Color.white : SilhouetteColour;
                 card.Lock.enabled = !card.Unlocked && card.Lock.sprite != null;
-                card.Label.text = card.Unlocked ? card.Word.Text(language) : "?";
+                card.Label.text = card.Unlocked ? card.Word.CardText(language, LearningProgress.ShowTransliteration) : "?";
 
                 int stars = StarsFor(progress.correct);
 

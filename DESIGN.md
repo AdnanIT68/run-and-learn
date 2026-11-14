@@ -59,6 +59,16 @@ Prva verzija za objavu: samo svijet 1.
   (der Apfel), a slovo se uzima iz imenice (`WordEntry.Initial`). Glas za njemački: de-DE-KatjaNeural.
 - Natpisi: kod koristi `LearningProgress.Ui(bs, en, de)`; stari natpisi iz scena (SCORE, PAUSED…) se prevode
   u `UI/SceneTextLocalizer.cs`.
+- **Arapski** (od 1.3, `LearningProgress.Arabic`): uči se samo iz bosanskog, meni ostaje na bosanskom; arapske su
+  samo riječi i glas (ar-SA-ZariyahNeural, standardni arapski). U JSON-u svaki unos ima `ar` (s harakatima, bez
+  člana „al-“, pauzalni oblik), `ar_latin` (latinica za bosanske roditelje) i `ar_status` („za provjeru“ dok ga
+  ne provjeri neko ko zna arapski; lista: `Store/arabic-review.md`, pravi je `Tools/make_arabic_review.py`).
+- TextMeshPro ne spaja arapska slova i ne piše zdesna nalijevo, pa generator pravi `ar_shown`: spojeni oblici
+  (arabic-reshaper) okrenuti po grupama slovo+harakati. Igra crta `WordEntry.Display`, a glas i slova koriste
+  `WordEntry.Text`. Font: Noto Sans Arabic Bold kao rezervni uz Titan One (`GameFonts.Arabic`).
+- Latinica ispod arapske riječi (`WordEntry.CardText`) može se isključiti u kutku za roditelje
+  (`SaveData.showTransliteration`, uključeno po defaultu). Svijet 7 uči arapska slova (prvo slovo riječi,
+  hamza na elifu se broji kao elif).
 
 ## Nivoi u svijetu
 

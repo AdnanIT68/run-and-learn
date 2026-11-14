@@ -15,6 +15,15 @@ namespace FootballRunner.Learning
         [Tooltip("German, nouns with their article (der Apfel).")]
         public string de;
 
+        [Tooltip("Arabic in reading order, with harakat; used for voices and first letters.")]
+        public string ar;
+
+        [Tooltip("Arabic as drawn: joined letter forms, already right to left, made by Tools/generate_words.py.")]
+        public string ar_shown;
+
+        [Tooltip("Latin transliteration of the Arabic, shown small under it.")]
+        public string ar_latin;
+
         [Tooltip("Counting phrases only: the word whose picture is shown, e.g. \"hen\".")]
         public string picture;
 
@@ -63,6 +72,11 @@ namespace FootballRunner.Learning
                 return string.Empty;
             }
 
+            if (IsArabicText(word))
+            {
+                return ArabicInitial(word);
+            }
+
             string lower = word.ToLowerInvariant();
 
             foreach (string article in new[] { "der ", "die ", "das " })
@@ -85,14 +99,81 @@ namespace FootballRunner.Learning
             return char.ToUpperInvariant(lower[0]).ToString();
         }
 
+        public static bool IsArabicText(string text)
+        {
+            foreach (char c in text)
+            {
+                if (c >= '؀' && c <= 'ۿ')
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// The first Arabic letter, skipping harakat and tatweel; alif with hamza or
+        /// madda counts as alif. Matches initial() in Tools/generate_words.py.
+        /// </summary>
+        private static string ArabicInitial(string word)
+        {
+            foreach (char c in word)
+            {
+                bool mark = (c >= 'ً' && c <= 'ٟ') || c == 'ٰ' || c == 'ـ';
+
+                if (mark || char.IsWhiteSpace(c))
+                {
+                    continue;
+                }
+
+                return c == 'أ' || c == 'إ' || c == 'آ' || c == 'ٱ' ? "ا" : c.ToString();
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>The word in reading order: what is spoken and what first letters come from.</summary>
         public string Text(string language)
         {
             switch (language)
             {
                 case LearningProgress.English: return en;
                 case LearningProgress.German: return string.IsNullOrEmpty(de) ? en : de;
+                case LearningProgress.Arabic: return string.IsNullOrEmpty(ar) ? bs : ar;
                 default: return bs;
             }
+        }
+
+        /// <summary>
+        /// The word as drawn on screen. TextMeshPro neither joins Arabic letters nor
+        /// runs right to left, so Arabic uses the pre-shaped form from the generator.
+        /// </summary>
+        public string Display(string language)
+        {
+            if (language == LearningProgress.Arabic && !string.IsNullOrEmpty(ar_shown))
+            {
+                return ar_shown;
+            }
+
+            return Text(language);
+        }
+
+        /// <summary>The Latin transliteration under an Arabic word, or null for other languages.</summary>
+        public string Latin(string language)
+        {
+            return language == LearningProgress.Arabic && !string.IsNullOrEmpty(ar_latin) ? ar_latin : null;
+        }
+
+        /// <summary>
+        /// What a word card shows: the word, and for Arabic the transliteration small
+        /// underneath when the parents corner switch is on.
+        /// </summary>
+        public string CardText(string language, bool showLatin)
+        {
+            string shown = Display(language);
+            string latin = Latin(language);
+            return showLatin && latin != null ? $"{shown}\n<size=45%>{latin}</size>" : shown;
         }
     }
 

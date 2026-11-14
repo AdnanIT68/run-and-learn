@@ -154,7 +154,7 @@ namespace FootballRunner.Learning
 
             _card.color = CardColour;
             Fit(word.IsSentence ? 880f : 560f);
-            _word.text = word.Text(LearningProgress.Language);
+            _word.text = word.CardText(LearningProgress.Language, LearningProgress.ShowTransliteration);
 
             // A faded speaker says "read this yourself"; tapping still plays it as help.
             bool reading = WordChallengeDirector.Instance != null &&

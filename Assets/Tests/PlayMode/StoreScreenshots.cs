@@ -107,6 +107,64 @@ namespace FootballRunner.Tests
             }
         }
 
+        /// <summary>
+        /// Look check for Arabic: joined letters, harakat and the Latin line on the word
+        /// card, in the album and in the parents corner. Output: Store/raw/check/arabic_*.png.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator CaptureArabic()
+        {
+            SetProgress(LearningProgress.Arabic, LearningProgress.Bosnian);
+            foreach (string pack in WordPack.PackOrder)
+            {
+                LearningProgress.RecordLevelComplete(pack, LearningProgress.LevelToOpenNextWorld - 1, 1);
+            }
+
+            (string world, WordChallengeDirector.Kind kind)[] shots =
+            {
+                ("World1", WordChallengeDirector.Kind.Word),
+                ("World2", WordChallengeDirector.Kind.Counting),
+                ("World6", WordChallengeDirector.Kind.Sentence),
+                ("World7", WordChallengeDirector.Kind.Letter)
+            };
+
+            foreach ((string world, WordChallengeDirector.Kind kind) in shots)
+            {
+                LearningProgress.ShowTransliteration = true;
+                LearningProgress.SelectPack(world);
+                LearningProgress.SelectLevel(0);
+                yield return LoadScene("Game");
+                yield return StartChallengeAndWait(world, counting: false, kind: kind);
+                yield return Capture($"check/arabic_{world}_{kind}");
+            }
+
+            LearningProgress.ShowTransliteration = false;
+            LearningProgress.SelectPack("World1");
+            yield return LoadScene("Game");
+            yield return StartChallengeAndWait("World1", counting: false, kind: WordChallengeDirector.Kind.Word);
+            yield return Capture("check/arabic_World1_no_latin");
+
+            LearningProgress.ShowTransliteration = true;
+            yield return LoadScene("MainMenu");
+            yield return Capture("check/arabic_menu");
+
+            var album = Object.FindFirstObjectByType<WordAlbumUi>();
+            if (album != null)
+            {
+                album.Open();
+                yield return null;
+                yield return Capture("check/arabic_album");
+                album.Close();
+            }
+
+            var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
+            corner.Open();
+            corner.PressAnswer(corner.GateAnswer);
+            yield return null;
+            yield return Capture("check/arabic_parents");
+            corner.Close();
+        }
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {

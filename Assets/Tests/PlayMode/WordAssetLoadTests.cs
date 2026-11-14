@@ -10,7 +10,7 @@ namespace FootballRunner.Tests
     /// </summary>
     public class WordAssetLoadTests
     {
-        private static readonly string[] Languages = { "bs", "en", "de" };
+        private static readonly string[] Languages = { "bs", "en", "de", "ar" };
 
         [Test]
         public void EveryWordHasAPictureAndAVoiceInEveryLanguage()

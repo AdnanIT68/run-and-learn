@@ -725,6 +725,9 @@ namespace FootballRunner.Learning
                 bs = letterEntry.bs,
                 en = letterEntry.en,
                 de = letterEntry.de,
+                ar = letterEntry.ar,
+                ar_shown = letterEntry.ar_shown,
+                ar_latin = letterEntry.ar_latin,
                 picture = word.PictureId,
                 letter = letterEntry.letter,
                 lang = letterEntry.lang

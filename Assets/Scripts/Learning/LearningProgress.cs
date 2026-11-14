@@ -14,16 +14,21 @@ namespace FootballRunner.Learning
         public const string English = "en";
         public const string German = "de";
 
+        /// <summary>Arabic words and voice only; menus stay in Bosnian.</summary>
+        public const string Arabic = "ar";
+
         /// <summary>
         /// The ways to play, as (learning, already speaks): diaspora children learn
-        /// Bosnian from English or German; children in Bosnia learn English or German.
+        /// Bosnian from English or German; children in Bosnia learn English, German
+        /// or Arabic.
         /// </summary>
         public static readonly (string learn, string home)[] Pairs =
         {
             (Bosnian, English),
             (Bosnian, German),
             (English, Bosnian),
-            (German, Bosnian)
+            (German, Bosnian),
+            (Arabic, Bosnian)
         };
 
         /// <summary>The language being learned. Diaspora children learning Bosnian is the default.</summary>
@@ -31,9 +36,30 @@ namespace FootballRunner.Learning
         {
             get
             {
-                string saved = SaveManager.Data.learningLanguage;
-                return saved == English || saved == German ? saved : Bosnian;
+                return Learnable(SaveManager.Data.learningLanguage);
             }
+        }
+
+        /// <summary>True while learning Arabic: words are shown right to left, with Latin letters below.</summary>
+        public static bool IsArabic => Language == Arabic;
+
+        /// <summary>
+        /// Parents corner switch: the Latin transliteration shown small under each Arabic
+        /// word (tuffāha under تُفَّاحَة). On unless a parent turns it off.
+        /// </summary>
+        public static bool ShowTransliteration
+        {
+            get => SaveManager.Data.showTransliteration;
+            set
+            {
+                SaveManager.Data.showTransliteration = value;
+                SaveManager.Save();
+            }
+        }
+
+        private static string Learnable(string language)
+        {
+            return language == English || language == German || language == Arabic ? language : Bosnian;
         }
 
         /// <summary>
@@ -67,7 +93,7 @@ namespace FootballRunner.Learning
         public static void SetLanguage(string language, string home = null)
         {
             SaveData data = SaveManager.Data;
-            data.learningLanguage = language == English || language == German ? language : Bosnian;
+            data.learningLanguage = Learnable(language);
 
             if (home != null)
             {
