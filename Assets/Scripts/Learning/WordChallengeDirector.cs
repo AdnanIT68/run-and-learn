@@ -456,15 +456,36 @@ namespace FootballRunner.Learning
             PlayInSequence(PepiVoice.Line(line));
         }
 
-        /// <summary>The first run in a world (per learned language) starts with Pepi's welcome.</summary>
+        /// <summary>The story line shown last (story_intro_World1...); for tests.</summary>
+        public string LastStoryLine { get; private set; }
+
+        /// <summary>
+        /// The first run in a world (per learned language) starts with the story: Pepi
+        /// tells that Brbljavka the magpie stole this world's words, then welcomes the
+        /// child. The first word waits until he has finished.
+        /// </summary>
         private IEnumerator WelcomeSoon()
         {
             yield return new WaitForSecondsRealtime(1f);
 
-            if (_voiceRoutine == null)
+            if (_voiceRoutine != null)
             {
-                LastPepiLine = PepiVoice.WelcomeFor(_pack.Name);
-                PlayInSequence(PepiVoice.Line(LastPepiLine));
+                yield break;
+            }
+
+            LastStoryLine = PepiVoice.StoryIntroFor(_pack.Name);
+            LastPepiLine = PepiVoice.WelcomeFor(_pack.Name);
+            AudioClip story = PepiVoice.Line(LastStoryLine);
+            AudioClip welcome = PepiVoice.Line(LastPepiLine);
+            float talking = (story != null ? story.length + 0.15f : 0f) + (welcome != null ? welcome.length + 0.15f : 0f);
+
+            StoryCardUi.Instance?.Show(PepiVoice.Text(LastStoryLine), StoryArt.Magpie(carryingLetters: true),
+                story != null ? story.length + 0.5f : 4f);
+            PlayInSequence(story, welcome);
+
+            if (!_active)
+            {
+                _timer = Mathf.Max(_timer, talking + 0.5f);
             }
         }
 

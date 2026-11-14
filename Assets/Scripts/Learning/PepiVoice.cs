@@ -23,6 +23,56 @@ namespace FootballRunner.Learning
             return Resources.Load<AudioClip>($"Words/Pepi/Audio/{LearningProgress.HomeLanguage}/{id}");
         }
 
+        [System.Serializable]
+        private class LineText
+        {
+            public string id;
+            public string bs;
+            public string en;
+            public string de;
+        }
+
+        [System.Serializable]
+        private class LineTexts
+        {
+            public LineText[] lines;
+        }
+
+        private static LineTexts _texts;
+
+        /// <summary>What a line says, in the menu language (from Resources/Words/Pepi/lines.json), or "".</summary>
+        public static string Text(string id)
+        {
+            if (_texts == null)
+            {
+                var asset = Resources.Load<TextAsset>("Words/Pepi/lines");
+                _texts = asset != null ? JsonUtility.FromJson<LineTexts>(asset.text) : new LineTexts();
+            }
+
+            if (_texts.lines != null)
+            {
+                foreach (LineText line in _texts.lines)
+                {
+                    if (line.id == id)
+                    {
+                        return LearningProgress.Ui(line.bs, line.en, line.de);
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
+        public static string StoryIntroFor(string pack)
+        {
+            return "story_intro_" + pack;
+        }
+
+        public static string StoryOutroFor(string pack)
+        {
+            return "story_outro_" + pack;
+        }
+
         /// <summary>"Three in a row!" the first time, a general praise after that.</summary>
         public static string PraiseFor(int streak)
         {
