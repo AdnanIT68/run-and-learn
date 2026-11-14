@@ -50,8 +50,46 @@ namespace FootballRunner.EditorTools
             settings.wrapMode = TextureWrapMode.Clamp;
 
             importer.SetTextureSettings(settings);
-            importer.textureCompression = TextureImporterCompression.Compressed;
-            importer.maxTextureSize = 2048;
+
+            // The children and the menu art are seen up close, so they get the finer
+            // compression (ASTC 4x4); scenery and word pictures use the normal one.
+            bool closeUp = assetPath.StartsWith("Assets/Resources/Characters/") ||
+                           assetPath.StartsWith("Assets/Resources/Menu/");
+            importer.textureCompression = closeUp
+                ? TextureImporterCompression.CompressedHQ
+                : TextureImporterCompression.Compressed;
+
+            // Word pictures are drawn at 256 px; the cap stops a larger source from bloating the build.
+            importer.maxTextureSize = assetPath.StartsWith("Assets/Resources/Words/") ? 512 : 2048;
+        }
+
+        /// <summary>
+        /// Spoken words and phrases: short mono speech, so 60 % Vorbis is clear enough,
+        /// and keeping them compressed in memory saves RAM because only the clips of the
+        /// current world are ever loaded, one at a time.
+        /// </summary>
+        private void OnPreprocessAudio()
+        {
+            if (!assetPath.StartsWith("Assets/Resources/Words/"))
+            {
+                return;
+            }
+
+            var importer = (AudioImporter)assetImporter;
+            AudioImporterSampleSettings sample = importer.defaultSampleSettings;
+            sample.loadType = AudioClipLoadType.CompressedInMemory;
+            sample.compressionFormat = AudioCompressionFormat.Vorbis;
+            sample.quality = 0.6f;
+            sample.preloadAudioData = false;
+            importer.defaultSampleSettings = sample;
+            importer.forceToMono = true;
+            importer.loadInBackground = false;
+        }
+
+        /// <summary>Raised whenever the rules above change, so Unity reimports the affected files.</summary>
+        public override uint GetVersion()
+        {
+            return 2;
         }
 
         private static bool IsRuntimeArt(string path)

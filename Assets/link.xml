@@ -1,0 +1,8 @@
+<!--
+  Managed code stripping is set to Medium for Android (see Assets/Editor/AndroidSetup.cs).
+  The game's own assembly is kept whole so nothing it needs at runtime can be stripped;
+  only unused engine and package code is removed.
+-->
+<linker>
+  <assembly fullname="FootballRunner" preserve="all"/>
+</linker>

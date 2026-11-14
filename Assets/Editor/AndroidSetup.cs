@@ -80,9 +80,24 @@ namespace FootballRunner.EditorTools
             PlayerSettings.SetApplicationIdentifier(android, ApplicationId);
             PlayerSettings.SetScriptingBackend(android, ScriptingImplementation.IL2CPP);
 
-            // Low stripping only. Medium and High can remove members that are only
-            // ever reached through reflection, which fails at runtime, not at build.
-            PlayerSettings.SetManagedStrippingLevel(android, ManagedStrippingLevel.Low);
+            // Medium stripping makes the native game library smaller. The game's own code
+            // uses no reflection, and Assets/link.xml keeps its assembly whole anyway, so
+            // only unused engine and package code is removed. Test on a phone after changing.
+            PlayerSettings.SetManagedStrippingLevel(android, ManagedStrippingLevel.Medium);
+
+            // R8 shrinks the Java side (Unity's activity and Play libraries), as Play's
+            // memory guidance asks. Unity ships the keep rules its own classes need.
+            PlayerSettings.Android.minifyRelease = true;
+
+            // ASTC is several times smaller in memory than ETC2 for the large sprites
+            // (and ETC2 leaves sprites whose size is not a multiple of 4 uncompressed).
+            // ETC2 stays as the fallback: the App Bundle carries both and Play gives
+            // each phone the one its GPU supports.
+            PlayerSettings.Android.textureCompressionFormats =
+                new[] { TextureCompressionFormat.ASTC, TextureCompressionFormat.ETC2 };
+
+            // Unity 6 lets every plan hide the Unity logo screen; the game opens on its menu sooner.
+            PlayerSettings.SplashScreen.show = false;
 
             // Play requires ARM64. ARMv7 as well, because many budget phones run a 32-bit
             // Android and Play reports them as incompatible otherwise. The App Bundle
