@@ -130,6 +130,11 @@ namespace FootballRunner.SaveSystem
             {
                 data.pepiWelcomed = new List<string>();
             }
+
+            if (data.playDays == null)
+            {
+                data.playDays = new List<PlayDay>();
+            }
         }
 
         /// <summary>

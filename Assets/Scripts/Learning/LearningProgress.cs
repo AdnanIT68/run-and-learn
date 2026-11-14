@@ -401,6 +401,51 @@ namespace FootballRunner.Learning
             return count;
         }
 
+        /// <summary>
+        /// The words the child finds hardest in the language being learned, across all
+        /// worlds: missed and not yet caught right since (lowest box), most misses first.
+        /// </summary>
+        public static List<WordEntry> HardestWords(int count)
+        {
+            var found = new List<(WordEntry word, WordProgress progress)>();
+            var seen = new HashSet<string>();
+
+            foreach (string name in WordPack.PackOrder)
+            {
+                WordPack pack = WordPack.Load(name);
+
+                for (int i = 0; pack != null && i < pack.Words.Count; i++)
+                {
+                    WordEntry word = pack.Words[i];
+
+                    if (!seen.Add(word.id))
+                    {
+                        continue;
+                    }
+
+                    WordProgress progress = Spaced(Get(word.id));
+
+                    if (progress.missed > 0 && progress.box <= 1)
+                    {
+                        found.Add((word, progress));
+                    }
+                }
+            }
+
+            found.Sort((a, b) => a.progress.box != b.progress.box
+                ? a.progress.box.CompareTo(b.progress.box)
+                : b.progress.missed.CompareTo(a.progress.missed));
+
+            var result = new List<WordEntry>();
+
+            for (int i = 0; i < found.Count && result.Count < count; i++)
+            {
+                result.Add(found[i].word);
+            }
+
+            return result;
+        }
+
         public const int MaxBox = 4;
 
         /// <summary>How often a word in each box is asked, relative to the others.</summary>

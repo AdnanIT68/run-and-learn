@@ -34,6 +34,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>Worlds Pepi has already welcomed the child to, as "World1:bs".</summary>
         public List<string> pepiWelcomed = new List<string>();
 
+        /// <summary>Seconds of running per day, the last 14 days (parents' report, time limit).</summary>
+        public List<PlayDay> playDays = new List<PlayDay>();
+
         /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
         public string homeLanguage = "en";
 
@@ -100,6 +103,15 @@ namespace FootballRunner.SaveSystem
 
         /// <summary>False for records saved before boxes existed; their box is estimated once.</summary>
         public bool spaced;
+    }
+
+    /// <summary>Time spent running on one day.</summary>
+    [Serializable]
+    public class PlayDay
+    {
+        /// <summary>yyyy-MM-dd.</summary>
+        public string date;
+        public float seconds;
     }
 
     /// <summary>One level's best result in a world, for one learned language.</summary>

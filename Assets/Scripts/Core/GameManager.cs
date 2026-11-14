@@ -115,6 +115,7 @@ namespace FootballRunner.Core
             {
                 Instance = null;
                 Screen.sleepTimeout = SleepTimeout.SystemSetting;
+                Learning.PlayTime.Flush();
             }
         }
 
@@ -189,6 +190,7 @@ namespace FootballRunner.Core
             if (isPaused)
             {
                 PauseForInterruption();
+                Learning.PlayTime.Flush();
             }
         }
 
@@ -284,8 +286,18 @@ namespace FootballRunner.Core
             LoadSceneClean(MainMenuSceneName);
         }
 
+        private void Update()
+        {
+            // Only running counts as play time, not menus, pauses or result screens.
+            if (State == GameState.Playing)
+            {
+                Learning.PlayTime.Add(Time.unscaledDeltaTime);
+            }
+        }
+
         private void SetState(GameState newState)
         {
+            Learning.PlayTime.Flush();
             State = newState;
             Screen.sleepTimeout = KeepsScreenAwake(newState) ? SleepTimeout.NeverSleep : SleepTimeout.SystemSetting;
             StateChanged?.Invoke(newState);

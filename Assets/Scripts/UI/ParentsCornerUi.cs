@@ -47,6 +47,10 @@ namespace FootballRunner.UI
         private Image _latinButton;
         private TMP_Text _latinLabel;
         private TMP_Text _credits;
+        private TMP_Text _report;
+
+        /// <summary>The weekly report line: play time and the hardest words; for tests.</summary>
+        public string Report => _report != null ? _report.text : string.Empty;
         private TMP_FontAsset _font;
 
         public bool IsOpen => _panel != null && _panel.activeSelf;
@@ -249,6 +253,8 @@ namespace FootballRunner.UI
                 $"Learning: {LanguageName()}   ·   Words learned: {learned}   ·   Levels: {levels}/{worlds * 5}   ·   Stars: {stars}/{worlds * 15}",
                 $"Lernt: {LanguageName()}   ·   Gelernte Wörter: {learned}   ·   Level: {levels}/{worlds * 5}   ·   Sterne: {stars}/{worlds * 15}");
 
+            _report.text = ReportText();
+
             _columnHeads[0].text = LearningProgress.Ui("SVIJET", "WORLD", "WELT");
             _columnHeads[1].text = LearningProgress.Ui("RIJEČI", "WORDS", "WÖRTER");
             _columnHeads[2].text = LearningProgress.Ui("NIVOI", "LEVELS", "LEVEL");
@@ -285,6 +291,22 @@ namespace FootballRunner.UI
             return on
                 ? LearningProgress.Ui("UKLJUČEN", "ON", "AN")
                 : LearningProgress.Ui("ISKLJUČEN", "OFF", "AUS");
+        }
+
+        /// <summary>"Ove sedmice: 42 min  ·  Danas: 12 min  ·  Teške riječi: jabuka, limun".</summary>
+        private static string ReportText()
+        {
+            int week = PlayTime.Minutes(PlayTime.WeekSeconds);
+            int today = PlayTime.Minutes(PlayTime.TodaySeconds);
+            var hard = LearningProgress.HardestWords(4);
+            string words = hard.Count == 0
+                ? LearningProgress.Ui("nema", "none", "keine")
+                : string.Join(", ", hard.ConvertAll(w => w.Display(LearningProgress.Language)));
+
+            return LearningProgress.Ui(
+                $"Ove sedmice: {week} min   ·   Danas: {today} min   ·   Teške riječi: {words}",
+                $"This week: {week} min   ·   Today: {today} min   ·   Hard words: {words}",
+                $"Diese Woche: {week} Min.   ·   Heute: {today} Min.   ·   Schwere Wörter: {words}");
         }
 
         private static string LanguageName()
@@ -368,8 +390,10 @@ namespace FootballRunner.UI
             _corner.transform.SetParent(_panel.transform, false);
             Stretch(_corner.GetComponent<RectTransform>());
 
-            _summary = CreateText(_corner.transform, "Summary", "", new Vector2(0f, 345f), new Vector2(1700f, 60f), 38f,
+            _summary = CreateText(_corner.transform, "Summary", "", new Vector2(0f, 372f), new Vector2(1700f, 56f), 36f,
                 Color.white);
+            _report = CreateText(_corner.transform, "Report", "", new Vector2(0f, 318f), new Vector2(1700f, 46f), 30f,
+                new Color(1f, 0.9f, 0.45f, 1f));
 
             // Progress, world by world.
             Image progress = CreateCard(_corner.transform, "Progress", new Vector2(-290f, -70f), new Vector2(1160f, 700f));
