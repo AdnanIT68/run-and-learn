@@ -89,6 +89,11 @@ before shipping anything to the Play Store.
 (`Assets/Resources/Fonts/TitanOne-Regular.ttf`, licence text beside it). Used for the
 menu logo, buttons and chips.
 
+**Noto Sans Arabic** by the Noto Project Authors, SIL Open Font License 1.1
+(`Assets/Resources/Fonts/NotoSansArabic-Bold.ttf`, licence text beside it). A static Bold
+instance of the variable font, cut down to the Arabic letters; used as the fallback for
+Arabic words, which Titan One cannot draw.
+
 ## Menu art
 
 Sky, hills, clouds and the play arrow are drawn by `Tools/make_menu_art.py`. Menu icons

@@ -24,10 +24,58 @@ namespace FootballRunner.Utilities
                     {
                         _display = TMP_FontAsset.CreateFontAsset(font);
                         _display.name = "TitanOne (runtime)";
+                        AddArabicFallback(_display);
                     }
                 }
 
                 return _display;
+            }
+        }
+
+        private static TMP_FontAsset _arabic;
+
+        /// <summary>
+        /// Noto Sans Arabic Bold, built at runtime like Titan One. Titan One has no
+        /// Arabic letters, so TextMeshPro takes them from this font instead. The text
+        /// itself arrives already joined and right to left (WordEntry.Display).
+        /// </summary>
+        public static TMP_FontAsset Arabic
+        {
+            get
+            {
+                if (_arabic == null)
+                {
+                    var font = Resources.Load<Font>("Fonts/NotoSansArabic-Bold");
+
+                    if (font != null)
+                    {
+                        _arabic = TMP_FontAsset.CreateFontAsset(font);
+                        _arabic.name = "NotoSansArabic (runtime)";
+                    }
+                }
+
+                return _arabic;
+            }
+        }
+
+        /// <summary>Lets <paramref name="asset"/> draw Arabic letters it does not have itself.</summary>
+        public static void AddArabicFallback(TMP_FontAsset asset)
+        {
+            TMP_FontAsset arabic = Arabic;
+
+            if (asset == null || arabic == null || asset == arabic)
+            {
+                return;
+            }
+
+            if (asset.fallbackFontAssetTable == null)
+            {
+                asset.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+            }
+
+            if (!asset.fallbackFontAssetTable.Contains(arabic))
+            {
+                asset.fallbackFontAssetTable.Add(arabic);
             }
         }
 
