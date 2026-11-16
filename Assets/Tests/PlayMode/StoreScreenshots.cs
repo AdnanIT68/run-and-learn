@@ -291,6 +291,34 @@ namespace FootballRunner.Tests
             Object.Destroy(diploma);
         }
 
+        /// <summary>Look check on a 4:3 tablet: Store/raw/check/tablet_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureTablet()
+        {
+            const int tablet = 1440;
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+            LearningProgress.SelectPack("World1");
+            yield return LoadScene("Game");
+            yield return StartChallengeAndWait("World1", counting: false);
+            yield return Capture("check/tablet_game", tablet);
+
+            yield return LoadScene("MainMenu");
+            yield return Capture("check/tablet_menu", tablet);
+
+            WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
+            worlds.Open();
+            yield return null;
+            yield return Capture("check/tablet_worlds", tablet);
+            worlds.Close();
+
+            var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
+            corner.Open();
+            corner.PressAnswer(corner.GateAnswer);
+            yield return null;
+            yield return Capture("check/tablet_parents", tablet);
+            corner.Close();
+        }
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {
@@ -523,6 +551,8 @@ namespace FootballRunner.Tests
             // Batch mode starts with a 4:3 screen, so backgrounds were fitted to that.
             // Refit them to the 16:9 shot; a phone does this itself at start-up.
             camera.aspect = (float)width / Height;
+            camera.GetComponent<Gameplay.CameraFollow>()?.FitTo(camera.aspect);
+            camera.GetComponent<Gameplay.CameraFollow>()?.SendMessage("LateUpdate", SendMessageOptions.DontRequireReceiver);
             foreach (Gameplay.ParallaxLayer layer in
                      Object.FindObjectsByType<Gameplay.ParallaxLayer>(FindObjectsSortMode.None))
             {
@@ -542,6 +572,8 @@ namespace FootballRunner.Tests
             var layersBefore = new System.Collections.Generic.Dictionary<Canvas, int>();
             foreach (Canvas canvas in overlays)
             {
+                // The shot's shape decides the layout, as a phone or tablet screen would.
+                FootballRunner.UI.ScreenFit.FitCanvas(canvas.GetComponent<UnityEngine.UI.CanvasScaler>(), (float)width / Height);
                 layersBefore[canvas] = canvas.sortingLayerID;
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
                 canvas.worldCamera = camera;
