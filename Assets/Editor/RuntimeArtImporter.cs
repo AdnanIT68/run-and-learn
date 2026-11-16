@@ -17,7 +17,8 @@ namespace FootballRunner.EditorTools
             "Assets/Resources/Words/",
             "Assets/Resources/Worlds/",
             "Assets/Resources/Characters/",
-            "Assets/Resources/Story/"
+            "Assets/Resources/Story/",
+            "Assets/Resources/Tracing/"
         };
 
         private void OnPreprocessTexture()
@@ -75,7 +76,7 @@ namespace FootballRunner.EditorTools
         /// </summary>
         private void OnPreprocessAudio()
         {
-            if (!assetPath.StartsWith("Assets/Resources/Words/"))
+            if (!assetPath.StartsWith("Assets/Resources/Words/") && !assetPath.StartsWith("Assets/Resources/Tracing/"))
             {
                 return;
             }
@@ -94,7 +95,7 @@ namespace FootballRunner.EditorTools
         /// <summary>Raised whenever the rules above change, so Unity reimports the affected files.</summary>
         public override uint GetVersion()
         {
-            return 4;
+            return 5;
         }
 
         private static bool IsRuntimeArt(string path)
