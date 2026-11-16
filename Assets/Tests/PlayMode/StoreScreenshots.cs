@@ -222,6 +222,25 @@ namespace FootballRunner.Tests
             ui.TapLetter(ui.Build.Tiles.IndexOf(ui.Build.Letters[0]));
             yield return null;
             yield return Capture("check/mini_build");
+
+            // Half a letter traced, with the finger's orange strokes.
+            ui.Play(MiniGames.Kind.Trace);
+            bool[] mask = TracingLetters.MaskOf(ui.Trace.LetterId);
+            int grid = TracingLetters.Grid;
+            for (int y = 0; y < grid / 2; y++)
+            {
+                for (int x = 0; x < grid; x++)
+                {
+                    if (mask[y * grid + x])
+                    {
+                        ui.TraceAt(new Vector2((x + 0.5f) / grid, 1f - (y + 0.5f) / grid));
+                        ui.Surface.Lift();
+                    }
+                }
+            }
+
+            yield return null;
+            yield return Capture("check/mini_trace");
             ui.Close();
         }
 

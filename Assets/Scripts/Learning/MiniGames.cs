@@ -18,7 +18,8 @@ namespace FootballRunner.Learning
         {
             Memory,
             Hear,
-            Build
+            Build,
+            Trace
         }
 
         /// <summary>Spelling a word letter by letter needs separate letters; joined Arabic letters change shape.</summary>

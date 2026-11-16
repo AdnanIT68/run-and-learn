@@ -94,21 +94,25 @@ namespace FootballRunner.Learning
             _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
 
             string language = LearningProgress.Language;
-            AddChoice(MiniGames.Kind.Memory, LearningProgress.Ui("PAROVI", "PAIRS", "PAARE"), "album",
-                new Vector2(-480f, 0f));
-            AddChoice(MiniGames.Kind.Hear, LearningProgress.Ui("ŠTA ČUJEŠ?", "WHAT DO YOU HEAR?", "WAS HÖRST DU?"),
-                "speaker", new Vector2(0f, 0f));
-
-            if (MiniGames.IsAvailable(MiniGames.Kind.Build, language))
+            var choices = new List<(MiniGames.Kind kind, string label, string icon)>
             {
-                AddChoice(MiniGames.Kind.Build, LearningProgress.Ui("SLOŽI RIJEČ", "BUILD THE WORD", "BAU DAS WORT"),
-                    "star", new Vector2(480f, 0f));
+                (MiniGames.Kind.Memory, LearningProgress.Ui("PAROVI", "PAIRS", "PAARE"), "album"),
+                (MiniGames.Kind.Hear, LearningProgress.Ui("ŠTA ČUJEŠ?", "WHAT DO YOU HEAR?", "WAS HÖRST DU?"), "speaker"),
+                (MiniGames.Kind.Build, LearningProgress.Ui("SLOŽI RIJEČ", "BUILD THE WORD", "BAU DAS WORT"), "star"),
+                (MiniGames.Kind.Trace, LearningProgress.Ui("PIŠI SLOVO", "WRITE A LETTER", "SCHREIB EINEN BUCHSTABEN"), "tap")
+            };
+            choices.RemoveAll(c => !MiniGames.IsAvailable(c.kind, language));
+
+            for (int i = 0; i < choices.Count; i++)
+            {
+                float x = (i - (choices.Count - 1) * 0.5f) * 420f;
+                AddChoice(choices[i].kind, choices[i].label, choices[i].icon, new Vector2(x, 0f));
             }
         }
 
         private void AddChoice(MiniGames.Kind kind, string label, string icon, Vector2 position)
         {
-            Image button = Box(_content, "Choose" + kind, position, new Vector2(400f, 400f), CardFace);
+            Image button = Box(_content, "Choose" + kind, position, new Vector2(380f, 400f), CardFace);
             button.gameObject.AddComponent<Button>().onClick.AddListener(() => Play(kind));
             Picture(button.transform, WordPack.Icon(icon), new Vector2(0f, 50f), 200f);
             Text(button.transform, label, new Vector2(0f, -130f), new Vector2(370f, 90f), 42f, Ink);
@@ -130,6 +134,12 @@ namespace FootballRunner.Learning
                     Hear = new HearGame(MiniGames.PickWords(_pack, Mathf.Min(6, _pack.Words.Count)));
                     ShowHear();
                     SayTarget();
+                    break;
+                case MiniGames.Kind.Trace:
+                    _traceLetters = TracingLetters.ForWorld(_pack, LearningProgress.Language);
+                    _traceIndex = 0;
+                    TracedLetters = 0;
+                    StartLetter();
                     break;
                 default:
                     string language = LearningProgress.Language;
@@ -359,6 +369,109 @@ namespace FootballRunner.Learning
             }
 
             return true;
+        }
+
+        // ------------------------------------------------------------ Piši slovo
+
+        /// <summary>Letters to trace in one game.</summary>
+        public const int LettersPerGame = 3;
+
+        private List<TracingLetters.Letter> _traceLetters;
+        private int _traceIndex;
+        private TracingSurface _surface;
+        private bool _letterDone;
+
+        public TracingGame Trace { get; private set; }
+
+        /// <summary>Letters finished in the current tracing game; for tests.</summary>
+        public int TracedLetters { get; private set; }
+
+        public TracingSurface Surface => _surface;
+
+        private void StartLetter()
+        {
+            TracingLetters.Letter letter = _traceLetters[_traceIndex % _traceLetters.Count];
+            Trace = new TracingGame(letter.id, TracingLetters.MaskOf(letter.id), TracingLetters.Grid);
+            _letterDone = false;
+
+            Clear();
+            _title.text = LearningProgress.Ui("PIŠI SLOVO", "WRITE A LETTER", "SCHREIB EINEN BUCHSTABEN");
+            _status.text = LearningProgress.Ui("Prstom pređi preko slova!", "Trace the letter with your finger!",
+                "Fahre den Buchstaben mit dem Finger nach!") + $"   {TracedLetters + 1} / {LettersPerGame}";
+
+            Image board = Box(_content, "Board", new Vector2(0f, -40f), new Vector2(660f, 660f), CardFace);
+            Picture(board.transform, TracingLetters.Guide(letter.id), Vector2.zero, 620f);
+            _surface = TracingSurface.Create(board.transform, Vector2.zero, 620f);
+            _surface.Touched += OnTraced;
+
+            Image speaker = Box(_content, "Speaker", new Vector2(-560f, -40f), new Vector2(200f, 200f), CardFace);
+            speaker.gameObject.AddComponent<Button>().onClick.AddListener(SayLetter);
+            Picture(speaker.transform, WordPack.Icon("speaker"), Vector2.zero, 150f);
+
+            Image wipe = Box(_content, "Wipe", new Vector2(560f, -40f), new Vector2(240f, 110f), new Color(0.55f, 0.58f, 0.62f, 1f));
+            wipe.gameObject.AddComponent<Button>().onClick.AddListener(WipeLetter);
+            Text(wipe.transform, LearningProgress.Ui("OBRIŠI", "CLEAR", "LÖSCHEN"), Vector2.zero, new Vector2(220f, 90f), 40f,
+                Color.white);
+
+            SayLetter();
+        }
+
+        private void SayLetter()
+        {
+            if (Trace != null)
+            {
+                AudioManager.Instance?.PlayVoice(TracingLetters.Voice(LearningProgress.Language, Trace.LetterId));
+            }
+        }
+
+        private void WipeLetter()
+        {
+            AudioManager.Instance?.PlayButton();
+            Trace.Clear();
+            _surface.Wipe();
+        }
+
+        /// <summary>The finger passing over a point of the letter (0..1, y up); tests call it too.</summary>
+        public void TraceAt(Vector2 point)
+        {
+            _surface.DrawAt(point);
+        }
+
+        private void OnTraced(Vector2 point)
+        {
+            if (_letterDone)
+            {
+                return;
+            }
+
+            Trace.Touch(point);
+
+            if (Trace.IsDone)
+            {
+                _letterDone = true;
+                TracedLetters++;
+                StartCoroutine(LetterDone());
+            }
+        }
+
+        private IEnumerator LetterDone()
+        {
+            // Pepi praises, then the letter is said once more.
+            AudioClip praise = PepiVoice.Line(Random.value < 0.5f ? "pepi_praise_1" : "pepi_praise_2");
+            AudioManager.Instance?.PlayVoice(praise);
+            yield return new WaitForSecondsRealtime(praise != null ? praise.length + 0.2f : 0.8f);
+            SayLetter();
+            yield return new WaitForSecondsRealtime(1.2f);
+
+            if (TracedLetters >= LettersPerGame)
+            {
+                Win();
+            }
+            else
+            {
+                _traceIndex++;
+                StartLetter();
+            }
         }
 
         // ------------------------------------------------------------ end
