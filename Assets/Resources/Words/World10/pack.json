@@ -1,0 +1,163 @@
+{
+  "pack": "World10",
+  "title_bs": "Boje i oblici",
+  "title_en": "Colours and Shapes",
+  "title_de": "Farben und Formen",
+  "words": [
+    {
+      "id": "red",
+      "bs": "crvena",
+      "en": "red",
+      "de": "rot",
+      "ar": "أَحْمَر",
+      "ar_shown": "ﺮَﻤْﺣَﺃ",
+      "ar_latin": "ahmar"
+    },
+    {
+      "id": "blue",
+      "bs": "plava",
+      "en": "blue",
+      "de": "blau",
+      "ar": "أَزْرَق",
+      "ar_shown": "ﻕَﺭْﺯَﺃ",
+      "ar_latin": "azrak"
+    },
+    {
+      "id": "yellow",
+      "bs": "žuta",
+      "en": "yellow",
+      "de": "gelb",
+      "ar": "أَصْفَر",
+      "ar_shown": "ﺮَﻔْﺻَﺃ",
+      "ar_latin": "asfar"
+    },
+    {
+      "id": "green",
+      "bs": "zelena",
+      "en": "green",
+      "de": "grün",
+      "ar": "أَخْضَر",
+      "ar_shown": "ﺮَﻀْﺧَﺃ",
+      "ar_latin": "ahdar"
+    },
+    {
+      "id": "orange",
+      "bs": "narandžasta",
+      "en": "orange",
+      "de": "orange",
+      "ar": "بُرْتُقَالِيّ",
+      "ar_shown": "ّﻲِﻟﺎَﻘُﺗْﺮُﺑ",
+      "ar_latin": "burtukâlî"
+    },
+    {
+      "id": "purple",
+      "bs": "ljubičasta",
+      "en": "purple",
+      "de": "lila",
+      "ar": "بَنَفْسَجِيّ",
+      "ar_shown": "ّﻲِﺠَﺴْﻔَﻨَﺑ",
+      "ar_latin": "banafsadžî"
+    },
+    {
+      "id": "circle",
+      "bs": "krug",
+      "en": "circle",
+      "de": "der Kreis",
+      "ar": "دَائِرَة",
+      "ar_shown": "ﺓَﺮِﺋﺍَﺩ",
+      "ar_latin": "dâ'ira"
+    },
+    {
+      "id": "square",
+      "bs": "kvadrat",
+      "en": "square",
+      "de": "das Quadrat",
+      "ar": "مُرَبَّع",
+      "ar_shown": "ﻊَّﺑَﺮُﻣ",
+      "ar_latin": "murabba'"
+    },
+    {
+      "id": "triangle",
+      "bs": "trougao",
+      "en": "triangle",
+      "de": "das Dreieck",
+      "ar": "مُثَلَّث",
+      "ar_shown": "ﺚَّﻠَﺜُﻣ",
+      "ar_latin": "musallas"
+    },
+    {
+      "id": "heart",
+      "bs": "srce",
+      "en": "heart",
+      "de": "das Herz",
+      "ar": "قَلْب",
+      "ar_shown": "ﺐْﻠَﻗ",
+      "ar_latin": "kalb"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!",
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Râ'i'!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!",
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahîh!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!",
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtâz!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!",
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Râ'i'! Tamma-l-hadaf!"
+    }
+  ],
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
+}

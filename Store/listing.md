@@ -42,7 +42,7 @@ What's inside:
 • Winter Mountain: short sentences such as It is snowing.
 • School: letters, numbers from one to ten, and first reading.
 • Night Sky, the finale: stars, moon and rockets, plus a review of everything learned in every world.
-• Kind Words, a bonus world open from the start: selam, thank you, here you are, sorry, bismillah and mashallah.
+• Two bonus worlds open from the start: Kind Words (selam, thank you, here you are, sorry, bismillah, mashallah) and Colours and Shapes.
 • A team of thirteen young footballers to play as: Rukajja, Emir and Amina from the start, ten more to unlock with the coins you collect.
 • A daily gift and three small tasks every day, such as Catch 8 words, with coins shown in advance. Missing a day never takes anything away.
 • Pepi the parrot flies along, cheers after three right answers in a row, warns before a tricky word and welcomes you to every world.
@@ -98,7 +98,7 @@ Run and Learn je nježna trkačka igra za djecu od 4 do 10 godina. Glas izgovori
 • Planina zimi: kratke rečenice poput Pada snijeg.
 • Škola: slova, brojevi od jedan do deset i prvo čitanje.
 • Noćno nebo, finale: zvijezde, mjesec i rakete, uz ponavljanje svega naučenog u svim svjetovima.
-• Lijepe riječi, bonus svijet otvoren od početka: selam, hvala, izvoli, oprosti, bismillah i mašallah.
+• Dva bonus svijeta otvorena od početka: Lijepe riječi (selam, hvala, izvoli, oprosti, bismillah, mašallah) i Boje i oblici.
 • Ekipa od trinaest malih fudbalera: Rukajja, Emir i Amina odmah, još deset se otključava skupljenim novčićima.
 • Dnevni poklon i tri mala zadatka svaki dan, npr. Uhvati 8 riječi, s unaprijed poznatim novčićima. Propušten dan ništa ne oduzima.
 • Papagaj Pepi leti uz Rukajju, pohvali tri tačna odgovora zaredom, upozori na tešku riječ i poželi dobrodošlicu u svaki svijet.
@@ -154,7 +154,7 @@ Das steckt drin:
 • Winterberg: kurze Sätze wie Es schneit.
 • Schule: Buchstaben, Zahlen von eins bis zehn und erstes Lesen.
 • Nachthimmel, das Finale: Sterne, Mond und Raketen, dazu eine Wiederholung von allem, was in allen Welten gelernt wurde.
-• Freundliche Worte, eine Bonuswelt von Anfang an: Selam, danke, bitte schön, Entschuldigung, Bismillah und Maschallah.
+• Zwei Bonuswelten von Anfang an: Freundliche Worte (Selam, danke, bitte schön, Entschuldigung, Bismillah, Maschallah) und Farben und Formen.
 • Ein Team aus dreizehn jungen Fußballern: Rukajja, Emir und Amina von Anfang an, zehn weitere mit gesammelten Münzen freischalten.
 • Ein tägliches Geschenk und drei kleine Aufgaben pro Tag, z. B. Fang 8 Wörter, mit vorher sichtbaren Münzen. Ein verpasster Tag nimmt nichts weg.
 • Papagei Pepi fliegt mit, lobt drei richtige Antworten hintereinander, warnt vor schweren Wörtern und begrüßt dich in jeder Welt.

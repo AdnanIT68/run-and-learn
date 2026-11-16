@@ -49,7 +49,7 @@ def main() -> None:
     total = 0
     seen_phrases = set()
 
-    for pack_file in sorted((ROOT / "Tools").glob("words_world*.json")):
+    for pack_file in sorted((ROOT / "Tools").glob("words_world*.json"), key=lambda f: int(f.stem.replace("words_world", ""))):
         pack = json.loads(pack_file.read_text(encoding="utf-8"))
         lines += [f"## {pack['pack']}: {pack['title_bs']}", "",
                   "| vrsta | id | bosanski | arapski | latinica | status |",

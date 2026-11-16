@@ -11,7 +11,7 @@ Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali
 
 Kad je unos provjeren, u `Tools/words_world*.json` promijeniti `ar_status` u „provjereno“
 i ponovo pokrenuti `Tools/.venv/Scripts/python.exe Tools/make_arabic_review.py`.
-Ukupno 156 unosa, od toga 156 čeka provjeru.
+Ukupno 166 unosa, od toga 166 čeka provjeru.
 
 
 ## World1: Nenina bašta
@@ -208,6 +208,21 @@ Ukupno 156 unosa, od toga 156 čeka provjeru.
 | riječ | `sorry` | oprosti | آسِف | âsif | za provjeru: muški rod (ženski: آسِفَة) |
 | riječ | `bismillah` | bismillah | بِسْمِ اللّٰه | bismillâh | za provjeru |
 | riječ | `mashallah` | mašallah | مَا شَاءَ اللّٰه | mâ šâ' allâh | za provjeru |
+
+## World10: Boje i oblici
+
+| vrsta | id | bosanski | arapski | latinica | status |
+|---|---|---|---|---|---|
+| riječ | `red` | crvena | أَحْمَر | ahmar | za provjeru |
+| riječ | `blue` | plava | أَزْرَق | azrak | za provjeru |
+| riječ | `yellow` | žuta | أَصْفَر | asfar | za provjeru |
+| riječ | `green` | zelena | أَخْضَر | ahdar | za provjeru |
+| riječ | `orange` | narandžasta | بُرْتُقَالِيّ | burtukâlî | za provjeru |
+| riječ | `purple` | ljubičasta | بَنَفْسَجِيّ | banafsadžî | za provjeru |
+| riječ | `circle` | krug | دَائِرَة | dâ'ira | za provjeru |
+| riječ | `square` | kvadrat | مُرَبَّع | murabba' | za provjeru |
+| riječ | `triangle` | trougao | مُثَلَّث | musallas | za provjeru |
+| riječ | `heart` | srce | قَلْب | kalb | za provjeru |
 
 ## Slova u svijetu 7 (imena slova, glas izgovara ime)
 

@@ -160,6 +160,52 @@ def render_picture(code: str, target: Path) -> None:
     target.write_bytes(bytes(png))
 
 
+def render_drawn(spec: str, target: Path) -> None:
+    """Pictures drawn here instead of Twemoji, where emoji would be ambiguous:
+    "colour:#e53935" is a paint splash in that colour (not a circle or a square, so it
+    never looks like a shape), "shape:circle|square|triangle|heart" a grey shape."""
+    if target.exists():
+        return
+
+    import math
+
+    image = Image.new("RGBA", (PICTURE_SIZE, PICTURE_SIZE), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(image)
+    c = PICTURE_SIZE / 2
+    kind, value = spec.split(":", 1)
+
+    if kind == "colour":
+        colour = tuple(int(value[i:i + 2], 16) for i in (1, 3, 5)) + (255,)
+        # A wobbly splash with a few drops around it.
+        points = []
+        for k in range(48):
+            a = 2 * math.pi * k / 48
+            r = 92 + 14 * math.sin(5 * a) + 8 * math.sin(3 * a + 1.3)
+            points.append((c + r * math.cos(a), c + r * math.sin(a)))
+        draw.polygon(points, fill=colour, outline=(60, 60, 70, 255), width=6)
+        for dx, dy, r in ((-104, -86, 14), (100, 92, 12), (96, -98, 9)):
+            draw.ellipse((c + dx - r, c + dy - r, c + dx + r, c + dy + r), fill=colour, outline=(60, 60, 70, 255), width=4)
+    else:
+        fill, line, w = (215, 220, 228, 255), (70, 76, 92, 255), 10
+        if value == "circle":
+            draw.ellipse((40, 40, 216, 216), fill=fill, outline=line, width=w)
+        elif value == "square":
+            draw.rectangle((48, 48, 208, 208), fill=fill, outline=line, width=w)
+        elif value == "triangle":
+            draw.polygon([(128, 34), (224, 210), (32, 210)], fill=fill, outline=line, width=w)
+        elif value == "heart":
+            points = []
+            for k in range(120):
+                t = 2 * math.pi * k / 120
+                x = 16 * math.sin(t) ** 3
+                y = 13 * math.cos(t) - 5 * math.cos(2 * t) - 2 * math.cos(3 * t) - math.cos(4 * t)
+                points.append((c + x * 5.6, c - y * 5.6 - 6))
+            # Outline as a smooth closed line: a wide polygon outline leaves spikes at the notch and tip.
+            draw.polygon(points, fill=fill)
+            draw.line(points + points[:2], fill=line, width=w, joint="curve")
+    image.save(target)
+
+
 def render_digit(n: int, target: Path) -> None:
     """A big, friendly numeral in the game's display font, for number bubbles."""
     if target.exists():
@@ -295,7 +341,10 @@ async def main(pack_file: Path) -> None:
         (out / "Audio" / lang).mkdir(parents=True, exist_ok=True)
 
     for word in pack["words"]:
-        render_picture(word["emoji"], pictures / f"{word['id']}.png")
+        if "draw" in word:
+            render_drawn(word["draw"], pictures / f"{word['id']}.png")
+        else:
+            render_picture(word["emoji"], pictures / f"{word['id']}.png")
 
     icons = ROOT / "Assets" / "Resources" / "Words" / "Icons"
     icons.mkdir(parents=True, exist_ok=True)

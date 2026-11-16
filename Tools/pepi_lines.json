@@ -33,6 +33,9 @@
     { "id": "story_outro_World8", "bs": "Brbljavka je uhvaćena! Vratila je sve riječi sa noćnog neba.", "en": "Brbljavka is caught! She gave back all the words from the night sky.", "de": "Brbljavka ist gefangen! Sie hat alle Wörter vom Nachthimmel zurückgegeben." },
     { "id": "pepi_world_World9", "bs": "Dobro došli u svijet lijepih riječi!", "en": "Welcome to the world of kind words!", "de": "Willkommen in der Welt der freundlichen Worte!" },
     { "id": "story_intro_World9", "bs": "Svraka Brbljavka je ukrala lijepe riječi! Pomozi Rukajji da ih vrati!", "en": "Brbljavka the magpie stole the kind words! Help Rukajja bring them back!", "de": "Die Elster Brbljavka hat die freundlichen Worte gestohlen! Hilf Rukajja, sie zurückzuholen!" },
-    { "id": "story_outro_World9", "bs": "Brbljavka je uhvaćena! Vratila je sve lijepe riječi.", "en": "Brbljavka is caught! She gave back all the kind words.", "de": "Brbljavka ist gefangen! Sie hat alle freundlichen Worte zurückgegeben." }
+    { "id": "story_outro_World9", "bs": "Brbljavka je uhvaćena! Vratila je sve lijepe riječi.", "en": "Brbljavka is caught! She gave back all the kind words.", "de": "Brbljavka ist gefangen! Sie hat alle freundlichen Worte zurückgegeben." },
+    { "id": "pepi_world_World10", "bs": "Dobro došli u svijet boja i oblika!", "en": "Welcome to the world of colours and shapes!", "de": "Willkommen in der Welt der Farben und Formen!" },
+    { "id": "story_intro_World10", "bs": "Svraka Brbljavka je ukrala boje i oblike! Pomozi Rukajji da ih vrati!", "en": "Brbljavka the magpie stole the colours and shapes! Help Rukajja bring them back!", "de": "Die Elster Brbljavka hat die Farben und Formen gestohlen! Hilf Rukajja, sie zurückzuholen!" },
+    { "id": "story_outro_World10", "bs": "Brbljavka je uhvaćena! Vratila je sve boje i oblike.", "en": "Brbljavka is caught! She gave back all the colours and shapes.", "de": "Brbljavka ist gefangen! Sie hat alle Farben und Formen zurückgegeben." }
   ]
 }

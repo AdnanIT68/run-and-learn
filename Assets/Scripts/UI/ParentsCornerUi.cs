@@ -457,7 +457,7 @@ namespace FootballRunner.UI
 
             for (int i = 0; i < WordPack.PackOrder.Length; i++)
             {
-                float y = 235f - i * 64f;
+                float y = 240f - i * 60f;
                 var row = new TMP_Text[columns.Length];
 
                 for (int c = 0; c < columns.Length; c++)

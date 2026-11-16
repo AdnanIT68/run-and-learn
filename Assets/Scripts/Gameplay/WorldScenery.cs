@@ -14,10 +14,18 @@ namespace FootballRunner.Gameplay
     {
         private const string Root = "Worlds/";
 
-        /// <summary>Whose scenery a world uses: its own, or for Lijepe riječi the home of Naša kuća.</summary>
+        /// <summary>
+        /// Whose scenery a world uses: its own, or for the bonus worlds a borrowed one
+        /// (Lijepe riječi the home of Naša kuća, Boje i oblici the school).
+        /// </summary>
         public static string SceneryFor(string pack)
         {
-            return pack == WordPack.BonusPack ? "World3" : pack;
+            switch (pack)
+            {
+                case WordPack.BonusPack: return "World3";
+                case WordPack.ColoursPack: return "World7";
+                default: return pack;
+            }
         }
 
         private enum Weather

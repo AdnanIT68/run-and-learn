@@ -61,9 +61,9 @@ SHOTS = [
         "hr": "Skupljaj naljepnice, {osvoji igrače}",
         "de": "Sticker sammeln, {Spieler gewinnen}"}),
     ("05_worlds", "violet", "World8/Pictures/rocket.png", {
-        "en": "{9 worlds,} 45 levels",
-        "hr": "{9 svjetova,} 45 nivoa",
-        "de": "{9 Welten,} 45 Level"}),
+        "en": "{10 worlds,} 50 levels",
+        "hr": "{10 svjetova,} 50 nivoa",
+        "de": "{10 Welten,} 50 Level"}),
     ("06_command_bazaar", "coral", "World4/Pictures/mosque.png", {
         "en": "Listen and do it: {Jump! Stay down!}",
         "hr": "Slušaj i uradi: {Skoči! Ostani dolje!}",
