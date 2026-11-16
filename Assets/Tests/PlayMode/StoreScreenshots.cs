@@ -273,6 +273,24 @@ namespace FootballRunner.Tests
             shop.Close();
         }
 
+        /// <summary>Look check for a diploma: Store/raw/check/diploma_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureDiploma()
+        {
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+            for (int level = 0; level < LearningProgress.LevelsPerWorld; level++)
+            {
+                LearningProgress.RecordLevelComplete("World1", level, 3);
+            }
+
+            yield return LoadScene("MainMenu");
+            Texture2D diploma = Diplomas.Render("World1", "Amina");
+            string folder = Path.Combine(Application.dataPath, "..", "Store", "raw", "check");
+            Directory.CreateDirectory(folder);
+            File.WriteAllBytes(Path.Combine(folder, "diploma_World1.png"), diploma.EncodeToPNG());
+            Object.Destroy(diploma);
+        }
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {

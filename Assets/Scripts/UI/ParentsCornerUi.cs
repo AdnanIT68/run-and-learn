@@ -43,6 +43,8 @@ namespace FootballRunner.UI
         private Image _vibrationButton;
         private TMP_Text _vibrationLabel;
         private ProfilesUi _profiles;
+        private DiplomasUi _diplomas;
+        private TMP_Text _diplomasLabel;
         private TMP_Text _childrenLabel;
         private Image _limitButton;
         private TMP_Text _limitLabel;
@@ -130,6 +132,15 @@ namespace FootballRunner.UI
 
         /// <summary>The children on this phone; for the DJECA button and tests.</summary>
         public ProfilesUi Profiles => _profiles;
+
+        /// <summary>The child's diplomas; for the DIPLOME button and tests.</summary>
+        public DiplomasUi Diplomas => _diplomas;
+
+        public void OpenDiplomas()
+        {
+            AudioManager.Instance?.PlayButton();
+            _diplomas.Open();
+        }
 
         public void OpenProfiles()
         {
@@ -240,6 +251,8 @@ namespace FootballRunner.UI
         {
             _heading.text = LearningProgress.Ui("ZA RODITELJE", "FOR PARENTS", "FÜR ELTERN");
             // The button says who is playing under its title.
+            _diplomasLabel.text = LearningProgress.Ui("DIPLOME", "DIPLOMAS", "DIPLOME") +
+                                  $"  {Learning.Diplomas.Earned().Count}";
             _childrenLabel.text = LearningProgress.Ui("DJECA", "CHILDREN", "KINDER") +
                                   $"\n<size=55%>{ProfilesUi.DisplayName(ProfileStore.Active)}</size>";
             _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
@@ -378,6 +391,7 @@ namespace FootballRunner.UI
             BuildGate();
             BuildCorner();
             _profiles = ProfilesUi.Create(_panel.transform);
+            _diplomas = DiplomasUi.Create(_panel.transform);
             _profiles.SwitchedSinceOpen = false;
             _panel.SetActive(false);
         }
@@ -435,6 +449,9 @@ namespace FootballRunner.UI
             Image children = CreateButton(_corner.transform, "Children", new Vector2(760f, 445f), new Vector2(260f, 90f),
                 new Color(0.25f, 0.5f, 0.85f, 1f), OpenProfiles);
             _childrenLabel = CreateText(children.transform, "Label", "", Vector2.zero, new Vector2(240f, 84f), 36f, Color.white);
+            Image diplomas = CreateButton(_corner.transform, "Diplomas", new Vector2(480f, 445f), new Vector2(260f, 90f),
+                new Color(0.98f, 0.72f, 0.2f, 1f), OpenDiplomas);
+            _diplomasLabel = CreateText(diplomas.transform, "Label", "", Vector2.zero, new Vector2(240f, 80f), 36f, Color.white);
 
             _summary = CreateText(_corner.transform, "Summary", "", new Vector2(0f, 372f), new Vector2(1700f, 56f), 36f,
                 Color.white);
