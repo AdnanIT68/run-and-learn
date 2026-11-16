@@ -94,6 +94,17 @@ namespace FootballRunner.Tests
         }
 
         [Test]
+        public void TheMenuNamesAllFourLanguages()
+        {
+            StringAssert.Contains("Deutsch", MainMenuStyle.Subtitle);
+            StringAssert.Contains("ﺔﻴﺑﺮﻌﻟﺍ", MainMenuStyle.Subtitle, "العربية is missing.");
+            foreach (char c in "ﺔﻴﺑﺮﻌﻟﺍ")
+            {
+                Assert.IsTrue(GameFonts.Arabic.HasCharacter(c, false, true), $"The Arabic font cannot draw U+{(int)c:X4}.");
+            }
+        }
+
+        [Test]
         public void TheAlbumDrawsTheLatinLineLargerThanTheWordCard()
         {
             var word = new WordEntry { id = "apple", ar = "تُفَّاحَة", ar_shown = "x", ar_latin = "tuffâha" };

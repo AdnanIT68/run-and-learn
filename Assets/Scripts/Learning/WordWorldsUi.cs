@@ -21,8 +21,8 @@ namespace FootballRunner.Learning
         private const float NodeSize = 170f;
         private const float ColumnStep = 460f;
 
-        /// <summary>Distance between the first and the last stop of a row, so all stay on screen.</summary>
-        private const float MaxRowWidth = 1640f;
+        /// <summary>Distance between the first and the last stop of a row, so all stops and their titles stay on screen.</summary>
+        private const float MaxRowWidth = 1560f;
         private const float TopRowY = 260f;
         private const float BottomRowY = -40f;
         private const int DotsPerStep = 5;
