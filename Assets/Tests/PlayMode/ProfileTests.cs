@@ -154,6 +154,32 @@ namespace FootballRunner.Tests
         }
 
         [Test]
+        public void ALostProfileListBringsEveryChildBackAndNewChildrenStartFresh()
+        {
+            OldSaveWithCoins(10);
+            ChildProfile emir = ProfileStore.Add("Emir");
+            ProfileStore.Switch(emir.id);
+            SaveManager.Data.totalCoins = 40;
+            ProfileStore.Switch(ProfileStore.FirstId);
+
+            // The list is gone (the phone died while writing it); the saves are still there.
+            File.Delete(ProfileStore.IndexPath);
+            ProfileStore.ReloadIndex();
+            SaveManager.Reload();
+
+            Assert.AreEqual(2, ProfileStore.Profiles.Count, "A child's save is on the phone but not in the list.");
+            Assert.IsNotNull(ProfileStore.Find(emir.id));
+            Assert.AreEqual(10, SaveManager.Data.totalCoins);
+
+            ChildProfile hana = ProfileStore.Add("Hana");
+            Assert.AreNotEqual(emir.id, hana.id, "A new child got another child's save file.");
+            ProfileStore.Switch(hana.id);
+            Assert.AreEqual(0, SaveManager.Data.totalCoins);
+            ProfileStore.Switch(emir.id);
+            Assert.AreEqual(40, SaveManager.Data.totalCoins);
+        }
+
+        [Test]
         public void TheProfileListSurvivesARestart()
         {
             OldSaveWithCoins(0);

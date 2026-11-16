@@ -80,11 +80,14 @@ namespace FootballRunner.UI
         private void OnEnable()
         {
             CharacterRoster.Changed += OnRosterChanged;
+            // Buying in the wardrobe (opened on top of this screen) spends coins shown here.
+            Outfits.Changed += OnRosterChanged;
         }
 
         private void OnDisable()
         {
             CharacterRoster.Changed -= OnRosterChanged;
+            Outfits.Changed -= OnRosterChanged;
         }
 
         private void Start()

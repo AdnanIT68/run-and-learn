@@ -102,7 +102,16 @@ namespace FootballRunner.Learning
                     eventData.pressEventCamera, out Vector2 local))
             {
                 Rect r = _rect.rect;
-                DrawAt(new Vector2((local.x - r.xMin) / r.width, (local.y - r.yMin) / r.height));
+                var point = new Vector2((local.x - r.xMin) / r.width, (local.y - r.yMin) / r.height);
+
+                // A finger that slides off the board leaves no ink on its edge; coming back starts a new stroke.
+                if (point.x < 0f || point.x > 1f || point.y < 0f || point.y > 1f)
+                {
+                    _last = null;
+                    return;
+                }
+
+                DrawAt(point);
             }
         }
 

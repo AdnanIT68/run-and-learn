@@ -140,8 +140,15 @@ namespace FootballRunner.Tests
 
             ui.Play(MiniGames.Kind.Memory);
             Assert.AreEqual(8, ui.Memory.Cards.Count);
+
+            // A wrong pair, then the screen is closed: nothing may carry on behind it.
+            ui.OpenCard(0);
+            int wrong = ui.Memory.Cards.FindIndex(c => c.Word != ui.Memory.Cards[0].Word);
+            Assert.AreEqual(MemoryGame.Result.NoMatch, ui.OpenCard(wrong));
             ui.Close();
             Assert.IsFalse(ui.IsOpen);
+            yield return new WaitForSecondsRealtime(1.3f);
+            Assert.IsTrue(ui.Memory.WaitingToTurnBack, "The closed screen kept playing.");
         }
     }
 }

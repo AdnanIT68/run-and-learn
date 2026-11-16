@@ -52,11 +52,26 @@ namespace FootballRunner.Player
             LateUpdate();
         }
 
+        // The head of the last frame seen, so the lookup (and its string) is made only when the frame changes.
+        private Sprite _lastFrame;
+        private string _lastKid;
+        private bool _lastKnown;
+        private Outfits.Head _lastHead;
+
         private void LateUpdate()
         {
             Sprite frame = _runner.sprite;
-            string key = frame != null ? FrameKey(frame.name) : null;
-            bool known = key != null && Outfits.TryGetHead(key, out _);
+            string kid = CharacterRoster.SelectedId;
+
+            if (frame != _lastFrame || kid != _lastKid)
+            {
+                _lastFrame = frame;
+                _lastKid = kid;
+                _lastKnown = frame != null && Outfits.TryGetHead(FrameKey(frame.name, kid), out _lastHead);
+            }
+
+            bool known = _lastKnown;
+            Outfits.Head head = _lastHead;
 
             foreach (KeyValuePair<Outfits.Slot, SpriteRenderer> pair in _parts)
             {
@@ -69,7 +84,6 @@ namespace FootballRunner.Player
                     continue;
                 }
 
-                Outfits.TryGetHead(key, out Outfits.Head head);
                 Outfits.Place(pair.Key, head, out Vector2 centre, out float size);
 
                 Sprite picture = Outfits.Picture(item.Id);
@@ -94,7 +108,7 @@ namespace FootballRunner.Player
         }
 
         /// <summary>"Rukajja_Run_03" is Rukajja's own frame; other kids' frames are named "Run_03".</summary>
-        private static string FrameKey(string spriteName)
+        private static string FrameKey(string spriteName, string kid)
         {
             const string rukajja = "Rukajja_";
 
@@ -103,7 +117,7 @@ namespace FootballRunner.Player
                 return "rukajja/" + spriteName.Substring(rukajja.Length);
             }
 
-            return CharacterRoster.SelectedId + "/" + spriteName;
+            return kid + "/" + spriteName;
         }
     }
 }

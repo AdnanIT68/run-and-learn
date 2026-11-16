@@ -121,9 +121,18 @@ namespace FootballRunner.Player
             return item != null && Worn(item.Slot) == item;
         }
 
+        private static readonly Dictionary<string, Sprite> Pictures = new Dictionary<string, Sprite>();
+
+        /// <summary>The item's picture, loaded once (the runner asks for it every frame).</summary>
         public static Sprite Picture(string id)
         {
-            return Resources.Load<Sprite>("Outfits/" + id);
+            if (!Pictures.TryGetValue(id, out Sprite sprite) || sprite == null)
+            {
+                sprite = Resources.Load<Sprite>("Outfits/" + id);
+                Pictures[id] = sprite;
+            }
+
+            return sprite;
         }
 
         private static void SetWorn(Slot slot, string id)

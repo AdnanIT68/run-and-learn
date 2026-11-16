@@ -224,7 +224,7 @@ namespace FootballRunner.UI
             if (_editor != null)
             {
                 _editor.SetActive(_editing);
-                _saveLabel.text = LearningProgress.Ui("SPREMI", "SAVE", "SPEICHERN");
+                _saveLabel.text = LearningProgress.Ui("SAČUVAJ", "SAVE", "SPEICHERN");
                 _cancelLabel.text = LearningProgress.Ui("ODUSTANI", "CANCEL", "ABBRECHEN");
                 ((TMP_Text)_input.placeholder).text = LearningProgress.Ui("Ime djeteta", "Child's name", "Name des Kindes");
             }

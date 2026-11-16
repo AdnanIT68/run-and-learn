@@ -137,6 +137,9 @@ namespace FootballRunner.Learning
         /// needs no permission. Returns false where sharing is not possible (the editor,
         /// older Android); the picture stays saved in the game's folder.
         /// </summary>
+        /// <summary>The gallery copy made for each diploma file shared in this session.</summary>
+        private static readonly Dictionary<string, string> SharedCopies = new Dictionary<string, string>();
+
         public static bool Share(string path)
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -151,6 +154,24 @@ namespace FootballRunner.Learning
                 using var player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
                 using AndroidJavaObject activity = player.GetStatic<AndroidJavaObject>("currentActivity");
                 using AndroidJavaObject resolver = activity.Call<AndroidJavaObject>("getContentResolver");
+                using var uriClass = new AndroidJavaClass("android.net.Uri");
+
+                // Sharing the same diploma again replaces the copy in the gallery instead of adding another one.
+                if (SharedCopies.TryGetValue(path, out string earlier))
+                {
+                    try
+                    {
+                        using AndroidJavaObject old = uriClass.CallStatic<AndroidJavaObject>("parse", earlier);
+                        resolver.Call<int>("delete", old, null, null);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogWarning($"[Diplomas] Could not remove the earlier copy. {e.Message}");
+                    }
+
+                    SharedCopies.Remove(path);
+                }
+
                 using var media = new AndroidJavaClass("android.provider.MediaStore$Images$Media");
                 string uriText = media.CallStatic<string>("insertImage", resolver, path, Path.GetFileNameWithoutExtension(path),
                     "Run and Learn");
@@ -160,12 +181,14 @@ namespace FootballRunner.Learning
                     return false;
                 }
 
-                using var uriClass = new AndroidJavaClass("android.net.Uri");
+                SharedCopies[path] = uriText;
                 using AndroidJavaObject uri = uriClass.CallStatic<AndroidJavaObject>("parse", uriText);
                 using var intent = new AndroidJavaObject("android.content.Intent", "android.intent.action.SEND");
-                intent.Call<AndroidJavaObject>("setType", "image/png");
-                intent.Call<AndroidJavaObject>("putExtra", "android.intent.extra.STREAM", uri);
-                intent.Call<AndroidJavaObject>("addFlags", 1);
+                using (intent.Call<AndroidJavaObject>("setType", "image/png"))
+                using (intent.Call<AndroidJavaObject>("putExtra", "android.intent.extra.STREAM", uri))
+                using (intent.Call<AndroidJavaObject>("addFlags", 1))
+                {
+                }
                 using var chooserClass = new AndroidJavaClass("android.content.Intent");
                 using AndroidJavaObject chooser = chooserClass.CallStatic<AndroidJavaObject>("createChooser", intent, "Run and Learn");
                 activity.Call("startActivity", chooser);
@@ -195,7 +218,8 @@ namespace FootballRunner.Learning
             Label(canvas, LearningProgress.Ui("za završen svijet", "for finishing the world", "für die geschaffte Welt"),
                 new Vector2(0f, -20f), new Vector2(1100f, 60f), 46f, new Color(0.4f, 0.44f, 0.5f, 1f));
             Label(canvas, title, new Vector2(0f, -110f), new Vector2(1200f, 110f), 90f, new Color(0.27f, 0.6f, 0.3f, 1f));
-            Label(canvas, LearningProgress.Ui($"Zvjezdice: {stars} / 15", $"Stars: {stars} / 15", $"Sterne: {stars} / 15"),
+            int most = LearningProgress.LevelsPerWorld * 3;
+            Label(canvas, LearningProgress.Ui($"Zvjezdice: {stars} / {most}", $"Stars: {stars} / {most}", $"Sterne: {stars} / {most}"),
                 new Vector2(0f, -220f), new Vector2(900f, 70f), 52f, new Color(0.95f, 0.6f, 0.1f, 1f));
             Label(canvas, date, new Vector2(0f, -320f), new Vector2(700f, 60f), 42f, new Color(0.4f, 0.44f, 0.5f, 1f));
 

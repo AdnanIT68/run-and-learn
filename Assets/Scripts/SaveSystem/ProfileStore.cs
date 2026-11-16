@@ -99,6 +99,12 @@ namespace FootballRunner.SaveSystem
                 return null;
             }
 
+            // Never hand out an id whose save file is still on the phone: the new child would get that progress.
+            while (File.Exists(Path.Combine(Application.persistentDataPath, SaveFileName("p" + Index.nextNumber))))
+            {
+                Index.nextNumber++;
+            }
+
             var profile = new ChildProfile { id = "p" + Index.nextNumber, name = Clean(name) };
             Index.nextNumber++;
             Index.profiles.Add(profile);
@@ -236,9 +242,11 @@ namespace FootballRunner.SaveSystem
 
             if (loaded == null || loaded.profiles == null || loaded.profiles.Count == 0)
             {
-                // First start with profiles (or a broken list): the existing save is the first child.
+                // First start with profiles (or a lost list): the existing save is the first child,
+                // and any other child's save still on the phone comes back (without the name).
                 loaded = new ProfileIndex();
                 loaded.profiles.Add(new ChildProfile { id = FirstId });
+                RecoverChildren(loaded);
                 _index = loaded;
                 SaveIndex();
                 return;
@@ -252,19 +260,61 @@ namespace FootballRunner.SaveSystem
             _index = loaded;
         }
 
+        /// <summary>Adds the children whose save files exist (footballrunner.save.p3.json and so on).</summary>
+        private static void RecoverChildren(ProfileIndex index)
+        {
+            const string prefix = "footballrunner.save.p";
+            const string suffix = ".json";
+
+            try
+            {
+                var numbers = new List<int>();
+
+                foreach (string path in Directory.GetFiles(Application.persistentDataPath, prefix + "*" + suffix))
+                {
+                    string file = Path.GetFileName(path);
+                    string middle = file.Substring(prefix.Length, file.Length - prefix.Length - suffix.Length);
+
+                    if (int.TryParse(middle, out int number) && number > 1)
+                    {
+                        numbers.Add(number);
+                    }
+                }
+
+                numbers.Sort();
+
+                foreach (int number in numbers)
+                {
+                    if (index.profiles.Count < MaxProfiles)
+                    {
+                        index.profiles.Add(new ChildProfile { id = "p" + number });
+                    }
+
+                    index.nextNumber = Math.Max(index.nextNumber, number + 1);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[ProfileStore] Could not look for other children's saves. {e.Message}");
+            }
+        }
+
         private static void SaveIndex()
         {
             try
             {
+                // Written next to the list and swapped in, so the list is never missing (as in SaveManager).
                 string temp = IndexPath + ".tmp";
                 File.WriteAllText(temp, JsonUtility.ToJson(_index, true));
 
                 if (File.Exists(IndexPath))
                 {
-                    File.Delete(IndexPath);
+                    File.Replace(temp, IndexPath, null);
                 }
-
-                File.Move(temp, IndexPath);
+                else
+                {
+                    File.Move(temp, IndexPath);
+                }
             }
             catch (Exception e)
             {

@@ -79,6 +79,8 @@ namespace FootballRunner.Learning
         public void Close()
         {
             AudioManager.Instance?.PlayButton();
+            // Nothing may keep talking or building the next round once the screen is gone.
+            StopAllCoroutines();
             _panel.SetActive(false);
             Current = null;
         }
@@ -136,7 +138,9 @@ namespace FootballRunner.Learning
                     SayTarget();
                     break;
                 case MiniGames.Kind.Trace:
+                    // Mixed, so every game brings other letters of the world, not always the first three.
                     _traceLetters = TracingLetters.ForWorld(_pack, LearningProgress.Language);
+                    MiniGames.Shuffle(_traceLetters);
                     _traceIndex = 0;
                     TracedLetters = 0;
                     StartLetter();
