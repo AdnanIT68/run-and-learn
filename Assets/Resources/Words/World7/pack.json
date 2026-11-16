@@ -142,6 +142,15 @@
       "ar_latin": "Ikfiz!"
     },
     {
+      "id": "op_plus",
+      "bs": "plus",
+      "en": "plus",
+      "de": "plus",
+      "ar": "زَائِد",
+      "ar_shown": "ﺪِﺋﺍَﺯ",
+      "ar_latin": "zâ'id"
+    },
+    {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",

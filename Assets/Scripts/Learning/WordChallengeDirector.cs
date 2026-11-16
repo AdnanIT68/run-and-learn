@@ -55,6 +55,9 @@ namespace FootballRunner.Learning
         [Header("School")]
         [Range(0f, 1f)] [SerializeField] private float letterChance = 0.3f;
         [Range(0f, 1f)] [SerializeField] private float numberChance = 0.3f;
+
+        [Tooltip("Sums up to ten (2 + 3 = ?) in a world with the numbers one to ten, from level 2.")]
+        [Range(0f, 1f)] [SerializeField] private float sumChance = 0.25f;
         [Tooltip("Share of plain words shown silently, to be read.")]
         [Range(0f, 1f)] [SerializeField] private float readingChance = 0.4f;
 
@@ -275,6 +278,12 @@ namespace FootballRunner.Learning
         {
             if (_active && _target != null)
             {
+                if (CurrentKind == Kind.Sum)
+                {
+                    SaySum();
+                    return;
+                }
+
                 PlayVoice(_pack.Voice(LearningProgress.Language, _target.id));
             }
         }
@@ -306,6 +315,15 @@ namespace FootballRunner.Learning
             }
 
             _speakerTaps++;
+
+            if (CurrentKind == Kind.Sum)
+            {
+                // A sum is asked again as a sum; a slow copy would say the answer.
+                LastReplayWasSlow = false;
+                SaySum();
+                return;
+            }
+
             AudioClip slow = _speakerTaps % 2 == 0 ? _pack.SlowVoice(LearningProgress.Language, _target.id) : null;
             LastReplayWasSlow = slow != null;
             PlayVoice(slow != null ? slow : _pack.Voice(LearningProgress.Language, _target.id));
@@ -687,7 +705,10 @@ namespace FootballRunner.Learning
             Sentence,
             Letter,
             Number,
-            Reading
+            Reading,
+
+            /// <summary>"2 + 3 = ?": jump into the right number, sums up to ten.</summary>
+            Sum
         }
 
         /// <summary>The kind of the challenge on screen.</summary>
@@ -720,6 +741,7 @@ namespace FootballRunner.Learning
             if (_pack.Sizes.Count > 0 && Random.value < sizeChance * boost) return Kind.Size;
             if (_pack.Sentences.Count > 0 && Random.value < sentenceChance * boost) return Kind.Sentence;
             if (_pack.Letters.Count > 0 && Random.value < letterChance * boost) return Kind.Letter;
+            if (CanAskSums && Random.value < sumChance * boost) return Kind.Sum;
             if (_pack.Numbers.Count > 0 && Random.value < numberChance * boost) return Kind.Number;
             if (_pack.HasReading && Random.value < readingChance * boost) return Kind.Reading;
             return Kind.Word;
@@ -748,6 +770,7 @@ namespace FootballRunner.Learning
             bool guided = !SaveManager.Data.wordTutorialDone;
             Kind kind = PickKind(guided, forced);
             _spokenWord = null;
+            CurrentSum = (0, 0);
 
             switch (kind)
             {
@@ -773,6 +796,14 @@ namespace FootballRunner.Learning
                     break;
                 case Kind.Number:
                     ChooseFrom(_pack.Numbers);
+                    break;
+                case Kind.Sum:
+                    if (!ChooseSum())
+                    {
+                        kind = Kind.Word;
+                        ChooseWords();
+                    }
+
                     break;
                 default:
                     ChooseWords();
@@ -846,6 +877,10 @@ namespace FootballRunner.Learning
             {
                 PlayInSequence(intro, _pack.Voice(LearningProgress.Language, _target.id));
             }
+            else if (kind == Kind.Sum)
+            {
+                SaySum();
+            }
             else if (kind != Kind.Reading && PepiVoice.IsTroubleWord(_target.id))
             {
                 // A word the child keeps missing: Pepi warns first, then the word.
@@ -860,6 +895,96 @@ namespace FootballRunner.Learning
 
             ChallengeStarted?.Invoke(_target);
             return true;
+        }
+
+        // ------------------------------------------------------------ sums
+
+        /// <summary>The two numbers of the sum on screen, e.g. (2, 3); (0, 0) when no sum is asked.</summary>
+        public (int a, int b) CurrentSum { get; private set; }
+
+        /// <summary>Sums need the numbers one to ten (the school) and come from level 2.</summary>
+        public bool CanAskSums => _pack != null && !_pack.IsReview && _pack.Numbers.Count >= 10 && _level >= 1;
+
+        /// <summary>
+        /// "2 + 3 = ?": the card shows the sum, the voice says "dva plus tri", the bubbles
+        /// show numerals and the right one is the answer. False without the numbers.
+        /// </summary>
+        private bool ChooseSum()
+        {
+            int a = Random.Range(1, 10);
+            int b = Random.Range(1, 11 - a);
+            WordEntry answer = NumberEntry(a + b);
+
+            if (answer == null || NumberEntry(a) == null || NumberEntry(b) == null)
+            {
+                return false;
+            }
+
+            string question = $"{a} + {b} = ?";
+            CurrentSum = (a, b);
+            _target = new WordEntry
+            {
+                id = answer.id,
+                picture = answer.PictureId,
+                bs = question,
+                en = question,
+                de = question,
+                ar = question,
+                ar_shown = question
+            };
+            _spokenWord = answer;
+
+            // Wrong answers close to the right one, so counting matters.
+            var others = new List<WordEntry>();
+            for (int d = 1; d <= 9 && others.Count < 6; d++)
+            {
+                foreach (int n in new[] { a + b - d, a + b + d })
+                {
+                    WordEntry entry = n >= 1 && n <= 10 ? NumberEntry(n) : null;
+
+                    if (entry != null)
+                    {
+                        others.Add(entry);
+                    }
+                }
+            }
+
+            _options.Clear();
+            _options.Add(_target);
+
+            for (int i = 0; i < others.Count && _options.Count < OptionCount; i++)
+            {
+                _options.Add(others[i]);
+            }
+
+            for (int i = _options.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (_options[i], _options[j]) = (_options[j], _options[i]);
+            }
+
+            return true;
+        }
+
+        private WordEntry NumberEntry(int n)
+        {
+            foreach (WordEntry entry in _pack.Numbers)
+            {
+                if (entry.id == "num_" + n)
+                {
+                    return entry;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>"dva plus tri", from the number voices and the word plus.</summary>
+        private void SaySum()
+        {
+            string language = LearningProgress.Language;
+            PlayInSequence(_pack.Voice(language, "num_" + CurrentSum.a), _pack.Voice(language, "op_plus"),
+                _pack.Voice(language, "num_" + CurrentSum.b));
         }
 
         // Stand-ins for the wrong heights of a command challenge. They show the same
