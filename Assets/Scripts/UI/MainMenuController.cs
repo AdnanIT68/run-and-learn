@@ -387,7 +387,11 @@ namespace FootballRunner.UI
                     break;
             }
 
-            return $"{label}  ·  {learned}/{total}";
+            // With more than one child (or a named one), the chip says who is playing.
+            ChildProfile child = ProfileStore.Active;
+            bool showChild = ProfileStore.Profiles.Count > 1 || (child != null && !string.IsNullOrEmpty(child.name));
+            string who = showChild ? ProfilesUi.DisplayName(child).ToUpperInvariant() + "  ·  " : "";
+            return $"{who}{label}  ·  {learned}/{total}";
         }
 
         private static TMP_FontAsset ResolveFont()

@@ -42,6 +42,8 @@ namespace FootballRunner.UI
         private TMP_Text _soundLabel;
         private Image _vibrationButton;
         private TMP_Text _vibrationLabel;
+        private ProfilesUi _profiles;
+        private TMP_Text _childrenLabel;
         private Image _limitButton;
         private TMP_Text _limitLabel;
         private Image _easyButton;
@@ -117,6 +119,22 @@ namespace FootballRunner.UI
             {
                 _panel.SetActive(false);
             }
+
+            // Another child was chosen: reload the menu so coins, player and language are theirs.
+            if (_profiles != null && _profiles.SwitchedSinceOpen)
+            {
+                _profiles.SwitchedSinceOpen = false;
+                Core.GameManager.LoadSceneClean(Core.GameManager.MainMenuSceneName);
+            }
+        }
+
+        /// <summary>The children on this phone; for the DJECA button and tests.</summary>
+        public ProfilesUi Profiles => _profiles;
+
+        public void OpenProfiles()
+        {
+            AudioManager.Instance?.PlayButton();
+            _profiles.Open();
         }
 
         /// <summary>Same as tapping an answer on the gate. True when it opened the corner.</summary>
@@ -221,6 +239,9 @@ namespace FootballRunner.UI
         private void RefreshTexts()
         {
             _heading.text = LearningProgress.Ui("ZA RODITELJE", "FOR PARENTS", "FÜR ELTERN");
+            // The button says who is playing under its title.
+            _childrenLabel.text = LearningProgress.Ui("DJECA", "CHILDREN", "KINDER") +
+                                  $"\n<size=55%>{ProfilesUi.DisplayName(ProfileStore.Active)}</size>";
             _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
             _gateNote.text = LearningProgress.Ui("Ovaj dio je za roditelje.", "This part is for grown-ups.",
                 "Dieser Bereich ist für Eltern.");
@@ -356,6 +377,8 @@ namespace FootballRunner.UI
             BuildBackButton();
             BuildGate();
             BuildCorner();
+            _profiles = ProfilesUi.Create(_panel.transform);
+            _profiles.SwitchedSinceOpen = false;
             _panel.SetActive(false);
         }
 
@@ -407,6 +430,11 @@ namespace FootballRunner.UI
             _corner = new GameObject("Corner", typeof(RectTransform));
             _corner.transform.SetParent(_panel.transform, false);
             Stretch(_corner.GetComponent<RectTransform>());
+
+            // Who is playing, and the way to the children's list (top right).
+            Image children = CreateButton(_corner.transform, "Children", new Vector2(760f, 445f), new Vector2(260f, 90f),
+                new Color(0.25f, 0.5f, 0.85f, 1f), OpenProfiles);
+            _childrenLabel = CreateText(children.transform, "Label", "", Vector2.zero, new Vector2(240f, 84f), 36f, Color.white);
 
             _summary = CreateText(_corner.transform, "Summary", "", new Vector2(0f, 372f), new Vector2(1700f, 56f), 36f,
                 Color.white);

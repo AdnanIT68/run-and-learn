@@ -11,15 +11,22 @@ namespace FootballRunner.SaveSystem
     /// </summary>
     public static class SaveManager
     {
-        private const string FileName = "footballrunner.save.json";
-
         private static SaveData _data;
 
         /// <summary>True when the main file could not be read, so the next save must not rotate it into the backup.</summary>
         private static bool _mainFileBroken;
 
-        /// <summary>The save file itself.</summary>
-        public static string FilePath => Path.Combine(Application.persistentDataPath, FileName);
+        /// <summary>The active child's save file (the original file for the first child).</summary>
+        public static string FilePath =>
+            Path.Combine(Application.persistentDataPath, ProfileStore.SaveFileName(ProfileStore.ActiveId));
+
+        /// <summary>Drops the loaded save and reads the active child's file again.</summary>
+        public static void Reload()
+        {
+            _data = null;
+            _mainFileBroken = false;
+            Load();
+        }
 
         /// <summary>The previous good save, used when the main file is broken.</summary>
         public static string BackupPath => FilePath + ".bak";

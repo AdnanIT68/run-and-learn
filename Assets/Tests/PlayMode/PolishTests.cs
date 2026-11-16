@@ -54,7 +54,7 @@ namespace FootballRunner.Tests
 
             var album = Object.FindFirstObjectByType<WordAlbumUi>();
             album.Open();
-            TMPro.TMP_Text title = album.GetComponentsInChildren<TMPro.TMP_Text>(true).First(t => t.text.StartsWith("ALBUM  ·"));
+            TMPro.TMP_Text title = album.GetComponentsInChildren<TMPro.TMP_Text>(true).First(t => t.text != null && t.text.StartsWith("ALBUM  ·"));
             StringAssert.Contains("Nenina bašta", title.text);
             StringAssert.DoesNotContain("Grandma", title.text);
             album.Close();

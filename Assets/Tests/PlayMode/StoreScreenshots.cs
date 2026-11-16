@@ -167,6 +167,33 @@ namespace FootballRunner.Tests
             corner.Close();
         }
 
+        /// <summary>Look check for the children's list in the parents corner: Store/raw/check/profiles.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureProfiles()
+        {
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+            yield return LoadScene("MainMenu");
+            var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
+            corner.Open();
+            corner.PressAnswer(corner.GateAnswer);
+            yield return null;
+            yield return Capture("check/profiles_corner");
+
+            corner.OpenProfiles();
+            bool added = corner.Profiles.AddChild("Amina");
+            yield return null;
+            yield return Capture("check/profiles");
+
+            if (added)
+            {
+                FootballRunner.SaveSystem.ProfileStore.Remove(
+                    FootballRunner.SaveSystem.ProfileStore.Profiles[FootballRunner.SaveSystem.ProfileStore.Profiles.Count - 1].id);
+            }
+
+            corner.Profiles.Close();
+            corner.Close();
+        }
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {
