@@ -16,7 +16,9 @@ namespace FootballRunner.Tests
     /// never runs with the normal suite. Run in batch mode WITH graphics:
     /// Unity.exe -batchmode -projectPath . -runTests -testPlatform PlayMode
     ///   -testFilter FootballRunner.Tests.StoreScreenshots
-    /// Output: Store/raw/&lt;en|hr|de&gt;/*.png
+    /// Output: Store/raw/&lt;en|hr|de&gt;/*.png, eight shots per language for 1.3:
+    /// catch the word, Brbljavka's story, Arabic, sticker album, world map,
+    /// commands, parents corner and the main menu.
     /// </summary>
     [Explicit("Store screenshots; run on demand with graphics enabled.")]
     [Timeout(180000)]
@@ -178,71 +180,68 @@ namespace FootballRunner.Tests
         {
             SetProgress(learn, home);
 
-            // Catching a word in the garden.
+            // 01: catching a word in the garden.
             LearningProgress.SelectPack("World1");
             LearningProgress.SelectLevel(0);
             yield return LoadScene("Game");
             yield return StartChallengeAndWait("World1", counting: false);
             yield return Capture(folder + "/01_catch_the_word");
 
-            // A full goal row ends the level: stars, the words and the next step.
-            yield return FillGoal();
-            float waitedForEnd = 0f;
-            while (Core.GameManager.Instance.State != Core.GameState.LevelComplete && waitedForEnd < 5f)
-            {
-                waitedForEnd += Time.unscaledDeltaTime;
-                yield return null;
-            }
-
-            yield return new WaitForSecondsRealtime(1.6f);
-            yield return Capture(folder + "/06_level_complete");
-
-            // Counting on the farm.
+            // 02: Pepi tells Brbljavka's story on the first run in a world (the farm).
             SetProgress(learn, home);
+            SaveManager.Data.pepiWelcomed.RemoveAll(key => key.StartsWith("World2:"));
             LearningProgress.SelectPack("World2");
+            LearningProgress.SelectLevel(0);
             yield return LoadScene("Game");
-            yield return StartChallengeAndWait("World2", counting: true);
-            yield return Capture(folder + "/04_counting_farm");
+            yield return Capture(folder + "/02_story");
 
-            // Spoken commands at the bazaar.
+            // 03: Arabic, learned with Bosnian menus, with the Latin letters underneath.
+            SetProgress(LearningProgress.Arabic, LearningProgress.Bosnian);
+            LearningProgress.ShowTransliteration = true;
+            LearningProgress.SelectPack("World1");
+            yield return LoadScene("Game");
+            yield return StartChallengeAndWait("World1", counting: false, kind: WordChallengeDirector.Kind.Word);
+            yield return Capture(folder + "/03_arabic");
+
+            // 06: spoken commands at the bazaar.
+            SetProgress(learn, home);
             LearningProgress.SelectPack("World4");
             yield return LoadScene("Game");
             yield return StartChallengeAndWait("World4", counting: false, command: true);
-            yield return Capture(folder + "/05_command_bazaar");
+            yield return Capture(folder + "/06_command_bazaar");
 
-            // The menu and its screens.
+            // 08: the main menu.
             SetProgress(learn, home);
             yield return LoadScene("MainMenu");
             yield return Capture(folder + "/08_main_menu");
 
-            // The listing shows the whole team as it looks once bought, not rows of silhouettes.
-            foreach (var kid in FootballRunner.Player.CharacterRoster.All)
-            {
-                if (!FootballRunner.Player.CharacterRoster.IsUnlocked(kid.Id))
-                {
-                    SaveManager.Data.unlockedItems.Add("character_" + kid.Id);
-                }
-            }
-
-            var players = Object.FindFirstObjectByType<FootballRunner.UI.CharacterChooserUi>();
-            players.Open();
+            // 04: the sticker album with its gift line.
+            var album = Object.FindFirstObjectByType<WordAlbumUi>();
+            album.Open();
             yield return null;
-            yield return Capture(folder + "/02_players");
-            players.Close();
+            yield return Capture(folder + "/04_album");
+            album.Close();
 
+            // 05: the world map with all nine worlds.
             WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
             worlds.Open();
             yield return null;
-            yield return Capture(folder + "/03_worlds");
+            yield return Capture(folder + "/05_worlds");
             worlds.Close();
 
-            DailyRewards.Report(DailyRewards.Kind.CatchWords, 5);
-            DailyRewards.Report(DailyRewards.Kind.CollectCoins, 50);
-            var today = Object.FindFirstObjectByType<FootballRunner.UI.DailyUi>();
-            today.Open();
+            // 07: the parents corner with a daily limit, this week's time and the hardest words.
+            TimeLimit.Minutes = 20;
+            PlayTime.Add(12f * 60f);
+            LearningProgress.RecordMiss("lemon");
+            LearningProgress.RecordMiss("lemon");
+            LearningProgress.RecordMiss("cucumber");
+            var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
+            corner.Open();
+            corner.PressAnswer(corner.GateAnswer);
             yield return null;
-            yield return Capture(folder + "/07_today");
-            today.Close();
+            yield return Capture(folder + "/07_parents");
+            corner.Close();
+            TimeLimit.Minutes = 0;
         }
 
         /// <summary>A child some way in: three worlds open, a few levels and words done, coins saved.</summary>
@@ -280,6 +279,17 @@ namespace FootballRunner.Tests
             data.dailyGiftStep = 2;
             data.missionDate = "";
             data.missions.Clear();
+            data.stickerPages.Clear();
+            data.playDays.Clear();
+            data.dailyLimitMinutes = 0;
+            data.easyMode = false;
+
+            // Pepi has welcomed the child everywhere, so no story card covers the other shots.
+            data.pepiWelcomed.Clear();
+            foreach (string pack in WordPack.PackOrder)
+            {
+                data.pepiWelcomed.Add(pack + ":" + learn);
+            }
         }
 
         private static void Learn(WordPack pack, int count)

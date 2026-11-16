@@ -48,34 +48,34 @@ SHOTS = [
         "en": "Hear the word, {jump to the picture!}",
         "hr": "Čuj riječ i {skoči na pravu sliku!}",
         "de": "Wort hören, {ins richtige Bild springen!}"}),
-    ("02_players", "green", "World4/Pictures/ball.png", {
-        "en": "Pick your player: {a team of thirteen kids}",
-        "hr": "Izaberi igrača: {ekipa od trinaestero djece}",
-        "de": "Wähle deinen Spieler: {dreizehn Kinder}"}),
-    ("03_worlds", "violet", "World8/Pictures/rocket.png", {
-        "en": "{8 worlds,} 40 levels",
-        "hr": "{8 svjetova,} 40 nivoa",
-        "de": "{8 Welten,} 40 Level"}),
-    ("04_counting_farm", "teal", "World2/Pictures/cow.png", {
-        "en": "Count the animals {from one to five}",
-        "hr": "Broji životinje {od jedan do pet}",
-        "de": "Tiere zählen {von eins bis fünf}"}),
-    ("05_command_bazaar", "coral", "World4/Pictures/mosque.png", {
+    ("02_story", "green", "World2/Pictures/hen.png", {
+        "en": "Catch {Brbljavka the magpie!}",
+        "hr": "Uhvati {svraku Brbljavku!}",
+        "de": "Fang {die Elster Brbljavka!}"}),
+    ("03_arabic", "teal", "World9/Pictures/thanks.png", {
+        "en": "New: {Arabic words} with Latin letters",
+        "hr": "Novo: {arapske riječi} s latinicom",
+        "de": "Neu: {arabische Wörter} mit Umschrift"}),
+    ("04_album", "magenta", "World1/Pictures/strawberry.png", {
+        "en": "Collect stickers, {win new players}",
+        "hr": "Skupljaj naljepnice, {osvoji igrače}",
+        "de": "Sticker sammeln, {Spieler gewinnen}"}),
+    ("05_worlds", "violet", "World8/Pictures/rocket.png", {
+        "en": "{9 worlds,} 45 levels",
+        "hr": "{9 svjetova,} 45 nivoa",
+        "de": "{9 Welten,} 45 Level"}),
+    ("06_command_bazaar", "coral", "World4/Pictures/mosque.png", {
         "en": "Listen and do it: {Jump! Stay down!}",
         "hr": "Slušaj i uradi: {Skoči! Ostani dolje!}",
         "de": "Hören und tun: {Spring! Bleib unten!}"}),
-    ("06_level_complete", "magenta", "World8/Pictures/star_word.png", {
-        "en": "Finish the level, {collect your stars!}",
-        "hr": "Završi nivo i {skupi zvjezdice!}",
-        "de": "Level schaffen, {Sterne sammeln!}"}),
-    ("07_today", "navy", "World5/Pictures/rainbow.png", {
-        "en": "{A daily gift} and three small tasks",
-        "hr": "{Dnevni poklon} i tri mala zadatka",
-        "de": "{Tägliches Geschenk} und drei Aufgaben"}),
-    ("08_main_menu", "sky", "World3/Pictures/grandma.png", {
-        "en": "Learn {Bosnian, English or German}",
-        "hr": "Uči {bosanski, engleski ili njemački}",
-        "de": "Lerne {Bosnisch, Englisch oder Deutsch}"}),
+    ("07_parents", "navy", "World3/Pictures/grandma.png", {
+        "en": "{For parents:} time limit and weekly report",
+        "hr": "{Za roditelje:} ograničenje vremena i izvještaj",
+        "de": "{Für Eltern:} Zeitlimit und Wochenbericht"}),
+    ("08_main_menu", "sky", "World5/Pictures/rainbow.png", {
+        "en": "Learn {Bosnian, English, German or Arabic}",
+        "hr": "Uči {bosanski, engleski, njemački ili arapski}",
+        "de": "Lerne {Bosnisch, Englisch, Deutsch oder Arabisch}"}),
 ]
 
 
