@@ -9,9 +9,9 @@ pauzalnom obliku (bez padežnog nastavka na kraju). Latinica je prilagođena bos
 čitanju: dž = ج, š = ش, h = ح/خ/ه, ' = ع ili hamza, kapica (â, î, û) = dug samoglasnik.
 Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali se ne čuje.
 
-Kad je unos provjeren, u `Tools/words_world*.json` promijeniti `ar_status` u „provjereno“
-i ponovo pokrenuti `Tools/.venv/Scripts/python.exe Tools/make_arabic_review.py`.
-Ukupno 167 unosa, od toga 167 čeka provjeru.
+Za recenzenta: `Tools/make_arabic_review_page.py` pravi `Store/arabic-review.zip` (slika, tekst, glas);
+njegov fajl s rezultatima upisuje `Tools/apply_arabic_review.py`, koji ponovo piše i ovu listu.
+Ukupno 189 unosa, od toga 189 čeka provjeru.
 
 
 ## World1: Nenina bašta
@@ -225,14 +225,36 @@ Ukupno 167 unosa, od toga 167 čeka provjeru.
 | riječ | `triangle` | trougao | مُثَلَّث | musallas | za provjeru |
 | riječ | `heart` | srce | قَلْب | kalb | za provjeru |
 
-## Slova u svijetu 7 (imena slova, glas izgovara ime)
+## Imena slova (Škola i „Piši slovo“; glas kaže „slovo …“)
 
-| id | slovo | latinica | status |
-|---|---|---|---|
-| `letter_ar_jim` | ج | džîm | za provjeru |
-| `letter_ar_hha` | ح | hâ' | za provjeru |
-| `letter_ar_dal` | د | dâl | za provjeru |
-| `letter_ar_qaf` | ق | qâf | za provjeru |
-| `letter_ar_kaf` | ك | kâf | za provjeru |
-| `letter_ar_mim` | م | mîm | za provjeru |
+| id | slovo | izgovoreno | latinica | status |
+|---|---|---|---|---|
+| `ar_alif` | ا | حَرْفُ الْأَلِف | alif | za provjeru |
+| `ar_ba` | ب | حَرْفُ الْبَاء | bâ' | za provjeru |
+| `ar_ta` | ت | حَرْفُ التَّاء | tâ' | za provjeru |
+| `ar_tha` | ث | حَرْفُ الثَّاء | sâ' | za provjeru |
+| `ar_jim` | ج | حَرْفُ الْجِيم | džîm | za provjeru |
+| `ar_hha` | ح | حَرْفُ الْحَاء | hâ' | za provjeru |
+| `ar_kha` | خ | حَرْفُ الْخَاء | hâ' | za provjeru |
+| `ar_dal` | د | حَرْفُ الدَّال | dâl | za provjeru |
+| `ar_dhal` | ذ | حَرْفُ الذَّال | zâl | za provjeru |
+| `ar_ra` | ر | حَرْفُ الرَّاء | râ' | za provjeru |
+| `ar_zay` | ز | حَرْفُ الزَّاي | zâj | za provjeru |
+| `ar_sin` | س | حَرْفُ السِّين | sîn | za provjeru |
+| `ar_shin` | ش | حَرْفُ الشِّين | šîn | za provjeru |
+| `ar_sad` | ص | حَرْفُ الصَّاد | sâd | za provjeru |
+| `ar_dad` | ض | حَرْفُ الضَّاد | dâd | za provjeru |
+| `ar_tta` | ط | حَرْفُ الطَّاء | tâ' | za provjeru |
+| `ar_dha` | ظ | حَرْفُ الظَّاء | zâ' | za provjeru |
+| `ar_ayn` | ع | حَرْفُ الْعَيْن | 'ajn | za provjeru |
+| `ar_ghayn` | غ | حَرْفُ الْغَيْن | gajn | za provjeru |
+| `ar_fa` | ف | حَرْفُ الْفَاء | fâ' | za provjeru |
+| `ar_qaf` | ق | حَرْفُ الْقَاف | qâf | za provjeru |
+| `ar_kaf` | ك | حَرْفُ الْكَاف | kâf | za provjeru |
+| `ar_lam` | ل | حَرْفُ اللَّام | lâm | za provjeru |
+| `ar_mim` | م | حَرْفُ الْمِيم | mîm | za provjeru |
+| `ar_nun` | ن | حَرْفُ النُّون | nûn | za provjeru |
+| `ar_ha` | ه | حَرْفُ الْهَاء | hâ' | za provjeru |
+| `ar_waw` | و | حَرْفُ الْوَاو | vâv | za provjeru |
+| `ar_ya` | ي | حَرْفُ الْيَاء | jâ' | za provjeru |
 

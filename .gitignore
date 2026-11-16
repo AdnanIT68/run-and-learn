@@ -59,3 +59,7 @@ __pycache__/
 # Third-party art that may not be redistributed (Sunny Land by Ansimuz)
 /Assets/ThirdParty/
 /Assets/ThirdParty.meta
+
+# Arabic review package (built by Tools/make_arabic_review_page.py)
+/Store/arabic-review/
+/Store/arabic-review.zip

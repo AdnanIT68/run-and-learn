@@ -9,9 +9,11 @@ Usage:
 """
 
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "Tools"))
 SECTIONS = [
     ("words", "riječ"), ("counts", "brojanje"), ("commands", "komanda"), ("sizes", "veliko/malo"),
     ("sentences", "rečenica"), ("numbers", "broj"), ("phrases", "fraza"),
@@ -41,8 +43,8 @@ def main() -> None:
         "čitanju: dž = ج, š = ش, h = ح/خ/ه, ' = ع ili hamza, kapica (â, î, û) = dug samoglasnik.",
         "Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali se ne čuje.",
         "",
-        "Kad je unos provjeren, u `Tools/words_world*.json` promijeniti `ar_status` u „provjereno“",
-        "i ponovo pokrenuti `Tools/.venv/Scripts/python.exe Tools/make_arabic_review.py`.",
+        "Za recenzenta: `Tools/make_arabic_review_page.py` pravi `Store/arabic-review.zip` (slika, tekst, glas);",
+        "njegov fajl s rezultatima upisuje `Tools/apply_arabic_review.py`, koji ponovo piše i ovu listu.",
         "",
     ]
     pending = 0
@@ -68,17 +70,20 @@ def main() -> None:
                 lines.append(f"| {label} | `{key}` | {entry['bs']} | {entry['ar']} | {entry['ar_latin']} | {status} |")
         lines.append("")
 
-    # Letter names for World 7 come from the generator (ARABIC_LETTERS), not from the JSON.
-    school = json.loads((ROOT / "Assets" / "Resources" / "Words" / "World7" / "pack.json").read_text(encoding="utf-8"))
-    letters = [l for l in school.get("letters", []) if l.get("lang") == "ar"]
-    if letters:
-        lines += ["## Slova u svijetu 7 (imena slova, glas izgovara ime)", "",
-                  "| id | slovo | latinica | status |", "|---|---|---|---|"]
-        for letter in letters:
-            total += 1
-            pending += 1
-            lines.append(f"| `{letter['id']}` | {letter['letter']} | {letter['ar_latin']} | za provjeru |")
-        lines.append("")
+    # Letter names (the school world and "Piši slovo") come from the generator, not from the JSON;
+    # their review status is kept in Tools/arabic_letters_status.json (Tools/apply_arabic_review.py).
+    import generate_words as words
+    status_file = ROOT / "Tools" / "arabic_letters_status.json"
+    letter_status = json.loads(status_file.read_text(encoding="utf-8")) if status_file.exists() else {}
+    lines += ["## Imena slova (Škola i „Piši slovo“; glas kaže „slovo …“)", "",
+              "| id | slovo | izgovoreno | latinica | status |", "|---|---|---|---|---|"]
+    for letter, (name, latin) in words.ARABIC_LETTERS.items():
+        letter_id = "ar_" + words.ARABIC_LETTER_IDS[letter]
+        status = letter_status.get(f"letters/{letter_id}", "za provjeru")
+        total += 1
+        pending += status.startswith("za provjeru")
+        lines.append(f"| `{letter_id}` | {letter} | {words.arabic_letter_phrase(letter, name)} | {latin} | {status} |")
+    lines.append("")
 
     lines.insert(13, f"Ukupno {total} unosa, od toga {pending} čeka provjeru.")
     lines.insert(14, "")
