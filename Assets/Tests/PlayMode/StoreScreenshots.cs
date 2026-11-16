@@ -194,6 +194,37 @@ namespace FootballRunner.Tests
             corner.Close();
         }
 
+        /// <summary>Look check for the mini-games: Store/raw/check/mini_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureMiniGames()
+        {
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+            LearningProgress.SelectPack("World1");
+            yield return LoadScene("Game");
+            Object.FindFirstObjectByType<LevelResultUi>().OpenMiniGames();
+            MiniGameUi ui = MiniGameUi.Instance;
+            yield return null;
+            yield return Capture("check/mini_picker");
+
+            ui.Play(MiniGames.Kind.Memory);
+            ui.OpenCard(0);
+            int pair = ui.Memory.Cards.FindIndex(c => c != ui.Memory.Cards[0] && c.Word == ui.Memory.Cards[0].Word);
+            ui.OpenCard(pair);
+            ui.OpenCard(pair == 1 ? 2 : 1);
+            yield return null;
+            yield return Capture("check/mini_memory");
+
+            ui.Play(MiniGames.Kind.Hear);
+            yield return null;
+            yield return Capture("check/mini_hear");
+
+            ui.Play(MiniGames.Kind.Build);
+            ui.TapLetter(ui.Build.Tiles.IndexOf(ui.Build.Letters[0]));
+            yield return null;
+            yield return Capture("check/mini_build");
+            ui.Close();
+        }
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {

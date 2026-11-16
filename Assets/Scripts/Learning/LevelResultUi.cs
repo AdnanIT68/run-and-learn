@@ -131,6 +131,26 @@ namespace FootballRunner.Learning
                 .GetComponentInParent<Button>();
             _nextLabel = _next.GetComponentInChildren<TMP_Text>();
             _menuLabel = CreateButton(c, "Menu", new Vector2(370f, -310f), new Color(0.97f, 0.55f, 0.18f), Menu);
+
+            // Optional mini-games with this world's words, top right of the card.
+            _miniLabel = CreateButton(c, "MiniGames", new Vector2(430f, 330f), new Color(0.6f, 0.4f, 0.9f), OpenMiniGames);
+            _miniLabel.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(250f, 96f);
+            _miniLabel.rectTransform.sizeDelta = new Vector2(230f, 80f);
+            _miniLabel.fontSizeMax = 38f;
+        }
+
+        private TMP_Text _miniLabel;
+
+        /// <summary>Same as tapping MINI IGRE: the short games with this world's words.</summary>
+        public void OpenMiniGames()
+        {
+            AudioManager.Instance?.PlayButton();
+            WordChallengeDirector director = WordChallengeDirector.Instance;
+
+            if (director != null && director.Pack != null)
+            {
+                MiniGameUi.Instance?.Open(director.Pack);
+            }
         }
 
         private void Show()
@@ -160,6 +180,7 @@ namespace FootballRunner.Learning
             _againLabel.text = LearningProgress.Ui("PONOVO", "AGAIN", "NOCHMAL");
             _nextLabel.text = LearningProgress.Ui("DALJE", "NEXT", "WEITER");
             _menuLabel.text = LearningProgress.Ui("MENI", "MENU", "MENÜ");
+            _miniLabel.text = LearningProgress.Ui("MINI IGRE", "MINI GAMES", "MINISPIELE");
 
             _panel.SetActive(true);
             _panel.transform.SetAsLastSibling();

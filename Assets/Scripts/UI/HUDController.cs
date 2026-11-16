@@ -75,6 +75,7 @@ namespace FootballRunner.UI
             Learning.LevelResultUi.EnsureOnCanvas(transform);
             Learning.MissionToastUi.EnsureOnCanvas(transform);
             Learning.StoryCardUi.EnsureOnCanvas(transform);
+            Learning.MiniGameUi.EnsureOnCanvas(transform);
         }
 
         private void Start()
