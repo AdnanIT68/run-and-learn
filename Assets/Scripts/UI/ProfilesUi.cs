@@ -220,15 +220,25 @@ namespace FootballRunner.UI
             bool roomForMore = profiles.Count < ProfileStore.MaxProfiles;
             _addButton.gameObject.SetActive(roomForMore && !_editing);
             _addLabel.text = LearningProgress.Ui("+ DODAJ DIJETE", "+ ADD A CHILD", "+ KIND HINZUFÜGEN");
-            _editor.SetActive(_editing);
-            _saveLabel.text = LearningProgress.Ui("SPREMI", "SAVE", "SPEICHERN");
-            _cancelLabel.text = LearningProgress.Ui("ODUSTANI", "CANCEL", "ABBRECHEN");
-            ((TMP_Text)_input.placeholder).text = LearningProgress.Ui("Ime djeteta", "Child's name", "Name des Kindes");
+            // The name field is only made when a parent starts typing (see StartEditing).
+            if (_editor != null)
+            {
+                _editor.SetActive(_editing);
+                _saveLabel.text = LearningProgress.Ui("SPREMI", "SAVE", "SPEICHERN");
+                _cancelLabel.text = LearningProgress.Ui("ODUSTANI", "CANCEL", "ABBRECHEN");
+                ((TMP_Text)_input.placeholder).text = LearningProgress.Ui("Ime djeteta", "Child's name", "Name des Kindes");
+            }
         }
 
         private void StartEditing(string id)
         {
             AudioManager.Instance?.PlayButton();
+
+            if (_editor == null)
+            {
+                BuildEditor();
+            }
+
             _editingId = id;
             _editing = true;
             _pendingRemove = null;
@@ -277,8 +287,6 @@ namespace FootballRunner.UI
             _addButton = Button(_panel.transform, "Add", new Vector2(0f, -340f), new Vector2(560f, 100f), Blue,
                 () => StartEditing(null));
             _addLabel = Text(_addButton.transform, "Label", Vector2.zero, new Vector2(520f, 90f), 38f, Color.white);
-
-            BuildEditor();
 
             Image close = Button(_panel.transform, "Done", new Vector2(780f, 420f), new Vector2(240f, 90f), Green, () =>
             {
