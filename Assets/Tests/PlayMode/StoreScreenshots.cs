@@ -244,6 +244,35 @@ namespace FootballRunner.Tests
             ui.Close();
         }
 
+        /// <summary>Look check for outfits on the runner and in the wardrobe: Store/raw/check/outfit_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureOutfits()
+        {
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+            SaveManager.Data.totalCoins = 500;
+            FootballRunner.Player.Outfits.Buy("cap");
+            FootballRunner.Player.Outfits.Buy("sunglasses");
+            FootballRunner.Player.Outfits.Buy("scarf");
+
+            foreach (string kid in new[] { "emir", "rukajja", "hind" })
+            {
+                SaveManager.Data.unlockedItems.Add("character_" + kid);
+                SaveManager.Data.selectedCharacterId = kid;
+                LearningProgress.SelectPack("World1");
+                yield return LoadScene("Game");
+                yield return Capture("check/outfit_run_" + kid);
+            }
+
+            SaveManager.Data.selectedCharacterId = "amina";
+            yield return LoadScene("MainMenu");
+            var shop = FootballRunner.UI.OutfitShopUi.EnsureOnCanvas(
+                Object.FindFirstObjectByType<FootballRunner.UI.MainMenuController>().transform);
+            shop.Open();
+            yield return null;
+            yield return Capture("check/outfit_shop");
+            shop.Close();
+        }
+
         [UnityTest]
         public IEnumerator CaptureAll()
         {

@@ -1,0 +1,706 @@
+{
+ "anchors": [
+  {
+   "key": "rukajja/Idle",
+   "x": 71.3,
+   "top": 193,
+   "width": 91.4
+  },
+  {
+   "key": "rukajja/Run_01",
+   "x": 73.9,
+   "top": 187,
+   "width": 67.0
+  },
+  {
+   "key": "rukajja/Run_02",
+   "x": 74.9,
+   "top": 183,
+   "width": 61.2
+  },
+  {
+   "key": "rukajja/Run_03",
+   "x": 70.3,
+   "top": 190,
+   "width": 59.0
+  },
+  {
+   "key": "rukajja/Run_04",
+   "x": 70.6,
+   "top": 190,
+   "width": 65.5
+  },
+  {
+   "key": "rukajja/Run_05",
+   "x": 72.0,
+   "top": 190,
+   "width": 72.0
+  },
+  {
+   "key": "rukajja/Jump_Up",
+   "x": 77.9,
+   "top": 173,
+   "width": 64.8
+  },
+  {
+   "key": "rukajja/Fall_Air",
+   "x": 76.5,
+   "top": 170,
+   "width": 65.5
+  },
+  {
+   "key": "rukajja/Hit",
+   "x": 62.9,
+   "top": 167,
+   "width": 89.3
+  },
+  {
+   "key": "adam/Idle",
+   "x": 138.0,
+   "top": 335,
+   "width": 151
+  },
+  {
+   "key": "adam/Run_01",
+   "x": 147.7,
+   "top": 341,
+   "width": 151
+  },
+  {
+   "key": "adam/Run_02",
+   "x": 148.1,
+   "top": 337,
+   "width": 150
+  },
+  {
+   "key": "adam/Run_03",
+   "x": 147.8,
+   "top": 340,
+   "width": 151
+  },
+  {
+   "key": "adam/Run_04",
+   "x": 147.9,
+   "top": 340,
+   "width": 150
+  },
+  {
+   "key": "adam/Run_05",
+   "x": 148.1,
+   "top": 337,
+   "width": 150
+  },
+  {
+   "key": "adam/Jump_Up",
+   "x": 142.9,
+   "top": 349,
+   "width": 151
+  },
+  {
+   "key": "adam/Fall_Air",
+   "x": 137.9,
+   "top": 345,
+   "width": 151
+  },
+  {
+   "key": "adam/Hit",
+   "x": 131.0,
+   "top": 297,
+   "width": 150
+  },
+  {
+   "key": "alkame/Idle",
+   "x": 139.2,
+   "top": 324,
+   "width": 143
+  },
+  {
+   "key": "alkame/Run_01",
+   "x": 148.9,
+   "top": 329,
+   "width": 143
+  },
+  {
+   "key": "alkame/Run_02",
+   "x": 149.7,
+   "top": 325,
+   "width": 140
+  },
+  {
+   "key": "alkame/Run_03",
+   "x": 149.1,
+   "top": 328,
+   "width": 142
+  },
+  {
+   "key": "alkame/Run_04",
+   "x": 149.3,
+   "top": 328,
+   "width": 141
+  },
+  {
+   "key": "alkame/Run_05",
+   "x": 149.7,
+   "top": 325,
+   "width": 140
+  },
+  {
+   "key": "alkame/Jump_Up",
+   "x": 144.2,
+   "top": 338,
+   "width": 143
+  },
+  {
+   "key": "alkame/Fall_Air",
+   "x": 139.1,
+   "top": 334,
+   "width": 143
+  },
+  {
+   "key": "alkame/Hit",
+   "x": 132.8,
+   "top": 286,
+   "width": 140
+  },
+  {
+   "key": "amina/Idle",
+   "x": 138.5,
+   "top": 334,
+   "width": 157
+  },
+  {
+   "key": "amina/Run_01",
+   "x": 148.2,
+   "top": 340,
+   "width": 158
+  },
+  {
+   "key": "amina/Run_02",
+   "x": 148.2,
+   "top": 336,
+   "width": 154
+  },
+  {
+   "key": "amina/Run_03",
+   "x": 148.3,
+   "top": 339,
+   "width": 157
+  },
+  {
+   "key": "amina/Run_04",
+   "x": 148.2,
+   "top": 339,
+   "width": 156
+  },
+  {
+   "key": "amina/Run_05",
+   "x": 148.2,
+   "top": 336,
+   "width": 154
+  },
+  {
+   "key": "amina/Jump_Up",
+   "x": 143.4,
+   "top": 348,
+   "width": 158
+  },
+  {
+   "key": "amina/Fall_Air",
+   "x": 138.5,
+   "top": 344,
+   "width": 159
+  },
+  {
+   "key": "amina/Hit",
+   "x": 131.1,
+   "top": 296,
+   "width": 154
+  },
+  {
+   "key": "emir/Idle",
+   "x": 141.3,
+   "top": 325,
+   "width": 141
+  },
+  {
+   "key": "emir/Run_01",
+   "x": 151.0,
+   "top": 330,
+   "width": 141
+  },
+  {
+   "key": "emir/Run_02",
+   "x": 151.0,
+   "top": 326,
+   "width": 138
+  },
+  {
+   "key": "emir/Run_03",
+   "x": 151.0,
+   "top": 329,
+   "width": 140
+  },
+  {
+   "key": "emir/Run_04",
+   "x": 151.0,
+   "top": 329,
+   "width": 139
+  },
+  {
+   "key": "emir/Run_05",
+   "x": 151.0,
+   "top": 326,
+   "width": 138
+  },
+  {
+   "key": "emir/Jump_Up",
+   "x": 146.1,
+   "top": 339,
+   "width": 140
+  },
+  {
+   "key": "emir/Fall_Air",
+   "x": 141.3,
+   "top": 335,
+   "width": 141
+  },
+  {
+   "key": "emir/Hit",
+   "x": 133.9,
+   "top": 287,
+   "width": 137
+  },
+  {
+   "key": "hana/Idle",
+   "x": 136.4,
+   "top": 340,
+   "width": 127
+  },
+  {
+   "key": "hana/Run_01",
+   "x": 145.9,
+   "top": 346,
+   "width": 127
+  },
+  {
+   "key": "hana/Run_02",
+   "x": 145.7,
+   "top": 342,
+   "width": 127
+  },
+  {
+   "key": "hana/Run_03",
+   "x": 146.0,
+   "top": 345,
+   "width": 127
+  },
+  {
+   "key": "hana/Run_04",
+   "x": 145.9,
+   "top": 345,
+   "width": 127
+  },
+  {
+   "key": "hana/Run_05",
+   "x": 145.7,
+   "top": 342,
+   "width": 127
+  },
+  {
+   "key": "hana/Jump_Up",
+   "x": 141.1,
+   "top": 354,
+   "width": 127
+  },
+  {
+   "key": "hana/Fall_Air",
+   "x": 136.4,
+   "top": 350,
+   "width": 127
+  },
+  {
+   "key": "hana/Hit",
+   "x": 128.3,
+   "top": 302,
+   "width": 127
+  },
+  {
+   "key": "harun/Idle",
+   "x": 138.0,
+   "top": 335,
+   "width": 151
+  },
+  {
+   "key": "harun/Run_01",
+   "x": 147.7,
+   "top": 341,
+   "width": 151
+  },
+  {
+   "key": "harun/Run_02",
+   "x": 148.1,
+   "top": 337,
+   "width": 150
+  },
+  {
+   "key": "harun/Run_03",
+   "x": 147.8,
+   "top": 340,
+   "width": 151
+  },
+  {
+   "key": "harun/Run_04",
+   "x": 147.9,
+   "top": 340,
+   "width": 150
+  },
+  {
+   "key": "harun/Run_05",
+   "x": 148.1,
+   "top": 337,
+   "width": 150
+  },
+  {
+   "key": "harun/Jump_Up",
+   "x": 142.9,
+   "top": 349,
+   "width": 151
+  },
+  {
+   "key": "harun/Fall_Air",
+   "x": 137.9,
+   "top": 345,
+   "width": 151
+  },
+  {
+   "key": "harun/Hit",
+   "x": 131.0,
+   "top": 297,
+   "width": 150
+  },
+  {
+   "key": "hind/Idle",
+   "x": 138.5,
+   "top": 334,
+   "width": 157
+  },
+  {
+   "key": "hind/Run_01",
+   "x": 148.2,
+   "top": 340,
+   "width": 158
+  },
+  {
+   "key": "hind/Run_02",
+   "x": 148.2,
+   "top": 336,
+   "width": 154
+  },
+  {
+   "key": "hind/Run_03",
+   "x": 148.3,
+   "top": 339,
+   "width": 157
+  },
+  {
+   "key": "hind/Run_04",
+   "x": 148.2,
+   "top": 339,
+   "width": 156
+  },
+  {
+   "key": "hind/Run_05",
+   "x": 148.2,
+   "top": 336,
+   "width": 154
+  },
+  {
+   "key": "hind/Jump_Up",
+   "x": 143.4,
+   "top": 348,
+   "width": 158
+  },
+  {
+   "key": "hind/Fall_Air",
+   "x": 138.5,
+   "top": 344,
+   "width": 159
+  },
+  {
+   "key": "hind/Hit",
+   "x": 131.1,
+   "top": 296,
+   "width": 154
+  },
+  {
+   "key": "kenan/Idle",
+   "x": 141.3,
+   "top": 325,
+   "width": 141
+  },
+  {
+   "key": "kenan/Run_01",
+   "x": 151.0,
+   "top": 330,
+   "width": 141
+  },
+  {
+   "key": "kenan/Run_02",
+   "x": 151.0,
+   "top": 326,
+   "width": 138
+  },
+  {
+   "key": "kenan/Run_03",
+   "x": 151.0,
+   "top": 329,
+   "width": 140
+  },
+  {
+   "key": "kenan/Run_04",
+   "x": 151.0,
+   "top": 329,
+   "width": 139
+  },
+  {
+   "key": "kenan/Run_05",
+   "x": 151.0,
+   "top": 326,
+   "width": 138
+  },
+  {
+   "key": "kenan/Jump_Up",
+   "x": 146.1,
+   "top": 339,
+   "width": 140
+  },
+  {
+   "key": "kenan/Fall_Air",
+   "x": 141.3,
+   "top": 335,
+   "width": 141
+  },
+  {
+   "key": "kenan/Hit",
+   "x": 133.9,
+   "top": 287,
+   "width": 137
+  },
+  {
+   "key": "lejla/Idle",
+   "x": 141.3,
+   "top": 325,
+   "width": 143
+  },
+  {
+   "key": "lejla/Run_01",
+   "x": 151.0,
+   "top": 330,
+   "width": 143
+  },
+  {
+   "key": "lejla/Run_02",
+   "x": 151.0,
+   "top": 326,
+   "width": 140
+  },
+  {
+   "key": "lejla/Run_03",
+   "x": 151.0,
+   "top": 329,
+   "width": 141
+  },
+  {
+   "key": "lejla/Run_04",
+   "x": 151.0,
+   "top": 329,
+   "width": 141
+  },
+  {
+   "key": "lejla/Run_05",
+   "x": 151.0,
+   "top": 326,
+   "width": 140
+  },
+  {
+   "key": "lejla/Jump_Up",
+   "x": 146.1,
+   "top": 339,
+   "width": 143
+  },
+  {
+   "key": "lejla/Fall_Air",
+   "x": 141.3,
+   "top": 335,
+   "width": 143
+  },
+  {
+   "key": "lejla/Hit",
+   "x": 133.9,
+   "top": 287,
+   "width": 139
+  },
+  {
+   "key": "selma/Idle",
+   "x": 138.5,
+   "top": 334,
+   "width": 157
+  },
+  {
+   "key": "selma/Run_01",
+   "x": 148.2,
+   "top": 340,
+   "width": 158
+  },
+  {
+   "key": "selma/Run_02",
+   "x": 148.2,
+   "top": 336,
+   "width": 154
+  },
+  {
+   "key": "selma/Run_03",
+   "x": 148.3,
+   "top": 339,
+   "width": 157
+  },
+  {
+   "key": "selma/Run_04",
+   "x": 148.2,
+   "top": 339,
+   "width": 156
+  },
+  {
+   "key": "selma/Run_05",
+   "x": 148.2,
+   "top": 336,
+   "width": 154
+  },
+  {
+   "key": "selma/Jump_Up",
+   "x": 143.4,
+   "top": 348,
+   "width": 158
+  },
+  {
+   "key": "selma/Fall_Air",
+   "x": 138.5,
+   "top": 344,
+   "width": 159
+  },
+  {
+   "key": "selma/Hit",
+   "x": 131.1,
+   "top": 296,
+   "width": 154
+  },
+  {
+   "key": "tarik/Idle",
+   "x": 141.3,
+   "top": 325,
+   "width": 141
+  },
+  {
+   "key": "tarik/Run_01",
+   "x": 151.0,
+   "top": 330,
+   "width": 141
+  },
+  {
+   "key": "tarik/Run_02",
+   "x": 151.0,
+   "top": 326,
+   "width": 138
+  },
+  {
+   "key": "tarik/Run_03",
+   "x": 151.0,
+   "top": 329,
+   "width": 140
+  },
+  {
+   "key": "tarik/Run_04",
+   "x": 151.0,
+   "top": 329,
+   "width": 139
+  },
+  {
+   "key": "tarik/Run_05",
+   "x": 151.0,
+   "top": 326,
+   "width": 138
+  },
+  {
+   "key": "tarik/Jump_Up",
+   "x": 146.1,
+   "top": 339,
+   "width": 140
+  },
+  {
+   "key": "tarik/Fall_Air",
+   "x": 141.3,
+   "top": 335,
+   "width": 141
+  },
+  {
+   "key": "tarik/Hit",
+   "x": 133.9,
+   "top": 287,
+   "width": 137
+  },
+  {
+   "key": "tavus/Idle",
+   "x": 139.2,
+   "top": 324,
+   "width": 143
+  },
+  {
+   "key": "tavus/Run_01",
+   "x": 148.9,
+   "top": 329,
+   "width": 143
+  },
+  {
+   "key": "tavus/Run_02",
+   "x": 149.7,
+   "top": 325,
+   "width": 140
+  },
+  {
+   "key": "tavus/Run_03",
+   "x": 149.1,
+   "top": 328,
+   "width": 142
+  },
+  {
+   "key": "tavus/Run_04",
+   "x": 149.3,
+   "top": 328,
+   "width": 141
+  },
+  {
+   "key": "tavus/Run_05",
+   "x": 149.7,
+   "top": 325,
+   "width": 140
+  },
+  {
+   "key": "tavus/Jump_Up",
+   "x": 144.2,
+   "top": 338,
+   "width": 143
+  },
+  {
+   "key": "tavus/Fall_Air",
+   "x": 139.1,
+   "top": 334,
+   "width": 143
+  },
+  {
+   "key": "tavus/Hit",
+   "x": 132.8,
+   "top": 286,
+   "width": 140
+  }
+ ]
+}

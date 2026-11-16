@@ -254,6 +254,29 @@ namespace FootballRunner.UI
                 Close();
             });
             _backLabel = CreateText(back.transform, "Label", "", Vector2.zero, new Vector2(220f, 90f), 36f, Color.white);
+
+            // The wardrobe: things to wear, bought with game coins.
+            var outfits = new GameObject("Outfits", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image),
+                typeof(Button));
+            outfits.transform.SetParent(_panel.transform, false);
+            var outfitsRect = outfits.GetComponent<RectTransform>();
+            outfitsRect.anchorMin = outfitsRect.anchorMax = new Vector2(1f, 0f);
+            outfitsRect.pivot = new Vector2(1f, 0f);
+            outfitsRect.anchoredPosition = new Vector2(-60f, 40f);
+            outfitsRect.sizeDelta = new Vector2(300f, 100f);
+            outfits.GetComponent<Image>().color = new Color(0.6f, 0.4f, 0.9f, 1f);
+            Round(outfits.GetComponent<Image>(), 1.6f);
+            outfits.GetComponent<Button>().onClick.AddListener(OpenOutfits);
+            _outfitsLabel = CreateText(outfits.transform, "Label", "", Vector2.zero, new Vector2(280f, 90f), 40f, Color.white);
+        }
+
+        private TMP_Text _outfitsLabel;
+
+        /// <summary>Same as tapping ODJEĆA: the wardrobe for the chosen kid.</summary>
+        public void OpenOutfits()
+        {
+            AudioManager.Instance?.PlayButton();
+            OutfitShopUi.EnsureOnCanvas(transform)?.Open();
         }
 
         private Card BuildCard(CharacterRoster.Entry entry, int index, Vector2 position)
@@ -301,6 +324,7 @@ namespace FootballRunner.UI
 
             _heading.text = LearningProgress.Ui("IZABERI IGRAČA", "PICK A PLAYER", "WÄHLE EINEN SPIELER");
             _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");
+            _outfitsLabel.text = LearningProgress.Ui("ODJEĆA", "OUTFITS", "KLEIDUNG");
             _coins.text = coins.ToString();
 
             foreach (Card card in _cards)

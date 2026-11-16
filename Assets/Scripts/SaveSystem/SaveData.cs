@@ -40,6 +40,11 @@ namespace FootballRunner.SaveSystem
         /// <summary>Daily play limit in minutes set by a parent; 0 means no limit.</summary>
         public int dailyLimitMinutes;
 
+        /// <summary>What the player wears (Outfits): an item id per place, or empty.</summary>
+        public string outfitHead = "";
+        public string outfitEyes = "";
+        public string outfitNeck = "";
+
         /// <summary>For children learning Bosnian: "en" or "de" for menus and hints.</summary>
         public string homeLanguage = "en";
 

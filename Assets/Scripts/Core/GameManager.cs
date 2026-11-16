@@ -91,6 +91,7 @@ namespace FootballRunner.Core
             UI.TapHint.EnsureOn();
             Effects.GameFeel.EnsureOn(gameObject);
             FootballRunner.Player.CharacterSkin.EnsureOn(gameObject);
+            FootballRunner.Player.OutfitRenderer.EnsureOn(gameObject);
             Learning.DailyMissionTracker.EnsureOn(gameObject);
             if (Adventure.AdventureSession.IsActive)
             {

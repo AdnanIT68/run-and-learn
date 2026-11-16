@@ -18,7 +18,8 @@ namespace FootballRunner.EditorTools
             "Assets/Resources/Worlds/",
             "Assets/Resources/Characters/",
             "Assets/Resources/Story/",
-            "Assets/Resources/Tracing/"
+            "Assets/Resources/Tracing/",
+            "Assets/Resources/Outfits/"
         };
 
         private void OnPreprocessTexture()
@@ -95,7 +96,7 @@ namespace FootballRunner.EditorTools
         /// <summary>Raised whenever the rules above change, so Unity reimports the affected files.</summary>
         public override uint GetVersion()
         {
-            return 5;
+            return 6;
         }
 
         private static bool IsRuntimeArt(string path)
