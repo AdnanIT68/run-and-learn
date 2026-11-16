@@ -40,10 +40,13 @@ What's inside:
 • The Old Bazaar: listen to a command and do it. Jump! Stay down! Jump twice!
 • River and Old Bridge: nature and weather words, and big or small: a big fish or a small one?
 • Winter Mountain: short sentences such as It is snowing.
-• School: letters, numbers from one to ten, and first reading.
+• School: letters, numbers from one to ten, first reading and sums up to ten: 2 + 3 = ? Jump into the right number.
 • Night Sky, the finale: stars, moon and rockets, plus a review of everything learned in every world.
-• Two bonus worlds open from the start: Kind Words (selam, thank you, here you are, sorry, bismillah, mashallah) and Colours and Shapes.
+• Two bonus worlds open from the start: Kind Words (selam, thank you, here you are, sorry, bismillah, mashallah) and Colours and Shapes (six colours and four shapes).
+• Mini-games after a level: Pairs, What do you hear? and Build the word.
+• Write the letter: trace Latin and Arabic letters with a finger while the voice says them.
 • A team of thirteen young footballers to play as: Rukajja, Emir and Amina from the start, ten more to unlock with the coins you collect.
+• A wardrobe: a cap, a crown, glasses, sunglasses and a scarf, bought only with coins from the game.
 • A daily gift and three small tasks every day, such as Catch 8 words, with coins shown in advance. Missing a day never takes anything away.
 • Pepi the parrot flies along, cheers after three right answers in a row, warns before a tricky word and welcomes you to every world.
 • A sticker album where every learned word is a sticker; tap it to hear the word again. A full page gives a new player.
@@ -54,12 +57,15 @@ What's inside:
 • Double jump, sparkles, a goal row of words and gentle vibration.
 
 Made for families:
-• No ads.
+• No ads and no purchases.
+• Up to four children on one phone, each with their own progress, coins and stickers.
+• A diploma with your child's name for every finished world, to save, share or print.
 • A parents' corner behind a small sum: progress in every world, play time this week and the hardest words, sound and vibration.
 • Easy mode for ages 3 to 4: a slower run, fewer obstacles and only two pictures to choose from.
 • A daily time limit: when it is reached, Pepi says it is time for a break and the game waits until tomorrow or until a parent changes it.
 • No musical instruments: only spoken words and sound effects.
 • Works offline, no data collected.
+• Fits phones and tablets.
 
 Pictures: Twemoji by Twitter, Inc. and contributors, CC BY 4.0.
 New worlds with new words are on the way.
@@ -96,10 +102,13 @@ Run and Learn je nježna trkačka igra za djecu od 4 do 10 godina. Glas izgovori
 • Čaršija: slušaj komandu i uradi je. Skoči! Ostani dolje! Skoči dva puta!
 • Rijeka i Stari most: priroda i vrijeme, te veliko i malo: velika riba ili mala?
 • Planina zimi: kratke rečenice poput Pada snijeg.
-• Škola: slova, brojevi od jedan do deset i prvo čitanje.
+• Škola: slova, brojevi od jedan do deset, prvo čitanje i računanje do deset: 2 + 3 = ? Skoči u pravi broj.
 • Noćno nebo, finale: zvijezde, mjesec i rakete, uz ponavljanje svega naučenog u svim svjetovima.
-• Dva bonus svijeta otvorena od početka: Lijepe riječi (selam, hvala, izvoli, oprosti, bismillah, mašallah) i Boje i oblici.
+• Dva bonus svijeta otvorena od početka: Lijepe riječi (selam, hvala, izvoli, oprosti, bismillah, mašallah) i Boje i oblici (šest boja i četiri oblika).
+• Mini-igre poslije nivoa: Parovi, Šta čuješ? i Složi riječ.
+• Piši slovo: dijete prstom prati latinična i arapska slova dok ih glas izgovara.
 • Ekipa od trinaest malih fudbalera: Rukajja, Emir i Amina odmah, još deset se otključava skupljenim novčićima.
+• Ormar s odjećom: kapa, kruna, naočale, sunčane naočale i šal, samo za novčiće iz igre.
 • Dnevni poklon i tri mala zadatka svaki dan, npr. Uhvati 8 riječi, s unaprijed poznatim novčićima. Propušten dan ništa ne oduzima.
 • Papagaj Pepi leti uz Rukajju, pohvali tri tačna odgovora zaredom, upozori na tešku riječ i poželi dobrodošlicu u svaki svijet.
 • Album naljepnica: svaka naučena riječ je naljepnica, dodirom je ponovo čuješ. Puna stranica donosi novog igrača.
@@ -110,12 +119,15 @@ Run and Learn je nježna trkačka igra za djecu od 4 do 10 godina. Glas izgovori
 • Dupli skok, iskrice, red riječi za cilj i nježna vibracija.
 
 Napravljeno za porodice:
-• Bez reklama.
+• Bez reklama i bez kupovine.
+• Do četvero djece na jednom telefonu, svako sa svojim napretkom, novčićima i naljepnicama.
+• Diploma s imenom djeteta za svaki završen svijet, da je sačuvate, pošaljete ili odštampate.
 • Kutak za roditelje iza malog računa: napredak u svakom svijetu, vrijeme igre ove sedmice i najteže riječi, zvuk i vibracija.
 • Lagani način za djecu od 3 do 4 godine: sporije trčanje, manje prepreka i samo dvije slike za izbor.
 • Dnevno ograničenje vremena: kad istekne, Pepi kaže da je vrijeme za odmor i igra čeka do sutra ili dok roditelj ne promijeni vrijeme.
 • Bez muzičkih instrumenata: samo izgovorene riječi i zvučni efekti.
 • Radi bez interneta i ne prikuplja podatke.
+• Prilagođena telefonima i tabletima.
 
 Slike: Twemoji, Twitter, Inc. i saradnici, CC BY 4.0.
 Uskoro stižu novi svjetovi s novim riječima.
@@ -152,10 +164,13 @@ Das steckt drin:
 • Der alte Basar: einen Befehl hören und ausführen. Spring! Bleib unten! Spring zweimal!
 • Fluss und Alte Brücke: Natur- und Wetterwörter, und groß oder klein: ein großer Fisch oder ein kleiner?
 • Winterberg: kurze Sätze wie Es schneit.
-• Schule: Buchstaben, Zahlen von eins bis zehn und erstes Lesen.
+• Schule: Buchstaben, Zahlen von eins bis zehn, erstes Lesen und Rechnen bis zehn: 2 + 3 = ? Spring in die richtige Zahl.
 • Nachthimmel, das Finale: Sterne, Mond und Raketen, dazu eine Wiederholung von allem, was in allen Welten gelernt wurde.
-• Zwei Bonuswelten von Anfang an: Freundliche Worte (Selam, danke, bitte schön, Entschuldigung, Bismillah, Maschallah) und Farben und Formen.
+• Zwei Bonuswelten von Anfang an: Freundliche Worte (Selam, danke, bitte schön, Entschuldigung, Bismillah, Maschallah) und Farben und Formen (sechs Farben und vier Formen).
+• Minispiele nach einem Level: Paare, Was hörst du? und Bau das Wort.
+• Schreib den Buchstaben: lateinische und arabische Buchstaben mit dem Finger nachfahren, während die Stimme sie sagt.
 • Ein Team aus dreizehn jungen Fußballern: Rukajja, Emir und Amina von Anfang an, zehn weitere mit gesammelten Münzen freischalten.
+• Ein Kleiderschrank: Mütze, Krone, Brille, Sonnenbrille und Schal, nur mit Münzen aus dem Spiel.
 • Ein tägliches Geschenk und drei kleine Aufgaben pro Tag, z. B. Fang 8 Wörter, mit vorher sichtbaren Münzen. Ein verpasster Tag nimmt nichts weg.
 • Papagei Pepi fliegt mit, lobt drei richtige Antworten hintereinander, warnt vor schweren Wörtern und begrüßt dich in jeder Welt.
 • Ein Stickeralbum: Jedes gelernte Wort ist ein Sticker, antippen und erneut hören. Eine volle Seite schenkt einen neuen Spieler.
@@ -166,12 +181,15 @@ Das steckt drin:
 • Doppelsprung, Funkeln, eine Wörter-Zielreihe und sanfte Vibration.
 
 Für Familien gemacht:
-• Keine Werbung.
+• Keine Werbung und keine Käufe.
+• Bis zu vier Kinder auf einem Handy, jedes mit eigenem Fortschritt, eigenen Münzen und Stickern.
+• Ein Diplom mit dem Namen deines Kindes für jede geschaffte Welt, zum Speichern, Teilen oder Drucken.
 • Eine Elternecke hinter einer kleinen Rechenaufgabe: Fortschritt in jeder Welt, Spielzeit dieser Woche und die schwersten Wörter, Ton und Vibration.
 • Leichter Modus für 3- bis 4-Jährige: langsamer, weniger Hindernisse und nur zwei Bilder zur Auswahl.
 • Ein tägliches Zeitlimit: Ist es erreicht, sagt Pepi, dass Pause ist, und das Spiel wartet bis morgen oder bis die Eltern es ändern.
 • Keine Musikinstrumente: nur gesprochene Wörter und Soundeffekte.
 • Funktioniert offline und sammelt keine Daten.
+• Passt auf Handys und Tablets.
 
 Bilder: Twemoji von Twitter, Inc. und Mitwirkenden, CC BY 4.0.
 Neue Welten mit neuen Wörtern sind in Arbeit.
@@ -187,5 +205,5 @@ the project, Twemoji credit in Settings and in the descriptions, 8 phone screens
 
 Owner: create the app in Play Console, upload the .aab.
 Voices: Azure Speech (licensed) since 1.1.0. Family recordings for Bosnian remain an option.
-1.3.0: the texts above describe 1.3 (Arabic, Lijepe riječi, story, sticker gifts, easy mode, time limit,
-report). Update Play only after the Arabic review (`Store/arabic-review.md`) and the phone test.
+1.3.0: the texts above describe 1.3 (Arabic, Lijepe riječi, Boje i oblici, story, sticker gifts, easy mode,
+time limit, report, children profiles, mini-games, letter tracing, sums, outfits, diplomas, tablets). Update Play only after the Arabic review (`Store/arabic-review.md`) and the phone test.
