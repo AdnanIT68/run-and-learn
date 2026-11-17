@@ -64,6 +64,9 @@ namespace FootballRunner.UI
         /// <summary>The world shown in the preview, or null.</summary>
         public string Shown { get; private set; }
 
+        /// <summary>The picture in the preview; for tests.</summary>
+        public Texture2D Preview => _texture;
+
         /// <summary>The last file written; for tests.</summary>
         public string LastSaved { get; private set; }
 
@@ -163,7 +166,9 @@ namespace FootballRunner.UI
             }
 
             AudioManager.Instance?.PlayButton();
-            LastSaved = Current == Mode.Diplomas ? Diplomas.Save(Shown, ChildName()) : Worksheets.Save(Shown, SheetKind);
+            // The picture on screen itself: a new drawing could differ (the match sheet mixes its words).
+            string path = Current == Mode.Diplomas ? Diplomas.FilePath(Shown, ChildName()) : Worksheets.FilePath(Shown, SheetKind);
+            LastSaved = _texture != null ? OffscreenPicture.WritePng(_texture, path) : null;
 
             if (LastSaved == null)
             {

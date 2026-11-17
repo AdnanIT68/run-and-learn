@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using FootballRunner.SaveSystem;
 
 namespace FootballRunner.Learning
@@ -19,16 +20,56 @@ namespace FootballRunner.Learning
 
         public static string TodayKey => DailyRewards.Clock().ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-        /// <summary>Today's word and its world, or (null, null) when no world has words.</summary>
+        /// <summary>
+        /// Today's word and its world, or (null, null) when no world has words. Chosen once
+        /// a day (per language) and kept in the save, so opening a new world during the day
+        /// does not change it.
+        /// </summary>
         public static (string pack, WordEntry word) Today()
+        {
+            SaveData data = SaveManager.Data;
+            string language = LearningProgress.Language;
+
+            if (data.wordOfDayDate == TodayKey && data.wordOfDayLanguage == language)
+            {
+                WordEntry kept = Find(data.wordOfDayPack, data.wordOfDayId);
+
+                if (kept != null)
+                {
+                    return (data.wordOfDayPack, kept);
+                }
+            }
+
+            (string pack, WordEntry word) chosen = Choose();
+
+            if (chosen.word != null)
+            {
+                data.wordOfDayDate = TodayKey;
+                data.wordOfDayLanguage = language;
+                data.wordOfDayPack = chosen.pack;
+                data.wordOfDayId = chosen.word.id;
+                SaveManager.Save();
+            }
+
+            return chosen;
+        }
+
+        private static WordEntry Find(string pack, string id)
+        {
+            WordPack words = string.IsNullOrEmpty(pack) ? null : WordPack.Load(pack);
+            return words?.Words.FirstOrDefault(w => w.id == id);
+        }
+
+        private static (string pack, WordEntry word) Choose()
         {
             var candidates = new List<(string, WordEntry)>();
 
             foreach (string pack in WordPack.PackOrder)
             {
+                // The finale's own night words count too (its Words are only those).
                 WordPack words = LearningProgress.IsPackUnlocked(pack) ? WordPack.Load(pack) : null;
 
-                if (words == null || words.IsReview)
+                if (words == null)
                 {
                     continue;
                 }

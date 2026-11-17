@@ -74,6 +74,19 @@ namespace FootballRunner.Learning
         {
             try
             {
+                return WritePng(picture, path);
+            }
+            finally
+            {
+                UnityEngine.Object.Destroy(picture);
+            }
+        }
+
+        /// <summary>Writes the picture as a PNG and keeps it (e.g. the one on screen); returns the file, or null.</summary>
+        public static string WritePng(Texture2D picture, string path)
+        {
+            try
+            {
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
                 File.WriteAllBytes(path, picture.EncodeToPNG());
                 return path;
@@ -82,10 +95,6 @@ namespace FootballRunner.Learning
             {
                 Debug.LogWarning($"[OffscreenPicture] Could not save {path}. {e.Message}");
                 return null;
-            }
-            finally
-            {
-                UnityEngine.Object.Destroy(picture);
             }
         }
 

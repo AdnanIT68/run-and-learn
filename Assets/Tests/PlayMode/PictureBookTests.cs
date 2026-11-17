@@ -95,6 +95,8 @@ namespace FootballRunner.Tests
             Assert.AreEqual(3, book.PageIndex);
             book.Next();
             Assert.IsFalse(book.IsOpen, "The last page's arrow closes the book.");
+            Assert.IsFalse(FootballRunner.Audio.AudioManager.Instance != null &&
+                           FootballRunner.Audio.AudioManager.Instance.IsNarrating, "The page kept talking after the book closed.");
             worlds.Close();
         }
     }

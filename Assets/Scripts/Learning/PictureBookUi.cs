@@ -99,6 +99,7 @@ namespace FootballRunner.Learning
         {
             AudioManager.Instance?.PlayButton();
             StopAllCoroutines();
+            AudioManager.Instance?.StopNarration();
             _panel.SetActive(false);
         }
 
@@ -129,7 +130,8 @@ namespace FootballRunner.Learning
         /// <summary>Reads the page aloud again, as the speaker button does.</summary>
         public void SayPage()
         {
-            AudioManager.Instance?.PlayVoice(_book.Voice(LearningProgress.Language, PageIndex));
+            // Its own channel: a new page (or closing the book) stops the one before.
+            AudioManager.Instance?.PlayNarration(_book.Voice(LearningProgress.Language, PageIndex));
         }
 
         /// <summary>Same as tapping a picture on the page: says its word. Returns the word's id.</summary>
@@ -154,6 +156,7 @@ namespace FootballRunner.Learning
         private void ShowPage(int index)
         {
             StopAllCoroutines();
+            AudioManager.Instance?.StopNarration();
             PageIndex = index;
             PictureBook.Page page = _book.Pages[index];
             string language = LearningProgress.Language;

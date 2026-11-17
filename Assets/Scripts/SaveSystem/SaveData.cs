@@ -43,6 +43,12 @@ namespace FootballRunner.SaveSystem
         /// <summary>The day (yyyy-MM-dd) the word of the day was caught and its coins given, or empty.</summary>
         public string wordOfDayClaimed = "";
 
+        /// <summary>Today's word once chosen (day, language, world, word), so it stays all day.</summary>
+        public string wordOfDayDate = "";
+        public string wordOfDayLanguage = "";
+        public string wordOfDayPack = "";
+        public string wordOfDayId = "";
+
         /// <summary>What the player wears (Outfits): an item id per place, or empty.</summary>
         public string outfitHead = "";
         public string outfitEyes = "";

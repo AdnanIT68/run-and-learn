@@ -94,6 +94,8 @@ namespace FootballRunner.Tests
             Assert.IsNotNull(print.LastSaved);
             StringAssert.Contains("World10_match", print.LastSaved);
             Assert.IsTrue(File.Exists(print.LastSaved));
+            CollectionAssert.AreEqual(print.Preview.EncodeToPNG(), File.ReadAllBytes(print.LastSaved),
+                "The printed sheet must be the one on screen (the match sheet mixes its words).");
             File.Delete(print.LastSaved);
             print.Close();
             corner.Close();

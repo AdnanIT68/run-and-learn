@@ -920,7 +920,24 @@ namespace FootballRunner.Learning
         public bool CanAskSums => _pack != null && !_pack.IsReview && _pack.Numbers.Count >= 10 && _level >= 1;
 
         /// <summary>Taking away comes a level later than adding, and only with the word "minus" voiced.</summary>
-        public bool CanAskMinus => CanAskSums && _level >= 2 && _pack.Voice(LearningProgress.Language, "op_minus") != null;
+        public bool CanAskMinus => CanAskSums && _level >= 2 && MinusVoiced();
+
+        private string _minusCheckedFor;
+        private bool _minusVoiced;
+
+        /// <summary>Whether "minus" has a voice in this world and language; looked up once, not on every pick.</summary>
+        private bool MinusVoiced()
+        {
+            string key = _pack.Name + "/" + LearningProgress.Language;
+
+            if (_minusCheckedFor != key)
+            {
+                _minusCheckedFor = key;
+                _minusVoiced = _pack.Voice(LearningProgress.Language, "op_minus") != null;
+            }
+
+            return _minusVoiced;
+        }
 
         [Tooltip("Share of sums that take away (5 - 2 = ?), from level 3 at school.")]
         [Range(0f, 1f)] [SerializeField] private float minusChance = 0.5f;

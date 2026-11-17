@@ -79,9 +79,23 @@ def main() -> None:
         if touched:
             pack_file.write_text(dump_pack(pack), encoding="utf-8", newline="\n")
 
+    # The Arabic of letter names and picture book pages as it is now, to catch answers about older text.
+    import generate_words as words
+    current = {}
+    for letter, (name, _) in words.ARABIC_LETTERS.items():
+        current["letters/ar_" + words.ARABIC_LETTER_IDS[letter]] = words.arabic_letter_phrase(letter, name)
+    books_file = ROOT / "Tools" / "books.json"
+    if books_file.exists():
+        for book in json.loads(books_file.read_text(encoding="utf-8"))["books"]:
+            for number, page in enumerate(book["pages"], start=1):
+                current[f"books/{book['pack']}/{number}"] = page["ar"]
+
     letters = json.loads(LETTERS_STATUS.read_text(encoding="utf-8")) if LETTERS_STATUS.exists() else {}
     for answer_id, answer in by_id.items():
         if answer_id.startswith(("letters/", "books/")) and answer["result"] == "ok":
+            if current.get(answer_id) != answer["ar"]:
+                changed_text.append(answer_id)
+                continue
             letters[answer_id] = "provjereno"
             approved += 1
     if letters:

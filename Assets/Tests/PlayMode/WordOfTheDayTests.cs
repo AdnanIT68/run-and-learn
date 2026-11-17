@@ -63,6 +63,20 @@ namespace FootballRunner.Tests
         }
 
         [Test]
+        public void OpeningAWorldDuringTheDayKeepsTheWord()
+        {
+            WordEntry morning = WordOfTheDay.Today().word;
+
+            for (int level = 0; level < LearningProgress.LevelsPerWorld; level++)
+            {
+                LearningProgress.RecordLevelComplete("World1", level, 3);
+            }
+
+            Assert.IsTrue(LearningProgress.IsPackUnlocked("World2"), "The farm should be open now.");
+            Assert.AreEqual(morning.id, WordOfTheDay.Today().word.id, "The word changed when a world opened.");
+        }
+
+        [Test]
         public void CatchingItGivesCoinsOncePerDay()
         {
             (string pack, WordEntry word) = WordOfTheDay.Today();

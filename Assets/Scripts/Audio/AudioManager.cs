@@ -92,6 +92,48 @@ namespace FootballRunner.Audio
         /// <summary>Spoken words and praise. Uses the effects channel and its mute setting.</summary>
         public void PlayVoice(AudioClip clip) => PlaySfx(clip);
 
+        private AudioSource _narration;
+
+        /// <summary>
+        /// A longer spoken text (a picture book page) on its own channel: a new one stops
+        /// the one before, and StopNarration silences it, so pages never talk over each other.
+        /// </summary>
+        public void PlayNarration(AudioClip clip)
+        {
+            StopNarration();
+
+            if (clip == null || !SoundEnabled)
+            {
+                return;
+            }
+
+            if (_narration == null)
+            {
+                _narration = gameObject.AddComponent<AudioSource>();
+                _narration.playOnAwake = false;
+
+                if (sfxSource != null)
+                {
+                    _narration.outputAudioMixerGroup = sfxSource.outputAudioMixerGroup;
+                    _narration.volume = sfxSource.volume;
+                }
+            }
+
+            _narration.clip = clip;
+            _narration.Play();
+        }
+
+        public void StopNarration()
+        {
+            if (_narration != null)
+            {
+                _narration.Stop();
+            }
+        }
+
+        /// <summary>True while a narration plays; for tests.</summary>
+        public bool IsNarrating => _narration != null && _narration.isPlaying;
+
         private void StopMusic()
         {
             if (musicSource == null)
