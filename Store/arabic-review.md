@@ -11,7 +11,7 @@ Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali
 
 Za recenzenta: `Tools/make_arabic_review_page.py` pravi `Store/arabic-review.zip` (slika, tekst, glas);
 njegov fajl s rezultatima upisuje `Tools/apply_arabic_review.py`, koji ponovo piše i ovu listu.
-Ukupno 189 unosa, od toga 189 čeka provjeru.
+Ukupno 190 unosa, od toga 190 čeka provjeru.
 
 
 ## World1: Nenina bašta
@@ -182,6 +182,7 @@ Ukupno 189 unosa, od toga 189 čeka provjeru.
 | broj | `num_9` | devet | تِسْعَة | tis'a | za provjeru |
 | broj | `num_10` | deset | عَشَرَة | 'ašara | za provjeru |
 | fraza | `op_plus` | plus | زَائِد | zâ'id | za provjeru: riječ za sabiranje (2 + 3) |
+| fraza | `op_minus` | minus | نَاقِص | nâqis | za provjeru: riječ za oduzimanje (5 − 2) |
 
 ## World8: Noćno nebo
 

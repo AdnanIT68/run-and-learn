@@ -771,6 +771,7 @@ namespace FootballRunner.Learning
             Kind kind = PickKind(guided, forced);
             _spokenWord = null;
             CurrentSum = (0, 0);
+            CurrentIsMinus = false;
 
             switch (kind)
             {
@@ -902,26 +903,54 @@ namespace FootballRunner.Learning
         /// <summary>The two numbers of the sum on screen, e.g. (2, 3); (0, 0) when no sum is asked.</summary>
         public (int a, int b) CurrentSum { get; private set; }
 
+        /// <summary>True when the sum on screen takes away ("5 - 2 = ?") instead of adding.</summary>
+        public bool CurrentIsMinus { get; private set; }
+
+        /// <summary>The answer of the sum on screen.</summary>
+        public int CurrentAnswer => CurrentIsMinus ? CurrentSum.a - CurrentSum.b : CurrentSum.a + CurrentSum.b;
+
         /// <summary>Sums need the numbers one to ten (the school) and come from level 2.</summary>
         public bool CanAskSums => _pack != null && !_pack.IsReview && _pack.Numbers.Count >= 10 && _level >= 1;
 
+        /// <summary>Taking away comes a level later than adding, and only with the word "minus" voiced.</summary>
+        public bool CanAskMinus => CanAskSums && _level >= 2 && _pack.Voice(LearningProgress.Language, "op_minus") != null;
+
+        [Tooltip("Share of sums that take away (5 - 2 = ?), from level 3 at school.")]
+        [Range(0f, 1f)] [SerializeField] private float minusChance = 0.5f;
+
         /// <summary>
-        /// "2 + 3 = ?": the card shows the sum, the voice says "dva plus tri", the bubbles
-        /// show numerals and the right one is the answer. False without the numbers.
+        /// "2 + 3 = ?" or, from level 3, "5 - 2 = ?": the card shows the sum, the voice says
+        /// "dva plus tri" or "pet minus dva", the bubbles show numerals and the right one is
+        /// the answer, never below one or above ten. False without the numbers.
         /// </summary>
         private bool ChooseSum()
         {
-            int a = Random.Range(1, 10);
-            int b = Random.Range(1, 11 - a);
-            WordEntry answer = NumberEntry(a + b);
+            bool minus = CanAskMinus && Random.value < minusChance;
+            int a;
+            int b;
+
+            if (minus)
+            {
+                a = Random.Range(2, 11);
+                b = Random.Range(1, a);
+            }
+            else
+            {
+                a = Random.Range(1, 10);
+                b = Random.Range(1, 11 - a);
+            }
+
+            WordEntry answer = NumberEntry(minus ? a - b : a + b);
 
             if (answer == null || NumberEntry(a) == null || NumberEntry(b) == null)
             {
                 return false;
             }
 
-            string question = $"{a} + {b} = ?";
+            string question = minus ? $"{a} - {b} = ?" : $"{a} + {b} = ?";
             CurrentSum = (a, b);
+            CurrentIsMinus = minus;
+            int result = minus ? a - b : a + b;
             _target = new WordEntry
             {
                 id = answer.id,
@@ -938,7 +967,7 @@ namespace FootballRunner.Learning
             var others = new List<WordEntry>();
             for (int d = 1; d <= 9 && others.Count < 6; d++)
             {
-                foreach (int n in new[] { a + b - d, a + b + d })
+                foreach (int n in new[] { result - d, result + d })
                 {
                     WordEntry entry = n >= 1 && n <= 10 ? NumberEntry(n) : null;
 
@@ -979,11 +1008,12 @@ namespace FootballRunner.Learning
             return null;
         }
 
-        /// <summary>"dva plus tri", from the number voices and the word plus.</summary>
+        /// <summary>"dva plus tri" or "pet minus dva", from the number voices and the word plus or minus.</summary>
         private void SaySum()
         {
             string language = LearningProgress.Language;
-            PlayInSequence(_pack.Voice(language, "num_" + CurrentSum.a), _pack.Voice(language, "op_plus"),
+            PlayInSequence(_pack.Voice(language, "num_" + CurrentSum.a),
+                _pack.Voice(language, CurrentIsMinus ? "op_minus" : "op_plus"),
                 _pack.Voice(language, "num_" + CurrentSum.b));
         }
 

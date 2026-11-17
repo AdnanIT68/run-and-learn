@@ -24,6 +24,7 @@
     { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
     { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
     { "id": "op_plus", "bs": "plus", "en": "plus", "de": "plus", "ar": "زَائِد", "ar_latin": "zâ'id", "ar_status": "za provjeru: riječ za sabiranje (2 + 3)" },
+    { "id": "op_minus", "bs": "minus", "en": "minus", "de": "minus", "ar": "نَاقِص", "ar_latin": "nâqis", "ar_status": "za provjeru: riječ za oduzimanje (5 − 2)" },
     { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
   ],
   "numbers": [

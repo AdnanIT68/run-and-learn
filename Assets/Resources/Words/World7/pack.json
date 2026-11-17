@@ -151,6 +151,15 @@
       "ar_latin": "zâ'id"
     },
     {
+      "id": "op_minus",
+      "bs": "minus",
+      "en": "minus",
+      "de": "minus",
+      "ar": "نَاقِص",
+      "ar_shown": "ﺺِﻗﺎَﻧ",
+      "ar_latin": "nâqis"
+    },
+    {
       "id": "goal",
       "bs": "Bravo! Cilj je ispunjen!",
       "en": "Well done! Goal complete!",
