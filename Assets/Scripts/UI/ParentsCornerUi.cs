@@ -251,8 +251,10 @@ namespace FootballRunner.UI
         {
             _heading.text = LearningProgress.Ui("ZA RODITELJE", "FOR PARENTS", "FÜR ELTERN");
             // The button says who is playing under its title.
-            _diplomasLabel.text = LearningProgress.Ui("DIPLOME", "DIPLOMAS", "DIPLOME") +
-                                  $"  {Learning.Diplomas.Earned().Count}";
+            // Diplomas and worksheets to print; the small line counts the diplomas earned.
+            _diplomasLabel.text = LearningProgress.Ui("ZA ŠTAMPU", "TO PRINT", "DRUCKEN") + "\n<size=55%>" +
+                                  LearningProgress.Ui("diplome", "diplomas", "Diplome") +
+                                  $": {Learning.Diplomas.Earned().Count}</size>";
             _childrenLabel.text = LearningProgress.Ui("DJECA", "CHILDREN", "KINDER") +
                                   $"\n<size=55%>{ProfilesUi.DisplayName(ProfileStore.Active)}</size>";
             _backLabel.text = LearningProgress.Ui("NAZAD", "BACK", "ZURÜCK");

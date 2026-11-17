@@ -291,6 +291,46 @@ namespace FootballRunner.Tests
             Object.Destroy(diploma);
         }
 
+        /// <summary>Look check for the worksheets and their screen: Store/raw/check/sheet_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureWorksheets()
+        {
+            string folder = Path.Combine(Application.dataPath, "..", "Store", "raw", "check");
+            Directory.CreateDirectory(folder);
+
+            foreach ((string learn, string home) in new[]
+                     {
+                         (LearningProgress.English, LearningProgress.Bosnian),
+                         (LearningProgress.Arabic, LearningProgress.Bosnian)
+                     })
+            {
+                SetProgress(learn, home);
+                yield return LoadScene("MainMenu");
+
+                foreach (Worksheets.Kind kind in new[] { Worksheets.Kind.Letters, Worksheets.Kind.Match })
+                {
+                    Texture2D sheet = Worksheets.Render("World1", kind);
+                    File.WriteAllBytes(Path.Combine(folder, $"sheet_{learn}_{kind}.png"), sheet.EncodeToPNG());
+                    Object.Destroy(sheet);
+                }
+            }
+
+            SetProgress(LearningProgress.English, LearningProgress.Bosnian);
+            yield return LoadScene("MainMenu");
+            var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
+            corner.Open();
+            corner.PressAnswer(corner.GateAnswer);
+            yield return null;
+            yield return Capture("check/sheet_corner");
+            corner.OpenDiplomas();
+            corner.Diplomas.ShowMode(FootballRunner.UI.DiplomasUi.Mode.Worksheets);
+            corner.Diplomas.Show("World2");
+            yield return null;
+            yield return Capture("check/sheet_screen");
+            corner.Diplomas.Close();
+            corner.Close();
+        }
+
         /// <summary>Look check on a 4:3 tablet: Store/raw/check/tablet_*.png.</summary>
         [UnityTest]
         public IEnumerator CaptureTablet()
