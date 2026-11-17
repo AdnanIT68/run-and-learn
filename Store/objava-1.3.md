@@ -1,4 +1,4 @@
-# Run and Learn 1.3.0 (versionCode 6): objava na Google Play
+# Run and Learn 1.3.0 (versionCode 7): objava na Google Play
 
 Fajl za upload: `Builds\RunAndLearn-1.3.0-7.aab` (potpisan ključem za upload; build 7 zamjenjuje 6, vidi niže).
 Bilješke o izdanju: `Store/release-notes-1.3.0.md` (en, hr = bosanski tekst, de; svaka ispod 500 znakova).

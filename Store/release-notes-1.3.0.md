@@ -1,4 +1,4 @@
-# Release notes 1.3.0 (versionCode 6)
+# Release notes 1.3.0 (versionCode 7; build 6 bio u internom testu)
 
 Paste each block into the matching language in Play Console (max 500 characters each).
 Arabic checked (17. 11. 2026). Build 6 is in internal testing since 17. 11.; try it on a phone
