@@ -17,7 +17,12 @@ i 12 testera zatvorenog testiranja ništa ne primijeti.
 5. Na telefonu otvori link za interno testiranje i ažuriraj igru s Playa.
 6. Prođi listu `Builds\Test-na-telefonu-1.3.md` (posebno: stari napredak ostao, dijeljenje diplome i radnog lista, slikovnica, novi svijet).
 
+Stanje 17. 11. 2026 u 10:51: build 6 (1.3.0) je OBJAVLJEN u internom testiranju (link
+https://play.google.com/apps/internaltest/4701732897561276308, lista "ProfitPilot Testeri").
+
 ## 2. Kad interni test prođe
+
+Prijava za produkciju: odgovori su pripremljeni u `Store/prijava-za-produkciju.md`.
 
 - Ako je odobren pristup produkciji (14 dana s 12 testera, oko 18. 11.): Produkcija → Napravi novo
   izdanje → "Dodaj iz biblioteke" (isti build 6) → bilješke → slanje na pregled.
