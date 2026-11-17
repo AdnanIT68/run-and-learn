@@ -1,0 +1,50 @@
+{
+  "pack": "World4",
+  "pages": [
+    {
+      "words": [
+        "pigeon",
+        "fountain"
+      ],
+      "bs": "Na čaršiji golubovi piju vodu sa česme.",
+      "en": "In the old bazaar, pigeons drink water from the fountain.",
+      "de": "Auf dem alten Basar trinken Tauben Wasser am Brunnen.",
+      "ar": "فِي السُّوقِ الْقَدِيمِ يَشْرَبُ الْحَمَامُ مِنَ النَّافُورَة.",
+      "ar_shown": ".ﺓَﺭﻮُﻓﺎَّﻨﻟﺍ َﻦِﻣ ُﻡﺎَﻤَﺤْﻟﺍ ُﺏَﺮْﺸَﻳ ِﻢﻳِﺪَﻘْﻟﺍ ِﻕﻮُّﺴﻟﺍ ﻲِﻓ",
+      "ar_latin": "Fi-s-sûki-l-kadîmi jašrabu-l-hamâmu mina-n-nâfûra."
+    },
+    {
+      "words": [
+        "tram"
+      ],
+      "bs": "Tramvaj zvoni: cin-cin! Pazi, Rukajja!",
+      "en": "The tram rings: ding-ding! Careful, Rukajja!",
+      "de": "Die Straßenbahn klingelt: bimm-bimm! Pass auf, Rukajja!",
+      "ar": "التِّرَامُ يَرِنّ: تِن تِن! اِنْتَبِهِي يَا رُقَيَّة!",
+      "ar_shown": "!ﻦِﺗ ﻦِﺗ :ّﻥِﺮَﻳ ُﻡﺍَﺮِّﺘﻟﺍ\n!ﺔَّﻴَﻗُﺭ ﺎَﻳ ﻲِﻬِﺒَﺘْﻧِﺍ",
+      "ar_latin": "At-tirâmu jarinn: tin tin! Intabihî jâ Rukajja!"
+    },
+    {
+      "words": [
+        "clock"
+      ],
+      "bs": "Veliki sat pokazuje podne.",
+      "en": "The big clock shows noon.",
+      "de": "Die große Uhr zeigt Mittag.",
+      "ar": "السَّاعَةُ الْكَبِيرَةُ تُشِيرُ إِلَى الظُّهْر.",
+      "ar_shown": ".ﺮْﻬُّﻈﻟﺍ ﻰَﻟِﺇ ُﺮﻴِﺸُﺗ ُﺓَﺮﻴِﺒَﻜْﻟﺍ ُﺔَﻋﺎَّﺴﻟﺍ",
+      "ar_latin": "As-sâ'atu-l-kabîratu tušîru ila-z-zuhr."
+    },
+    {
+      "words": [
+        "ball"
+      ],
+      "bs": "Djeca igraju loptu. Rukajja daje gol!",
+      "en": "The children play ball. Rukajja scores a goal!",
+      "de": "Die Kinder spielen Ball. Rukajja schießt ein Tor!",
+      "ar": "الْأَطْفَالُ يَلْعَبُونَ بِالْكُرَة. رُقَيَّةُ تُسَجِّلُ هَدَفًا!",
+      "ar_shown": ".ﺓَﺮُﻜْﻟﺎِﺑ َﻥﻮُﺒَﻌْﻠَﻳ ُﻝﺎَﻔْﻃَْﻷﺍ\n!ﺎًﻓَﺪَﻫ ُﻞِّﺠَﺴُﺗ ُﺔَّﻴَﻗُﺭ",
+      "ar_latin": "Al-atfâlu jal'abûna bi-l-kura. Rukajjatu tusaddžilu hadafan!"
+    }
+  ]
+}

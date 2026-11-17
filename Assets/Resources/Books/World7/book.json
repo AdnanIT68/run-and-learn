@@ -1,0 +1,51 @@
+{
+  "pack": "World7",
+  "pages": [
+    {
+      "words": [
+        "bell",
+        "school"
+      ],
+      "bs": "Zvono zvoni. Počinje škola!",
+      "en": "The bell rings. School begins!",
+      "de": "Die Glocke läutet. Die Schule beginnt!",
+      "ar": "الْجَرَسُ يَرِنّ. تَبْدَأُ الْمَدْرَسَة!",
+      "ar_shown": ".ّﻥِﺮَﻳ ُﺱَﺮَﺠْﻟﺍ\n!ﺔَﺳَﺭْﺪَﻤْﻟﺍ ُﺃَﺪْﺒَﺗ",
+      "ar_latin": "Al-džarasu jarinn. Tabda'u-l-madrasa!"
+    },
+    {
+      "words": [
+        "backpack",
+        "notebook"
+      ],
+      "bs": "Rukajja vadi svesku iz ranca.",
+      "en": "Rukajja takes a notebook out of her backpack.",
+      "de": "Rukajja holt ein Heft aus dem Rucksack.",
+      "ar": "رُقَيَّةُ تُخْرِجُ الدَّفْتَرَ مِنَ الْحَقِيبَة.",
+      "ar_shown": ".ﺔَﺒﻴِﻘَﺤْﻟﺍ َﻦِﻣ َﺮَﺘْﻓَّﺪﻟﺍ ُﺝِﺮْﺨُﺗ ُﺔَّﻴَﻗُﺭ",
+      "ar_latin": "Rukajjatu tuhridžu-d-daftara mina-l-hakîba."
+    },
+    {
+      "words": [
+        "pencil"
+      ],
+      "bs": "Olovkom piše slova: A, B, C.",
+      "en": "With a pencil she writes letters: A, B, C.",
+      "de": "Mit dem Bleistift schreibt sie Buchstaben: A, B, C.",
+      "ar": "تَكْتُبُ الْحُرُوفَ بِقَلَمِ الرَّصَاص: أَلِف، بَاء، تَاء.",
+      "ar_shown": ".ﺀﺎَﺗ ،ﺀﺎَﺑ ،ﻒِﻟَﺃ :ﺹﺎَﺻَّﺮﻟﺍ ِﻢَﻠَﻘِﺑ َﻑﻭُﺮُﺤْﻟﺍ ُﺐُﺘْﻜَﺗ",
+      "ar_latin": "Taktubu-l-hurûfa bi-kalami-r-rasâs: alif, bâ', tâ'."
+    },
+    {
+      "words": [
+        "crayon"
+      ],
+      "bs": "Bojicama crta sunce. Bravo, Rukajja!",
+      "en": "With crayons she draws a sun. Well done, Rukajja!",
+      "de": "Mit Buntstiften malt sie eine Sonne. Super, Rukajja!",
+      "ar": "تَرْسُمُ شَمْسًا بِأَقْلَامِ التَّلْوِين. أَحْسَنْتِ يَا رُقَيَّة!",
+      "ar_shown": ".ﻦﻳِﻮْﻠَّﺘﻟﺍ ِﻡَﻼْﻗَﺄِﺑ ﺎًﺴْﻤَﺷ ُﻢُﺳْﺮَﺗ\n!ﺔَّﻴَﻗُﺭ ﺎَﻳ ِﺖْﻨَﺴْﺣَﺃ",
+      "ar_latin": "Tarsumu šamsan bi-aklâmi-t-talvîn. Ahsanti jâ Rukajja!"
+    }
+  ]
+}

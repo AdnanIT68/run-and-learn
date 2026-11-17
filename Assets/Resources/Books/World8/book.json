@@ -1,0 +1,52 @@
+{
+  "pack": "World8",
+  "pages": [
+    {
+      "words": [
+        "night",
+        "moon"
+      ],
+      "bs": "Pala je noć. Na nebu sija mjesec.",
+      "en": "Night has come. The moon shines in the sky.",
+      "de": "Es ist Nacht. Am Himmel leuchtet der Mond.",
+      "ar": "جَاءَ اللَّيْل. الْقَمَرُ يُضِيءُ فِي السَّمَاء.",
+      "ar_shown": ".ﻞْﻴَّﻠﻟﺍ َﺀﺎَﺟ\n.ﺀﺎَﻤَّﺴﻟﺍ ﻲِﻓ ُﺀﻲِﻀُﻳ ُﺮَﻤَﻘْﻟﺍ",
+      "ar_latin": "Džâ'a-l-lajl. Al-kamaru judî'u fi-s-samâ'."
+    },
+    {
+      "words": [
+        "telescope",
+        "star_word"
+      ],
+      "bs": "Rukajja gleda kroz teleskop. Koliko zvijezda!",
+      "en": "Rukajja looks through the telescope. So many stars!",
+      "de": "Rukajja schaut durch das Teleskop. So viele Sterne!",
+      "ar": "رُقَيَّةُ تَنْظُرُ بِالتِّلِسْكُوب. مَا أَكْثَرَ النُّجُوم!",
+      "ar_shown": ".ﺏﻮُﻜْﺴِﻠِّﺘﻟﺎِﺑ ُﺮُﻈْﻨَﺗ ُﺔَّﻴَﻗُﺭ\n!ﻡﻮُﺠُّﻨﻟﺍ َﺮَﺜْﻛَﺃ ﺎَﻣ",
+      "ar_latin": "Rukajjatu tanzuru bi-t-tiliskûb. Mâ aksara-n-nudžûm!"
+    },
+    {
+      "words": [
+        "owl"
+      ],
+      "bs": "Sova kaže: hu-hu! Ona noću ne spava.",
+      "en": "The owl says: hoo-hoo! It does not sleep at night.",
+      "de": "Die Eule ruft: schuhu! Sie schläft nachts nicht.",
+      "ar": "الْبُومَةُ تَقُول: هُو هُو! هِيَ لَا تَنَامُ فِي اللَّيْل.",
+      "ar_shown": "!ﻮُﻫ ﻮُﻫ :ﻝﻮُﻘَﺗ ُﺔَﻣﻮُﺒْﻟﺍ\n.ﻞْﻴَّﻠﻟﺍ ﻲِﻓ ُﻡﺎَﻨَﺗ َﻻ َﻲِﻫ",
+      "ar_latin": "Al-bûmatu takûl: hû hû! Hija lâ tanâmu fi-l-lajl."
+    },
+    {
+      "words": [
+        "bed",
+        "rocket"
+      ],
+      "bs": "Rukajja ide u krevet i sanja rakete. Laku noć!",
+      "en": "Rukajja goes to bed and dreams of rockets. Good night!",
+      "de": "Rukajja geht ins Bett und träumt von Raketen. Gute Nacht!",
+      "ar": "رُقَيَّةُ تَذْهَبُ إِلَى السَّرِيرِ وَتَحْلُمُ بِالصَّوَارِيخ. تُصْبِحِينَ عَلَى خَيْر!",
+      "ar_shown": ".ﺦﻳِﺭﺍَﻮَّﺼﻟﺎِﺑ ُﻢُﻠْﺤَﺗَﻭ ِﺮﻳِﺮَّﺴﻟﺍ ﻰَﻟِﺇ ُﺐَﻫْﺬَﺗ ُﺔَّﻴَﻗُﺭ\n!ﺮْﻴَﺧ ﻰَﻠَﻋ َﻦﻴِﺤِﺒْﺼُﺗ",
+      "ar_latin": "Rukajjatu tazhabu ila-s-sarîri va tahlumu bi-s-savârîh. Tusbihîna 'alâ hajr!"
+    }
+  ]
+}

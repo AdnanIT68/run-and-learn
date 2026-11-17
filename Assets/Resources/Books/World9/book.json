@@ -1,0 +1,50 @@
+{
+  "pack": "World9",
+  "pages": [
+    {
+      "words": [
+        "selam"
+      ],
+      "bs": "Rukajja sretne komšiju i kaže: Selam!",
+      "en": "Rukajja meets a neighbour and says: Hello!",
+      "de": "Rukajja trifft den Nachbarn und sagt: Hallo!",
+      "ar": "رُقَيَّةُ تَلْتَقِي بِالْجَارِ وَتَقُول: السَّلَامُ عَلَيْكُم!",
+      "ar_shown": "!ﻢُﻜْﻴَﻠَﻋ ُﻡَﻼَّﺴﻟﺍ :ﻝﻮُﻘَﺗَﻭ ِﺭﺎَﺠْﻟﺎِﺑ ﻲِﻘَﺘْﻠَﺗ ُﺔَّﻴَﻗُﺭ",
+      "ar_latin": "Rukajjatu taltakî bi-l-džâri va takûl: As-salâmu 'alajkum!"
+    },
+    {
+      "words": [
+        "bismillah"
+      ],
+      "bs": "Prije jela kaže: Bismillah.",
+      "en": "Before eating she says: Bismillah.",
+      "de": "Vor dem Essen sagt sie: Bismillah.",
+      "ar": "قَبْلَ الْأَكْلِ تَقُول: بِسْمِ اللّٰه.",
+      "ar_shown": ".ّٰﷲ ِﻢْﺴِﺑ :ﻝﻮُﻘَﺗ ِﻞْﻛَْﻷﺍ َﻞْﺒَﻗ",
+      "ar_latin": "Kabla-l-akli takûl: Bismillâh."
+    },
+    {
+      "words": [
+        "here_you_are",
+        "thanks"
+      ],
+      "bs": "Daje jabuku bratu: Izvoli! On kaže: Hvala!",
+      "en": "She gives her brother an apple: Here you are! He says: Thank you!",
+      "de": "Sie gibt dem Bruder einen Apfel: Bitte schön! Er sagt: Danke!",
+      "ar": "تُعْطِي أَخَاهَا تُفَّاحَة: تَفَضَّل! يَقُول: شُكْرًا!",
+      "ar_shown": "!ﻞَّﻀَﻔَﺗ :ﺔَﺣﺎَّﻔُﺗ ﺎَﻫﺎَﺧَﺃ ﻲِﻄْﻌُﺗ\n!ﺍًﺮْﻜُﺷ :ﻝﻮُﻘَﻳ",
+      "ar_latin": "Tu'tî ahâhâ tuffâha: Tafaddal! Jakûl: Šukran!"
+    },
+    {
+      "words": [
+        "sorry"
+      ],
+      "bs": "Kad slučajno gurne drugaricu, kaže: Oprosti!",
+      "en": "When she bumps into a friend by accident, she says: Sorry!",
+      "de": "Als sie aus Versehen eine Freundin anstößt, sagt sie: Entschuldigung!",
+      "ar": "عِنْدَمَا تَدْفَعُ صَدِيقَتَهَا بِالْخَطَأِ تَقُول: آسِفَة!",
+      "ar_shown": "!ﺔَﻔِﺳﺁ :ﻝﻮُﻘَﺗ ِﺄَﻄَﺨْﻟﺎِﺑ ﺎَﻬَﺘَﻘﻳِﺪَﺻ ُﻊَﻓْﺪَﺗ ﺎَﻣَﺪْﻨِﻋ",
+      "ar_latin": "'Indamâ tadfa'u sadîkatahâ bi-l-hata'i takûl: Âsifa!"
+    }
+  ]
+}

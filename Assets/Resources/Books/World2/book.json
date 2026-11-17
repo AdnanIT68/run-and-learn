@@ -1,0 +1,50 @@
+{
+  "pack": "World2",
+  "pages": [
+    {
+      "words": [
+        "rooster"
+      ],
+      "bs": "Kukuriku! Pijetao budi farmu kod dede.",
+      "en": "Cock-a-doodle-doo! The rooster wakes up Grandpa's farm.",
+      "de": "Kikeriki! Der Hahn weckt Opas Bauernhof.",
+      "ar": "كُوكُو كُوكُو! الدِّيكُ يُوقِظُ مَزْرَعَةَ الْجَدّ.",
+      "ar_shown": "!ﻮُﻛﻮُﻛ ﻮُﻛﻮُﻛ\n.ّﺪَﺠْﻟﺍ َﺔَﻋَﺭْﺰَﻣ ُﻆِﻗﻮُﻳ ُﻚﻳِّﺪﻟﺍ",
+      "ar_latin": "Kûkû kûkû! Ad-dîku jûkizu mazra'ata-l-džadd."
+    },
+    {
+      "words": [
+        "cow"
+      ],
+      "bs": "Dedo muze kravu. Evo svježeg mlijeka!",
+      "en": "Grandpa milks the cow. Here is fresh milk!",
+      "de": "Opa melkt die Kuh. Hier ist frische Milch!",
+      "ar": "الْجَدُّ يَحْلُبُ الْبَقَرَة. هَذَا حَلِيبٌ طَازَج!",
+      "ar_shown": ".ﺓَﺮَﻘَﺒْﻟﺍ ُﺐُﻠْﺤَﻳ ُّﺪَﺠْﻟﺍ\n!ﺝَﺯﺎَﻃ ٌﺐﻴِﻠَﺣ ﺍَﺬَﻫ",
+      "ar_latin": "Al-džaddu jahlubu-l-bakara. Hâzâ halîbun tâzadž!"
+    },
+    {
+      "words": [
+        "hen",
+        "duck"
+      ],
+      "bs": "Kokoš traži zrnca. Patka pliva u bari.",
+      "en": "The hen looks for grains. The duck swims in the pond.",
+      "de": "Das Huhn sucht Körner. Die Ente schwimmt im Teich.",
+      "ar": "الدَّجَاجَةُ تَبْحَثُ عَنِ الْحَبّ. الْبَطَّةُ تَسْبَحُ فِي الْبِرْكَة.",
+      "ar_shown": ".ّﺐَﺤْﻟﺍ ِﻦَﻋ ُﺚَﺤْﺒَﺗ ُﺔَﺟﺎَﺟَّﺪﻟﺍ\n.ﺔَﻛْﺮِﺒْﻟﺍ ﻲِﻓ ُﺢَﺒْﺴَﺗ ُﺔَّﻄَﺒْﻟﺍ",
+      "ar_latin": "Ad-dadžâdžatu tabhasu 'ani-l-habb. Al-battatu tasbahu fi-l-birka."
+    },
+    {
+      "words": [
+        "rabbit"
+      ],
+      "bs": "Zec skače: hop, hop! Rukajja skače s njim.",
+      "en": "The rabbit hops: hop, hop! Rukajja hops along.",
+      "de": "Der Hase hüpft: hopp, hopp! Rukajja hüpft mit.",
+      "ar": "الْأَرْنَبُ يَقْفِز: هُوب، هُوب! رُقَيَّةُ تَقْفِزُ مَعَه.",
+      "ar_shown": "!ﺏﻮُﻫ ،ﺏﻮُﻫ :ﺰِﻔْﻘَﻳ ُﺐَﻧْﺭَْﻷﺍ\n.ﻪَﻌَﻣ ُﺰِﻔْﻘَﺗ ُﺔَّﻴَﻗُﺭ",
+      "ar_latin": "Al-arnabu jakfiz: hûb, hûb! Rukajjatu takfizu ma'ah."
+    }
+  ]
+}

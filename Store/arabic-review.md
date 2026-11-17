@@ -11,7 +11,7 @@ Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali
 
 Za recenzenta: `Tools/make_arabic_review_page.py` pravi `Store/arabic-review.zip` (slika, tekst, glas);
 njegov fajl s rezultatima upisuje `Tools/apply_arabic_review.py`, koji ponovo piše i ovu listu.
-Ukupno 190 unosa, od toga 190 čeka provjeru.
+Ukupno 230 unosa, od toga 230 čeka provjeru.
 
 
 ## World1: Nenina bašta
@@ -258,4 +258,49 @@ Ukupno 190 unosa, od toga 190 čeka provjeru.
 | `ar_ha` | ه | حَرْفُ الْهَاء | hâ' | za provjeru |
 | `ar_waw` | و | حَرْفُ الْوَاو | vâv | za provjeru |
 | `ar_ya` | ي | حَرْفُ الْيَاء | jâ' | za provjeru |
+
+## Slikovnice (rečenice koje glas čita)
+
+| id | bosanski | arapski | latinica | status |
+|---|---|---|---|---|
+| `books/World1/1` | Rukajja je u neninoj bašti. Gle, crvena jabuka! | رُقَيَّةُ فِي حَدِيقَةِ الْجَدَّة. اُنْظُرْ، تُفَّاحَةٌ حَمْرَاء! | Rukajjatu fî hadîkati-l-džadda. Unzur, tuffâhatun hamrâ'! | za provjeru |
+| `books/World1/2` | Nena bere jagode. Pepi jede bananu. | الْجَدَّةُ تَقْطِفُ الْفَرَاوِلَة. بِيبِي يَأْكُلُ مَوْزَة. | Al-džaddatu taktifu-l-farâvila. Pîpî ja'kulu mavza. | za provjeru |
+| `books/World1/3` | U zemlji raste mrkva. Rukajja je čupa. Hop! | الْجَزَرَةُ فِي الْأَرْض. رُقَيَّةُ تَسْحَبُهَا. هُوب! | Al-džazaratu fi-l-ard. Rukajjatu tashabuhâ. Hûb! | za provjeru |
+| `books/World1/4` | Na kraju jedu veliku lubenicu. Mmm, slatka je! | فِي النِّهَايَةِ يَأْكُلُونَ بِطِّيخًا كَبِيرًا. مَا أَحْلَاه! | Fi-n-nihâjati ja'kulûna bittîhan kabîran. Mâ ahlâh! | za provjeru |
+| `books/World2/1` | Kukuriku! Pijetao budi farmu kod dede. | كُوكُو كُوكُو! الدِّيكُ يُوقِظُ مَزْرَعَةَ الْجَدّ. | Kûkû kûkû! Ad-dîku jûkizu mazra'ata-l-džadd. | za provjeru |
+| `books/World2/2` | Dedo muze kravu. Evo svježeg mlijeka! | الْجَدُّ يَحْلُبُ الْبَقَرَة. هَذَا حَلِيبٌ طَازَج! | Al-džaddu jahlubu-l-bakara. Hâzâ halîbun tâzadž! | za provjeru |
+| `books/World2/3` | Kokoš traži zrnca. Patka pliva u bari. | الدَّجَاجَةُ تَبْحَثُ عَنِ الْحَبّ. الْبَطَّةُ تَسْبَحُ فِي الْبِرْكَة. | Ad-dadžâdžatu tabhasu 'ani-l-habb. Al-battatu tasbahu fi-l-birka. | za provjeru |
+| `books/World2/4` | Zec skače: hop, hop! Rukajja skače s njim. | الْأَرْنَبُ يَقْفِز: هُوب، هُوب! رُقَيَّةُ تَقْفِزُ مَعَه. | Al-arnabu jakfiz: hûb, hûb! Rukajjatu takfizu ma'ah. | za provjeru |
+| `books/World3/1` | Ovo je naša kuća. Ovdje živi Rukajja. | هَذَا بَيْتُنَا. هُنَا تَسْكُنُ رُقَيَّة. | Hâzâ bajtunâ. Hunâ taskunu Rukajja. | za provjeru |
+| `books/World3/2` | Mama peče hljeb. Cijela kuća lijepo miriše. | الْأُمُّ تَخْبِزُ الْخُبْز. رَائِحَةُ الْبَيْتِ جَمِيلَة. | Al-ummu tahbizu-l-hubz. Râ'ihatu-l-bajti džamîla. | za provjeru |
+| `books/World3/3` | Dedo čita, a nena plete šal. | الْجَدُّ يَقْرَأُ، وَالْجَدَّةُ تَحِيكُ وِشَاحًا. | Al-džaddu jakra'u, va-l-džaddatu tahîku višâhan. | za provjeru |
+| `books/World3/4` | Beba pije mlijeko i zaspi. Laku noć! | الرَّضِيعُ يَشْرَبُ الْحَلِيبَ وَيَنَام. تُصْبِحُ عَلَى خَيْر! | Ar-radî'u jašrabu-l-halîba va janâm. Tusbihu 'alâ hajr! | za provjeru |
+| `books/World4/1` | Na čaršiji golubovi piju vodu sa česme. | فِي السُّوقِ الْقَدِيمِ يَشْرَبُ الْحَمَامُ مِنَ النَّافُورَة. | Fi-s-sûki-l-kadîmi jašrabu-l-hamâmu mina-n-nâfûra. | za provjeru |
+| `books/World4/2` | Tramvaj zvoni: cin-cin! Pazi, Rukajja! | التِّرَامُ يَرِنّ: تِن تِن! اِنْتَبِهِي يَا رُقَيَّة! | At-tirâmu jarinn: tin tin! Intabihî jâ Rukajja! | za provjeru |
+| `books/World4/3` | Veliki sat pokazuje podne. | السَّاعَةُ الْكَبِيرَةُ تُشِيرُ إِلَى الظُّهْر. | As-sâ'atu-l-kabîratu tušîru ila-z-zuhr. | za provjeru |
+| `books/World4/4` | Djeca igraju loptu. Rukajja daje gol! | الْأَطْفَالُ يَلْعَبُونَ بِالْكُرَة. رُقَيَّةُ تُسَجِّلُ هَدَفًا! | Al-atfâlu jal'abûna bi-l-kura. Rukajjatu tusaddžilu hadafan! | za provjeru |
+| `books/World5/1` | Sunce sija iznad Starog mosta. | الشَّمْسُ تُشْرِقُ فَوْقَ الْجِسْرِ الْقَدِيم. | Aš-šamsu tušriku favka-l-džisri-l-kadîm. | za provjeru |
+| `books/World5/2` | U rijeci pliva mala riba. | سَمَكَةٌ صَغِيرَةٌ تَسْبَحُ فِي النَّهْر. | Samakatun sagîratun tasbahu fi-n-nahr. | za provjeru |
+| `books/World5/3` | Pada kiša. Žaba je sretna: kre-kre! | الْمَطَرُ يَنْزِل. الضِّفْدَعُ سَعِيد: نَقْ نَقْ! | Al-mataru janzil. Ad-difda'u sa'îd: nak nak! | za provjeru |
+| `books/World5/4` | Poslije kiše dođe duga. Leptir leti do nje. | بَعْدَ الْمَطَرِ يَظْهَرُ قَوْسُ قُزَح. الْفَرَاشَةُ تَطِيرُ إِلَيْه. | Ba'da-l-matari jazharu kavsu kuzah. Al-farâšatu tatîru ilajh. | za provjeru |
+| `books/World6/1` | Na planini pada snijeg. Sve je bijelo! | الثَّلْجُ يَتَسَاقَطُ عَلَى الْجَبَل. كُلُّ شَيْءٍ أَبْيَض! | As-saldžu jatasâkatu 'ala-l-džabal. Kullu šaj'in abjad! | za provjeru |
+| `books/World6/2` | Rukajja oblači jaknu i rukavice. | رُقَيَّةُ تَلْبَسُ الْمِعْطَفَ وَالْقُفَّازَات. | Rukajjatu talbasu-l-mi'tafa va-l-kuffâzât. | za provjeru |
+| `books/World6/3` | Sanke jure niz brdo. Juhuu! | الْمِزْلَجَةُ تَنْزَلِقُ مِنَ التَّلّ. يَاه! | Al-mizladžatu tanzaliku mina-t-tall. Jâh! | za provjeru |
+| `books/World6/4` | Na kraju prave snjegovića sa šalom. | فِي النِّهَايَةِ يَصْنَعُونَ رَجُلَ ثَلْجٍ بِوِشَاح. | Fi-n-nihâjati jasna'ûna radžula saldžin bi-višâh. | za provjeru |
+| `books/World7/1` | Zvono zvoni. Počinje škola! | الْجَرَسُ يَرِنّ. تَبْدَأُ الْمَدْرَسَة! | Al-džarasu jarinn. Tabda'u-l-madrasa! | za provjeru |
+| `books/World7/2` | Rukajja vadi svesku iz ranca. | رُقَيَّةُ تُخْرِجُ الدَّفْتَرَ مِنَ الْحَقِيبَة. | Rukajjatu tuhridžu-d-daftara mina-l-hakîba. | za provjeru |
+| `books/World7/3` | Olovkom piše slova: A, B, C. | تَكْتُبُ الْحُرُوفَ بِقَلَمِ الرَّصَاص: أَلِف، بَاء، تَاء. | Taktubu-l-hurûfa bi-kalami-r-rasâs: alif, bâ', tâ'. | za provjeru |
+| `books/World7/4` | Bojicama crta sunce. Bravo, Rukajja! | تَرْسُمُ شَمْسًا بِأَقْلَامِ التَّلْوِين. أَحْسَنْتِ يَا رُقَيَّة! | Tarsumu šamsan bi-aklâmi-t-talvîn. Ahsanti jâ Rukajja! | za provjeru |
+| `books/World8/1` | Pala je noć. Na nebu sija mjesec. | جَاءَ اللَّيْل. الْقَمَرُ يُضِيءُ فِي السَّمَاء. | Džâ'a-l-lajl. Al-kamaru judî'u fi-s-samâ'. | za provjeru |
+| `books/World8/2` | Rukajja gleda kroz teleskop. Koliko zvijezda! | رُقَيَّةُ تَنْظُرُ بِالتِّلِسْكُوب. مَا أَكْثَرَ النُّجُوم! | Rukajjatu tanzuru bi-t-tiliskûb. Mâ aksara-n-nudžûm! | za provjeru |
+| `books/World8/3` | Sova kaže: hu-hu! Ona noću ne spava. | الْبُومَةُ تَقُول: هُو هُو! هِيَ لَا تَنَامُ فِي اللَّيْل. | Al-bûmatu takûl: hû hû! Hija lâ tanâmu fi-l-lajl. | za provjeru |
+| `books/World8/4` | Rukajja ide u krevet i sanja rakete. Laku noć! | رُقَيَّةُ تَذْهَبُ إِلَى السَّرِيرِ وَتَحْلُمُ بِالصَّوَارِيخ. تُصْبِحِينَ عَلَى خَيْر! | Rukajjatu tazhabu ila-s-sarîri va tahlumu bi-s-savârîh. Tusbihîna 'alâ hajr! | za provjeru |
+| `books/World9/1` | Rukajja sretne komšiju i kaže: Selam! | رُقَيَّةُ تَلْتَقِي بِالْجَارِ وَتَقُول: السَّلَامُ عَلَيْكُم! | Rukajjatu taltakî bi-l-džâri va takûl: As-salâmu 'alajkum! | za provjeru |
+| `books/World9/2` | Prije jela kaže: Bismillah. | قَبْلَ الْأَكْلِ تَقُول: بِسْمِ اللّٰه. | Kabla-l-akli takûl: Bismillâh. | za provjeru |
+| `books/World9/3` | Daje jabuku bratu: Izvoli! On kaže: Hvala! | تُعْطِي أَخَاهَا تُفَّاحَة: تَفَضَّل! يَقُول: شُكْرًا! | Tu'tî ahâhâ tuffâha: Tafaddal! Jakûl: Šukran! | za provjeru |
+| `books/World9/4` | Kad slučajno gurne drugaricu, kaže: Oprosti! | عِنْدَمَا تَدْفَعُ صَدِيقَتَهَا بِالْخَطَأِ تَقُول: آسِفَة! | 'Indamâ tadfa'u sadîkatahâ bi-l-hata'i takûl: Âsifa! | za provjeru |
+| `books/World10/1` | Pepi nosi crveni krug. | بِيبِي يَحْمِلُ دَائِرَةً حَمْرَاء. | Pîpî jahmilu dâ'iratan hamrâ'. | za provjeru |
+| `books/World10/2` | Rukajja slaže plavi kvadrat. | رُقَيَّةُ تَضَعُ مُرَبَّعًا أَزْرَق. | Rukajjatu tada'u murabba'an azrak. | za provjeru |
+| `books/World10/3` | Žuti trougao ide na vrh. To je krov! | الْمُثَلَّثُ الْأَصْفَرُ فَوْق. هَذَا سَقْف! | Al-musallasu-l-asfaru favk. Hâzâ sakf! | za provjeru |
+| `books/World10/4` | Zeleno drvo i crveno srce. Gotova je slika! | شَجَرَةٌ خَضْرَاءُ وَقَلْبٌ أَحْمَر. اِنْتَهَتِ الصُّورَة! | Šadžaratun hadrâ'u va kalbun ahmar. Intahati-s-sûra! | za provjeru |
 

@@ -212,6 +212,16 @@ namespace FootballRunner.Learning
             return true;
         }
 
+        private TMP_Text _bookLabel;
+
+        /// <summary>Same as tapping SLIKOVNICA: the chosen world's picture book.</summary>
+        public bool OpenBook()
+        {
+            AudioManager.Instance?.PlayButton();
+            PictureBookUi books = PictureBookUi.EnsureOnCanvas(transform);
+            return books != null && books.Open(LearningProgress.SelectedPack);
+        }
+
         public bool IsLevelUnlocked(int level)
         {
             return LearningProgress.IsLevelUnlocked(LearningProgress.SelectedPack, level);
@@ -336,6 +346,23 @@ namespace FootballRunner.Learning
                 float x = (level - (LearningProgress.LevelsPerWorld - 1) * 0.5f) * 190f;
                 _levels.Add(BuildLevelButton(level, new Vector2(x, -400f)));
             }
+
+            // The chosen world's picture book, right of the levels.
+            var book = new GameObject("PictureBook", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image),
+                typeof(Button));
+            book.transform.SetParent(_panel.transform, false);
+            var bookRect = book.GetComponent<RectTransform>();
+            bookRect.anchorMin = bookRect.anchorMax = new Vector2(0.5f, 0.5f);
+            bookRect.anchoredPosition = new Vector2(640f, -400f);
+            bookRect.sizeDelta = new Vector2(220f, 170f);
+            book.GetComponent<Image>().color = new Color(0.6f, 0.4f, 0.9f, 1f);
+            Round(book.GetComponent<Image>());
+            book.GetComponent<Button>().onClick.AddListener(() => OpenBook());
+            WordPack books = WordPack.Load("World4");
+            CreateImage(book.transform, "Icon", books != null ? books.Picture("book") : null, new Vector2(0f, 22f),
+                new Vector2(96f, 96f)).raycastTarget = false;
+            _bookLabel = CreateText(book.transform, "Label", "", new Vector2(0f, -55f), new Vector2(205f, 46f), 30f,
+                Color.white);
 
             var back = new GameObject("Back", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image),
                 typeof(Button));
@@ -501,6 +528,7 @@ namespace FootballRunner.Learning
 
             int chosen = LearningProgress.SelectedLevel;
             _levelsLabel.text = LearningProgress.Ui("Izaberi nivo", "Pick a level", "Wähle ein Level");
+            _bookLabel.text = LearningProgress.Ui("SLIKOVNICA", "STORY BOOK", "BILDERBUCH");
 
             for (int level = 0; level < _levels.Count; level++)
             {

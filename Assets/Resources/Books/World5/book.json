@@ -1,0 +1,52 @@
+{
+  "pack": "World5",
+  "pages": [
+    {
+      "words": [
+        "sun",
+        "bridge"
+      ],
+      "bs": "Sunce sija iznad Starog mosta.",
+      "en": "The sun shines over the Old Bridge.",
+      "de": "Die Sonne scheint über der Alten Brücke.",
+      "ar": "الشَّمْسُ تُشْرِقُ فَوْقَ الْجِسْرِ الْقَدِيم.",
+      "ar_shown": ".ﻢﻳِﺪَﻘْﻟﺍ ِﺮْﺴِﺠْﻟﺍ َﻕْﻮَﻓ ُﻕِﺮْﺸُﺗ ُﺲْﻤَّﺸﻟﺍ",
+      "ar_latin": "Aš-šamsu tušriku favka-l-džisri-l-kadîm."
+    },
+    {
+      "words": [
+        "fish"
+      ],
+      "bs": "U rijeci pliva mala riba.",
+      "en": "A little fish swims in the river.",
+      "de": "Im Fluss schwimmt ein kleiner Fisch.",
+      "ar": "سَمَكَةٌ صَغِيرَةٌ تَسْبَحُ فِي النَّهْر.",
+      "ar_shown": ".ﺮْﻬَّﻨﻟﺍ ﻲِﻓ ُﺢَﺒْﺴَﺗ ٌﺓَﺮﻴِﻐَﺻ ٌﺔَﻜَﻤَﺳ",
+      "ar_latin": "Samakatun sagîratun tasbahu fi-n-nahr."
+    },
+    {
+      "words": [
+        "rain",
+        "frog"
+      ],
+      "bs": "Pada kiša. Žaba je sretna: kre-kre!",
+      "en": "It is raining. The frog is happy: ribbit!",
+      "de": "Es regnet. Der Frosch freut sich: quak-quak!",
+      "ar": "الْمَطَرُ يَنْزِل. الضِّفْدَعُ سَعِيد: نَقْ نَقْ!",
+      "ar_shown": ".ﻝِﺰْﻨَﻳ ُﺮَﻄَﻤْﻟﺍ\n!ْﻖَﻧ ْﻖَﻧ :ﺪﻴِﻌَﺳ ُﻉَﺪْﻔِّﻀﻟﺍ",
+      "ar_latin": "Al-mataru janzil. Ad-difda'u sa'îd: nak nak!"
+    },
+    {
+      "words": [
+        "rainbow",
+        "butterfly"
+      ],
+      "bs": "Poslije kiše dođe duga. Leptir leti do nje.",
+      "en": "After the rain comes a rainbow. A butterfly flies to it.",
+      "de": "Nach dem Regen kommt ein Regenbogen. Ein Schmetterling fliegt hin.",
+      "ar": "بَعْدَ الْمَطَرِ يَظْهَرُ قَوْسُ قُزَح. الْفَرَاشَةُ تَطِيرُ إِلَيْه.",
+      "ar_shown": ".ﺡَﺰُﻗ ُﺱْﻮَﻗ ُﺮَﻬْﻈَﻳ ِﺮَﻄَﻤْﻟﺍ َﺪْﻌَﺑ\n.ﻪْﻴَﻟِﺇ ُﺮﻴِﻄَﺗ ُﺔَﺷﺍَﺮَﻔْﻟﺍ",
+      "ar_latin": "Ba'da-l-matari jazharu kavsu kuzah. Al-farâšatu tatîru ilajh."
+    }
+  ]
+}

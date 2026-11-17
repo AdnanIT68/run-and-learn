@@ -71,9 +71,9 @@ def main() -> None:
         lines.append("")
 
     # Letter names (the school world and "Piši slovo") come from the generator, not from the JSON;
-    # their review status is kept in Tools/arabic_letters_status.json (Tools/apply_arabic_review.py).
+    # their review status is kept in Tools/arabic_extra_status.json (Tools/apply_arabic_review.py).
     import generate_words as words
-    status_file = ROOT / "Tools" / "arabic_letters_status.json"
+    status_file = ROOT / "Tools" / "arabic_extra_status.json"
     letter_status = json.loads(status_file.read_text(encoding="utf-8")) if status_file.exists() else {}
     lines += ["## Imena slova (Škola i „Piši slovo“; glas kaže „slovo …“)", "",
               "| id | slovo | izgovoreno | latinica | status |", "|---|---|---|---|---|"]
@@ -84,6 +84,20 @@ def main() -> None:
         pending += status.startswith("za provjeru")
         lines.append(f"| `{letter_id}` | {letter} | {words.arabic_letter_phrase(letter, name)} | {latin} | {status} |")
     lines.append("")
+
+    # The picture books (Tools/books.json): one sentence or two per page, read aloud.
+    books_file = ROOT / "Tools" / "books.json"
+    if books_file.exists():
+        lines += ["## Slikovnice (rečenice koje glas čita)", "",
+                  "| id | bosanski | arapski | latinica | status |", "|---|---|---|---|---|"]
+        for book in json.loads(books_file.read_text(encoding="utf-8"))["books"]:
+            for number, page in enumerate(book["pages"], start=1):
+                key = f"books/{book['pack']}/{number}"
+                status = letter_status.get(key, "za provjeru")
+                total += 1
+                pending += status.startswith("za provjeru")
+                lines.append(f"| `{key}` | {page['bs']} | {page['ar']} | {page['ar_latin']} | {status} |")
+        lines.append("")
 
     lines.insert(13, f"Ukupno {total} unosa, od toga {pending} čeka provjeru.")
     lines.insert(14, "")

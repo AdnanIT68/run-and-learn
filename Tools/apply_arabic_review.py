@@ -1,7 +1,7 @@
 """Reads the reviewer's answers from the Arabic review page and records them.
 
 - "Tačno": the entry's ar_status in Tools/words_world*.json becomes "provjereno"
-  (letter names go to Tools/arabic_letters_status.json).
+  (letter names and picture book pages go to Tools/arabic_extra_status.json).
 - "Ispravi": nothing is changed; the entry and the reviewer's note are listed in
   Store/arabic-corrections.md, to be fixed by hand (then generate the voices again).
 
@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "Tools"))
 import make_arabic_review  # noqa: E402
 from make_arabic_review import SECTIONS, entry_id  # noqa: E402
 
-LETTERS_STATUS = ROOT / "Tools" / "arabic_letters_status.json"
+LETTERS_STATUS = ROOT / "Tools" / "arabic_extra_status.json"
 CORRECTIONS = ROOT / "Store" / "arabic-corrections.md"
 
 
@@ -81,7 +81,7 @@ def main() -> None:
 
     letters = json.loads(LETTERS_STATUS.read_text(encoding="utf-8")) if LETTERS_STATUS.exists() else {}
     for answer_id, answer in by_id.items():
-        if answer_id.startswith("letters/") and answer["result"] == "ok":
+        if answer_id.startswith(("letters/", "books/")) and answer["result"] == "ok":
             letters[answer_id] = "provjereno"
             approved += 1
     if letters:

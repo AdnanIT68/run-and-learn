@@ -1,0 +1,50 @@
+{
+  "pack": "World1",
+  "pages": [
+    {
+      "words": [
+        "apple"
+      ],
+      "bs": "Rukajja je u neninoj bašti. Gle, crvena jabuka!",
+      "en": "Rukajja is in Grandma's garden. Look, a red apple!",
+      "de": "Rukajja ist in Omas Garten. Schau, ein roter Apfel!",
+      "ar": "رُقَيَّةُ فِي حَدِيقَةِ الْجَدَّة. اُنْظُرْ، تُفَّاحَةٌ حَمْرَاء!",
+      "ar_shown": ".ﺓَّﺪَﺠْﻟﺍ ِﺔَﻘﻳِﺪَﺣ ﻲِﻓ ُﺔَّﻴَﻗُﺭ\n!ﺀﺍَﺮْﻤَﺣ ٌﺔَﺣﺎَّﻔُﺗ ،ْﺮُﻈْﻧُﺍ",
+      "ar_latin": "Rukajjatu fî hadîkati-l-džadda. Unzur, tuffâhatun hamrâ'!"
+    },
+    {
+      "words": [
+        "strawberry",
+        "banana"
+      ],
+      "bs": "Nena bere jagode. Pepi jede bananu.",
+      "en": "Grandma picks strawberries. Pepi eats a banana.",
+      "de": "Oma pflückt Erdbeeren. Pepi isst eine Banane.",
+      "ar": "الْجَدَّةُ تَقْطِفُ الْفَرَاوِلَة. بِيبِي يَأْكُلُ مَوْزَة.",
+      "ar_shown": ".ﺔَﻟِﻭﺍَﺮَﻔْﻟﺍ ُﻒِﻄْﻘَﺗ ُﺓَّﺪَﺠْﻟﺍ\n.ﺓَﺯْﻮَﻣ ُﻞُﻛْﺄَﻳ ﻲِﺒﻴِﺑ",
+      "ar_latin": "Al-džaddatu taktifu-l-farâvila. Pîpî ja'kulu mavza."
+    },
+    {
+      "words": [
+        "carrot"
+      ],
+      "bs": "U zemlji raste mrkva. Rukajja je čupa. Hop!",
+      "en": "A carrot grows in the ground. Rukajja pulls it out. Hop!",
+      "de": "In der Erde wächst eine Karotte. Rukajja zieht sie heraus. Hopp!",
+      "ar": "الْجَزَرَةُ فِي الْأَرْض. رُقَيَّةُ تَسْحَبُهَا. هُوب!",
+      "ar_shown": ".ﺽْﺭَْﻷﺍ ﻲِﻓ ُﺓَﺭَﺰَﺠْﻟﺍ\n.ﺎَﻬُﺒَﺤْﺴَﺗ ُﺔَّﻴَﻗُﺭ\n!ﺏﻮُﻫ",
+      "ar_latin": "Al-džazaratu fi-l-ard. Rukajjatu tashabuhâ. Hûb!"
+    },
+    {
+      "words": [
+        "watermelon"
+      ],
+      "bs": "Na kraju jedu veliku lubenicu. Mmm, slatka je!",
+      "en": "At the end they eat a big watermelon. Mmm, it's sweet!",
+      "de": "Zum Schluss essen sie eine große Wassermelone. Mmm, wie süß!",
+      "ar": "فِي النِّهَايَةِ يَأْكُلُونَ بِطِّيخًا كَبِيرًا. مَا أَحْلَاه!",
+      "ar_shown": ".ﺍًﺮﻴِﺒَﻛ ﺎًﺨﻴِّﻄِﺑ َﻥﻮُﻠُﻛْﺄَﻳ ِﺔَﻳﺎَﻬِّﻨﻟﺍ ﻲِﻓ\n!ﻩَﻼْﺣَﺃ ﺎَﻣ",
+      "ar_latin": "Fi-n-nihâjati ja'kulûna bittîhan kabîran. Mâ ahlâh!"
+    }
+  ]
+}

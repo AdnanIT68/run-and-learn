@@ -1,0 +1,52 @@
+{
+  "pack": "World6",
+  "pages": [
+    {
+      "words": [
+        "snow",
+        "mountain"
+      ],
+      "bs": "Na planini pada snijeg. Sve je bijelo!",
+      "en": "Snow is falling on the mountain. Everything is white!",
+      "de": "Auf dem Berg schneit es. Alles ist weiß!",
+      "ar": "الثَّلْجُ يَتَسَاقَطُ عَلَى الْجَبَل. كُلُّ شَيْءٍ أَبْيَض!",
+      "ar_shown": ".ﻞَﺒَﺠْﻟﺍ ﻰَﻠَﻋ ُﻂَﻗﺎَﺴَﺘَﻳ ُﺞْﻠَّﺜﻟﺍ\n!ﺾَﻴْﺑَﺃ ٍﺀْﻲَﺷ ُّﻞُﻛ",
+      "ar_latin": "As-saldžu jatasâkatu 'ala-l-džabal. Kullu šaj'in abjad!"
+    },
+    {
+      "words": [
+        "coat",
+        "gloves"
+      ],
+      "bs": "Rukajja oblači jaknu i rukavice.",
+      "en": "Rukajja puts on a coat and gloves.",
+      "de": "Rukajja zieht Jacke und Handschuhe an.",
+      "ar": "رُقَيَّةُ تَلْبَسُ الْمِعْطَفَ وَالْقُفَّازَات.",
+      "ar_shown": ".ﺕﺍَﺯﺎَّﻔُﻘْﻟﺍَﻭ َﻒَﻄْﻌِﻤْﻟﺍ ُﺲَﺒْﻠَﺗ ُﺔَّﻴَﻗُﺭ",
+      "ar_latin": "Rukajjatu talbasu-l-mi'tafa va-l-kuffâzât."
+    },
+    {
+      "words": [
+        "sled"
+      ],
+      "bs": "Sanke jure niz brdo. Juhuu!",
+      "en": "The sled races down the hill. Wheee!",
+      "de": "Der Schlitten saust den Hügel hinunter. Juhuu!",
+      "ar": "الْمِزْلَجَةُ تَنْزَلِقُ مِنَ التَّلّ. يَاه!",
+      "ar_shown": ".ّﻞَّﺘﻟﺍ َﻦِﻣ ُﻖِﻟَﺰْﻨَﺗ ُﺔَﺠَﻟْﺰِﻤْﻟﺍ\n!ﻩﺎَﻳ",
+      "ar_latin": "Al-mizladžatu tanzaliku mina-t-tall. Jâh!"
+    },
+    {
+      "words": [
+        "snowman",
+        "scarf"
+      ],
+      "bs": "Na kraju prave snjegovića sa šalom.",
+      "en": "At the end they build a snowman with a scarf.",
+      "de": "Zum Schluss bauen sie einen Schneemann mit Schal.",
+      "ar": "فِي النِّهَايَةِ يَصْنَعُونَ رَجُلَ ثَلْجٍ بِوِشَاح.",
+      "ar_shown": ".ﺡﺎَﺷِﻮِﺑ ٍﺞْﻠَﺛ َﻞُﺟَﺭ َﻥﻮُﻌَﻨْﺼَﻳ ِﺔَﻳﺎَﻬِّﻨﻟﺍ ﻲِﻓ",
+      "ar_latin": "Fi-n-nihâjati jasna'ûna radžula saldžin bi-višâh."
+    }
+  ]
+}

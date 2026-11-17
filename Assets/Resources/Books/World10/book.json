@@ -1,0 +1,53 @@
+{
+  "pack": "World10",
+  "pages": [
+    {
+      "words": [
+        "red",
+        "circle"
+      ],
+      "bs": "Pepi nosi crveni krug.",
+      "en": "Pepi carries a red circle.",
+      "de": "Pepi trägt einen roten Kreis.",
+      "ar": "بِيبِي يَحْمِلُ دَائِرَةً حَمْرَاء.",
+      "ar_shown": ".ﺀﺍَﺮْﻤَﺣ ًﺓَﺮِﺋﺍَﺩ ُﻞِﻤْﺤَﻳ ﻲِﺒﻴِﺑ",
+      "ar_latin": "Pîpî jahmilu dâ'iratan hamrâ'."
+    },
+    {
+      "words": [
+        "blue",
+        "square"
+      ],
+      "bs": "Rukajja slaže plavi kvadrat.",
+      "en": "Rukajja puts down a blue square.",
+      "de": "Rukajja legt ein blaues Quadrat hin.",
+      "ar": "رُقَيَّةُ تَضَعُ مُرَبَّعًا أَزْرَق.",
+      "ar_shown": ".ﻕَﺭْﺯَﺃ ﺎًﻌَّﺑَﺮُﻣ ُﻊَﻀَﺗ ُﺔَّﻴَﻗُﺭ",
+      "ar_latin": "Rukajjatu tada'u murabba'an azrak."
+    },
+    {
+      "words": [
+        "yellow",
+        "triangle"
+      ],
+      "bs": "Žuti trougao ide na vrh. To je krov!",
+      "en": "The yellow triangle goes on top. It's a roof!",
+      "de": "Das gelbe Dreieck kommt oben drauf. Das ist ein Dach!",
+      "ar": "الْمُثَلَّثُ الْأَصْفَرُ فَوْق. هَذَا سَقْف!",
+      "ar_shown": ".ﻕْﻮَﻓ ُﺮَﻔْﺻَْﻷﺍ ُﺚَّﻠَﺜُﻤْﻟﺍ\n!ﻒْﻘَﺳ ﺍَﺬَﻫ",
+      "ar_latin": "Al-musallasu-l-asfaru favk. Hâzâ sakf!"
+    },
+    {
+      "words": [
+        "green",
+        "heart"
+      ],
+      "bs": "Zeleno drvo i crveno srce. Gotova je slika!",
+      "en": "A green tree and a red heart. The picture is done!",
+      "de": "Ein grüner Baum und ein rotes Herz. Das Bild ist fertig!",
+      "ar": "شَجَرَةٌ خَضْرَاءُ وَقَلْبٌ أَحْمَر. اِنْتَهَتِ الصُّورَة!",
+      "ar_shown": ".ﺮَﻤْﺣَﺃ ٌﺐْﻠَﻗَﻭ ُﺀﺍَﺮْﻀَﺧ ٌﺓَﺮَﺠَﺷ\n!ﺓَﺭﻮُّﺼﻟﺍ ِﺖَﻬَﺘْﻧِﺍ",
+      "ar_latin": "Šadžaratun hadrâ'u va kalbun ahmar. Intahati-s-sûra!"
+    }
+  ]
+}

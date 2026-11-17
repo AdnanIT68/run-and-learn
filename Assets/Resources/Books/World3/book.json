@@ -1,0 +1,52 @@
+{
+  "pack": "World3",
+  "pages": [
+    {
+      "words": [
+        "house"
+      ],
+      "bs": "Ovo je naša kuća. Ovdje živi Rukajja.",
+      "en": "This is our house. Rukajja lives here.",
+      "de": "Das ist unser Haus. Hier wohnt Rukajja.",
+      "ar": "هَذَا بَيْتُنَا. هُنَا تَسْكُنُ رُقَيَّة.",
+      "ar_shown": ".ﺎَﻨُﺘْﻴَﺑ ﺍَﺬَﻫ\n.ﺔَّﻴَﻗُﺭ ُﻦُﻜْﺴَﺗ ﺎَﻨُﻫ",
+      "ar_latin": "Hâzâ bajtunâ. Hunâ taskunu Rukajja."
+    },
+    {
+      "words": [
+        "mom",
+        "bread"
+      ],
+      "bs": "Mama peče hljeb. Cijela kuća lijepo miriše.",
+      "en": "Mom bakes bread. The whole house smells lovely.",
+      "de": "Mama backt Brot. Das ganze Haus duftet.",
+      "ar": "الْأُمُّ تَخْبِزُ الْخُبْز. رَائِحَةُ الْبَيْتِ جَمِيلَة.",
+      "ar_shown": ".ﺰْﺒُﺨْﻟﺍ ُﺰِﺒْﺨَﺗ ُّﻡُْﻷﺍ\n.ﺔَﻠﻴِﻤَﺟ ِﺖْﻴَﺒْﻟﺍ ُﺔَﺤِﺋﺍَﺭ",
+      "ar_latin": "Al-ummu tahbizu-l-hubz. Râ'ihatu-l-bajti džamîla."
+    },
+    {
+      "words": [
+        "grandpa",
+        "grandma"
+      ],
+      "bs": "Dedo čita, a nena plete šal.",
+      "en": "Grandpa reads, and Grandma knits a scarf.",
+      "de": "Opa liest, und Oma strickt einen Schal.",
+      "ar": "الْجَدُّ يَقْرَأُ، وَالْجَدَّةُ تَحِيكُ وِشَاحًا.",
+      "ar_shown": ".ﺎًﺣﺎَﺷِﻭ ُﻚﻴِﺤَﺗ ُﺓَّﺪَﺠْﻟﺍَﻭ ،ُﺃَﺮْﻘَﻳ ُّﺪَﺠْﻟﺍ",
+      "ar_latin": "Al-džaddu jakra'u, va-l-džaddatu tahîku višâhan."
+    },
+    {
+      "words": [
+        "baby",
+        "milk"
+      ],
+      "bs": "Beba pije mlijeko i zaspi. Laku noć!",
+      "en": "The baby drinks milk and falls asleep. Good night!",
+      "de": "Das Baby trinkt Milch und schläft ein. Gute Nacht!",
+      "ar": "الرَّضِيعُ يَشْرَبُ الْحَلِيبَ وَيَنَام. تُصْبِحُ عَلَى خَيْر!",
+      "ar_shown": ".ﻡﺎَﻨَﻳَﻭ َﺐﻴِﻠَﺤْﻟﺍ ُﺏَﺮْﺸَﻳ ُﻊﻴِﺿَّﺮﻟﺍ\n!ﺮْﻴَﺧ ﻰَﻠَﻋ ُﺢِﺒْﺼُﺗ",
+      "ar_latin": "Ar-radî'u jašrabu-l-halîba va janâm. Tusbihu 'alâ hajr!"
+    }
+  ]
+}

@@ -331,6 +331,37 @@ namespace FootballRunner.Tests
             corner.Close();
         }
 
+        /// <summary>Look check for the picture book: Store/raw/check/book_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CapturePictureBook()
+        {
+            foreach ((string learn, string home, string pack, int page) in new[]
+                     {
+                         (LearningProgress.English, LearningProgress.Bosnian, "World2", 2),
+                         (LearningProgress.Bosnian, LearningProgress.German, "World3", 3),
+                         (LearningProgress.Arabic, LearningProgress.Bosnian, "World1", 0)
+                     })
+            {
+                SetProgress(learn, home);
+                LearningProgress.ShowTransliteration = true;
+                LearningProgress.SelectPack(pack);
+                yield return LoadScene("MainMenu");
+                WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
+                worlds.Open();
+                worlds.OpenBook();
+                PictureBookUi book = Object.FindFirstObjectByType<PictureBookUi>();
+                for (int i = 0; i < page; i++)
+                {
+                    book.Next();
+                }
+
+                yield return null;
+                yield return Capture($"check/book_{learn}_{pack}");
+                book.Close();
+                worlds.Close();
+            }
+        }
+
         /// <summary>Look check on a 4:3 tablet: Store/raw/check/tablet_*.png.</summary>
         [UnityTest]
         public IEnumerator CaptureTablet()

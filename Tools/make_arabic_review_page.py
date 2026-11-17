@@ -33,7 +33,7 @@ ZIP = ROOT / "Store" / "arabic-review.zip"
 WORDS = ROOT / "Assets" / "Resources" / "Words"
 TRACING_AUDIO = ROOT / "Assets" / "Resources" / "Tracing" / "Audio" / "ar"
 FONT = ROOT / "Assets" / "Resources" / "Fonts" / "NotoSansArabic-Bold.ttf"
-LETTERS_STATUS = ROOT / "Tools" / "arabic_letters_status.json"
+LETTERS_STATUS = ROOT / "Tools" / "arabic_extra_status.json"
 
 
 def ffmpeg() -> str:
@@ -129,6 +129,28 @@ def collect() -> list:
             "picture_src": None,
         })
     groups.append({"title": "Imena slova (Škola i „Piši slovo“)", "items": letters})
+
+    # The picture books: the sentences the voice reads on each page.
+    books_file = ROOT / "Tools" / "books.json"
+    if books_file.exists():
+        pages = []
+        for book in json.loads(books_file.read_text(encoding="utf-8"))["books"]:
+            for number, page in enumerate(book["pages"], start=1):
+                key = f"books/{book['pack']}/{number}"
+                status = letter_status.get(key, "za provjeru")
+                picture = WORDS / book["pack"] / "Pictures" / f"{page['words'][0]}.png"
+                pages.append({
+                    "id": key,
+                    "kind": "slikovnica",
+                    "bs": page["bs"],
+                    "ar": page["ar"],
+                    "latin": page["ar_latin"],
+                    "note": "",
+                    "checked": not status.startswith("za provjeru"),
+                    "audio_src": ROOT / "Assets" / "Resources" / "Books" / book["pack"] / "Audio" / "ar" / f"page_{number}.ogg",
+                    "picture_src": picture if picture.exists() else None,
+                })
+        groups.append({"title": "Slikovnice (rečenice koje glas čita)", "items": pages})
     return groups
 
 
