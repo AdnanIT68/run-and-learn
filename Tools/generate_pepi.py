@@ -11,11 +11,13 @@ Usage:
 
 import asyncio
 import json
+import sys
 from pathlib import Path
 
-import generate_words as words
-
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "Tools"))
+
+import generate_words as words  # noqa: E402
 HOME_LANGUAGES = ("bs", "en", "de")
 
 

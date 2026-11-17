@@ -11,7 +11,7 @@ Fraze iz reda „intro“ igra pušta na bosanskom; arapska verzija postoji, ali
 
 Za recenzenta: `Tools/make_arabic_review_page.py` pravi `Store/arabic-review.zip` (slika, tekst, glas);
 njegov fajl s rezultatima upisuje `Tools/apply_arabic_review.py`, koji ponovo piše i ovu listu.
-Ukupno 230 unosa, od toga 230 čeka provjeru.
+Ukupno 244 unosa, od toga 244 čeka provjeru.
 
 
 ## World1: Nenina bašta
@@ -226,6 +226,21 @@ Ukupno 230 unosa, od toga 230 čeka provjeru.
 | riječ | `triangle` | trougao | مُثَلَّث | musallas | za provjeru |
 | riječ | `heart` | srce | قَلْب | kalb | za provjeru |
 
+## World11: Tijelo i odjeća
+
+| vrsta | id | bosanski | arapski | latinica | status |
+|---|---|---|---|---|---|
+| riječ | `hand` | ruka | يَد | jad | za provjeru |
+| riječ | `foot` | stopalo | قَدَم | kadam | za provjeru |
+| riječ | `eye` | oko | عَيْن | 'ajn | za provjeru |
+| riječ | `ear` | uho | أُذُن | uzun | za provjeru |
+| riječ | `nose` | nos | أَنْف | anf | za provjeru |
+| riječ | `mouth` | usta | فَم | fam | za provjeru |
+| riječ | `shirt` | majica | قَمِيص | kamîs | za provjeru |
+| riječ | `dress` | haljina | فُسْتَان | fustân | za provjeru |
+| riječ | `shoe` | patika | حِذَاء | hizâ' | za provjeru |
+| riječ | `sock` | čarapa | جَوْرَب | džavrab | za provjeru |
+
 ## Imena slova (Škola i „Piši slovo“; glas kaže „slovo …“)
 
 | id | slovo | izgovoreno | latinica | status |
@@ -303,4 +318,8 @@ Ukupno 230 unosa, od toga 230 čeka provjeru.
 | `books/World10/2` | Rukajja slaže plavi kvadrat. | رُقَيَّةُ تَضَعُ مُرَبَّعًا أَزْرَق. | Rukajjatu tada'u murabba'an azrak. | za provjeru |
 | `books/World10/3` | Žuti trougao ide na vrh. To je krov! | الْمُثَلَّثُ الْأَصْفَرُ فَوْق. هَذَا سَقْف! | Al-musallasu-l-asfaru favk. Hâzâ sakf! | za provjeru |
 | `books/World10/4` | Zeleno drvo i crveno srce. Gotova je slika! | شَجَرَةٌ خَضْرَاءُ وَقَلْبٌ أَحْمَر. اِنْتَهَتِ الصُّورَة! | Šadžaratun hadrâ'u va kalbun ahmar. Intahati-s-sûra! | za provjeru |
+| `books/World11/1` | Rukajja maše rukom: Zdravo, Pepi! | رُقَيَّةُ تُلَوِّحُ بِيَدِهَا: مَرْحَبًا يَا بِيبِي! | Rukajjatu tulavvihu bi-jadihâ: Marhaban jâ Pîpî! | za provjeru |
+| `books/World11/2` | Očima gleda, a ušima sluša. | تَنْظُرُ بِعَيْنَيْهَا وَتَسْمَعُ بِأُذُنَيْهَا. | Tanzuru bi-'ajnajhâ va tasma'u bi-uzunajhâ. | za provjeru |
+| `books/World11/3` | Oblači majicu i čarape. | تَلْبَسُ قَمِيصًا وَجَوَارِب. | Talbasu kamîsan va džavârib. | za provjeru |
+| `books/World11/4` | Na kraju obuje patike i trči. Hop, hop! | فِي النِّهَايَةِ تَلْبَسُ الْحِذَاءَ وَتَجْرِي. هُوب، هُوب! | Fi-n-nihâjati talbasu-l-hizâ'a va tadžrî. Hûb, hûb! | za provjeru |
 

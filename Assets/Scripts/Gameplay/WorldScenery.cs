@@ -16,7 +16,7 @@ namespace FootballRunner.Gameplay
 
         /// <summary>
         /// Whose scenery a world uses: its own, or for the bonus worlds a borrowed one
-        /// (Lijepe riječi the home of Naša kuća, Boje i oblici the school).
+        /// (Lijepe riječi the home of Naša kuća, Boje i oblici the school, Tijelo i odjeća the river).
         /// </summary>
         public static string SceneryFor(string pack)
         {
@@ -24,6 +24,7 @@ namespace FootballRunner.Gameplay
             {
                 case WordPack.BonusPack: return "World3";
                 case WordPack.ColoursPack: return "World7";
+                case WordPack.BodyPack: return "World5";
                 default: return pack;
             }
         }

@@ -60,6 +60,12 @@
       { "words": ["blue", "square"], "bs": "Rukajja slaže plavi kvadrat.", "en": "Rukajja puts down a blue square.", "de": "Rukajja legt ein blaues Quadrat hin.", "ar": "رُقَيَّةُ تَضَعُ مُرَبَّعًا أَزْرَق.", "ar_latin": "Rukajjatu tada'u murabba'an azrak." },
       { "words": ["yellow", "triangle"], "bs": "Žuti trougao ide na vrh. To je krov!", "en": "The yellow triangle goes on top. It's a roof!", "de": "Das gelbe Dreieck kommt oben drauf. Das ist ein Dach!", "ar": "الْمُثَلَّثُ الْأَصْفَرُ فَوْق. هَذَا سَقْف!", "ar_latin": "Al-musallasu-l-asfaru favk. Hâzâ sakf!" },
       { "words": ["green", "heart"], "bs": "Zeleno drvo i crveno srce. Gotova je slika!", "en": "A green tree and a red heart. The picture is done!", "de": "Ein grüner Baum und ein rotes Herz. Das Bild ist fertig!", "ar": "شَجَرَةٌ خَضْرَاءُ وَقَلْبٌ أَحْمَر. اِنْتَهَتِ الصُّورَة!", "ar_latin": "Šadžaratun hadrâ'u va kalbun ahmar. Intahati-s-sûra!" }
+    ]},
+    { "pack": "World11", "pages": [
+      { "words": ["hand"], "bs": "Rukajja maše rukom: Zdravo, Pepi!", "en": "Rukajja waves her hand: Hi, Pepi!", "de": "Rukajja winkt mit der Hand: Hallo, Pepi!", "ar": "رُقَيَّةُ تُلَوِّحُ بِيَدِهَا: مَرْحَبًا يَا بِيبِي!", "ar_latin": "Rukajjatu tulavvihu bi-jadihâ: Marhaban jâ Pîpî!" },
+      { "words": ["eye", "ear"], "bs": "Očima gleda, a ušima sluša.", "en": "She looks with her eyes and listens with her ears.", "de": "Mit den Augen schaut sie, mit den Ohren hört sie.", "ar": "تَنْظُرُ بِعَيْنَيْهَا وَتَسْمَعُ بِأُذُنَيْهَا.", "ar_latin": "Tanzuru bi-'ajnajhâ va tasma'u bi-uzunajhâ." },
+      { "words": ["shirt", "sock"], "bs": "Oblači majicu i čarape.", "en": "She puts on a T-shirt and socks.", "de": "Sie zieht ein T-Shirt und Socken an.", "ar": "تَلْبَسُ قَمِيصًا وَجَوَارِب.", "ar_latin": "Talbasu kamîsan va džavârib." },
+      { "words": ["shoe", "foot"], "bs": "Na kraju obuje patike i trči. Hop, hop!", "en": "Last she puts on her shoes and runs. Hop, hop!", "de": "Zum Schluss zieht sie die Schuhe an und rennt. Hopp, hopp!", "ar": "فِي النِّهَايَةِ تَلْبَسُ الْحِذَاءَ وَتَجْرِي. هُوب، هُوب!", "ar_latin": "Fi-n-nihâjati talbasu-l-hizâ'a va tadžrî. Hûb, hûb!" }
     ]}
   ]
 }

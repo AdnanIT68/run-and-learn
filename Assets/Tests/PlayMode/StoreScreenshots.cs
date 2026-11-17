@@ -430,7 +430,7 @@ namespace FootballRunner.Tests
             SetProgress(learn, home);
             yield return ShotMiniGames(folder + "/04_mini_games", Width);
 
-            // 08: the main menu, then 05: the world map with all ten worlds.
+            // 08: the main menu, then 05: the world map with all eleven worlds.
             SetProgress(learn, home);
             yield return ShotMenuAndWorlds(folder + "/08_main_menu", folder + "/05_worlds", Width);
 

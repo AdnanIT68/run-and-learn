@@ -1,0 +1,163 @@
+{
+  "pack": "World11",
+  "title_bs": "Tijelo i odjeća",
+  "title_en": "Body and Clothes",
+  "title_de": "Körper und Kleidung",
+  "words": [
+    {
+      "id": "hand",
+      "bs": "ruka",
+      "en": "hand",
+      "de": "die Hand",
+      "ar": "يَد",
+      "ar_shown": "ﺪَﻳ",
+      "ar_latin": "jad"
+    },
+    {
+      "id": "foot",
+      "bs": "stopalo",
+      "en": "foot",
+      "de": "der Fuß",
+      "ar": "قَدَم",
+      "ar_shown": "ﻡَﺪَﻗ",
+      "ar_latin": "kadam"
+    },
+    {
+      "id": "eye",
+      "bs": "oko",
+      "en": "eye",
+      "de": "das Auge",
+      "ar": "عَيْن",
+      "ar_shown": "ﻦْﻴَﻋ",
+      "ar_latin": "'ajn"
+    },
+    {
+      "id": "ear",
+      "bs": "uho",
+      "en": "ear",
+      "de": "das Ohr",
+      "ar": "أُذُن",
+      "ar_shown": "ﻥُﺫُﺃ",
+      "ar_latin": "uzun"
+    },
+    {
+      "id": "nose",
+      "bs": "nos",
+      "en": "nose",
+      "de": "die Nase",
+      "ar": "أَنْف",
+      "ar_shown": "ﻒْﻧَﺃ",
+      "ar_latin": "anf"
+    },
+    {
+      "id": "mouth",
+      "bs": "usta",
+      "en": "mouth",
+      "de": "der Mund",
+      "ar": "فَم",
+      "ar_shown": "ﻢَﻓ",
+      "ar_latin": "fam"
+    },
+    {
+      "id": "shirt",
+      "bs": "majica",
+      "en": "T-shirt",
+      "de": "das T-Shirt",
+      "ar": "قَمِيص",
+      "ar_shown": "ﺺﻴِﻤَﻗ",
+      "ar_latin": "kamîs"
+    },
+    {
+      "id": "dress",
+      "bs": "haljina",
+      "en": "dress",
+      "de": "das Kleid",
+      "ar": "فُسْتَان",
+      "ar_shown": "ﻥﺎَﺘْﺴُﻓ",
+      "ar_latin": "fustân"
+    },
+    {
+      "id": "shoe",
+      "bs": "patika",
+      "en": "shoe",
+      "de": "der Schuh",
+      "ar": "حِذَاء",
+      "ar_shown": "ﺀﺍَﺬِﺣ",
+      "ar_latin": "hizâ'"
+    },
+    {
+      "id": "sock",
+      "bs": "čarapa",
+      "en": "sock",
+      "de": "die Socke",
+      "ar": "جَوْرَب",
+      "ar_shown": "ﺏَﺭْﻮَﺟ",
+      "ar_latin": "džavrab"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "praise_1",
+      "bs": "Bravo!",
+      "en": "Great job!",
+      "de": "Toll!",
+      "ar": "رَائِع!",
+      "ar_shown": "!ﻊِﺋﺍَﺭ",
+      "ar_latin": "Râ'i'!"
+    },
+    {
+      "id": "praise_2",
+      "bs": "Tačno!",
+      "en": "That's right!",
+      "de": "Richtig!",
+      "ar": "صَحِيح!",
+      "ar_shown": "!ﺢﻴِﺤَﺻ",
+      "ar_latin": "Sahîh!"
+    },
+    {
+      "id": "praise_3",
+      "bs": "Super!",
+      "en": "Awesome!",
+      "de": "Super!",
+      "ar": "مُمْتَاز!",
+      "ar_shown": "!ﺯﺎَﺘْﻤُﻣ",
+      "ar_latin": "Mumtâz!"
+    },
+    {
+      "id": "intro",
+      "bs": "Slušaj riječ, pa skoči u pravu sliku!",
+      "en": "Listen to the word, then jump into the right picture!",
+      "de": "Hör auf das Wort und spring in das richtige Bild!",
+      "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!",
+      "ar_shown": "!ﺔَﺤﻴِﺤَّﺼﻟﺍ ِﺓَﺭﻮُّﺼﻟﺍ ﻰَﻟِﺇ ْﺰِﻔْﻗﺍ َّﻢُﺛ ،ِﺔَﻤِﻠَﻜْﻟﺍ ﻰَﻟِﺇ ْﻊِﻤَﺘْﺳِﺍ",
+      "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!"
+    },
+    {
+      "id": "jump",
+      "bs": "Skoči!",
+      "en": "Jump!",
+      "de": "Spring!",
+      "ar": "اِقْفِزْ!",
+      "ar_shown": "!ْﺰِﻔْﻗِﺍ",
+      "ar_latin": "Ikfiz!"
+    },
+    {
+      "id": "goal",
+      "bs": "Bravo! Cilj je ispunjen!",
+      "en": "Well done! Goal complete!",
+      "de": "Super! Ziel geschafft!",
+      "ar": "رَائِع! تَمَّ الْهَدَف!",
+      "ar_shown": "!ﻑَﺪَﻬْﻟﺍ َّﻢَﺗ !ﻊِﺋﺍَﺭ",
+      "ar_latin": "Râ'i'! Tamma-l-hadaf!"
+    }
+  ],
+  "counts": [],
+  "commands": [],
+  "sizes": [],
+  "sentences": [],
+  "numbers": [],
+  "letters": [],
+  "reading": false,
+  "review": false,
+  "goal": 0
+}

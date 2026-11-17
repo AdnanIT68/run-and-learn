@@ -191,7 +191,7 @@ namespace FootballRunner.Learning
         /// the bonus world at the end, which is open from the start.
         /// </summary>
         public static readonly string[] PackOrder =
-            { "World1", "World2", "World3", "World4", "World5", "World6", "World7", "World8", BonusPack, ColoursPack };
+            { "World1", "World2", "World3", "World4", "World5", "World6", "World7", "World8", BonusPack, ColoursPack, BodyPack };
 
         /// <summary>
         /// "Lijepe riječi" (selam, hvala, izvoli, oprosti, bismillah, mašallah): open from
@@ -203,9 +203,12 @@ namespace FootballRunner.Learning
         /// <summary>"Boje i oblici": colours and shapes, the second bonus world, open from the start too.</summary>
         public const string ColoursPack = "World10";
 
+        /// <summary>"Tijelo i odjeća": body parts and clothes, the third bonus world, open from the start too.</summary>
+        public const string BodyPack = "World11";
+
         public static bool IsBonus(string pack)
         {
-            return pack == BonusPack || pack == ColoursPack;
+            return pack == BonusPack || pack == ColoursPack || pack == BodyPack;
         }
 
         /// <summary>One picture standing for each world on the world chooser.</summary>
@@ -222,6 +225,7 @@ namespace FootballRunner.Learning
                 case "World8": return "moon";
                 case "World9": return "thanks";
                 case "World10": return "red";
+                case "World11": return "hand";
                 default: return "apple";
             }
         }

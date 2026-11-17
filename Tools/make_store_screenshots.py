@@ -62,9 +62,9 @@ SHOTS = [
         "hr": "Mini-igre: {piši slova prstom}",
         "de": "Minispiele: {Buchstaben mit dem Finger schreiben}"}),
     ("05_worlds", "violet", "World8/Pictures/rocket.png", {
-        "en": "{10 worlds,} 50 levels",
-        "hr": "{10 svjetova,} 50 nivoa",
-        "de": "{10 Welten,} 50 Level"}),
+        "en": "{11 worlds,} 55 levels",
+        "hr": "{11 svjetova,} 55 nivoa",
+        "de": "{11 Welten,} 55 Level"}),
     ("06_outfits", "coral", "World10/Pictures/heart.png", {
         "en": "Dress up your player: {crown, sunglasses, scarf}",
         "hr": "Obuci igrača: {kruna, sunčane naočale, šal}",

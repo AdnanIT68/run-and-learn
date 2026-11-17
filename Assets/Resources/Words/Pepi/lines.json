@@ -215,6 +215,24 @@
       "bs": "Brbljavka je uhvaćena! Vratila je sve boje i oblike.",
       "en": "Brbljavka is caught! She gave back all the colours and shapes.",
       "de": "Brbljavka ist gefangen! Sie hat alle Farben und Formen zurückgegeben."
+    },
+    {
+      "id": "pepi_world_World11",
+      "bs": "Dobro došli u svijet tijela i odjeće!",
+      "en": "Welcome to the world of body and clothes!",
+      "de": "Willkommen in der Welt von Körper und Kleidung!"
+    },
+    {
+      "id": "story_intro_World11",
+      "bs": "Svraka Brbljavka je ukrala riječi o tijelu i odjeći! Pomozi Rukajji da ih vrati!",
+      "en": "Brbljavka the magpie stole the words for the body and clothes! Help Rukajja bring them back!",
+      "de": "Die Elster Brbljavka hat die Wörter für Körper und Kleidung gestohlen! Hilf Rukajja, sie zurückzuholen!"
+    },
+    {
+      "id": "story_outro_World11",
+      "bs": "Brbljavka je uhvaćena! Vratila je sve riječi o tijelu i odjeći.",
+      "en": "Brbljavka is caught! She gave back all the words for the body and clothes.",
+      "de": "Brbljavka ist gefangen! Sie hat alle Wörter für Körper und Kleidung zurückgegeben."
     }
   ]
 }

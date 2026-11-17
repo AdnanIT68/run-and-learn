@@ -474,15 +474,19 @@ namespace FootballRunner.UI
 
             _columnHeads[0].alignment = TextAlignmentOptions.Left;
 
-            for (int i = 0; i < WordPack.PackOrder.Length; i++)
+            // The rows close up as worlds are added, so the last one stays on the card.
+            int worldCount = WordPack.PackOrder.Length;
+            float rowStep = Mathf.Min(60f, 540f / Mathf.Max(1, worldCount - 1));
+
+            for (int i = 0; i < worldCount; i++)
             {
-                float y = 240f - i * 60f;
+                float y = 240f - i * rowStep;
                 var row = new TMP_Text[columns.Length];
 
                 for (int c = 0; c < columns.Length; c++)
                 {
                     row[c] = CreateText(progress.transform, $"World{i}_{c}", "", new Vector2(columns[c], y),
-                        new Vector2(widths[c], 56f), 34f, DarkText);
+                        new Vector2(widths[c], rowStep - 4f), 34f, DarkText);
                 }
 
                 row[0].alignment = TextAlignmentOptions.Left;
