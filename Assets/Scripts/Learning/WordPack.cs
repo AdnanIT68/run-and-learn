@@ -395,7 +395,6 @@ namespace FootballRunner.Learning
             switch (language)
             {
                 case LearningProgress.English: return _manifest.title_en;
-                case LearningProgress.Swedish: return Swedish.Translate(_manifest.title_en);
                 case LearningProgress.German:
                     return string.IsNullOrEmpty(_manifest.title_de) ? _manifest.title_en : _manifest.title_de;
                 default: return _manifest.title_bs;

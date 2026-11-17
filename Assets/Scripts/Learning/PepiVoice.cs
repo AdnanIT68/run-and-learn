@@ -31,7 +31,6 @@ namespace FootballRunner.Learning
             public string bs;
             public string en;
             public string de;
-            public string sv;
         }
 
         [System.Serializable]
@@ -57,12 +56,6 @@ namespace FootballRunner.Learning
                 {
                     if (line.id == id)
                     {
-                        // Swedish has its own lines (with its own voice), not the menu table.
-                        if (LearningProgress.HomeLanguage == LearningProgress.Swedish && !string.IsNullOrEmpty(line.sv))
-                        {
-                            return line.sv;
-                        }
-
                         return LearningProgress.Ui(line.bs, line.en, line.de);
                     }
                 }

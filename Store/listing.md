@@ -25,7 +25,7 @@ Run, jump and learn new words!
 Run and Learn is a gentle runner game for children aged 4 to 10. A voice says a word, picture bubbles float ahead, and your child jumps into the right one. Learning happens inside the game, with no quizzes that stop the fun.
 
 Four languages, one game:
-• Children growing up abroad learn Bosnian, the language of grandma and grandpa, with menus in English, German or Swedish.
+• Children growing up abroad learn Bosnian, the language of grandma and grandpa, with menus in English or German.
 • Children in Bosnia and Herzegovina learn English or German.
 • Children who speak Bosnian can also learn Arabic words, written with all their vowel marks and with Latin letters underneath. Parents can switch the Latin letters off.
 
@@ -89,7 +89,7 @@ Trči, skači i uči nove riječi!
 Run and Learn je nježna trkačka igra za djecu od 4 do 10 godina. Glas izgovori riječ, ispred Rukajje lebde balončići sa slikama, a dijete skokom uhvati pravi. Učenje je dio igre, bez kvizova koji prekidaju zabavu.
 
 Četiri jezika, jedna igra:
-• Djeca u dijaspori uče bosanski, jezik nane i dede, s menijem na engleskom, njemačkom ili švedskom.
+• Djeca u dijaspori uče bosanski, jezik nane i dede, s menijem na engleskom ili njemačkom.
 • Djeca u Bosni i Hercegovini uče engleski ili njemački.
 • Djeca koja govore bosanski mogu učiti i arapske riječi, napisane sa svim harakatima i s latinicom ispod. Roditelji latinicu mogu isključiti.
 
@@ -153,7 +153,7 @@ Laufen, springen und neue Wörter lernen!
 Run and Learn ist ein sanftes Lauf-Spiel für Kinder von 4 bis 10 Jahren. Eine Stimme sagt ein Wort, Bilderblasen schweben voraus, und dein Kind springt in die richtige. Gelernt wird mitten im Spiel, ohne Quiz, das den Spaß unterbricht.
 
 Vier Sprachen, ein Spiel:
-• Kinder im Ausland lernen Bosnisch, die Sprache von Oma und Opa, mit Menüs auf Deutsch, Englisch oder Schwedisch.
+• Kinder im Ausland lernen Bosnisch, die Sprache von Oma und Opa, mit Menüs auf Deutsch oder Englisch.
 • Kinder in Bosnien und Herzegowina lernen Englisch oder Deutsch.
 • Kinder, die Bosnisch sprechen, können auch arabische Wörter lernen, mit allen Vokalzeichen und lateinischer Umschrift darunter. Eltern können die Umschrift ausblenden.
 
@@ -214,4 +214,4 @@ Owner: create the app in Play Console, upload the .aab.
 Voices: Azure Speech (licensed) since 1.1.0. Family recordings for Bosnian remain an option.
 1.3.0: the texts above describe 1.3 (Arabic, Lijepe riječi, Boje i oblici, story, sticker gifts, easy mode,
 time limit, report, children profiles, mini-games, letter tracing, sums, outfits, diplomas, tablets, Tijelo i odjeća,
-picture books, worksheets, word of the day, Swedish menus). Update Play only after the Arabic review (`Store/arabic-review.md`) and the phone test.
+picture books, worksheets, word of the day). Update Play only after the Arabic review (`Store/arabic-review.md`) and the phone test.

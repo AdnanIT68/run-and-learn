@@ -383,7 +383,9 @@ namespace FootballRunner.UI
                 case LearningProgress.German: label = "UČIM NJEMAČKI"; break;
                 case LearningProgress.Arabic: label = "UČIM ARAPSKI"; break;
                 default:
-                    label = LearningProgress.Ui("UČIM BOSANSKI", "LEARNING BOSNIAN", "ICH LERNE BOSNISCH");
+                    label = LearningProgress.HomeLanguage == LearningProgress.German
+                        ? "ICH LERNE BOSNISCH"
+                        : "LEARNING BOSNIAN";
                     break;
             }
 

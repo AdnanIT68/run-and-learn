@@ -2,8 +2,7 @@
 
 Paste each block into the matching language in Play Console (max 500 characters each).
 Before this release: the Arabic words must be checked by a native speaker (`Store/arabic-review.zip`),
-the Swedish menus by a Swedish speaker (`Assets/Resources/Locale/sv.json`), and the build tried on a
-phone (diploma and worksheet sharing too).
+and the build tried on a phone (diploma and worksheet sharing too).
 
 <en-US>
 - New: Arabic words for Bosnian-speaking children, with Latin letters
@@ -13,7 +12,7 @@ phone (diploma and worksheet sharing too).
 - Mini-games, letter tracing, adding and taking away up to ten
 - Outfits, a sticker album and a word of the day
 - For parents: diplomas and worksheets to print, easy mode, time limit, report
-- Menus in Swedish too, better on tablets
+- Better on tablets
 </en-US>
 
 <hr>
@@ -24,7 +23,7 @@ phone (diploma and worksheet sharing too).
 - Mini-igre, pisanje slova, sabiranje i oduzimanje do deset
 - Odjeća za igrače, album naljepnica i riječ dana
 - Za roditelje: diplome i radni listovi za štampu, lagani način, ograničenje vremena, izvještaj
-- Meni i na švedskom, bolje na tabletima
+- Bolje na tabletima
 </hr>
 
 <de-DE>
@@ -35,5 +34,5 @@ phone (diploma and worksheet sharing too).
 - Minispiele, Buchstaben schreiben, Plus und Minus bis zehn
 - Outfits, Stickeralbum und Wort des Tages
 - Für Eltern: Diplome und Arbeitsblätter zum Drucken, leichter Modus, Zeitlimit
-- Menüs auch auf Schwedisch, besser auf Tablets
+- Besser auf Tablets
 </de-DE>
