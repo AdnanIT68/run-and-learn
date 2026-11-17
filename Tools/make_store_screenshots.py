@@ -4,7 +4,8 @@ Each capture sits in a landscape phone frame on a coloured gradient, under a
 two-tone caption in the game's own font, with one word-picture sticker.
 
 Input:  Store/raw/<lang>/*.png (from the StoreScreenshots play mode test)
-Output: Store/play/screenshots/<lang>/<nn>_<name>.png at 1920x1080
+Output: Store/play/screenshots/<lang>/<nn>_<name>.png at 1920x1080, and a 4:3 tablet
+        set from Store/raw/<lang>-tablet/ to Store/play/tablet/<lang>/ (same size)
 
 Usage: Tools/.venv/Scripts/python.exe -I Tools/make_store_screenshots.py
 """
@@ -56,22 +57,22 @@ SHOTS = [
         "en": "New: {Arabic words} with Latin letters",
         "hr": "Novo: {arapske riječi} s latinicom",
         "de": "Neu: {arabische Wörter} mit Umschrift"}),
-    ("04_album", "magenta", "World1/Pictures/strawberry.png", {
-        "en": "Collect stickers, {win new players}",
-        "hr": "Skupljaj naljepnice, {osvoji igrače}",
-        "de": "Sticker sammeln, {Spieler gewinnen}"}),
+    ("04_mini_games", "magenta", "World7/Pictures/pencil.png", {
+        "en": "Mini-games: {write letters with a finger}",
+        "hr": "Mini-igre: {piši slova prstom}",
+        "de": "Minispiele: {Buchstaben mit dem Finger schreiben}"}),
     ("05_worlds", "violet", "World8/Pictures/rocket.png", {
         "en": "{10 worlds,} 50 levels",
         "hr": "{10 svjetova,} 50 nivoa",
         "de": "{10 Welten,} 50 Level"}),
-    ("06_command_bazaar", "coral", "World4/Pictures/mosque.png", {
-        "en": "Listen and do it: {Jump! Stay down!}",
-        "hr": "Slušaj i uradi: {Skoči! Ostani dolje!}",
-        "de": "Hören und tun: {Spring! Bleib unten!}"}),
+    ("06_outfits", "coral", "World10/Pictures/heart.png", {
+        "en": "Dress up your player: {crown, sunglasses, scarf}",
+        "hr": "Obuci igrača: {kruna, sunčane naočale, šal}",
+        "de": "Spieler anziehen: {Krone, Sonnenbrille, Schal}"}),
     ("07_parents", "navy", "World3/Pictures/grandma.png", {
-        "en": "{For parents:} time limit and weekly report",
-        "hr": "{Za roditelje:} ograničenje vremena i izvještaj",
-        "de": "{Für Eltern:} Zeitlimit und Wochenbericht"}),
+        "en": "{For parents:} up to 4 children, diplomas, time limit",
+        "hr": "{Za roditelje:} do 4 djeteta, diplome, ograničenje vremena",
+        "de": "{Für Eltern:} bis zu 4 Kinder, Diplome, Zeitlimit"}),
     ("08_main_menu", "sky", "World5/Pictures/rainbow.png", {
         "en": "Learn {Bosnian, English, German or Arabic}",
         "hr": "Uči {bosanski, engleski, njemački ili arapski}",
@@ -190,7 +191,67 @@ def compose(raw: Image.Image, text: str, theme: str, picture: Path, index: int) 
     return canvas.convert("RGB")
 
 
+# Tablet slots (7" and 10"): 4:3 captures in a tablet frame on the same 16:9 canvas,
+# which Play accepts for both sizes. Raw: Store/raw/<lang>-tablet/, out: Store/play/tablet/<lang>/.
+TABLET_OUT = ROOT / "Store" / "play" / "tablet"
+TABLET_W, TABLET_H = 1056, 792
+TABLET_BEZEL = 34
+TABLET_X, TABLET_Y = (WIDTH - TABLET_W) // 2, 226
+TABLET_SHOTS = [
+    ("01_catch_the_word", "01_catch_the_word"),
+    ("02_mini_games", "04_mini_games"),
+    ("03_worlds", "05_worlds"),
+    ("04_outfits", "06_outfits"),
+    ("05_parents", "07_parents"),
+    ("06_main_menu", "08_main_menu"),
+]
+
+
+def tablet(canvas: Image.Image, raw: Image.Image) -> None:
+    frame_box = (TABLET_X - TABLET_BEZEL, TABLET_Y - TABLET_BEZEL,
+                 TABLET_X + TABLET_W + TABLET_BEZEL, TABLET_Y + TABLET_H + TABLET_BEZEL)
+    canvas.alpha_composite(shadow(frame_box, 48, 22, 30, 120))
+    draw = ImageDraw.Draw(canvas)
+    draw.rounded_rectangle(frame_box, 48, fill=FRAME, outline=FRAME_RIM, width=3)
+    camera_x = TABLET_X + TABLET_W // 2
+    draw.ellipse((camera_x - 6, TABLET_Y - 24, camera_x + 6, TABLET_Y - 12), fill=FRAME_RIM)
+
+    screen = raw.convert("RGBA").resize((TABLET_W, TABLET_H), Image.LANCZOS)
+    screen.putalpha(rounded_mask(screen.size, 18))
+    canvas.alpha_composite(screen, (TABLET_X, TABLET_Y))
+
+
+def compose_tablet(raw: Image.Image, text: str, theme: str, picture: Path, index: int) -> Image.Image:
+    canvas = gradient(*THEMES[theme])
+    canvas.alpha_composite(bokeh())
+    caption(canvas, text)
+    tablet(canvas, raw)
+
+    badge = sticker(picture, 200)
+    if index % 2 == 0:
+        position = (TABLET_X - TABLET_BEZEL - badge.width + 40, HEIGHT - badge.height - 40)
+    else:
+        position = (TABLET_X + TABLET_W + TABLET_BEZEL - 40, TABLET_Y + 40)
+    canvas.alpha_composite(badge, position)
+    return canvas.convert("RGB")
+
+
 def main() -> None:
+    phone_shots = {name: (theme, picture, captions) for name, theme, picture, captions in SHOTS}
+    for lang in ("en", "hr", "de"):
+        folder = TABLET_OUT / lang
+        raw_folder = RAW / f"{lang}-tablet"
+        if not raw_folder.exists():
+            continue
+        folder.mkdir(parents=True, exist_ok=True)
+        for old in folder.glob("*.png"):
+            old.unlink()
+        for index, (name, phone_name) in enumerate(TABLET_SHOTS):
+            theme, picture, captions = phone_shots[phone_name]
+            raw = Image.open(raw_folder / f"{name}.png").convert("RGB")
+            compose_tablet(raw, captions[lang], theme, WORDS / picture, index).save(folder / f"{name}.png")
+    print(f"{len(TABLET_SHOTS)} tablet screenshots x 3 languages written to {TABLET_OUT}")
+
     for lang in ("en", "hr", "de"):
         folder = OUT / lang
         folder.mkdir(parents=True, exist_ok=True)

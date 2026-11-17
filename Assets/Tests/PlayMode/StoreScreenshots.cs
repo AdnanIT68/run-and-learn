@@ -17,8 +17,8 @@ namespace FootballRunner.Tests
     /// Unity.exe -batchmode -projectPath . -runTests -testPlatform PlayMode
     ///   -testFilter FootballRunner.Tests.StoreScreenshots
     /// Output: Store/raw/&lt;en|hr|de&gt;/*.png, eight shots per language for 1.3:
-    /// catch the word, Brbljavka's story, Arabic, sticker album, world map,
-    /// commands, parents corner and the main menu.
+    /// catch the word, Brbljavka's story, Arabic, mini-games, world map, outfits,
+    /// parents corner and the main menu; CaptureAllTablet adds a 4:3 tablet set.
     /// </summary>
     [Explicit("Store screenshots; run on demand with graphics enabled.")]
     [Timeout(180000)]
@@ -355,45 +355,159 @@ namespace FootballRunner.Tests
             yield return StartChallengeAndWait("World1", counting: false, kind: WordChallengeDirector.Kind.Word);
             yield return Capture(folder + "/03_arabic");
 
-            // 06: spoken commands at the bazaar.
+            // 04: tracing a letter in the mini-games.
             SetProgress(learn, home);
-            LearningProgress.SelectPack("World4");
+            yield return ShotMiniGames(folder + "/04_mini_games", Width);
+
+            // 08: the main menu, then 05: the world map with all ten worlds.
+            SetProgress(learn, home);
+            yield return ShotMenuAndWorlds(folder + "/08_main_menu", folder + "/05_worlds", Width);
+
+            // 06: the wardrobe.
+            yield return ShotOutfits(folder + "/06_outfits", Width);
+
+            // 07: the parents corner with three children, a diploma, a time limit and the report.
+            SetProgress(learn, home);
+            yield return ShotParents(folder + "/07_parents", Width);
+        }
+
+        /// <summary>
+        /// Tablet shots (4:3) for the "tablet" screenshot slots, one set per store language:
+        /// Store/raw/&lt;lang&gt;-tablet/*.png.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator CaptureAllTablet()
+        {
+            const int tablet = 1440;
+
+            foreach ((string folder, string learn, string home) in Profiles)
+            {
+                string dir = folder + "-tablet";
+                SetProgress(learn, home);
+                LearningProgress.SelectPack("World1");
+                LearningProgress.SelectLevel(0);
+                yield return LoadScene("Game");
+                yield return StartChallengeAndWait("World1", counting: false);
+                yield return Capture(dir + "/01_catch_the_word", tablet);
+
+                SetProgress(learn, home);
+                yield return ShotMiniGames(dir + "/02_mini_games", tablet);
+
+                SetProgress(learn, home);
+                yield return ShotMenuAndWorlds(dir + "/06_main_menu", dir + "/03_worlds", tablet);
+                yield return ShotOutfits(dir + "/04_outfits", tablet);
+
+                SetProgress(learn, home);
+                yield return ShotParents(dir + "/05_parents", tablet);
+            }
+        }
+
+        private static IEnumerator ShotMiniGames(string name, int width)
+        {
+            LearningProgress.SelectPack("World1");
             yield return LoadScene("Game");
-            yield return StartChallengeAndWait("World4", counting: false, command: true);
-            yield return Capture(folder + "/06_command_bazaar");
+            Object.FindFirstObjectByType<LevelResultUi>().OpenMiniGames();
+            MiniGameUi ui = MiniGameUi.Instance;
+            // A letter that reads well in a small picture (the letters come mixed).
+            var clear = new[] { "latin_A", "latin_B", "latin_K", "latin_M" };
+            ui.Play(MiniGames.Kind.Trace);
+            for (int tries = 0; tries < 30 && System.Array.IndexOf(clear, ui.Trace.LetterId) < 0; tries++)
+            {
+                ui.Play(MiniGames.Kind.Trace);
+            }
 
-            // 08: the main menu.
-            SetProgress(learn, home);
-            yield return LoadScene("MainMenu");
-            yield return Capture(folder + "/08_main_menu");
+            // The left half traced, as if the finger were halfway through.
+            bool[] mask = TracingLetters.MaskOf(ui.Trace.LetterId);
+            int grid = TracingLetters.Grid;
+            for (int y = 0; y < grid; y++)
+            {
+                for (int x = 0; x < grid / 2; x++)
+                {
+                    if (mask[y * grid + x])
+                    {
+                        ui.TraceAt(new Vector2((x + 0.5f) / grid, 1f - (y + 0.5f) / grid));
+                        ui.Surface.Lift();
+                    }
+                }
+            }
 
-            // 04: the sticker album with its gift line.
-            var album = Object.FindFirstObjectByType<WordAlbumUi>();
-            album.Open();
             yield return null;
-            yield return Capture(folder + "/04_album");
-            album.Close();
+            yield return Capture(name, width);
+            ui.Close();
+        }
 
-            // 05: the world map with all nine worlds.
+        private static IEnumerator ShotMenuAndWorlds(string menuName, string worldsName, int width)
+        {
+            yield return LoadScene("MainMenu");
+            yield return Capture(menuName, width);
+
             WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
             worlds.Open();
             yield return null;
-            yield return Capture(folder + "/05_worlds");
+            yield return Capture(worldsName, width);
             worlds.Close();
+        }
 
-            // 07: the parents corner with a daily limit, this week's time and the hardest words.
+        private static IEnumerator ShotOutfits(string name, int width)
+        {
+            SaveManager.Data.totalCoins = 230;
+            FootballRunner.Player.Outfits.Buy("crown");
+            FootballRunner.Player.Outfits.Buy("sunglasses");
+            FootballRunner.Player.Outfits.Buy("scarf");
+            SaveManager.Data.selectedCharacterId = "amina";
+
+            var shop = FootballRunner.UI.OutfitShopUi.EnsureOnCanvas(
+                Object.FindFirstObjectByType<FootballRunner.UI.MainMenuController>().transform);
+            shop.Open();
+            yield return null;
+            yield return Capture(name, width);
+            shop.Close();
+        }
+
+        private static IEnumerator ShotParents(string name, int width)
+        {
+            // A finished world (so a diploma), a daily limit, this week's time and the hardest words.
+            LearningProgress.RecordLevelComplete("World1", 3, 3);
+            LearningProgress.RecordLevelComplete("World1", 4, 2);
             TimeLimit.Minutes = 20;
             PlayTime.Add(12f * 60f);
             LearningProgress.RecordMiss("lemon");
             LearningProgress.RecordMiss("lemon");
             LearningProgress.RecordMiss("cucumber");
-            var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
-            corner.Open();
-            corner.PressAnswer(corner.GateAnswer);
-            yield return null;
-            yield return Capture(folder + "/07_parents");
-            corner.Close();
-            TimeLimit.Minutes = 0;
+
+            var added = new System.Collections.Generic.List<string>();
+            foreach (string child in new[] { "Emir", "Hana" })
+            {
+                FootballRunner.SaveSystem.ChildProfile profile = FootballRunner.SaveSystem.ProfileStore.Add(child);
+                if (profile != null)
+                {
+                    added.Add(profile.id);
+                }
+            }
+
+            string nameBefore = FootballRunner.SaveSystem.ProfileStore.Active.name;
+            FootballRunner.SaveSystem.ProfileStore.Rename(FootballRunner.SaveSystem.ProfileStore.ActiveId, "Amina");
+
+            try
+            {
+                yield return LoadScene("MainMenu");
+                var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
+                corner.Open();
+                corner.PressAnswer(corner.GateAnswer);
+                yield return null;
+                yield return Capture(name, width);
+                corner.Close();
+            }
+            finally
+            {
+                foreach (string id in added)
+                {
+                    FootballRunner.SaveSystem.ProfileStore.Remove(id);
+                }
+
+                FootballRunner.SaveSystem.ProfileStore.Rename(FootballRunner.SaveSystem.ProfileStore.ActiveId, nameBefore);
+                TimeLimit.Minutes = 0;
+            }
         }
 
         /// <summary>A child some way in: three worlds open, a few levels and words done, coins saved.</summary>
@@ -435,6 +549,7 @@ namespace FootballRunner.Tests
             data.playDays.Clear();
             data.dailyLimitMinutes = 0;
             data.easyMode = false;
+            data.outfitHead = data.outfitEyes = data.outfitNeck = "";
 
             // Pepi has welcomed the child everywhere, so no story card covers the other shots.
             data.pepiWelcomed.Clear();

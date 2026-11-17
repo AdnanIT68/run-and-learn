@@ -201,7 +201,8 @@ Neue Welten mit neuen Wörtern sind in Arbeit.
 Done: privacy policy online at https://sites.google.com/view/runandlearn-privacy, answers for Data safety, target audience
 and content rating (`Store/play-console-vodic.md`), no INTERNET permission, upload key outside
 the project, Twemoji credit in Settings and in the descriptions, 8 phone screenshots per language
-(`Store/play/screenshots/<en|hr|de>/`).
+(`Store/play/screenshots/<en|hr|de>/`) and, for 1.3, 6 tablet screenshots per language for both the
+7-inch and 10-inch slots (`Store/play/tablet/<en|hr|de>/`, 1920x1080, a 4:3 tablet in the frame).
 
 Owner: create the app in Play Console, upload the .aab.
 Voices: Azure Speech (licensed) since 1.1.0. Family recordings for Bosnian remain an option.
