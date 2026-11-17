@@ -17,15 +17,19 @@ namespace FootballRunner.Learning
         /// <summary>Arabic words and voice only; menus stay in Bosnian.</summary>
         public const string Arabic = "ar";
 
+        /// <summary>Swedish menus (and Pepi) only, for children in Sweden who learn Bosnian.</summary>
+        public const string Swedish = "sv";
+
         /// <summary>
         /// The ways to play, as (learning, already speaks): diaspora children learn
-        /// Bosnian from English or German; children in Bosnia learn English, German
-        /// or Arabic.
+        /// Bosnian from English, German or Swedish; children in Bosnia learn English,
+        /// German or Arabic.
         /// </summary>
         public static readonly (string learn, string home)[] Pairs =
         {
             (Bosnian, English),
             (Bosnian, German),
+            (Bosnian, Swedish),
             (English, Bosnian),
             (German, Bosnian),
             (Arabic, Bosnian)
@@ -78,7 +82,7 @@ namespace FootballRunner.Learning
 
         /// <summary>
         /// The language the child already speaks, used for menus and hints. Bosnian
-        /// learners choose English or German; everyone else hears Bosnian.
+        /// learners choose English, German or Swedish; everyone else hears Bosnian.
         /// </summary>
         public static string HomeLanguage
         {
@@ -89,17 +93,19 @@ namespace FootballRunner.Learning
                     return Bosnian;
                 }
 
-                return SaveManager.Data.homeLanguage == German ? German : English;
+                string home = SaveManager.Data.homeLanguage;
+                return home == German || home == Swedish ? home : English;
             }
         }
 
-        /// <summary>A menu text in the language the child already speaks.</summary>
+        /// <summary>A menu text in the language the child already speaks (Swedish from its table, by the English).</summary>
         public static string Ui(string bs, string en, string de)
         {
             switch (HomeLanguage)
             {
                 case Bosnian: return bs;
                 case German: return de;
+                case Swedish: return Learning.Swedish.Translate(en);
                 default: return en;
             }
         }

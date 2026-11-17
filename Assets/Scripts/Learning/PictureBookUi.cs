@@ -165,7 +165,9 @@ namespace FootballRunner.Learning
             _latin.text = latin ?? "";
             // Arabic comes one sentence per line, already in order; wrapping would scramble it.
             _text.textWrappingMode = language == LearningProgress.Arabic ? TextWrappingModes.NoWrap : TextWrappingModes.Normal;
-            _translation.text = home != language ? page.Text.Text(home) : "";
+            // The pages are written in Bosnian, English, German and Arabic; Swedish menus get no line here.
+            bool written = home == LearningProgress.Bosnian || home == LearningProgress.English || home == LearningProgress.German;
+            _translation.text = home != language && written ? page.Text.Text(home) : "";
             _previous.SetActive(index > 0);
             _nextLabel.text = index + 1 < PageCount ? ">" : LearningProgress.Ui("KRAJ", "END", "ENDE");
 

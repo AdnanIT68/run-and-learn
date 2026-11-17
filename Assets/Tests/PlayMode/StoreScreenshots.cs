@@ -331,6 +331,32 @@ namespace FootballRunner.Tests
             corner.Close();
         }
 
+        /// <summary>Look check for Swedish menus: Store/raw/check/sv_*.png.</summary>
+        [UnityTest]
+        public IEnumerator CaptureSwedish()
+        {
+            SetProgress(LearningProgress.Bosnian, LearningProgress.Swedish);
+            LearningProgress.SelectPack("World1");
+            yield return LoadScene("Game");
+            yield return StartChallengeAndWait("World1", counting: false);
+            yield return Capture("check/sv_game");
+
+            yield return LoadScene("MainMenu");
+            yield return Capture("check/sv_menu");
+            WordWorldsUi worlds = Object.FindFirstObjectByType<WordWorldsUi>();
+            worlds.Open();
+            yield return null;
+            yield return Capture("check/sv_worlds");
+            worlds.Close();
+
+            var corner = Object.FindFirstObjectByType<FootballRunner.UI.ParentsCornerUi>();
+            corner.Open();
+            corner.PressAnswer(corner.GateAnswer);
+            yield return null;
+            yield return Capture("check/sv_parents");
+            corner.Close();
+        }
+
         /// <summary>Look check for the picture book: Store/raw/check/book_*.png.</summary>
         [UnityTest]
         public IEnumerator CapturePictureBook()
