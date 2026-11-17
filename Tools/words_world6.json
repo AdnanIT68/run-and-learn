@@ -4,34 +4,34 @@
   "title_en": "Winter Mountain",
   "title_de": "Winterberg",
   "words": [
-    { "id": "snow", "bs": "snijeg", "en": "snow", "de": "der Schnee", "emoji": "2744", "ar": "ثَلْج", "ar_latin": "saldž", "ar_status": "za provjeru" },
-    { "id": "snowman", "bs": "snjegović", "en": "snowman", "de": "der Schneemann", "emoji": "26c4", "ar": "رَجُلُ الثَّلْج", "ar_latin": "radžulu-s-saldž", "ar_status": "za provjeru" },
-    { "id": "sled", "bs": "sanke", "en": "sled", "de": "der Schlitten", "emoji": "1f6f7", "ar": "مِزْلَجَة", "ar_latin": "mizladža", "ar_status": "za provjeru" },
-    { "id": "skis", "bs": "skije", "en": "skis", "de": "die Skier", "emoji": "1f3bf", "ar": "زَلَّاجَات", "ar_latin": "zallâdžât", "ar_status": "za provjeru: provjeriti riječ za skije" },
-    { "id": "gloves", "bs": "rukavice", "en": "gloves", "de": "die Handschuhe", "emoji": "1f9e4", "ar": "قُفَّازَات", "ar_latin": "kuffâzât", "ar_status": "za provjeru" },
-    { "id": "scarf", "bs": "šal", "en": "scarf", "de": "der Schal", "emoji": "1f9e3", "ar": "وِشَاح", "ar_latin": "višâh", "ar_status": "za provjeru" },
-    { "id": "boots", "bs": "čizme", "en": "boots", "de": "die Stiefel", "emoji": "1f97e", "ar": "جَزْمَة", "ar_latin": "džazma", "ar_status": "za provjeru: provjeriti: čizme (možda حِذَاءٌ طَوِيل)" },
-    { "id": "coat", "bs": "jakna", "en": "coat", "de": "die Jacke", "emoji": "1f9e5", "ar": "مِعْطَف", "ar_latin": "mi'taf", "ar_status": "za provjeru" },
-    { "id": "mountain", "bs": "planina", "en": "mountain", "de": "der Berg", "emoji": "1f3d4", "ar": "جَبَل", "ar_latin": "džabal", "ar_status": "za provjeru" },
-    { "id": "ice", "bs": "led", "en": "ice", "de": "das Eis", "emoji": "1f9ca", "ar": "جَلِيد", "ar_latin": "džalîd", "ar_status": "za provjeru" }
+    { "id": "snow", "bs": "snijeg", "en": "snow", "de": "der Schnee", "emoji": "2744", "ar": "ثَلْج", "ar_latin": "saldž", "ar_status": "provjereno" },
+    { "id": "snowman", "bs": "snjegović", "en": "snowman", "de": "der Schneemann", "emoji": "26c4", "ar": "رَجُلُ الثَّلْج", "ar_latin": "radžulu-s-saldž", "ar_status": "provjereno" },
+    { "id": "sled", "bs": "sanke", "en": "sled", "de": "der Schlitten", "emoji": "1f6f7", "ar": "مِزْلَجَة", "ar_latin": "mizladža", "ar_status": "provjereno" },
+    { "id": "skis", "bs": "skije", "en": "skis", "de": "die Skier", "emoji": "1f3bf", "ar": "زَلَّاجَات", "ar_latin": "zallâdžât", "ar_status": "provjereno" },
+    { "id": "gloves", "bs": "rukavice", "en": "gloves", "de": "die Handschuhe", "emoji": "1f9e4", "ar": "قُفَّازَات", "ar_latin": "kuffâzât", "ar_status": "provjereno" },
+    { "id": "scarf", "bs": "šal", "en": "scarf", "de": "der Schal", "emoji": "1f9e3", "ar": "وِشَاح", "ar_latin": "višâh", "ar_status": "provjereno" },
+    { "id": "boots", "bs": "čizme", "en": "boots", "de": "die Stiefel", "emoji": "1f97e", "ar": "جَزْمَة", "ar_latin": "džazma", "ar_status": "provjereno" },
+    { "id": "coat", "bs": "jakna", "en": "coat", "de": "die Jacke", "emoji": "1f9e5", "ar": "مِعْطَف", "ar_latin": "mi'taf", "ar_status": "provjereno" },
+    { "id": "mountain", "bs": "planina", "en": "mountain", "de": "der Berg", "emoji": "1f3d4", "ar": "جَبَل", "ar_latin": "džabal", "ar_status": "provjereno" },
+    { "id": "ice", "bs": "led", "en": "ice", "de": "das Eis", "emoji": "1f9ca", "ar": "جَلِيد", "ar_latin": "džalîd", "ar_status": "provjereno" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "za provjeru" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "za provjeru" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "za provjeru" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
-    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "provjereno" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "provjereno" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "provjereno" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "provjereno" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "provjereno" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "provjereno" }
   ],
   "sentences": [
-    { "id": "s_snowing", "group": "weather", "picture": "snow", "bs": "Pada snijeg.", "en": "It is snowing.", "de": "Es schneit.", "ar": "الثَّلْجُ يَتَسَاقَط.", "ar_latin": "As-saldžu jatasâkat.", "ar_status": "za provjeru" },
-    { "id": "s_sunny", "group": "weather", "picture": "sun", "emoji": "2600", "bs": "Sija sunce.", "en": "The sun is shining.", "de": "Die Sonne scheint.", "ar": "الشَّمْسُ مُشْرِقَة.", "ar_latin": "Aš-šamsu mušrika.", "ar_status": "za provjeru" },
-    { "id": "s_raining", "group": "weather", "picture": "rain", "emoji": "1f327", "bs": "Pada kiša.", "en": "It is raining.", "de": "Es regnet.", "ar": "السَّمَاءُ تُمْطِر.", "ar_latin": "As-samâ'u tumtir.", "ar_status": "za provjeru" },
-    { "id": "s_sledding", "group": "play", "picture": "sled", "bs": "Rukajja se sanka.", "en": "Rukajja is sledding.", "de": "Rukajja fährt Schlitten.", "ar": "رُقَيَّةُ تَتَزَلَّجُ بِالْمِزْلَجَة.", "ar_latin": "Rukajjatu tatazalladžu bi-l-mizladža.", "ar_status": "za provjeru: ime Rukajja = رُقَيَّة" },
-    { "id": "s_skiing", "group": "play", "picture": "skis", "bs": "Rukajja skija.", "en": "Rukajja is skiing.", "de": "Rukajja fährt Ski.", "ar": "رُقَيَّةُ تَتَزَلَّجُ بِالزَّلَّاجَات.", "ar_latin": "Rukajjatu tatazalladžu bi-z-zallâdžât.", "ar_status": "za provjeru" },
-    { "id": "s_snowman", "group": "play", "picture": "snowman", "bs": "Rukajja pravi snjegovića.", "en": "Rukajja is making a snowman.", "de": "Rukajja baut einen Schneemann.", "ar": "رُقَيَّةُ تَصْنَعُ رَجُلَ الثَّلْج.", "ar_latin": "Rukajjatu tasna'u radžula-s-saldž.", "ar_status": "za provjeru" },
-    { "id": "s_gloves", "group": "wear", "picture": "gloves", "bs": "Nosim rukavice.", "en": "I am wearing gloves.", "de": "Ich trage Handschuhe.", "ar": "أَلْبَسُ قُفَّازَات.", "ar_latin": "Albasu kuffâzât.", "ar_status": "za provjeru" },
-    { "id": "s_scarf", "group": "wear", "picture": "scarf", "bs": "Nosim šal.", "en": "I am wearing a scarf.", "de": "Ich trage einen Schal.", "ar": "أَلْبَسُ وِشَاحًا.", "ar_latin": "Albasu višâhâ.", "ar_status": "za provjeru" },
-    { "id": "s_boots", "group": "wear", "picture": "boots", "bs": "Nosim čizme.", "en": "I am wearing boots.", "de": "Ich trage Stiefel.", "ar": "أَلْبَسُ جَزْمَة.", "ar_latin": "Albasu džazma.", "ar_status": "za provjeru" }
+    { "id": "s_snowing", "group": "weather", "picture": "snow", "bs": "Pada snijeg.", "en": "It is snowing.", "de": "Es schneit.", "ar": "الثَّلْجُ يَتَسَاقَط.", "ar_latin": "As-saldžu jatasâkat.", "ar_status": "provjereno" },
+    { "id": "s_sunny", "group": "weather", "picture": "sun", "emoji": "2600", "bs": "Sija sunce.", "en": "The sun is shining.", "de": "Die Sonne scheint.", "ar": "الشَّمْسُ مُشْرِقَة.", "ar_latin": "Aš-šamsu mušrika.", "ar_status": "provjereno" },
+    { "id": "s_raining", "group": "weather", "picture": "rain", "emoji": "1f327", "bs": "Pada kiša.", "en": "It is raining.", "de": "Es regnet.", "ar": "السَّمَاءُ تُمْطِر.", "ar_latin": "As-samâ'u tumtir.", "ar_status": "provjereno" },
+    { "id": "s_sledding", "group": "play", "picture": "sled", "bs": "Rukajja se sanka.", "en": "Rukajja is sledding.", "de": "Rukajja fährt Schlitten.", "ar": "رُقَيَّةُ تَتَزَلَّجُ بِالْمِزْلَجَة.", "ar_latin": "Rukajjatu tatazalladžu bi-l-mizladža.", "ar_status": "provjereno" },
+    { "id": "s_skiing", "group": "play", "picture": "skis", "bs": "Rukajja skija.", "en": "Rukajja is skiing.", "de": "Rukajja fährt Ski.", "ar": "رُقَيَّةُ تَتَزَلَّجُ بِالزَّلَّاجَات.", "ar_latin": "Rukajjatu tatazalladžu bi-z-zallâdžât.", "ar_status": "provjereno" },
+    { "id": "s_snowman", "group": "play", "picture": "snowman", "bs": "Rukajja pravi snjegovića.", "en": "Rukajja is making a snowman.", "de": "Rukajja baut einen Schneemann.", "ar": "رُقَيَّةُ تَصْنَعُ رَجُلَ الثَّلْج.", "ar_latin": "Rukajjatu tasna'u radžula-s-saldž.", "ar_status": "provjereno" },
+    { "id": "s_gloves", "group": "wear", "picture": "gloves", "bs": "Nosim rukavice.", "en": "I am wearing gloves.", "de": "Ich trage Handschuhe.", "ar": "أَلْبَسُ قُفَّازَات.", "ar_latin": "Albasu kuffâzât.", "ar_status": "provjereno" },
+    { "id": "s_scarf", "group": "wear", "picture": "scarf", "bs": "Nosim šal.", "en": "I am wearing a scarf.", "de": "Ich trage einen Schal.", "ar": "أَلْبَسُ وِشَاحًا.", "ar_latin": "Albasu višâhâ.", "ar_status": "provjereno" },
+    { "id": "s_boots", "group": "wear", "picture": "boots", "bs": "Nosim čizme.", "en": "I am wearing boots.", "de": "Ich trage Stiefel.", "ar": "أَلْبَسُ جَزْمَة.", "ar_latin": "Albasu džazma.", "ar_status": "provjereno" }
   ]
 }

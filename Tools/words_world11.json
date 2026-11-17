@@ -4,23 +4,23 @@
   "title_en": "Body and Clothes",
   "title_de": "Körper und Kleidung",
   "words": [
-    { "id": "hand", "bs": "ruka", "en": "hand", "de": "die Hand", "emoji": "270b", "ar": "يَد", "ar_latin": "jad", "ar_status": "za provjeru" },
-    { "id": "foot", "bs": "stopalo", "en": "foot", "de": "der Fuß", "emoji": "1f9b6", "ar": "قَدَم", "ar_latin": "kadam", "ar_status": "za provjeru" },
-    { "id": "eye", "bs": "oko", "en": "eye", "de": "das Auge", "emoji": "1f441", "ar": "عَيْن", "ar_latin": "'ajn", "ar_status": "za provjeru" },
-    { "id": "ear", "bs": "uho", "en": "ear", "de": "das Ohr", "emoji": "1f442", "ar": "أُذُن", "ar_latin": "uzun", "ar_status": "za provjeru" },
-    { "id": "nose", "bs": "nos", "en": "nose", "de": "die Nase", "emoji": "1f443", "ar": "أَنْف", "ar_latin": "anf", "ar_status": "za provjeru" },
-    { "id": "mouth", "bs": "usta", "en": "mouth", "de": "der Mund", "emoji": "1f444", "ar": "فَم", "ar_latin": "fam", "ar_status": "za provjeru" },
-    { "id": "shirt", "bs": "majica", "en": "T-shirt", "de": "das T-Shirt", "emoji": "1f455", "ar": "قَمِيص", "ar_latin": "kamîs", "ar_status": "za provjeru" },
-    { "id": "dress", "bs": "haljina", "en": "dress", "de": "das Kleid", "emoji": "1f457", "ar": "فُسْتَان", "ar_latin": "fustân", "ar_status": "za provjeru" },
-    { "id": "shoe", "bs": "patika", "en": "shoe", "de": "der Schuh", "emoji": "1f45f", "ar": "حِذَاء", "ar_latin": "hizâ'", "ar_status": "za provjeru" },
-    { "id": "sock", "bs": "čarapa", "en": "sock", "de": "die Socke", "emoji": "1f9e6", "ar": "جَوْرَب", "ar_latin": "džavrab", "ar_status": "za provjeru" }
+    { "id": "hand", "bs": "ruka", "en": "hand", "de": "die Hand", "emoji": "270b", "ar": "يَد", "ar_latin": "jad", "ar_status": "provjereno" },
+    { "id": "foot", "bs": "stopalo", "en": "foot", "de": "der Fuß", "emoji": "1f9b6", "ar": "قَدَم", "ar_latin": "kadam", "ar_status": "provjereno" },
+    { "id": "eye", "bs": "oko", "en": "eye", "de": "das Auge", "emoji": "1f441", "ar": "عَيْن", "ar_latin": "'ajn", "ar_status": "provjereno" },
+    { "id": "ear", "bs": "uho", "en": "ear", "de": "das Ohr", "emoji": "1f442", "ar": "أُذُن", "ar_latin": "uzun", "ar_status": "provjereno" },
+    { "id": "nose", "bs": "nos", "en": "nose", "de": "die Nase", "emoji": "1f443", "ar": "أَنْف", "ar_latin": "anf", "ar_status": "provjereno" },
+    { "id": "mouth", "bs": "usta", "en": "mouth", "de": "der Mund", "emoji": "1f444", "ar": "فَم", "ar_latin": "fam", "ar_status": "provjereno" },
+    { "id": "shirt", "bs": "majica", "en": "T-shirt", "de": "das T-Shirt", "emoji": "1f455", "ar": "قَمِيص", "ar_latin": "kamîs", "ar_status": "provjereno" },
+    { "id": "dress", "bs": "haljina", "en": "dress", "de": "das Kleid", "emoji": "1f457", "ar": "فُسْتَان", "ar_latin": "fustân", "ar_status": "provjereno" },
+    { "id": "shoe", "bs": "patika", "en": "shoe", "de": "der Schuh", "emoji": "1f45f", "ar": "حِذَاء", "ar_latin": "hizâ'", "ar_status": "provjereno" },
+    { "id": "sock", "bs": "čarapa", "en": "sock", "de": "die Socke", "emoji": "1f9e6", "ar": "جَوْرَب", "ar_latin": "džavrab", "ar_status": "provjereno" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "za provjeru" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "za provjeru" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "za provjeru" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
-    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "provjereno" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "provjereno" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "provjereno" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "provjereno" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "provjereno" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "provjereno" }
   ]
 }

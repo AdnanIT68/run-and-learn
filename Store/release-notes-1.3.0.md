@@ -1,8 +1,8 @@
 # Release notes 1.3.0 (versionCode 6)
 
 Paste each block into the matching language in Play Console (max 500 characters each).
-Before this release: the Arabic words must be checked by a native speaker (`Store/arabic-review.zip`),
-and the build tried on a phone (diploma and worksheet sharing too).
+Arabic checked (17. 11. 2026). Build 6 is in internal testing since 17. 11.; try it on a phone
+(diploma and worksheet sharing too) before production.
 
 <en-US>
 - New: Arabic words for Bosnian-speaking children, with Latin letters

@@ -32,5 +32,4 @@ Prijava za produkciju: odgovori su pripremljeni u `Store/prijava-za-produkciju.m
 
 - Opisi iz `Store/listing.md` (en-US, hr, de-DE): kratki i puni opis.
 - Snimke za telefon zamijeniti novima; dodati snimke za tablet 7" i 10" (isti set za oba).
-- Napomena: arapski ide u 1.3 bez provjere izvornog govornika (Adnanova odluka 17. 11. 2026).
-  Paket za provjeru: `Store/arabic-review.zip`; ispravke idu u 1.3.1.
+- Arapski je provjeren (Adnan, 17. 11. 2026); lista `Store/arabic-review.md` je sva "provjereno".

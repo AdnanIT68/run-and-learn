@@ -6,24 +6,24 @@
   "review": true,
   "goal": 8,
   "words": [
-    { "id": "star_word", "bs": "zvijezda", "en": "star", "de": "der Stern", "emoji": "1f31f", "ar": "نَجْمَة", "ar_latin": "nadžma", "ar_status": "za provjeru" },
-    { "id": "moon", "bs": "mjesec", "en": "moon", "de": "der Mond", "emoji": "1f319", "ar": "قَمَر", "ar_latin": "kamar", "ar_status": "za provjeru" },
-    { "id": "rocket", "bs": "raketa", "en": "rocket", "de": "die Rakete", "emoji": "1f680", "ar": "صَارُوخ", "ar_latin": "sârûh", "ar_status": "za provjeru" },
-    { "id": "planet", "bs": "planeta", "en": "planet", "de": "der Planet", "emoji": "1fa90", "ar": "كَوْكَب", "ar_latin": "kavkab", "ar_status": "za provjeru" },
-    { "id": "owl", "bs": "sova", "en": "owl", "de": "die Eule", "emoji": "1f989", "ar": "بُومَة", "ar_latin": "bûma", "ar_status": "za provjeru" },
-    { "id": "comet", "bs": "kometa", "en": "comet", "de": "der Komet", "emoji": "2604", "ar": "مُذَنَّب", "ar_latin": "muzannab", "ar_status": "za provjeru" },
-    { "id": "telescope", "bs": "teleskop", "en": "telescope", "de": "das Teleskop", "emoji": "1f52d", "ar": "تِلِسْكُوب", "ar_latin": "tiliskûb", "ar_status": "za provjeru: posuđenica; standardno i مِقْرَاب" },
-    { "id": "bed", "bs": "krevet", "en": "bed", "de": "das Bett", "emoji": "1f6cf", "ar": "سَرِير", "ar_latin": "sarîr", "ar_status": "za provjeru" },
-    { "id": "satellite", "bs": "satelit", "en": "satellite", "de": "der Satellit", "emoji": "1f6f0", "ar": "قَمَر صِنَاعِيّ", "ar_latin": "kamar sinâ'î", "ar_status": "za provjeru" },
-    { "id": "night", "bs": "noć", "en": "night", "de": "die Nacht", "emoji": "1f303", "ar": "لَيْل", "ar_latin": "lejl", "ar_status": "za provjeru" }
+    { "id": "star_word", "bs": "zvijezda", "en": "star", "de": "der Stern", "emoji": "1f31f", "ar": "نَجْمَة", "ar_latin": "nadžma", "ar_status": "provjereno" },
+    { "id": "moon", "bs": "mjesec", "en": "moon", "de": "der Mond", "emoji": "1f319", "ar": "قَمَر", "ar_latin": "kamar", "ar_status": "provjereno" },
+    { "id": "rocket", "bs": "raketa", "en": "rocket", "de": "die Rakete", "emoji": "1f680", "ar": "صَارُوخ", "ar_latin": "sârûh", "ar_status": "provjereno" },
+    { "id": "planet", "bs": "planeta", "en": "planet", "de": "der Planet", "emoji": "1fa90", "ar": "كَوْكَب", "ar_latin": "kavkab", "ar_status": "provjereno" },
+    { "id": "owl", "bs": "sova", "en": "owl", "de": "die Eule", "emoji": "1f989", "ar": "بُومَة", "ar_latin": "bûma", "ar_status": "provjereno" },
+    { "id": "comet", "bs": "kometa", "en": "comet", "de": "der Komet", "emoji": "2604", "ar": "مُذَنَّب", "ar_latin": "muzannab", "ar_status": "provjereno" },
+    { "id": "telescope", "bs": "teleskop", "en": "telescope", "de": "das Teleskop", "emoji": "1f52d", "ar": "تِلِسْكُوب", "ar_latin": "tiliskûb", "ar_status": "provjereno" },
+    { "id": "bed", "bs": "krevet", "en": "bed", "de": "das Bett", "emoji": "1f6cf", "ar": "سَرِير", "ar_latin": "sarîr", "ar_status": "provjereno" },
+    { "id": "satellite", "bs": "satelit", "en": "satellite", "de": "der Satellit", "emoji": "1f6f0", "ar": "قَمَر صِنَاعِيّ", "ar_latin": "kamar sinâ'î", "ar_status": "provjereno" },
+    { "id": "night", "bs": "noć", "en": "night", "de": "die Nacht", "emoji": "1f303", "ar": "لَيْل", "ar_latin": "lejl", "ar_status": "provjereno" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "za provjeru" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "za provjeru" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "za provjeru" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
-    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" },
-    { "id": "finale", "bs": "Bravo! Svi svjetovi su završeni!", "en": "Well done! You finished every world!", "de": "Super! Du hast alle Welten geschafft!", "ar": "رَائِع! اِنْتَهَتْ كُلُّ الْعَوَالِم!", "ar_latin": "Râ'i'! Intahat kullu-l-'avâlim!", "ar_status": "za provjeru" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "provjereno" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "provjereno" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "provjereno" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "provjereno" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "provjereno" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "provjereno" },
+    { "id": "finale", "bs": "Bravo! Svi svjetovi su završeni!", "en": "Well done! You finished every world!", "de": "Super! Du hast alle Welten geschafft!", "ar": "رَائِع! اِنْتَهَتْ كُلُّ الْعَوَالِم!", "ar_latin": "Râ'i'! Intahat kullu-l-'avâlim!", "ar_status": "provjereno" }
   ]
 }

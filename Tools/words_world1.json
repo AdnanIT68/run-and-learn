@@ -4,23 +4,23 @@
   "title_en": "Grandma's Garden",
   "title_de": "Omas Garten",
   "words": [
-    { "id": "apple", "bs": "jabuka", "en": "apple", "de": "der Apfel", "emoji": "1f34e", "ar": "تُفَّاحَة", "ar_latin": "tuffâha", "ar_status": "za provjeru" },
-    { "id": "pear", "bs": "kruška", "en": "pear", "de": "die Birne", "emoji": "1f350", "ar": "كُمَّثْرَى", "ar_latin": "kummasrâ", "ar_status": "za provjeru" },
-    { "id": "banana", "bs": "banana", "en": "banana", "de": "die Banane", "emoji": "1f34c", "ar": "مَوْزَة", "ar_latin": "mavza", "ar_status": "za provjeru" },
-    { "id": "strawberry", "bs": "jagoda", "en": "strawberry", "de": "die Erdbeere", "emoji": "1f353", "ar": "فَرَاوِلَة", "ar_latin": "farâvila", "ar_status": "za provjeru" },
-    { "id": "grapes", "bs": "grožđe", "en": "grapes", "de": "die Weintrauben", "emoji": "1f347", "ar": "عِنَب", "ar_latin": "'inab", "ar_status": "za provjeru" },
-    { "id": "watermelon", "bs": "lubenica", "en": "watermelon", "de": "die Wassermelone", "emoji": "1f349", "ar": "بِطِّيخ", "ar_latin": "bittîh", "ar_status": "za provjeru" },
-    { "id": "lemon", "bs": "limun", "en": "lemon", "de": "die Zitrone", "emoji": "1f34b", "ar": "لَيْمُون", "ar_latin": "lejmûn", "ar_status": "za provjeru" },
-    { "id": "carrot", "bs": "mrkva", "en": "carrot", "de": "die Karotte", "emoji": "1f955", "ar": "جَزَرَة", "ar_latin": "džazara", "ar_status": "za provjeru" },
-    { "id": "tomato", "bs": "paradajz", "en": "tomato", "de": "die Tomate", "emoji": "1f345", "ar": "طَمَاطِم", "ar_latin": "tamâtim", "ar_status": "za provjeru" },
-    { "id": "cucumber", "bs": "krastavac", "en": "cucumber", "de": "die Gurke", "emoji": "1f952", "ar": "خِيَار", "ar_latin": "hijâr", "ar_status": "za provjeru" }
+    { "id": "apple", "bs": "jabuka", "en": "apple", "de": "der Apfel", "emoji": "1f34e", "ar": "تُفَّاحَة", "ar_latin": "tuffâha", "ar_status": "provjereno" },
+    { "id": "pear", "bs": "kruška", "en": "pear", "de": "die Birne", "emoji": "1f350", "ar": "كُمَّثْرَى", "ar_latin": "kummasrâ", "ar_status": "provjereno" },
+    { "id": "banana", "bs": "banana", "en": "banana", "de": "die Banane", "emoji": "1f34c", "ar": "مَوْزَة", "ar_latin": "mavza", "ar_status": "provjereno" },
+    { "id": "strawberry", "bs": "jagoda", "en": "strawberry", "de": "die Erdbeere", "emoji": "1f353", "ar": "فَرَاوِلَة", "ar_latin": "farâvila", "ar_status": "provjereno" },
+    { "id": "grapes", "bs": "grožđe", "en": "grapes", "de": "die Weintrauben", "emoji": "1f347", "ar": "عِنَب", "ar_latin": "'inab", "ar_status": "provjereno" },
+    { "id": "watermelon", "bs": "lubenica", "en": "watermelon", "de": "die Wassermelone", "emoji": "1f349", "ar": "بِطِّيخ", "ar_latin": "bittîh", "ar_status": "provjereno" },
+    { "id": "lemon", "bs": "limun", "en": "lemon", "de": "die Zitrone", "emoji": "1f34b", "ar": "لَيْمُون", "ar_latin": "lejmûn", "ar_status": "provjereno" },
+    { "id": "carrot", "bs": "mrkva", "en": "carrot", "de": "die Karotte", "emoji": "1f955", "ar": "جَزَرَة", "ar_latin": "džazara", "ar_status": "provjereno" },
+    { "id": "tomato", "bs": "paradajz", "en": "tomato", "de": "die Tomate", "emoji": "1f345", "ar": "طَمَاطِم", "ar_latin": "tamâtim", "ar_status": "provjereno" },
+    { "id": "cucumber", "bs": "krastavac", "en": "cucumber", "de": "die Gurke", "emoji": "1f952", "ar": "خِيَار", "ar_latin": "hijâr", "ar_status": "provjereno" }
   ],
   "phrases": [
-    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "za provjeru" },
-    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "za provjeru" },
-    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "za provjeru" },
-    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "za provjeru: muški rod imperativa; igra ovu rečenicu pušta na bosanskom" },
-    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "za provjeru: muški rod imperativa (ženski: اِقْفِزِي)" },
-    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "za provjeru" }
+    { "id": "praise_1", "bs": "Bravo!", "en": "Great job!", "de": "Toll!", "ar": "رَائِع!", "ar_latin": "Râ'i'!", "ar_status": "provjereno" },
+    { "id": "praise_2", "bs": "Tačno!", "en": "That's right!", "de": "Richtig!", "ar": "صَحِيح!", "ar_latin": "Sahîh!", "ar_status": "provjereno" },
+    { "id": "praise_3", "bs": "Super!", "en": "Awesome!", "de": "Super!", "ar": "مُمْتَاز!", "ar_latin": "Mumtâz!", "ar_status": "provjereno" },
+    { "id": "intro", "bs": "Slušaj riječ, pa skoči u pravu sliku!", "en": "Listen to the word, then jump into the right picture!", "de": "Hör auf das Wort und spring in das richtige Bild!", "ar": "اِسْتَمِعْ إِلَى الْكَلِمَةِ، ثُمَّ اقْفِزْ إِلَى الصُّورَةِ الصَّحِيحَة!", "ar_latin": "Istami' ila-l-kalimati, summa-kfiz ila-s-sûrati-s-sahîha!", "ar_status": "provjereno" },
+    { "id": "jump", "bs": "Skoči!", "en": "Jump!", "de": "Spring!", "ar": "اِقْفِزْ!", "ar_latin": "Ikfiz!", "ar_status": "provjereno" },
+    { "id": "goal", "bs": "Bravo! Cilj je ispunjen!", "en": "Well done! Goal complete!", "de": "Super! Ziel geschafft!", "ar": "رَائِع! تَمَّ الْهَدَف!", "ar_latin": "Râ'i'! Tamma-l-hadaf!", "ar_status": "provjereno" }
   ]
 }

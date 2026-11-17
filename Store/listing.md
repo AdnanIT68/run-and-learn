@@ -214,4 +214,4 @@ Owner: create the app in Play Console, upload the .aab.
 Voices: Azure Speech (licensed) since 1.1.0. Family recordings for Bosnian remain an option.
 1.3.0: the texts above describe 1.3 (Arabic, Lijepe riječi, Boje i oblici, story, sticker gifts, easy mode,
 time limit, report, children profiles, mini-games, letter tracing, sums, outfits, diplomas, tablets, Tijelo i odjeća,
-picture books, worksheets, word of the day). Update Play only after the Arabic review (`Store/arabic-review.md`) and the phone test.
+picture books, worksheets, word of the day). Arabic checked 17. 11. 2026; update the store texts and screenshots together with the production release.
