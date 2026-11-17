@@ -217,6 +217,12 @@
       "de": "Brbljavka ist gefangen! Sie hat alle Farben und Formen zurückgegeben."
     },
     {
+      "id": "pepi_word_of_day",
+      "bs": "Riječ dana!",
+      "en": "Word of the day!",
+      "de": "Wort des Tages!"
+    },
+    {
       "id": "pepi_world_World11",
       "bs": "Dobro došli u svijet tijela i odjeće!",
       "en": "Welcome to the world of body and clothes!",

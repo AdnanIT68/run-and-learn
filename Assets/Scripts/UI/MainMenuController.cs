@@ -95,6 +95,7 @@ namespace FootballRunner.UI
             CharacterChooserUi.EnsureOnCanvas(transform, ResolveFont());
             OutfitShopUi.EnsureOnCanvas(transform);
             DailyUi.EnsureOnCanvas(transform);
+            WordOfTheDayUi.EnsureOnCanvas(transform);
             ParentsCornerUi parents = ParentsCornerUi.EnsureOnCanvas(transform, ResolveFont());
             MainMenuStyle.Apply(transform, playButton, settingsButton, quitButton, howToPlayButton,
                 highScoreText, totalCoinsText);

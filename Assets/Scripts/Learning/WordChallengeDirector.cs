@@ -414,6 +414,13 @@ namespace FootballRunner.Learning
                 _streak++;
             }
 
+            // The word of the day, caught as itself (not as a sum's answer): a few coins once a day.
+            if (CurrentKind != Kind.Sum && _pack != null && WordOfTheDay.OnCaught(_pack.Name, _target.id))
+            {
+                AudioManager.Instance?.PlayCoin();
+                FloatingTextSpawner.Instance?.Show($"+{WordOfTheDay.Reward}", bubble.transform.position + Vector3.up);
+            }
+
             if (_guided)
             {
                 SaveManager.Data.wordTutorialDone = true;

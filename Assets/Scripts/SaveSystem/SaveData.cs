@@ -40,6 +40,9 @@ namespace FootballRunner.SaveSystem
         /// <summary>Daily play limit in minutes set by a parent; 0 means no limit.</summary>
         public int dailyLimitMinutes;
 
+        /// <summary>The day (yyyy-MM-dd) the word of the day was caught and its coins given, or empty.</summary>
+        public string wordOfDayClaimed = "";
+
         /// <summary>What the player wears (Outfits): an item id per place, or empty.</summary>
         public string outfitHead = "";
         public string outfitEyes = "";
