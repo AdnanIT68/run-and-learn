@@ -1,20 +1,20 @@
 Run and Learn
 
-Rukajja Games · Effective date: 23 October 2026
+Rukajja Games · Effective date: 23 October 2026 · Updated: 17 November 2026
 
 Privacy Policy
 
 Run and Learn is a learning game for children. We built it so that it does not collect anything about your child.
 
-• No personal data is collected. The game does not ask for a name, e-mail, age, location, photos, contacts or any other personal information.
+• No personal data is collected. The game does not ask for an e-mail, age, location, photos, contacts or any other personal information. In the parents' corner a parent may type a child's first name (optional), to tell children's profiles apart and to print it on a diploma. The name stays only on the device and is never sent anywhere.
 
 • No internet connection. The game works completely offline and does not request permission to use the internet. Nothing is sent from the device to us or to anyone else.
 
 • No ads, no analytics, no tracking. The game contains no advertising, no analytics or crash-reporting tools, and no third-party SDKs that collect data.
 
-• No purchases with real money. Coins in the game are earned by playing and can only unlock characters inside the game.
+• No purchases with real money. Coins in the game are earned by playing and can only unlock characters and outfits inside the game.
 
-• Saved progress stays on the device. Learned words, stars, coins and settings are stored only on the device so the game remembers where your child stopped. Uninstalling the game deletes them.
+• Saved progress stays on the device. Learned words, stars, coins, children's profiles and settings are stored only on the device so the game remembers where your child stopped. Uninstalling the game deletes them. Diplomas and worksheets are made on the device; when a parent taps "Save and share", the picture is placed in the phone's gallery and Android's share menu opens, and what happens next (printing, sending) is the parent's choice.
 
 • Permissions. The only permission the game uses is vibration, for gentle feedback, which can be turned off in Settings.
 
@@ -26,15 +26,15 @@ Politika privatnosti
 
 Run and Learn je igra za učenje namijenjena djeci. Napravljena je tako da o vašem djetetu ne prikuplja ništa.
 
-• Ne prikupljaju se lični podaci. Igra ne traži ime, e-mail, godine, lokaciju, fotografije, kontakte niti bilo koji drugi lični podatak.
+• Ne prikupljaju se lični podaci. Igra ne traži e-mail, godine, lokaciju, fotografije, kontakte niti bilo koji drugi lični podatak. U kutku za roditelje roditelj može upisati ime djeteta (nije obavezno), da razlikuje profile djece i da ga ispiše na diplomi. Ime ostaje samo na uređaju i nikad se nikome ne šalje.
 
 • Bez interneta. Igra radi potpuno bez interneta i ne traži dozvolu za internet. Ništa se ne šalje s uređaja ni nama ni bilo kome drugom.
 
 • Bez reklama, analitike i praćenja. U igri nema reklama, alata za analitiku ili prijavu grešaka, niti dodataka trećih strana koji prikupljaju podatke.
 
-• Bez kupovine pravim novcem. Novčići u igri se zarađuju igranjem i služe samo za otključavanje likova u igri.
+• Bez kupovine pravim novcem. Novčići u igri se zarađuju igranjem i služe samo za otključavanje likova i odjeće u igri.
 
-• Napredak ostaje na uređaju. Naučene riječi, zvjezdice, novčići i postavke čuvaju se samo na uređaju. Brisanjem igre brišu se i oni.
+• Napredak ostaje na uređaju. Naučene riječi, zvjezdice, novčići, profili djece i postavke čuvaju se samo na uređaju. Brisanjem igre brišu se i oni. Diplome i radni listovi prave se na uređaju; kad roditelj dodirne „Sačuvaj i podijeli“, slika se stavlja u galeriju telefona i otvara se Androidov meni za dijeljenje, a šta dalje (štampa, slanje) bira roditelj.
 
 • Dozvole. Igra koristi samo vibraciju, koja se može isključiti u postavkama.
 
@@ -46,15 +46,15 @@ Datenschutzerklärung
 
 Run and Learn ist ein Lernspiel für Kinder. Es wurde so gebaut, dass es keine Daten über Ihr Kind erhebt.
 
-• Keine personenbezogenen Daten. Das Spiel fragt weder nach Name, E-Mail, Alter, Standort, Fotos, Kontakten noch nach anderen persönlichen Angaben.
+• Keine personenbezogenen Daten. Das Spiel fragt weder nach E-Mail, Alter, Standort, Fotos, Kontakten noch nach anderen persönlichen Angaben. In der Elternecke können Eltern den Vornamen eines Kindes eingeben (freiwillig), um die Profile der Kinder zu unterscheiden und ihn auf ein Diplom zu drucken. Der Name bleibt nur auf dem Gerät und wird nie gesendet.
 
 • Kein Internet. Das Spiel funktioniert vollständig offline und fordert keine Internetberechtigung an. Es werden keine Daten vom Gerät gesendet.
 
 • Keine Werbung, keine Analyse, kein Tracking. Das Spiel enthält keine Werbung, keine Analyse- oder Absturzberichts-Tools und keine Drittanbieter-SDKs, die Daten erheben.
 
-• Keine Käufe mit echtem Geld. Münzen werden durch Spielen verdient und schalten nur Spielfiguren im Spiel frei.
+• Keine Käufe mit echtem Geld. Münzen werden durch Spielen verdient und schalten nur Spielfiguren und Kleidung im Spiel frei.
 
-• Der Spielstand bleibt auf dem Gerät. Gelernte Wörter, Sterne, Münzen und Einstellungen werden nur auf dem Gerät gespeichert und beim Deinstallieren gelöscht.
+• Der Spielstand bleibt auf dem Gerät. Gelernte Wörter, Sterne, Münzen, Kinderprofile und Einstellungen werden nur auf dem Gerät gespeichert und beim Deinstallieren gelöscht. Diplome und Arbeitsblätter entstehen auf dem Gerät; tippen Eltern auf „Speichern und teilen“, kommt das Bild in die Galerie des Telefons und das Android-Teilen-Menü öffnet sich. Was danach geschieht (Drucken, Senden), entscheiden die Eltern.
 
 • Berechtigungen. Das Spiel nutzt nur die Vibration, die in den Einstellungen ausgeschaltet werden kann.
 

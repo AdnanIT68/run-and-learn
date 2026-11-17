@@ -38,7 +38,7 @@ namespace FootballRunner.EditorTools
         public const string VersionName = "1.3.0";
 
         /// <summary>Play's internal number; every upload must be higher than the last.</summary>
-        public const int VersionCode = 6;
+        public const int VersionCode = 7;
 
         [MenuItem("Tools/Football Runner/4 - Configure Android")]
         public static void Configure()
@@ -91,10 +91,12 @@ namespace FootballRunner.EditorTools
 
             // ASTC is several times smaller in memory than ETC2 for the large sprites
             // (and ETC2 leaves sprites whose size is not a multiple of 4 uncompressed).
-            // ETC2 stays as the fallback: the App Bundle carries both and Play gives
-            // each phone the one its GPU supports.
-            PlayerSettings.Android.textureCompressionFormats =
-                new[] { TextureCompressionFormat.ASTC, TextureCompressionFormat.ETC2 };
+            // ASTC only: two formats make Unity move the data into Play Asset Delivery
+            // packs, whose Google library adds FOREGROUND_SERVICE_DATA_SYNC, a permission
+            // Play asks a declaration for and a children's game does not need (1.3.0 build 6
+            // had it). Practically every phone since 2014 decodes ASTC; the rare older GPU
+            // still runs the game, Unity unpacks the textures on load.
+            PlayerSettings.Android.textureCompressionFormats = new[] { TextureCompressionFormat.ASTC };
 
             // Unity 6 lets every plan hide the Unity logo screen; the game opens on its menu sooner.
             PlayerSettings.SplashScreen.show = false;

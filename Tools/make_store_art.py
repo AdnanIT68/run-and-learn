@@ -135,7 +135,23 @@ def shadowed_text(canvas: Image.Image, xy: tuple, text: str, font: ImageFont.Fre
     ImageDraw.Draw(canvas).text(xy, text, font=font, anchor="lm", **kwargs)
 
 
-def feature_graphic() -> Image.Image:
+TAGLINES = {
+    "en": "Run, jump and learn new words!",
+    "hr": "Trči, skači i uči nove riječi!",
+    "de": "Lauf, spring und lerne neue Wörter!",
+}
+ARABIC_FONT = ROOT / "Assets" / "Resources" / "Fonts" / "NotoSansArabic-Bold.ttf"
+
+
+def arabic_label() -> str:
+    """"العربية" joined and reversed for Pillow, which draws left to right without shaping."""
+    import sys
+    sys.path.insert(0, str(ROOT / "Tools"))
+    import generate_words
+    return generate_words.shape_arabic("العربية")
+
+
+def feature_graphic(lang: str = "en") -> Image.Image:
     width, height = 1024, 500
     mask = Image.linear_gradient("L").resize((width, height))
     canvas = Image.composite(Image.new("RGBA", (width, height), (64, 156, 238)),
@@ -163,20 +179,27 @@ def feature_graphic() -> Image.Image:
     shadowed_text(canvas, (420, 168), title, title_font, fill=(255, 255, 255), stroke_width=7,
                   stroke_fill=(28, 84, 160))
 
-    tagline_font = ImageFont.truetype(str(TITLE_FONT), 30)
-    shadowed_text(canvas, (424, 252), "Run, jump and learn new words!", tagline_font, fill=(255, 255, 255))
+    tagline = TAGLINES.get(lang, TAGLINES["en"])
+    tagline_size = 30
+    while ImageFont.truetype(str(TITLE_FONT), tagline_size).getlength(tagline) > 560:
+        tagline_size -= 1
+    tagline_font = ImageFont.truetype(str(TITLE_FONT), tagline_size)
+    shadowed_text(canvas, (424, 252), tagline, tagline_font, fill=(255, 255, 255))
 
-    pill_font = ImageFont.truetype(str(TITLE_FONT), 26)
+    # The four languages to learn; Arabic in its own script (Titan One has no Arabic letters).
+    pill_font = ImageFont.truetype(str(TITLE_FONT), 23)
+    arabic_font = ImageFont.truetype(str(ARABIC_FONT), 25)
     x = 424
-    for label in ("Bosanski", "English", "Deutsch"):
-        text_width = pill_font.getlength(label)
-        box = (x, 300, x + text_width + 40, 348)
+    for label, font in (("Bosanski", pill_font), ("English", pill_font), ("Deutsch", pill_font),
+                        (arabic_label(), arabic_font)):
+        text_width = font.getlength(label)
+        box = (x, 302, x + text_width + 32, 346)
         shade = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-        ImageDraw.Draw(shade).rounded_rectangle((box[0], box[1] + 5, box[2], box[3] + 5), 24, fill=(10, 30, 70, 90))
+        ImageDraw.Draw(shade).rounded_rectangle((box[0], box[1] + 5, box[2], box[3] + 5), 22, fill=(10, 30, 70, 90))
         canvas.alpha_composite(shade.filter(ImageFilter.GaussianBlur(4)))
-        ImageDraw.Draw(canvas).rounded_rectangle(box, 24, fill=(255, 255, 255))
-        ImageDraw.Draw(canvas).text((x + 20, 324), label, font=pill_font, fill=(28, 84, 160), anchor="lm")
-        x = box[2] + 14
+        ImageDraw.Draw(canvas).rounded_rectangle(box, 22, fill=(255, 255, 255))
+        ImageDraw.Draw(canvas).text((x + 16, 324), label, font=font, fill=(28, 84, 160), anchor="lm")
+        x = box[2] + 12
 
     canvas.alpha_composite(word_bubble(112), (880, 28))
     canvas.alpha_composite(word_bubble(124, COW), (818, 352))
@@ -185,8 +208,18 @@ def feature_graphic() -> Image.Image:
 
 
 def main() -> None:
+    import sys
     ICON_DIR.mkdir(parents=True, exist_ok=True)
     PLAY_DIR.mkdir(parents=True, exist_ok=True)
+
+    # One feature graphic per store language (en is also the default file name Play Console used so far).
+    feature_graphic("en").convert("RGB").save(PLAY_DIR / "feature_graphic_1024x500.png")
+    for lang in ("hr", "de"):
+        feature_graphic(lang).convert("RGB").save(PLAY_DIR / f"feature_graphic_{lang}_1024x500.png")
+
+    if "--feature-only" in sys.argv:
+        print("feature graphics written (en, hr, de)")
+        return
 
     big = icon(512)
     big.save(ICON_DIR / "icon_512.png")
@@ -196,8 +229,7 @@ def main() -> None:
     back.save(ICON_DIR / "adaptive_background.png")
     front.save(ICON_DIR / "adaptive_foreground.png")
 
-    feature_graphic().convert("RGB").save(PLAY_DIR / "feature_graphic_1024x500.png")
-    print("icon, adaptive layers and feature graphic written")
+    print("icon, adaptive layers and feature graphics written")
 
 
 if __name__ == "__main__":

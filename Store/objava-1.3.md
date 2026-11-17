@@ -1,6 +1,6 @@
 # Run and Learn 1.3.0 (versionCode 6): objava na Google Play
 
-Fajl za upload: `Builds\RunAndLearn-1.3.0-6.aab` (potpisan ključem za upload).
+Fajl za upload: `Builds\RunAndLearn-1.3.0-7.aab` (potpisan ključem za upload; build 7 zamjenjuje 6, vidi niže).
 Bilješke o izdanju: `Store/release-notes-1.3.0.md` (en, hr = bosanski tekst, de; svaka ispod 500 znakova).
 Opisi: `Store/listing.md`. Snimke: `Store/play/screenshots/<en|hr|de>/` (telefon) i
 `Store/play/tablet/<en|hr|de>/` (tablet 7" i 10").
@@ -20,16 +20,22 @@ i 12 testera zatvorenog testiranja ništa ne primijeti.
 Stanje 17. 11. 2026 u 10:51: build 6 (1.3.0) je OBJAVLJEN u internom testiranju (link
 https://play.google.com/apps/internaltest/4701732897561276308, lista "ProfitPilot Testeri").
 
+Build 7 (17. 11.): isti 1.3.0, ali samo ASTC teksture, pa nema Googleovih paketa resursa ni dozvola
+FOREGROUND_SERVICE / FOREGROUND_SERVICE_DATA_SYNC koje je build 6 dobio (Play bi za produkciju tražio
+izjavu za njih). Jedina dozvola je vibracija, kao u 1.2.1. U produkciju ide build 7.
+
 ## 2. Kad interni test prođe
 
 Prijava za produkciju: odgovori su pripremljeni u `Store/prijava-za-produkciju.md`.
 
 - Ako je odobren pristup produkciji (14 dana s 12 testera, oko 18. 11.): Produkcija → Napravi novo
-  izdanje → "Dodaj iz biblioteke" (isti build 6) → bilješke → slanje na pregled.
+  izdanje → "Dodaj iz biblioteke" (build 7) → bilješke → slanje na pregled.
 - Ako još nije: isti build u Zatvoreno testiranje (Alpha), da testeri dobiju 1.3.
 
 ## 3. Stranica u trgovini (može odmah, neovisno o buildu)
 
 - Opisi iz `Store/listing.md` (en-US, hr, de-DE): kratki i puni opis.
+- Naslovna slika (1024x500) po jeziku: `Store/play/feature_graphic_1024x500.png` (en),
+  `feature_graphic_hr_1024x500.png`, `feature_graphic_de_1024x500.png` (s arapskim i lokalnim sloganom).
 - Snimke za telefon zamijeniti novima; dodati snimke za tablet 7" i 10" (isti set za oba).
 - Arapski je provjeren (Adnan, 17. 11. 2026); lista `Store/arabic-review.md` je sva "provjereno".
